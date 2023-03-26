@@ -1,30 +1,40 @@
 // contains information about the user avatar and name
 import { useState } from 'react';
 import { AiOutlineLike, AiOutlineDislike, AiFillLike, AiFillDislike } from 'react-icons/ai';
+import { useNavigate } from 'react-router-dom'
 
 const ReactionWrapper = ({ post, user }) => {
   const [liked, setLiked] = useState(false);
   const [disliked, setDisliked] = useState(false);
+  const navigate = useNavigate();
 
   const handleLikeClick = () => {
-    // update it to communicate with the server
-    setLiked(!liked);
+    // add communication to the server
+    if (!user) {
+      navigate('/login')
+    } else {
+      setLiked(!liked);
+    }
   }
 
   const handleDisLikeClick = () => {
-    // update it to communicate with the server
-    setDisliked(!disliked);
+    // add communication to the server
+    if (!user) {
+      navigate('/login')
+    } else {
+      setDisliked(!disliked);
+    }
   }
 
   return (
     <div className="reactionWrapper">
       <div className="likesWrapper" onClick={handleLikeClick}>
         {liked ? <AiFillLike className="likesIcon" color="#FF4136" size={20} /> : <AiOutlineLike className="likesIcon" color="#818181" size={20} />}
-        <span className="likesCount">{post.like.length}</span>
+        {post.like.length > 0 ? <span className="likesCount">{post.like.length}</span> : null}
       </div>
       <div className="dislikesWrapper" onClick={handleDisLikeClick}>
         {disliked ? <AiFillDislike className="dislikesIcon" color="#FF4136" size={20} /> : <AiOutlineDislike className="dislikesIcon" color="#818181" size={20} />}
-        <span className="dislikesCount">{post.like.length}</span>
+        {post.dislike.length > 0 ? <span className="dislikesCount">{post.dislike.length}</span> : null}
       </div>
     </div>
   )

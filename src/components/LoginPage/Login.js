@@ -23,11 +23,6 @@ function Login() {
   const [passwordcorrectError, setPasswordcorrectError] = useState(false);
   const [loginStatus, setLoginStatus] = useState("");
 
-  // const handleSubmit = (event) => {
-  //   event.preventDefault();
-  //   console.log(`Submitting username: ${username} and password: ${password}`);
-  //   // Send request to server to verify credentials
-  // };
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (!username) {
@@ -43,7 +38,6 @@ function Login() {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ username, password }),
         });
-        console.log(response);
         if (response.ok) {
           const authToken = await response.text();
           // save user to localStorage
@@ -150,7 +144,7 @@ function Login() {
       <Box align="center" className="link-to-signup">
         <Typography variant="body3">
           Don't have an account?{" "}
-          <Link href="./signup" variant="body3">
+          <Link href="/signup" variant="body3">
             Sign up
           </Link>
         </Typography>

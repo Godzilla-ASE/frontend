@@ -51,7 +51,6 @@ function SinglePost() {
   useEffect(() => {
     const fetchData = async () => {
       const data = await getAll(postId);
-      console.log(data[0]);
       setPostData(data[0]);
     }
     fetchData()
@@ -71,7 +70,6 @@ function SinglePost() {
     )
   }
 
-  //console.log(postData);
   //拆解json里的data数据
   //正文
   const title = postData.title; 
@@ -90,7 +88,6 @@ function SinglePost() {
   //图片
   const imagePaths = postData.content.image;
   const picNum = imagePaths.length;
-  console.log(picNum);
   const images = [];
   for(let i=0; i<picNum; i++){
     images.push(imagePaths[i]);
