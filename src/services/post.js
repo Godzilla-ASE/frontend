@@ -1,6 +1,6 @@
 import axios from 'axios'
 // const baseUrl = 'http://10.28.9.182:9000/posts'
-const baseUrl = 'http://localhost:3001/posts'
+const baseUrl = 'http://10.28.9.182:9000/posts'
 
 const getAll = async () => {
   const response = await axios.get(baseUrl)

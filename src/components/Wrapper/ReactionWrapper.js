@@ -32,11 +32,12 @@ const ReactionWrapper = ({ post, user }) => {
     <div className="reactionWrapper">
       <div className="likesWrapper" onClick={handleLikeClick}>
         {liked ? <AiFillLike className="likesIcon" color="#FF4136" size={20} /> : <AiOutlineLike className="likesIcon" color="#818181" size={20} />}
-        {post.like.length > 0 ? <span className="likesCount">{post.like.length}</span> : null}
+        {/* {post.like.length > 0 ? <span className="likesCount">{post.like.length}</span> : null} */}
+        {post.like > 0 ? <span className="likesCount">{post.like}</span> : null}
       </div>
       <div className="dislikesWrapper" onClick={handleDisLikeClick}>
         {disliked ? <AiFillDislike className="dislikesIcon" color="#FF4136" size={20} /> : <AiOutlineDislike className="dislikesIcon" color="#818181" size={20} />}
-        {post.dislike.length > 0 ? <span className="dislikesCount">{post.dislike.length}</span> : null}
+        {post.unlike > 0 ? <span className="dislikesCount">{post.unlike}</span> : null}
       </div>
     </div>
   )

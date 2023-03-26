@@ -19,8 +19,8 @@ export default function Homepage({ data, user }) {
           <div key={index}>
             <div style={{ filter: imgLoad ? '' : 'blur(10px)' }} >
               <img
-                src={`${item.content.image}?w=162&auto=format`}
-                srcSet={`${item.content.image}?w=162&auto=format&dpr=2 2x`}
+                src={`${item.coverImage}?w=162&auto=format`}
+                srcSet={`${item.coverImage}?w=162&auto=format&dpr=2 2x`}
                 alt={item.title}
                 loading="lazy"
                 style={{
