@@ -11,8 +11,8 @@ import { NavLink, Outlet, useNavigate } from 'react-router-dom';
 function SinglePost() {
 
   const params = useParams()
-  const postId = params.postId;  // 假设需要获取的帖子的 ID 为 12345
-
+  //onst postId = params.postId;  // 假设需要获取的帖子的 ID 为 12345
+  const postId = 1;
   const navigate = useNavigate();
 
   const [postData, setPostData] = useState(null);
@@ -89,8 +89,8 @@ function SinglePost() {
   const content = postData.content.text != null ? postData.content.text : "NULL Text";
 
   const creationDate = postData.creation_Date.toisoString != null ? postData.creation_Date : "NULL Date";
-  const location = postData.location != null ? postData.location : "NULL location";
-  const tags = postData.tag != null ? postData.tag : [];
+  //const location = postData.location != null ? postData.location : "NULL location";
+  //const tags = postData.tag != null ? postData.tag : [];
 
   // const title = "postData.title"; 
   // const content = "postData.content.textpostData.content.textpostData.content.textpostData.content.textpostData.content.textpostData.content.textpostData.content.textpostData.content.text";
@@ -99,17 +99,23 @@ function SinglePost() {
   // const dislikeCount = 2;
 
   //图片
-  const imagePaths = postData.content.image != null ? postData.content.image : [];
-  const picNum = imagePaths.length;
+  // const imagePaths = postData.content.image != null ? postData.content.image : [];
+  // const picNum = imagePaths.length;
 
-  const images = [];
-  for(let i=0; i<picNum; i++){
-    images.push(imagePaths[i]);
-  }
+  // const images = [];
+  // for(let i=0; i<picNum; i++){
+  //   images.push(imagePaths[i]);
+  // }
+
+  //联调测试
+  const images = [postData.conten_img]
+  const picNum = images.length;
 
   //交互相关
-  const likeCount = postData.like != null ? postData.like.length : 0;
-  const dislikeCount = postData.unlike != null ? postData.unlike.length : 0;
+  // const likeCount = postData.like != null ? postData.like.length : 0;
+  // const dislikeCount = postData.unlike != null ? postData.unlike.length : 0;
+  const likeCount = postData.like != null ? postData.like: 0;
+  const dislikeCount = postData.unlike != null ? postData.unlike: 0;
   const postUrl = postData.url != null? postData.url : "NULL Url";
   const userId = postData.userid != null ? postData.userid : "NULL Id";
   const username = postData.username !=null ? postData.username : "NULL Username";
