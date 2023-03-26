@@ -112,7 +112,8 @@ function SinglePost() {
   // }
 
   //联调测试
-  const images = [postData.content_img]
+  const images = postData.content_img.split(",");
+  //const images = [postData.content_img]
   const picNum = images.length;
 
   //交互相关
