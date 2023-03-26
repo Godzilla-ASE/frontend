@@ -1,0 +1,96 @@
+.signup-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 7.5%;
+  /* height: 110; */
+  padding-bottom: 7.5%;
+  background-color: #fafafa;
+}
+
+.signup-form-container {
+  display: flex;
+  flex-direction: column;
+  gap:20px;
+  padding: 40px;
+  border: 1px solid #dbdbdb;
+  border-radius: 5px;
+  width: 350px;
+  background-color: #fff;
+  }
+  
+  .signup-heading {
+  font-weight: bold;
+  margin-bottom: 16px;
+  text-align: center;
+  }
+  
+  .signup-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  }
+  
+  .signup-input {
+  width: 100%;
+  }
+  
+  .signup-checkbox {
+  margin-top: 8px;
+  }
+  
+  .signup-button {
+  margin-top: 16px;
+  }
+  
+  .signup-footer {
+  margin-top: 16px;
+  text-align: center;
+  }
+
+  .back-to-login-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 20vh;
+    background-color: #fafafa;
+  }.signup-login-box {
+    width: 350px;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .signup-link-to-login{
+    margin-top: 10px;
+    font-size: 14px;
+  }
+  
+  .link-to-login{
+    color: #0095f6;
+    text-decoration: none;
+    margin-left: auto;
+  }
+
+  /* Style for the select input */
+.signup-input .MuiSelect-select {
+  /* height: 40px; */
+  height: 100%;
+  padding: 16px 16px;
+  font-size: 16px;
+}
+
+/* Style for the select label */
+.signup-input .MuiInputLabel-outlined {
+  font-size: 16px;
+  color: #666666;
+}
+
+/* Style for the select helper text */
+/* .signup-input .MuiFormHelperText-root {
+  margin-top: 4px;
+  font-size: 12px;
+  color: #999999;
+} */

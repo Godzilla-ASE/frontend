@@ -1,0 +1,41 @@
+.post-card {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  max-width: 1000px;
+  max-height: 550px;
+  margin: 8% 8%;
+  
+}
+
+@media screen and (max-width: 1000px) {
+  .post-card {
+    max-width: 100%;
+    margin: 5% 2%;
+  }
+}
+
+.fixed-bottom {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #fff;
+  padding: 16px;
+}
+
+.scrollable-container {
+  height: 350px; /* 固定高度，根据实际需求调整 */
+  overflow-y: scroll; /* 垂直方向可滚动 */
+}
+.scrollable-container-photo {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%; 
+  max-height: 550px;
+ /* 固定高度，根据实际需求调整 */
+  overflow-y: scroll; /* 垂直方向可滚动 */
+}
