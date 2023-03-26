@@ -8,7 +8,6 @@ import { AiOutlineLike, AiOutlineDislike, AiFillLike,AiOutlineUserAdd,AiFillDisl
 import {HiUserRemove} from 'react-icons/hi'
 import { NavLink, Outlet, useNavigate } from 'react-router-dom';
 
-
 function SinglePost() {
 
   const params = useParams()
@@ -30,7 +29,6 @@ function SinglePost() {
   //   '/Image2.jpg',
   // ]); // #TODO 改成了直接从 post 获取
   // const picNum = images.length;
-
 
   const url = "http://localhost:3000/db.json";
   const token = "1234";
@@ -62,6 +60,15 @@ function SinglePost() {
     //   // blogService.setToken(user.token)
     // }
   }, [])
+  //真数据
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     const data = await getOne(postId);
+  //     console.log(data);
+  //     setPostData(data);
+  //   }
+  //   fetchData()
+  // }, [])
 
   if (!postData) {
     return (
@@ -70,13 +77,20 @@ function SinglePost() {
     )
   }
 
+
+  console.log(postData);
+  console.log(postData.title);
+  
+
   //拆解json里的data数据
   //正文
-  const title = postData.title; 
-  const content = postData.content.text;
-  const creationDate = postData.creation_Date;
-  const location = postData.location;
-  const tags = postData.tag;
+  
+  const title = postData.title != null ? postData.title : "NULL Title";
+  const content = postData.content.text != null ? postData.content.text : "NULL Text";
+
+  const creationDate = postData.creation_Date.toisoString != null ? postData.creation_Date : "NULL Date";
+  const location = postData.location != null ? postData.location : "NULL location";
+  const tags = postData.tag != null ? postData.tag : [];
 
   // const title = "postData.title"; 
   // const content = "postData.content.textpostData.content.textpostData.content.textpostData.content.textpostData.content.textpostData.content.textpostData.content.textpostData.content.text";
@@ -84,21 +98,21 @@ function SinglePost() {
   // const likeCount = 34;
   // const dislikeCount = 2;
 
-
   //图片
-  const imagePaths = postData.content.image;
+  const imagePaths = postData.content.image != null ? postData.content.image : [];
   const picNum = imagePaths.length;
+
   const images = [];
   for(let i=0; i<picNum; i++){
     images.push(imagePaths[i]);
   }
 
   //交互相关
-  const likeCount = postData.like.length;
-  const dislikeCount = postData.unlike.length;
-  const postUrl = postData.url;
-  const userId = postData.userid;
-  const username = postData.username;
+  const likeCount = postData.like != null ? postData.like.length : 0;
+  const dislikeCount = postData.unlike != null ? postData.unlike.length : 0;
+  const postUrl = postData.url != null? postData.url : "NULL Url";
+  const userId = postData.userid != null ? postData.userid : "NULL Id";
+  const username = postData.username !=null ? postData.username : "NULL Username";
 
   const handlePrev = () => {
     setCurrentIndex(currentIndex === 0 ? images.length - 1 : currentIndex - 1);
@@ -127,6 +141,7 @@ function SinglePost() {
     }
     setLiked(!liked);
   }
+
   const handleFollowClick = () => {
     // update it to communicate with the server
     if(token==null){
@@ -146,7 +161,6 @@ function SinglePost() {
     // update it to communicate with the server
     //setDisliked(!disliked);
   }
-
 
   return (
     // #TODO 因为或许信息需要等，可能需要变成 conditional rendering
@@ -174,7 +188,7 @@ function SinglePost() {
               avatar={
                 <Avatar src="/logo192.png" />
               }
-              title="Godzila"
+              title={username}
               action={
                 <IconButton>
                 <div className="shareWrapper" onClick={handleFollowClick}>
