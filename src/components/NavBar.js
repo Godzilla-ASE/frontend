@@ -7,7 +7,6 @@ import { NavLink, Outlet } from 'react-router-dom';
 import { useTheme } from '@emotion/react';
 
 export default function NavBar() {
-  const theme = useTheme();
   return (
 
     <div className="nav">

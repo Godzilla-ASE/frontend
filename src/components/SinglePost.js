@@ -49,7 +49,6 @@ function SinglePost() {
   useEffect(() => {
     const fetchData = async () => {
       const data = await getAll(postId);
-      console.log(data[0]);
       setPostData(data[0]);
     }
     fetchData()
@@ -78,9 +77,11 @@ function SinglePost() {
     )
   }
 
+
   console.log(postData);
   console.log(postData.title);
   
+
   //拆解json里的data数据
   //正文
   

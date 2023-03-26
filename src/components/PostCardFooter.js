@@ -1,11 +1,16 @@
 import AuthorWrapper from './Wrapper/AuthorWrapper';
 import { Link } from 'react-router-dom';
+import { Typography } from '@mui/material';
 
 const PostCardFooter = ({ post, user }) => {
+
   return (
     <div className="postCardFooter">
-      {/* <span className="postTitle"></span> */}
-      <Link to={`/post/${post.id}`}>{post.title}</Link>
+      <Link to={`/post/${post.id}`} style={{ textDecoration: 'none' }}>
+        <Typography variant='body1' align="justify" fontWeight="bold">
+          {post.title}
+        </Typography>
+      </Link>
       <AuthorWrapper post={post} user={user} />
     </div>
   )

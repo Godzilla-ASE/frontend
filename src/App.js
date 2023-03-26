@@ -11,12 +11,12 @@ import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } 
 
 function App() {
   const [data, setData] = useState([])
-  const [userLogIn, setUserLogIn] = useState([])
+  const [userLogIn, setUserLogIn] = useState(null)
 
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path="/" element={<NavBar />}>
-        <Route index element={<Homepage data={data} user={userLogIn} />}></Route>
+        {data ? <Route index element={<Homepage data={data} user={userLogIn} />}></Route> : null}
         <Route path="/login" element={<Login />}></Route>
         <Route path="/signup" element={<SignUp />}></Route>
         <Route path="/post/:postId" element={<SinglePost />} />
@@ -43,9 +43,6 @@ function App() {
 
   return (
     <>
-      {/* <NavBar />
-      <div sx={{ height: '80px' }}></div>
-      {data ? <Homepage data={data} user={userLogIn} /> : null} */}
       <RouterProvider router={router} />
     </>
   );

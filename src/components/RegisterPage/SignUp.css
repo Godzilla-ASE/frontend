@@ -12,69 +12,71 @@
 .signup-form-container {
   display: flex;
   flex-direction: column;
-  gap:20px;
+  gap: 20px;
   padding: 40px;
   border: 1px solid #dbdbdb;
   border-radius: 5px;
   width: 350px;
   background-color: #fff;
-  }
-  
-  .signup-heading {
+}
+
+.signup-heading {
   font-weight: bold;
   margin-bottom: 16px;
   text-align: center;
-  }
-  
-  .signup-form {
+}
+
+.signup-form {
   display: flex;
   flex-direction: column;
   gap: 16px;
-  }
-  
-  .signup-input {
+}
+
+.signup-input {
   width: 100%;
-  }
-  
-  .signup-checkbox {
+}
+
+.signup-checkbox {
   margin-top: 8px;
-  }
-  
-  .signup-button {
+}
+
+.signup-button {
   margin-top: 16px;
-  }
-  
-  .signup-footer {
+}
+
+.signup-footer {
   margin-top: 16px;
   text-align: center;
-  }
+}
 
-  .back-to-login-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 20vh;
-    background-color: #fafafa;
-  }.signup-login-box {
-    width: 350px;
-    margin-top: 20px;
-    display: flex;
-    justify-content: center;
-  }
-  
-  .signup-link-to-login{
-    margin-top: 10px;
-    font-size: 14px;
-  }
-  
-  .link-to-login{
-    color: #0095f6;
-    text-decoration: none;
-    margin-left: auto;
-  }
+.back-to-login-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 20vh;
+  background-color: #fafafa;
+}
 
-  /* Style for the select input */
+.signup-login-box {
+  width: 350px;
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.signup-link-to-login {
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.link-to-login {
+  color: #0095f6;
+  text-decoration: none;
+  margin-left: auto;
+}
+
+/* Style for the select input */
 .signup-input .MuiSelect-select {
   /* height: 40px; */
   height: 100%;

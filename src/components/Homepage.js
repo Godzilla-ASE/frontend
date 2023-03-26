@@ -6,8 +6,6 @@ import { useState } from 'react';
 
 
 export default function Homepage({ data, user }) {
-
-  console.log(data)
   const [imgLoad, setImgLoad] = useState(false);
 
   const handleImage = () => {
