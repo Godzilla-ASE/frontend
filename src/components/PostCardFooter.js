@@ -7,7 +7,7 @@ const PostCardFooter = ({ post, user }) => {
   return (
     <div className="postCardFooter">
       <Link to={`/post/${post.id}`} style={{ textDecoration: 'none' }}>
-        <Typography variant='body1' align="justify" fontWeight="bold">
+        <Typography variant='body1' align="left" fontWeight="bold">
           {post.title}
         </Typography>
       </Link>
