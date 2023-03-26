@@ -8,6 +8,8 @@ const ReactionWrapper = ({ post, user }) => {
   const [disliked, setDisliked] = useState(false);
   const navigate = useNavigate();
 
+  console.log('post', post);
+
   const handleLikeClick = () => {
     // add communication to the server
     if (!user) {

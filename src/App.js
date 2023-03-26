@@ -43,9 +43,6 @@ function App() {
 
   return (
     <>
-      {/* <NavBar />
-      <div sx={{ height: '80px' }}></div>
-      {data ? <Homepage data={data} user={userLogIn} /> : null} */}
       <RouterProvider router={router} />
     </>
   );

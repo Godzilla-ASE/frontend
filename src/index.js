@@ -8,6 +8,27 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { purple } from '@mui/material/colors';
 
 const theme = createTheme({
+  typography: {
+    // font size by default (16px): Homepage post title and single post content
+    body1: {
+      fontSize: 16,
+      color: purple[400],
+    },
+    body2: {
+      fontSize: 12,
+      color: '#CE93D8',
+    },
+    h1: {
+      fontSize: 32,
+      fontWeight: 'bold',
+      color: '#333',
+    },
+    h2: {
+      fontSize: 24,
+      fontWeight: 'bold',
+      color: '#333',
+    }
+  },
   palette: {
     primary: {
       main: purple[400],
@@ -18,7 +39,7 @@ const theme = createTheme({
     background: {
       default: '#f5f3f7',
     },
-  },
+  }
 });
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
