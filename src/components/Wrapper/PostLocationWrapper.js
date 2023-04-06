@@ -5,22 +5,24 @@ import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import { Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
+import { useTheme } from "@mui/system";
 
 // Wrap the div in a styled Box component.
 const LocationBox = styled(Box)({
   display: 'flex', // Set up Flex layout
   flexDirection: 'row',
   justifyContent: 'flex-end',
-  marginTop: '5px',
+  marginTop: '10px',
   alignItems: 'center'
 });
 
 const PostLocationWrapper = ({ post }) => {
+  const theme = useTheme()
   return (
     <Link to={`/location/${post.location}`} style={{ textDecoration: 'none' }}>
       <LocationBox>
-        <IoLocationOutline />
-        <Typography variant='body2' align="left">
+        <IoLocationOutline color={theme.palette.thirdInformation.main} />
+        <Typography variant='body3' align="left" color={theme.palette.thirdInformation.main}>
           {post.location}
         </Typography>
       </LocationBox>

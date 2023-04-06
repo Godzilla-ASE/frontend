@@ -21,7 +21,7 @@ export default function Homepage() {
 
   return (
     <Box sx={{ width: 4 / 5, minHeight: 829, margin: '0 auto', paddingTop: '80px' }}>
-      <Masonry columns={5} spacing={4}>
+      <Masonry columns={5} spacing={2}>
         {posts.map((post, index) => (
           <div key={index}>
             <div>
@@ -31,8 +31,6 @@ export default function Homepage() {
                 alt={post.title}
                 loading="lazy"
                 style={{
-                  borderBottomLeftRadius: 15,
-                  borderBottomRightRadius: 15,
                   borderTopRightRadius: 15,
                   borderTopLeftRadius: 15,
                   display: 'block',
