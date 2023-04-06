@@ -1,6 +1,6 @@
 // contains information about the user avatar and name
 
-const UserWrapper = ({ post }) => {
+const AuthorInfoWrapper = ({ post }) => {
   return (
     <div className="userWrapper">
       <div className="avatarWrapper">
@@ -12,4 +12,4 @@ const UserWrapper = ({ post }) => {
   )
 }
 
-export default UserWrapper
+export default AuthorInfoWrapper
