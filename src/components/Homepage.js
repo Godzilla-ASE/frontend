@@ -2,22 +2,19 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Masonry from '@mui/lab/Masonry';
 import PostCardFooter from './PostCardFooter';
-import { useState } from 'react';
 
+export default function Homepage({ data }) {
 
-export default function Homepage({ data, user }) {
-  const [imgLoad, setImgLoad] = useState(false);
-
-  const handleImage = () => {
-    setImgLoad(true);
-  }
+  const handleImage = (event) => {
+    event.target.style.filter = '';
+  };
 
   return (
     <Box sx={{ width: 4 / 5, minHeight: 829, margin: '0 auto', paddingTop: '80px' }}>
       <Masonry columns={5} spacing={4}>
         {data.map((item, index) => (
           <div key={index}>
-            <div style={{ filter: imgLoad ? '' : 'blur(10px)' }} >
+            <div>
               <img
                 src={`${item.coverImage}?w=162&auto=format`}
                 srcSet={`${item.coverImage}?w=162&auto=format&dpr=2 2x`}
@@ -30,14 +27,15 @@ export default function Homepage({ data, user }) {
                   borderTopLeftRadius: 15,
                   display: 'block',
                   width: '100%',
+                  filter: 'blur(10px)'
                 }}
                 onLoad={handleImage}
               />
             </div>
-            <PostCardFooter post={item} user={user} />
+            <PostCardFooter post={item} />
           </div>
         ))}
       </Masonry>
     </Box >
-  );
+  )
 }
