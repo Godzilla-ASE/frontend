@@ -11,12 +11,11 @@ import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } 
 
 function App() {
   const [data, setData] = useState([])
-  const [userLogIn, setUserLogIn] = useState(null)
 
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path="/" element={<NavBar />}>
-        {data ? <Route index element={<Homepage data={data} user={userLogIn} />}></Route> : null}
+        {data ? <Route index element={<Homepage data={data} />}></Route> : null}
         <Route path="/login" element={<Login />}></Route>
         <Route path="/signup" element={<SignUp />}></Route>
         <Route path="/post/:postId" element={<SinglePost />} />
@@ -29,16 +28,7 @@ function App() {
       const data = await getAll()
       setData(data)
     }
-
     fetchData()
-
-    // check if any user logged in
-    const loggedUserJSON = window.localStorage.getItem('loggedInUser')
-    if (loggedUserJSON) {
-      const user = JSON.parse(loggedUserJSON)
-      setUserLogIn(user)
-      // blogService.setToken(user.token)
-    }
   }, [])
 
   return (

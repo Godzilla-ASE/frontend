@@ -2,16 +2,18 @@
 import { useState } from 'react';
 import { AiOutlineLike, AiOutlineDislike, AiFillLike, AiFillDislike } from 'react-icons/ai';
 import { useNavigate } from 'react-router-dom'
+import LoggedInUser from '../Helper/LoggedInUser';
 
-const ReactionWrapper = ({ post, user }) => {
+const ReactionWrapper = ({ post }) => {
   const [liked, setLiked] = useState(false);
   const [disliked, setDisliked] = useState(false);
+  const user = LoggedInUser() // #TODO 可以直接获取还是需要等
   const navigate = useNavigate();
 
-  console.log('post', post);
+  // console.log('post', post);
 
   const handleLikeClick = () => {
-    // add communication to the server
+    // #TODO add communication to the server
     if (!user) {
       navigate('/login')
     } else {
@@ -20,7 +22,7 @@ const ReactionWrapper = ({ post, user }) => {
   }
 
   const handleDisLikeClick = () => {
-    // add communication to the server
+    // #TODO add communication to the server
     if (!user) {
       navigate('/login')
     } else {

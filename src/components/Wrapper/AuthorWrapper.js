@@ -2,11 +2,11 @@
 import UserWrapper from "./UserWrapper"
 import ReactionWrapper from "./ReactionWrapper"
 
-const AuthorWrapper = ({ post, user }) => {
+const AuthorWrapper = ({ post }) => {
   return (
     <div className="authorWrapper">
       <UserWrapper post={post} />
-      <ReactionWrapper post={post} user={user} />
+      <ReactionWrapper post={post} />
     </div>
   )
 }
