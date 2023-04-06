@@ -1,5 +1,6 @@
 import AuthorWrapper from './Wrapper/AuthorWrapper';
 import PostTagWrapper from './Wrapper/PostTagWrapper';
+import PostLocationWrapper from './Wrapper/PostLocationWrapper';
 import { Link } from 'react-router-dom';
 import { Typography } from '@mui/material';
 
@@ -14,6 +15,7 @@ const PostCardFooter = ({ post }) => {
       </Link>
       <PostTagWrapper post={post} />
       <AuthorWrapper post={post} />
+      <PostLocationWrapper post={post} />
     </div>
   )
 }

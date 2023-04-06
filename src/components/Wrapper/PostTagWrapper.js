@@ -1,4 +1,4 @@
-// contains information: tags, location
+// contains the information of a post: tags
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import { Typography } from '@mui/material';

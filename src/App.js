@@ -18,6 +18,8 @@ function App() {
         <Route path="/post/:postId" element={<SinglePost />} />
         {/* #TODO Add Tag Page: something like homepage but with a tag title and filtered posts*/}
         {/* <Route path="/tag/:tagName" element={<SingleTag />} /> */}
+        {/* #TODO Add Location Page: something like homepage but with a location title and filtered posts*/}
+        {/* <Route path="/location/:locationName" element={<SingleLocation />} /> */}
       </Route>
     )
   )
