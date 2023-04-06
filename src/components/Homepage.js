@@ -2,8 +2,18 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Masonry from '@mui/lab/Masonry';
 import PostCardFooter from './PostCardFooter';
+import { usePosts } from './Helper/usePosts';
 
-export default function Homepage({ data }) {
+export default function Homepage() {
+
+  const posts = usePosts()
+
+  if (!posts) {
+    return (
+      // #TODO Loading
+      <pre>Loading</pre>
+    )
+  }
 
   const handleImage = (event) => {
     event.target.style.filter = '';
@@ -12,13 +22,13 @@ export default function Homepage({ data }) {
   return (
     <Box sx={{ width: 4 / 5, minHeight: 829, margin: '0 auto', paddingTop: '80px' }}>
       <Masonry columns={5} spacing={4}>
-        {data.map((item, index) => (
+        {posts.map((post, index) => (
           <div key={index}>
             <div>
               <img
-                src={`${item.coverImage}?w=162&auto=format`}
-                srcSet={`${item.coverImage}?w=162&auto=format&dpr=2 2x`}
-                alt={item.title}
+                src={`${post.coverImage}?w=162&auto=format`}
+                srcSet={`${post.coverImage}?w=162&auto=format&dpr=2 2x`}
+                alt={post.title}
                 loading="lazy"
                 style={{
                   borderBottomLeftRadius: 15,
@@ -32,7 +42,7 @@ export default function Homepage({ data }) {
                 onLoad={handleImage}
               />
             </div>
-            <PostCardFooter post={item} />
+            <PostCardFooter post={post} />
           </div>
         ))}
       </Masonry>
