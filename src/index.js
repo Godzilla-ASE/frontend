@@ -14,9 +14,10 @@ const theme = createTheme({
       fontSize: 16,
       color: purple[400],
     },
+    // this is for secondary information
     body2: {
-      fontSize: 12,
-      color: '#CE93D8',
+      fontSize: 14,
+      // color: '#CE93D8',
     },
     h1: {
       fontSize: 32,

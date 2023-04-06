@@ -16,6 +16,8 @@ function App() {
         <Route path="/login" element={<Login />}></Route>
         <Route path="/signup" element={<SignUp />}></Route>
         <Route path="/post/:postId" element={<SinglePost />} />
+        {/* #TODO Add Tag Page: something like homepage but with a tag title and filtered posts*/}
+        {/* <Route path="/tag/:tagName" element={<SingleTag />} /> */}
       </Route>
     )
   )
