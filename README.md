@@ -1,18 +1,5 @@
 # 最近commit
-测试branch的新建
-备份本地文档，接口调用未完成，有一些没有用的备份文件也上传了。
-
-# Structure
-
-主要参考这篇文章 https://www.taniarascia.com/react-architecture-directory-structure/
-
-但感觉又没必要像她这样这么专业和细分。于是主要放了三个文件夹：
-1. src/components 主要的 UI 组件放到这个文件夹下，比如说 Homepage, NavBar, Post, PostCard 诸如此类。
-2. src/reducers 这个文件夹主要是存放使用 Redux 进行状态管理所需要的方法
-3. src/services 这个文件夹主要是存放用来和外部 API 进行交流的方法
-
-然后各组件和它对应的 style、test 文件放在一起。
-
+Refactor, 添加查看Commets,replys,share 功能
 
 ----
 

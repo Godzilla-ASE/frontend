@@ -2,6 +2,7 @@ import AuthorWrapper from './Wrapper/AuthorWrapper';
 import { Link } from 'react-router-dom';
 import { Typography } from '@mui/material';
 
+
 const PostCardFooter = ({ post, user }) => {
 
   return (
