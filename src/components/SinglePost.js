@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Card, CardHeader, CardContent, Avatar, Grid } from '@mui/material';
 import './SinglePost/singlepost.css';
 import { useParams } from 'react-router-dom';
-import { getAll,getOne } from '../services/post';
+import { getOne } from '../services/post';
+import { getPostComments } from '../services/comment';
 import PicGallry from './SinglePost/PicGallry';
 import FollowWapper from './Wrapper/FollowWrapper';
 import CommentFooter from './SinglePost/CommentFooter';
@@ -21,9 +22,7 @@ function SinglePost() {
     const fetchData = async () => {
       const post = await getOne(postId);
       // 暂时用GetAll得到的数据做测试，因为还没有测试数据。假装postTitle就是内容，reply也先写死了
-      const comments = await getAll();
-      // const comments = await getPostComments(postId);
-
+      const comments = await getPostComments(postId);
       setPostData(post);
       setComments(comments);
     }
