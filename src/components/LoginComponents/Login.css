@@ -1,11 +1,22 @@
+.Loginpage-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 5%;
+  /* height: 100; */
+  /*padding-bottom: 5%;*/
+  background-color: #fafafa;
+}
+
 .login-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding-top: 7.5%;
+  padding-top: 2.5%;
   /* height: 100; */
-  padding-bottom: 7.5%;
+  padding-bottom: 2.5%;
   background-color: #fafafa;
 }
 
@@ -44,4 +55,5 @@
 
 .link {
   margin-left: auto;
+  color: black;
 }
