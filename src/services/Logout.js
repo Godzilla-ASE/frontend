@@ -1,6 +1,7 @@
 const Logout = (setPageStatus) => {
     try {
       // Clear userId from localStorage
+      localStorage.removeItem("loggedInUser");
       localStorage.removeItem("userID");
       localStorage.removeItem("authToken");
       setPageStatus("Logged out successfully.");

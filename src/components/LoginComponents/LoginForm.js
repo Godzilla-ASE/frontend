@@ -9,8 +9,9 @@ import { useNavigate, useLocation } from 'react-router-dom';
 
 import UsernameInput from "./UsernameInput";
 import PasswordInput from "./PasswordInput";
-import LoginSubmit from "../Wrapper/LoginSubmit";
+import LoginSubmit from "../../services/LoginSubmit";
 import GetPageStatus from "../GetPageStatus";
+import { LOGIN_API } from "../../services/APIs";
 import "./Login.css"
 //import LoginStatus from "./LoginStatus";
 
@@ -46,7 +47,7 @@ function LoginForm(){
       <Box className="login-form-container">
         <form onSubmit={(event) => LoginSubmit(event, username, password, 
           setUsernameError, setPasswordError, setUsernamecorrectError, setPasswordcorrectError, setPageStatus,
-          navigate, previousUrl)} className="login-form">
+          LOGIN_API, navigate, previousUrl)} className="login-form">
           <UsernameInput
             username={username}
             handleUsernameChange={handleUsernameChange}
