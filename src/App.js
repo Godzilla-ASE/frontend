@@ -1,7 +1,8 @@
 //import logo from './logo.svg';
 import './App.css';
-import Login from './components/LoginPage/Login';
-import SignUp from './components/RegisterPage/SignUp'
+//import Login from './components/LoginComponents/Login的副本';
+import Login from './components/Login';
+import SignUp from './components/SignUp'
 import Homepage from './components/Homepage';
 import SinglePost from './components/SinglePost';
 import NavBar from './components/NavBar';
