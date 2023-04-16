@@ -5,6 +5,7 @@ import {
   Link,
   Typography,
 } from "@mui/material";
+import { useNavigate, useLocation } from 'react-router-dom';
 
 import UsernameInput from "./UsernameInput";
 import PasswordInput from "./PasswordInput";
@@ -22,6 +23,9 @@ function LoginForm(){
   const [passwordcorrectError, setPasswordcorrectError] = useState(false);
   const [pageStatus, setPageStatus] = useState("");
 
+  const location = useLocation();
+  const previousUrl = location.state?.from === '/login' || location.state?.from === '/signup' ? '/' : location.state?.from ?? '/';
+  const navigate = useNavigate(); 
 
   const handleUsernameChange = (event) => {
     setUsername(event.target.value);
@@ -41,7 +45,8 @@ function LoginForm(){
     <Box className="login-container">
       <Box className="login-form-container">
         <form onSubmit={(event) => LoginSubmit(event, username, password, 
-          setUsernameError, setPasswordError, setUsernamecorrectError, setPasswordcorrectError, setPageStatus)} className="login-form">
+          setUsernameError, setPasswordError, setUsernamecorrectError, setPasswordcorrectError, setPageStatus,
+          navigate, previousUrl)} className="login-form">
           <UsernameInput
             username={username}
             handleUsernameChange={handleUsernameChange}

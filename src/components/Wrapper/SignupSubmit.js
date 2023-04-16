@@ -1,8 +1,9 @@
 const SignupSubmit = async (event, username, password, email, location, confirmPassword, isChecked,
     usernameError, emailError, passwordError, confirmPasswordError, locationError, isCheckedError, 
     setUsernameError, setPasswordError, setConfirmPasswordError, setLocationError, setEmailError, 
-    setUsernameexistError, setIsCheckedError, setPageStatus) => {
+    setUsernameexistError, setIsCheckedError, setPageStatus, navigate) => {    
     event.preventDefault();
+  // Get the history object from react-router-dom
     if (!/^[a-zA-Z0-9]{6,16}$/.test(username)) {
       // username.length < 6 || username.length > 16 || 
       setUsernameError(true);
@@ -36,6 +37,11 @@ const SignupSubmit = async (event, username, password, email, location, confirmP
         if (response.ok) {
           //const result = await response.text();
           setPageStatus(`Sign up successfully.`);
+
+          // Redirect to login page after 3 seconds
+          setTimeout(() => {
+            navigate("/login"); // Replace "/login" with the actual URL of your login page
+          }, 3000);
         } else if (response.status === 409) {
           const error = await response.text();
           setUsernameexistError(true);
@@ -43,6 +49,7 @@ const SignupSubmit = async (event, username, password, email, location, confirmP
         }
         else if (response.status === 404){
             setPageStatus("Failed to connect to backend.");
+
         }
       } catch (error) {
         console.error(error);

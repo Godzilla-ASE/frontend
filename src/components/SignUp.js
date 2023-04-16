@@ -8,6 +8,7 @@ import {
   Link,
   Typography,
 } from "@mui/material";
+import { useNavigate } from "react-router-dom"; // Import useHistory hook from react-router-dom
 import GetPageStatus from "./GetPageStatus";
 import UsernameSet from "./SignupComponents/UsernameSet";
 import EmailSet from "./SignupComponents/EmailSet";
@@ -35,6 +36,7 @@ const SignUp = () => {
   const [isCheckedError, setIsCheckedError] = useState(false);
   const [pageStatus, setPageStatus] = useState("");
   
+  const navigate = useNavigate(); 
 
   const handleFullnameChange = (event) => {
     setFullname(event.target.value);
@@ -65,7 +67,7 @@ const SignUp = () => {
           onSubmit={(event) => SignupSubmit(event, username, password, email, location, confirmPassword, isChecked,
             usernameError, emailError, passwordError, confirmPasswordError, locationError, isCheckedError,
              setUsernameError, setPasswordError, setConfirmPasswordError, setLocationError, setEmailError,
-              setUsernameexistError, setIsCheckedError, setPageStatus)}
+              setUsernameexistError, setIsCheckedError, setPageStatus, navigate)}
           className="signup-form"
         >  
         <UsernameSet
