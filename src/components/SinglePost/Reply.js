@@ -1,23 +1,26 @@
 import React from "react";
 import { CardHeader, CardContent, Avatar, Typography } from '@mui/material';
+import AuthorInfoWrapper from "../Wrapper/AuthorInfoWrapper";
 
 function Replys({ reply }) {
-    const content = reply.content;
-    const date = reply.creation_date;
-    const username_from = reply.username_from;
+  const content = reply.content;
+  const date = reply.creation_date;
+  const username_from = reply.username_from;
 
 
-    return(
-        <div>
-            <CardHeader avatar={<Avatar src="https://images.unsplash.com/photo-1558642452-9d2a7deb7f62" />} title={username_from} style={{paddingTop: '3%', paddingBottom: '0'}}/>
-                <CardContent style={{marginLeft:'12%'}}>
-                    {content}<br></br><br></br>
-                <Typography color={'#bbbbbb'} fontSize={'12px'}>
-                    {date} Zurich
-                </Typography>
-                </CardContent>
-        </div>
-    )
+  return (
+    <div>
+      <AuthorInfoWrapper post={reply} />
+      <CardContent style={{ marginLeft: '9%' }}>
+        <Typography color="secondary" variant="body2" >
+          {content}
+        </Typography>
+        <Typography variant="body3" color="secondary">
+          {date} Zurich
+        </Typography>
+      </CardContent>
+    </div>
+  )
 
 }
 

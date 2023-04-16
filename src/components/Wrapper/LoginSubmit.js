@@ -1,5 +1,5 @@
-const LoginSubmit = async (event, username, password, 
-  setUsernameError, setPasswordError, setUsernamecorrectError, setPasswordcorrectError, setPageStatus,navigate, previousUrl) => {
+const LoginSubmit = async (event, username, password,
+  setUsernameError, setPasswordError, setUsernamecorrectError, setPasswordcorrectError, setPageStatus, navigate, previousUrl) => {
   event.preventDefault();
   if (!username) {
     setUsernameError(true);
@@ -19,6 +19,7 @@ const LoginSubmit = async (event, username, password,
         const userID = authToken.userID;
         // save user to localStorage
         // localStorage.setItem("loggedInUser", user);
+
         localStorage.setItem("authToken", authToken);
         localStorage.setItem("userID", userID);
         setPageStatus("Logged in successfully.");

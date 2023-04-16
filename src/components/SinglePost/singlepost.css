@@ -33,6 +33,13 @@
   /* 垂直方向可滚动 */
 }
 
+/* 针对 WebKit 的设置（如 Chrome 和 Safari） */
+.scrollable-container::-webkit-scrollbar {
+  width: 0;
+  background: transparent;
+  /* 使滚动条透明 */
+}
+
 .scrollable-container-photo {
   position: relative;
   display: flex;
@@ -43,4 +50,10 @@
   /* 固定高度，根据实际需求调整 */
   overflow-y: scroll;
   /* 垂直方向可滚动 */
+}
+
+.scrollable-container-photo::-webkit-scrollbar {
+  width: 0;
+  background: transparent;
+  /* 使滚动条透明 */
 }
