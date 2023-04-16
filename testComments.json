@@ -1,0 +1,36 @@
+{
+    "comments": [
+        {
+            "id": 1,
+            "userid": 0,
+            "username": "userA",
+            "reply":[
+                {
+                   "userid_from": 1,
+                   "userid_to": 0,
+                   "username_from": "userB",
+                   "username_to": "userA",
+                   "content": "I agree with you!",
+                   "creation_date": "2021-12-12"
+                },
+                {
+                    "userid_from": 3,
+                    "userid_to": 0,
+                    "username_from": "userC",
+                    "username_to": "userA",
+                    "content": "I agree with you too!",
+                    "creation_date": "2021-12-13"
+                 }
+            ],
+            "content": "Your story has benefited me greatly and I will share it with my good friends.",
+            "creation_date": "2021-12-11"
+        },{
+            "id": 2,
+            "userid": 1,
+            "username": "userB",
+            "reply":[],
+            "content": "A real good post.",
+            "creation_date": "2021-12-13"
+        }
+    ]
+}

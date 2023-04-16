@@ -12,7 +12,6 @@ const FooterStyleDiv = styled('div')(({ theme }) => ({
 }));
 
 const PostCardFooter = ({ post }) => {
-
   return (
     <FooterStyleDiv className="postCardFooter">
       <Link to={`/post/${post.id}`} style={{ textDecoration: 'none' }}>

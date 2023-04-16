@@ -1,58 +1,36 @@
 import React, { useState, useEffect } from 'react';
-import { Card, CardHeader, CardContent, CardMedia, Avatar, Typography, Button, TextField, Grid } from '@mui/material';
-import './post.css';
-import { AppBar, Toolbar, IconButton } from '@mui/material';
+import { Card, CardHeader, CardContent, Avatar, Grid } from '@mui/material';
+import './SinglePost/singlepost.css';
 import { useParams } from 'react-router-dom';
-import { getAll, getOne } from '../services/post';
-import { AiOutlineLike, AiOutlineDislike, AiFillLike, AiOutlineUserAdd, AiFillDislike, AiOutlineShareAlt, AiFillLeftCircle, AiFillRightCircle, AiOutlineLeftCircle, AiOutlineRightCircle } from 'react-icons/ai';
-import { HiUserRemove } from 'react-icons/hi'
-import { NavLink, Outlet, useNavigate } from 'react-router-dom';
+import { getOne } from '../services/post';
+import { getPostComments } from '../services/comment';
+import PicGallry from './SinglePost/PicGallry';
+import FollowWapper from './Wrapper/FollowWrapper';
+import CommentFooter from './SinglePost/CommentFooter';
+import PostContent from './SinglePost/PostContent';
+import { useTheme } from '@mui/material/styles';
+import UserInfoWrapper from './Wrapper/UserInfoWrapper';
+
 
 function SinglePost() {
 
-  const params = useParams()
-  //onst postId = params.postId;  // 假设需要获取的帖子的 ID 为 12345
-  const postId = 1;
-  const navigate = useNavigate();
-
-  const [postData, setPostData] = useState(null);
-
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  const [liked, setLiked] = useState(false);
-  const [disliked, setDisliked] = useState(false);
-  const [followed, setFollowed] = useState(false);
-
-  // const [images] = useState([
-  //   '/Image0.jpg',
-  //   '/Image1.png',
-  //   '/Image2.jpg',
-  // ]); // #TODO 改成了直接从 post 获取
-  // const picNum = images.length;
-
-  const url = "http://localhost:3000/db.json";
-  const token = "1234";
-
-  //发送请求拿单篇帖子的data
-  // useEffect(() => {
-  //   fetch(url, {
-  //     headers: {
-  //       'Authorization': 'Bearer ' + token
-  //     }
-  //   })
-  //   .then(response => response.json())
-  //   .then(data => setPostData(data))
-  //   .catch(error => console.error(error));
-  // }, [token]);
+  const postId = useParams().postId;
+  const user = useParams().UserID;
+  const [post, setPostData] = useState(null);
+  const [comments, setComments] = useState([]);
+  const theme = useTheme()
 
   //测试数据
   useEffect(() => {
     const fetchData = async () => {
-      const data = await getAll(postId);
-      setPostData(data[0]);
+      const post = await getOne(postId);
+      // 暂时用GetAll得到的数据做测试，因为还没有测试数据。假装postTitle就是内容，reply也先写死了
+      const comments = await getPostComments(postId);
+      setPostData(post);
+      setComments(comments);
     }
     fetchData()
-    // check if any user logged in
+    //check if any user logged in
     // const loggedUserJSON = window.localStorage.getItem('loggedInUser')
     // if (loggedUserJSON) {
     //   const user = JSON.parse(loggedUserJSON)
@@ -60,206 +38,103 @@ function SinglePost() {
     //   // blogService.setToken(user.token)
     // }
   }, [])
-  //真数据
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     const data = await getOne(postId);
-  //     console.log(data);
-  //     setPostData(data);
-  //   }
-  //   fetchData()
-  // }, [])
 
-  if (!postData) {
+  if (!post) {
     return (
-      //#TODO 加一个  loading 信息
       <pre>Loading...</pre>
     )
   }
-
-
-  console.log(postData);
-  console.log(postData.title);
-
-
-  //拆解json里的data数据
-  //正文
-
-  const title = postData.title != null ? postData.title : "NULL Title";
-  const content = postData.content_text != null ? postData.content_text : "NULL Text";
-
-  // const creationDate = postData.creation_date.toISOString() != null ? postData.creation_date : "NULL Date";
-
-  const creationDate = postData.creation_date != null ? postData.creation_date : "NULL Date";
-
-
-  //const location = postData.location != null ? postData.location : "NULL location";
-  //const tags = postData.tag != null ? postData.tag : [];
-
-  // const title = "postData.title"; 
-  // const content = "postData.content_textpostData.content_textpostData.content_textpostData.content_textpostData.content_textpostData.content_textpostData.content_textpostData.content_text";
-  // const creationDate = "postData.creation_date";
-  // const likeCount = 34;
-  // const dislikeCount = 2;
-
-  //图片
-  // const imagePaths = postData.content.image != null ? postData.content.image : [];
-  // const picNum = imagePaths.length;
-
-  // const images = [];
-  // for(let i=0; i<picNum; i++){
-  //   images.push(imagePaths[i]);
-  // }
-
-  //联调测试
-  const images = postData.content_img.split(",");
-  //const images = [postData.content_img]
-  const picNum = images.length;
-
-  //交互相关
-  // const likeCount = postData.like != null ? postData.like.length : 0;
-  // const dislikeCount = postData.unlike != null ? postData.unlike.length : 0;
-  const likeCount = postData.like != null ? postData.like : 0;
-  const dislikeCount = postData.unlike != null ? postData.unlike : 0;
-  const postUrl = postData.url != null ? postData.url : "NULL Url";
-  const userId = postData.userid != null ? postData.userid : "NULL Id";
-  const username = postData.username != null ? postData.username : "NULL Username";
-
-  const handlePrev = () => {
-    setCurrentIndex(currentIndex === 0 ? images.length - 1 : currentIndex - 1);
-  };
-
-  const handleNext = () => {
-    setCurrentIndex(currentIndex === images.length - 1 ? 0 : currentIndex + 1);
-  };
-
-  const handleMouseEnter = () => {
-    document.getElementById('leftBtn').style.display = 'block';
-    document.getElementById('rightBtn').style.display = 'block';
-    document.getElementById('picIndex').style.display = 'block';
-  };
-
-  const handleMouseLeave = () => {
-    document.getElementById('leftBtn').style.display = 'none';
-    document.getElementById('rightBtn').style.display = 'none';
-    document.getElementById('picIndex').style.display = 'none';
-  };
-
-  const handleLikeClick = () => {
-    // update it to communicate with the server
-    if (token == null) {
-      navigate("/login");
-    }
-    setLiked(!liked);
+  if (!comments) {
+    return (
+      <pre>Loading...</pre>
+    )
   }
+  // console.log(post);
+  // console.log(comments);
 
-  const handleFollowClick = () => {
-    // update it to communicate with the server
-    if (token == null) {
-      navigate("/login");
-    }
-    setFollowed(!followed);
-  }
-
-  const handleDisLikeClick = () => {
-    // update it to communicate with the server
-    if (params == null) {
-      navigate("/login");
-    }
-    setDisliked(!disliked);
-  }
-  const handleShare = () => {
-    // update it to communicate with the server
-    //setDisliked(!disliked);
-  }
+  const images = post.content_img.split(",");
+  const username = post.username != null ? post.username : "NULL Username";
 
   return (
-    // #TODO 因为或许信息需要等，可能需要变成 conditional rendering
-    <div style={{ height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }} >
-      <Card className="post-card">
+    //结构是这样的
+    //Card（整个post就是一个卡片）
+    //｜- Grid container（格子组件，分成左右两个）
+    //  ｜-- Grid （左格子）
+    //      ｜-- PicGallry (放相册的)
+    //  ｜-- Grid （右格子）
+    //      ｜-- CardHeader (最上面的用户信息栏)
+    //      ｜-- CardContent 
+    //          ｜-- PostContent（这篇post的内容）
+    //              |-- <div> (这里面的内容可以上下滑动)
+    //                  |-- Typography 
+    //                  |-- Typography
+    //                  |-- Typography (几个并排的文字信息：时间，标题，帖子内容)
+    //                  |-- CommentsBox (用来放这篇帖子的n条评论)
+    //                      |-- Comments 1
+    //                          |-- Reply 1.1
+    //                          ...
+    //                      |-- Comments 2
+    //                          |-- Reply 2.1
+    //                          ...
+    //                      ...
+    //              |-- </div> (这里面的内容可以上下滑动)
+    //          ｜-- CommentFooter (点赞、点踩、分享、回复等操作)
+
+    <div style={{ height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: theme.palette.background.default }} >
+      <Card className="post-card" style={{ backgroundColor: theme.palette.background.default }}>
+        {/* <div style={{ display: 'flex', alignContent: 'center', justifyContent: 'space-between' }}>
+          <PicGallry images={images} style==/>
+          <div style={{ display: 'flex', flexDirection: 'column', alignContent: 'center', justifyContent: 'space-between' }}>
+            <div style={{ display: 'flex', alignContent: 'center', justifyContent: 'space-between', flexGrow: '1' }}>
+              <UserInfoWrapper />
+              <FollowWapper />
+            </div>
+            <CardContent style={{ flexGrow: '1' }}>
+              <PostContent post={post} comments={comments} />
+              <CommentFooter post={post} user={user} />
+            </CardContent>
+          </div>
+        </div> */}
         <Grid container spacing={2}>
           <Grid item xs={12} sm={6}>
-            <div className="scrollable-container-photo" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} style={{ position: 'relative' }}>
-              <div style={{ position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center', height: '550px' }}>
-                <CardMedia component="img" image={images[currentIndex]} alt="post image" style={{ top: '1%' }} />
-              </div>
-              <Typography id="picIndex" variant="contained" style={{ position: 'absolute', top: '5%', right: '3%', zIndex: 1, display: 'none', color: 'white', backgroundColor: "#585858", padding: "3px 4px", boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.25)", borderRadius: '10px' }}>
-                {currentIndex + 1}/{picNum}
-              </Typography>
-              <div id="leftBtn" onClick={handlePrev} style={{ position: 'absolute', top: '50%', left: '1%', zIndex: 1, display: 'none' }}>
-                {<AiFillLeftCircle className="leftBottom" color="#dddddd" size={35} />}
-              </div>
-              <div id="rightBtn" onClick={handleNext} style={{ position: 'absolute', top: '50%', right: '1%', zIndex: 1, display: 'none' }}>
-                {<AiFillRightCircle className="rightBottom" color="#dddddd" size={35} />}
-              </div>
+            <PicGallry images={images} />
+          </Grid>
+          {/* <Grid item xs={12} sm={6} style={{ display: 'flex', flexDirection: 'column', height: '120%' }}>
+            <div style={{ display: 'flex', alignContent: 'center', justifyContent: 'space-between', flexGrow: '1' }}>
+              <UserInfoWrapper />
+              <FollowWapper />
+            </div>
+
+            <div
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                marginTop: '20px',
+                flexGrow: 1, // 将 flexGrow 移动到这里
+              }}
+            >
+              <PostContent post={post} comments={comments} />
+              <CommentFooter post={post} user={user} />
+            </div>
+          </Grid> */}
+          <Grid item xs={12} sm={6} style={{ display: 'grid', gridTemplateRows: 'auto 1fr auto', height: '100%' }}>
+            <div style={{ display: 'flex', alignContent: 'center', justifyContent: 'space-between' }}>
+              <UserInfoWrapper />
+              <FollowWapper />
+            </div>
+
+            <div style={{ marginTop: '20px', overflowY: 'auto', gridRow: '2 / 3' }}>
+              <PostContent post={post} comments={comments} />
+            </div>
+
+            <br></br>
+            <div style={{ borderTop: '1px solid grey' }}>
+              <CommentFooter post={post} user={user} />
             </div>
           </Grid>
-          <Grid item xs={12} sm={6}>
-            <CardHeader
-              avatar={
-                <Avatar src="/logo192.png" />
-              }
-              title={username}
-              action={
-                <IconButton>
-                  <div className="shareWrapper" onClick={handleFollowClick}>
-                    {followed ? <AiOutlineUserAdd className="" color="#FF4136" size={25} /> : <HiUserRemove className="" color="#FF4136" size={25} />}
-                  </div>
-                </IconButton>
-              }
-            />
-            <CardContent >
-              <div className="scrollable-container">
-                <Typography variant="subtitle1" color="text.secondary">
-                  Publish Date: {creationDate}
-                </Typography>
-                <Typography variant="h4" component="h2">
-                  {title}
-                </Typography>
-                <br></br>
-                <Typography variant="body1" color="text.primary">
-                  {content}
-                </Typography>
-                <br></br>
-                <Typography variant="h6" component="h3" gutterBottom>
-                  Comments
-                </Typography>
-                <br></br>
-                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                  <Typography variant="body2" color="text.secondary">
-                    No comment so far
-                  </Typography>
-                </div>
-                <br></br>
-              </div>
-              <Grid container spacing={2} alignItems="center">
-                <Grid item style={{ paddingTop: '5%' }}>
-                  <div className="likesWrapper" onClick={handleLikeClick} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                    {liked ? <AiFillLike className="likesIcon" color="#FF4136" size={25} /> : <AiOutlineLike className="likesIcon" color="#818181" size={25} />}
-                    <span className="likesCount">{likeCount}</span>
-                  </div>
-                </Grid>
-                <Grid item style={{ paddingTop: '5%' }}>
-                  <div className="dislikesWrapper" onClick={handleDisLikeClick} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                    {disliked ? <AiFillDislike className="dislikesIcon" color="#FF4136" size={25} /> : <AiOutlineDislike className="dislikesIcon" color="#818181" size={25} />}
-                    <span className="dislikesCount">{dislikeCount}</span>
-                  </div>
-                </Grid>
-                <Grid item style={{ paddingTop: '5%' }}>
-                  <div className="shareWrapper" onClick={handleShare}>
-                    {<AiOutlineShareAlt className="" color="#818181" size={25} />}
-                  </div>
-                </Grid>
-                <Grid item xs={12}>
-                  <div style={{ display: 'flex' }}>
-                    <TextField label="Say something" variant="outlined" fullWidth />
-                    <Button variant="contained" color="primary" style={{ left: '15px' }} >Comment</Button>
-                  </div>
-                </Grid>
-              </Grid>
-            </CardContent>
-          </Grid>
+
         </Grid>
+
       </Card>
     </div>
   );
