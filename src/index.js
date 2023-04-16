@@ -30,6 +30,11 @@ const theme = createTheme({
       fontSize: 24,
       fontWeight: 'bold',
       color: '#333',
+    },
+    h3: {
+      fontSize: 20,
+      fontWeight: 'bold',
+      color: '#333',
     }
   },
   palette: {
@@ -48,6 +53,9 @@ const theme = createTheme({
     background: {
       default: '#282828',
     },
+    submit: {
+      main: '#0095f6'
+    }
   }
 });
 

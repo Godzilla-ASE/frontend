@@ -14,7 +14,7 @@ import {
 import { styled } from '@mui/system';
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
 import CloseIcon from '@mui/icons-material/Close';
-import CreatorInfoWrapper from '../components/Wrapper/CreatorInfoWrapper';
+import UserInfoWrapper from '../components/Wrapper/UserInfoWrapper';
 import InputBase from '@mui/material/InputBase';
 import Divider from '@mui/material/Divider';
 
@@ -195,7 +195,7 @@ function CreatePostDialog({ isOpen, onClose }) {
             </Grid>
           </Grid>
           <Grid item xs={4}>
-            <CreatorInfoWrapper sx={{ flexGrow: 1 }} />
+            <UserInfoWrapper sx={{ flexGrow: 1 }} />
             <CustomSingleLine placeholder="Write a title..." fullWidth />
             <CustomMultiline
               placeholder="Write the contents..."

@@ -2,7 +2,7 @@
 import { Avatar, Box, Typography } from '@mui/material';
 
 
-const CreatorInfoWrapper = () => {
+const UserInfoWrapper = () => {
   // #TODO change this to logginuser later
   const user = {
     username: 'IMuser'
@@ -22,4 +22,4 @@ const CreatorInfoWrapper = () => {
   )
 }
 
-export default CreatorInfoWrapper
+export default UserInfoWrapper

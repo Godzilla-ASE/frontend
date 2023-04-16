@@ -1,6 +1,6 @@
 // contains information about the user avatar and name
 import { useState } from 'react';
-import { AiOutlineLike, AiOutlineDislike, AiFillLike, AiFillDislike } from 'react-icons/ai';
+import { AiOutlineLike, AiOutlineDislike, AiFillLike, AiFillDislike, AiOutlineShareAlt } from 'react-icons/ai';
 import { useNavigate } from 'react-router-dom'
 import LoggedInUser from '../Helper/LoggedInUser';
 import { Typography, useTheme } from '@mui/material';
@@ -31,22 +31,25 @@ const ReactionWrapper = ({ post }) => {
   }
 
   return (
-    <div className="reactionWrapper">
-      <div className="likesWrapper" onClick={handleLikeClick}>
+    <div style={{ display: 'flex', alignContent: 'center', marginTop: '10px', gap: '10px' }}>
+      <div onClick={handleLikeClick} style={{ display: 'flex', alignContent: 'center' }}>
         {liked
-          ? <AiFillLike className="likesIcon" color={theme.palette.secondary.main} size={theme.typography.body2.fontSize * 1.3} />
-          : <AiOutlineLike className="likesIcon" color={theme.palette.secondary.main} size={theme.typography.body2.fontSize * 1.3} />}
+          ? <AiFillLike className="likesIcon" color={theme.palette.secondary.main} size={theme.typography.body1.fontSize * 1.3} />
+          : <AiOutlineLike className="likesIcon" color={theme.palette.secondary.main} size={theme.typography.body1.fontSize * 1.3} />}
         {post.like > 0
-          ? <Typography variant='body2' align="left" fontWeight="bold" color="secondary">{post.like}</Typography>
+          ? <Typography variant='body1' align="left" fontWeight="bold" color="secondary">{post.like}</Typography>
           : null}
       </div>
-      <div className="dislikesWrapper" onClick={handleDisLikeClick}>
+      <div onClick={handleDisLikeClick} style={{ display: 'flex', alignContent: 'center' }}>
         {disliked
-          ? <AiFillDislike className="dislikesIcon" color={theme.palette.secondary.main} size={theme.typography.body2.fontSize * 1.3} />
-          : <AiOutlineDislike className="dislikesIcon" color={theme.palette.secondary.main} size={theme.typography.body2.fontSize * 1.3} />}
+          ? <AiFillDislike className="dislikesIcon" color={theme.palette.secondary.main} size={theme.typography.body1.fontSize * 1.3} />
+          : <AiOutlineDislike className="dislikesIcon" color={theme.palette.secondary.main} size={theme.typography.body1.fontSize * 1.3} />}
         {post.unlike > 0
-          ? <Typography variant='body2' align="left" fontWeight="bold" color="secondary">{post.unlike}</Typography>
+          ? <Typography variant='body1' align="left" fontWeight="bold" color="secondary">{post.unlike}</Typography>
           : null}
+      </div>
+      <div onClick={handleDisLikeClick} style={{ display: 'flex', alignContent: 'center' }}>
+        <AiOutlineShareAlt color={theme.palette.secondary.main} size={theme.typography.body1.fontSize * 1.3} />
       </div>
     </div>
   )
