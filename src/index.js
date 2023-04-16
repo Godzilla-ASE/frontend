@@ -3,20 +3,23 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { CssBaseline } from '@mui/material';
 
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { purple } from '@mui/material/colors';
 
 const theme = createTheme({
   typography: {
-    // font size by default (16px): Homepage post title and single post content
+    fontFamily: 'Roboto, sans-serif',
     body1: {
-      fontSize: 16,
-      color: purple[400],
+      fontSize: 18,
     },
     body2: {
-      fontSize: 12,
-      color: '#CE93D8',
+      fontSize: 14,
+      // color: '#CE93D8',
+    },
+    body3: {
+      fontSize: 10,
+      // color: '#CE93D8',
     },
     h1: {
       fontSize: 32,
@@ -27,18 +30,32 @@ const theme = createTheme({
       fontSize: 24,
       fontWeight: 'bold',
       color: '#333',
+    },
+    h3: {
+      fontSize: 20,
+      fontWeight: 'bold',
+      color: '#333',
     }
   },
   palette: {
     primary: {
-      main: purple[400],
+      main: '#ffffff',
     },
     secondary: {
-      main: '#f44336',
+      main: '#CECECE',
+    },
+    thirdInformation: {
+      main: "#9F9F9F"
+    },
+    postBackground: {
+      main: '#333333',
     },
     background: {
-      default: '#f5f3f7',
+      default: '#282828',
     },
+    submit: {
+      main: '#0095f6'
+    }
   }
 });
 
@@ -46,6 +63,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
 
   <ThemeProvider theme={theme}>
+    <CssBaseline />
     <App />
   </ThemeProvider>
 
