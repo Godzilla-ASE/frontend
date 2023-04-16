@@ -4,7 +4,7 @@ import {
   } from "@mui/material";
 import { useNavigate } from 'react-router-dom';
 
-import Logout from './logout'; // Import the Logout function from logout.js
+import Logout from '../services/Logout'; // Import the Logout function from logout.js
 
 const LogoutButton = (setPageStatus) => {
   
