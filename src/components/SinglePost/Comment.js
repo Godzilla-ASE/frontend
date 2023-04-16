@@ -23,7 +23,7 @@ function Comment({ comment }) {
           </Typography>
           <Typography variant="body3" color="secondary">
             {date} Zurich
-          </Typography><br></br><br></br>
+          </Typography><br></br>
           <div>
             {replys.map((reply) => (
               <Reply reply={reply} />
@@ -42,10 +42,10 @@ function Comment({ comment }) {
         <CardContent style={{ marginLeft: '10%' }}>
         <Typography color="secondary" variant="body2" >
             {content}
-          </Typography> <br></br>
+          </Typography>
           <Typography variant="body3" color="secondary">
             {date} Zurich
-          </Typography>
+          </Typography><br></br>
 
         </CardContent>
       </div>
