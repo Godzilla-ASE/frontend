@@ -1,7 +1,7 @@
 const SignupSubmit = async (event, username, password, email, location, confirmPassword, isChecked,
     usernameError, emailError, passwordError, confirmPasswordError, locationError, isCheckedError, 
     setUsernameError, setPasswordError, setConfirmPasswordError, setLocationError, setEmailError, 
-    setUsernameexistError, setIsCheckedError, setPageStatus, navigate) => {    
+    setUsernameexistError, setIsCheckedError, setPageStatus, SIGNUP_API, navigate) => {    
     event.preventDefault();
   // Get the history object from react-router-dom
     if (!/^[a-zA-Z0-9]{6,16}$/.test(username)) {
@@ -29,7 +29,7 @@ const SignupSubmit = async (event, username, password, email, location, confirmP
     }
     if (!(usernameError || emailError || passwordError || confirmPasswordError || locationError || isCheckedError)) { // fullnameError
       try {
-        const response = await fetch("/api/signup", {
+        const response = await fetch(SIGNUP_API, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ username, email, password, location }),
