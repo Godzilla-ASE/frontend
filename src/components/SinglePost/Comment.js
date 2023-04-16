@@ -17,13 +17,13 @@ function Comment({ comment }) {
         {/* <div style={{ borderTop: '1px solid #ccc', width: '70%', marginLeft: "15%" }}></div> */}
         <AuthorInfoWrapper post={comment} />
         {/* <CardHeader avatar={<Avatar src="https://images.unsplash.com/photo-1558642452-9d2a7deb7f62" />} title={username} style={{ paddingTop: '5%', paddingBottom: '0' }} /> */}
-        <CardContent style={{ marginLeft: '10%' }}>
+        <CardContent style={{ marginLeft: '9%' }}>
           <Typography color="secondary" variant="body2" >
             {content}
-          </Typography><br></br><br></br>
+          </Typography>
           <Typography variant="body3" color="secondary">
             {date} Zurich
-          </Typography>
+          </Typography><br></br><br></br>
           <div>
             {replys.map((reply) => (
               <Reply reply={reply} />
@@ -40,7 +40,9 @@ function Comment({ comment }) {
         {/* <CardHeader avatar={<Avatar src="https://images.unsplash.com/photo-1558642452-9d2a7deb7f62" />} title={username} style={{ paddingTop: '5%', paddingBottom: '0' }} /> */}
         <AuthorInfoWrapper post={comment} />
         <CardContent style={{ marginLeft: '10%' }}>
-          {content} <br></br><br></br>
+        <Typography color="secondary" variant="body2" >
+            {content}
+          </Typography> <br></br>
           <Typography variant="body3" color="secondary">
             {date} Zurich
           </Typography>

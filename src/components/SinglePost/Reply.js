@@ -11,10 +11,10 @@ function Replys({ reply }) {
   return (
     <div>
       <AuthorInfoWrapper post={reply} />
-      <CardContent style={{ marginLeft: '12%' }}>
+      <CardContent style={{ marginLeft: '9%' }}>
         <Typography color="secondary" variant="body2" >
           {content}
-        </Typography><br></br><br></br>
+        </Typography>
         <Typography variant="body3" color="secondary">
           {date} Zurich
         </Typography>
