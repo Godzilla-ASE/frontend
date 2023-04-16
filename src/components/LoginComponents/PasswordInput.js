@@ -29,7 +29,7 @@ function PasswordInput({
             {/* <Button color="primary" size="small" className="login-forgot-button">
               Forgot?
             </Button> */}
-            <Link href="/" color="primary" size="small" className="login-forgot-button" style={{ color: "black" }}>
+            <Link href="/forgetPassword" color="primary" size="small" className="login-forgot-button" style={{ color: "black" }}>
               Forgot?
             </Link>
           </InputAdornment>

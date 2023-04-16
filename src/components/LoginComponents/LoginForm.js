@@ -2,20 +2,16 @@ import React, { useState } from "react";
 import {
   Box,
   Button,
-  Checkbox,
-  FormControl,
-  FormControlLabel,
-  FormHelperText,
-  InputLabel,
-  InputAdornment,
   Link,
-  OutlinedInput,
   Typography,
 } from "@mui/material";
-import LoginStatus from "./LoginStatus";
+
 import UsernameInput from "./UsernameInput";
 import PasswordInput from "./PasswordInput";
 import LoginSubmit from "../Wrapper/LoginSubmit";
+import GetPageStatus from "../GetPageStatus";
+import "./Login.css"
+//import LoginStatus from "./LoginStatus";
 
 function LoginForm(){
   const [username, setUsername] = useState("");
@@ -24,27 +20,28 @@ function LoginForm(){
   const [passwordError, setPasswordError] = useState(false);
   const [usernamecorrectError, setUsernamecorrectError] = useState(false);
   const [passwordcorrectError, setPasswordcorrectError] = useState(false);
-  const [loginStatus, setLoginStatus] = useState("");
+  const [pageStatus, setPageStatus] = useState("");
 
 
   const handleUsernameChange = (event) => {
     setUsername(event.target.value);
     setUsernameError(false);
     setUsernamecorrectError(false);
-    setLoginStatus("");
+    setPageStatus("");
   };
 
   const handlePasswordChange = (event) => {
     setPassword(event.target.value);
     setPasswordError(false);
     setPasswordcorrectError(false);
-    setLoginStatus("");
+    setPageStatus("");
   };
 
   return (
     <Box className="login-container">
       <Box className="login-form-container">
-        <form onSubmit={(event) => LoginSubmit(event, username, password, setUsernameError, setPasswordError, setUsernamecorrectError, setPasswordcorrectError, setLoginStatus)} className="signup-form">
+        <form onSubmit={(event) => LoginSubmit(event, username, password, 
+          setUsernameError, setPasswordError, setUsernamecorrectError, setPasswordcorrectError, setPageStatus)} className="login-form">
           <UsernameInput
             username={username}
             handleUsernameChange={handleUsernameChange}
@@ -60,7 +57,9 @@ function LoginForm(){
           <Button variant="contained" color="primary" type="submit" className="login-button">
             Log In
           </Button>
-          <LoginStatus loginStatus={loginStatus} />
+          <GetPageStatus 
+          pageStatus={pageStatus} 
+          />
         </form>
       </Box>
       <Box align="center" className="link-to-signup">

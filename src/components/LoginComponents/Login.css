@@ -44,6 +44,11 @@
   background-color: #fff;
 }
 
+.login-button {
+  margin-top: 16px;
+  color :#0095f6;
+}
+
 .login-input {
   width: 100%;
 }

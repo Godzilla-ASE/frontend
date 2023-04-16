@@ -1,4 +1,5 @@
-const LoginSubmit = async (event, username, password, setUsernameError, setPasswordError, setUsernamecorrectError, setPasswordcorrectError, setLoginStatus) => {
+const LoginSubmit = async (event, username, password, 
+  setUsernameError, setPasswordError, setUsernamecorrectError, setPasswordcorrectError, setPageStatus) => {
   event.preventDefault();
   if (!username) {
     setUsernameError(true);
@@ -17,19 +18,19 @@ const LoginSubmit = async (event, username, password, setUsernameError, setPassw
         const authToken = await response.text();
         // save user to localStorage
         // localStorage.setItem("loggedInUser", user);
-        setLoginStatus(`Logged in successfully.`);
+        setPageStatus("Logged in successfully.");
       } else if (response.status === 404) {
         const error = await response.text();
         setUsernamecorrectError(true);
-        setLoginStatus(`Username not found.`);
+        setPageStatus("Username not found.");
       } else if (response.status === 409) {
         const error = await response.text();
         setPasswordcorrectError(true);
-        setLoginStatus(`Wrong credentials.`);
+        setPageStatus("Wrong credentials.");
       }
     } catch (error) {
       console.error(error);
-      setLoginStatus("Failed to log in.");
+      setPageStatus("Failed to log in.");
     }
   }
 };
