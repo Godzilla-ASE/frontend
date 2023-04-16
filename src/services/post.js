@@ -9,7 +9,6 @@ const getAll = async () => {
 
 const getOne = async (id) => {
   const returnedPost = await axios.get(`${baseUrl}/${id}`)
-  // const returnedPost = await axios.get(`http://localhost:3000/db.json`)
   return returnedPost.data
 }
 
