@@ -10,6 +10,7 @@ import {
   IconButton,
   Typography,
   Box,
+  Chip
 } from '@mui/material';
 import { styled } from '@mui/system';
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
@@ -93,6 +94,25 @@ function CreatePostDialog({ isOpen, onClose }) {
   const [images, setImages] = useState([]);
   const [postContents, setPostContents] = useState('')
   const [titleContent, setTitleContent] = useState('')
+  const [tagsInput, setTagsInput] = useState('');
+  const [tags, setTags] = useState([]);
+  console.log('tags', tags)
+
+  const handleTagInputChange = (event) => {
+    setTagsInput(event.target.value);
+  };
+
+  const handleTagsSubmit = (event) => {
+    if (event.key === ' ' && tagsInput) {
+      event.preventDefault();
+      setTags(tags.concat(tagsInput));
+      setTagsInput('');
+    }
+  };
+
+  const handleTagDelete = (tagToDelete) => {
+    setTags(tags.filter((tag) => tag !== tagToDelete));
+  };
 
   const handlePostContentsChange = (event) => {
     setPostContents(event.target.value);
@@ -250,14 +270,19 @@ function CreatePostDialog({ isOpen, onClose }) {
                 </Typography>
               </Grid>
             </Grid>
-            <Grid item xs={2}>
-              <CustomMultiline
-                placeholder="Choose the tags..."
+            <Grid item xs={1}>
+              <CustomSingleLine
+                placeholder="Add tags (seperate by space)"
                 fullWidth
-                multiline
-                rows={3}
-                onChange={handlePostContentsChange}
+                value={tagsInput}
+                onChange={handleTagInputChange}
+                onKeyDown={handleTagsSubmit}
               />
+            </Grid>
+            <Grid item xs={2}>
+              {tags.map((tag, index) => (
+                <Chip key={index} label={tag} color="primary" variant="outlined" style={{ marginRight: '8px', marginBottom: '8px' }} onDelete={() => handleTagDelete(tag)} />
+              ))}
             </Grid>
             <Grid item xs={1}>
               <DialogActions style={{ paddingRight: '0px' }}>
