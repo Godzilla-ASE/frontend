@@ -17,7 +17,6 @@ import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
 import CloseIcon from '@mui/icons-material/Close';
 import UserInfoWrapper from '../components/Wrapper/UserInfoWrapper';
 import InputBase from '@mui/material/InputBase';
-import Divider from '@mui/material/Divider';
 
 const CustomSingleLine = styled(InputBase)(({ theme }) => ({
   // 设置占位符文本的样式
@@ -42,7 +41,6 @@ const CustomMultiline = styled(InputBase)(({ theme }) => ({
     padding: '10px 0',
   },
 }));
-
 
 const StyledDialogContent = styled(Box)(({ theme }) => ({
   display: 'flex',
@@ -73,15 +71,6 @@ const CloseButton = styled(IconButton)(({ theme }) => ({
   right: 0,
 }));
 
-const RightPanelWrapper = styled('div')({
-  display: 'flex',
-  flexDirection: 'column',
-  flexGrow: 1,
-  '& > *': {
-    marginBottom: '16px', // 为每个子组件添加下边距
-  },
-});
-
 const placeholder = (
   // Design a placeholder for the prompt message component to achieve consistent user interface in the reminder area.
   <Typography variant="body2" color="error" fontWeight={700} sx={{ visibility: 'hidden' }}>
@@ -91,36 +80,11 @@ const placeholder = (
 
 
 function CreatePostDialog({ isOpen, onClose }) {
+
+  /*==========================================================
+  The following are the states and handlers for the left side of the dialog.
+  ============================================================*/
   const [images, setImages] = useState([]);
-  const [postContents, setPostContents] = useState('')
-  const [titleContent, setTitleContent] = useState('')
-  const [tagsInput, setTagsInput] = useState('');
-  const [tags, setTags] = useState([]);
-  console.log('tags', tags)
-
-  const handleTagInputChange = (event) => {
-    setTagsInput(event.target.value);
-  };
-
-  const handleTagsSubmit = (event) => {
-    if (event.key === ' ' && tagsInput) {
-      event.preventDefault();
-      setTags(tags.concat(tagsInput));
-      setTagsInput('');
-    }
-  };
-
-  const handleTagDelete = (tagToDelete) => {
-    setTags(tags.filter((tag) => tag !== tagToDelete));
-  };
-
-  const handlePostContentsChange = (event) => {
-    setPostContents(event.target.value);
-  };
-
-  const handleTitleChange = (event) => {
-    setTitleContent(event.target.value);
-  };
 
   const handleImageUpload = (e, index) => {
     const file = e.target.files[0];
@@ -141,6 +105,44 @@ function CreatePostDialog({ isOpen, onClose }) {
     const updatedImages = [...images];
     updatedImages[index] = null;
     setImages(updatedImages);
+  };
+
+  /*==========================================================
+  The following are the states and handlers for the right side of the dialog.
+  ============================================================*/
+  // Control the word limit of content input
+  const [postContents, setPostContents] = useState('')
+
+  const handlePostContentsChange = (event) => {
+    setPostContents(event.target.value);
+  };
+
+  // Control the title limit of content input
+  const [titleContent, setTitleContent] = useState('')
+
+  const handleTitleChange = (event) => {
+    setTitleContent(event.target.value);
+  };
+
+  // Add and delete the tags
+  const [tagsInput, setTagsInput] = useState('');
+  const [tags, setTags] = useState([]);
+  console.log('tags', tags)
+
+  const handleTagInputChange = (event) => {
+    setTagsInput(event.target.value);
+  };
+
+  const handleTagsSubmit = (event) => {
+    if (event.key === ' ' && tagsInput) {
+      event.preventDefault();
+      setTags(tags.concat(tagsInput));
+      setTagsInput('');
+    }
+  };
+
+  const handleTagDelete = (tagToDelete) => {
+    setTags(tags.filter((tag) => tag !== tagToDelete));
   };
 
   return (
@@ -220,9 +222,11 @@ function CreatePostDialog({ isOpen, onClose }) {
           </Grid>
           <Grid container item xs direction="column" style={{ paddingRight: '15px', paddingBottom: '10px' }}>
             <Grid item xs={1} style={{ paddingTop: '15px' }}>
+              {/* Import user avatar and name */}
               <UserInfoWrapper />
             </Grid>
             <Grid item xs={1}>
+              {/* Enter post title */}
               <CustomSingleLine
                 placeholder="Write a title..."
                 fullWidth
@@ -230,6 +234,7 @@ function CreatePostDialog({ isOpen, onClose }) {
               />
             </Grid>
             <Grid item container direction="row" alignItems="center">
+              {/* Control the word limit for the title: a message if the limit is exceeded & a word counter */}
               <Grid item xs>
                 {titleContent.length > 20 ? (
                   <Typography variant="body2" color="error" fontWeight={700}>
@@ -246,6 +251,7 @@ function CreatePostDialog({ isOpen, onClose }) {
               </Grid>
             </Grid>
             <Grid item xs>
+              {/* Enter the post contents */}
               <CustomMultiline
                 placeholder="Write the contents..."
                 fullWidth
@@ -255,6 +261,7 @@ function CreatePostDialog({ isOpen, onClose }) {
               />
             </Grid>
             <Grid item container direction="row" alignItems="center">
+              {/* Control the word limit for the content: a message if the limit is exceeded & a word counter */}
               <Grid item xs>
                 {postContents.length > 1000 ? (
                   <Typography variant="body2" color="error" fontWeight={700}>
@@ -271,6 +278,7 @@ function CreatePostDialog({ isOpen, onClose }) {
               </Grid>
             </Grid>
             <Grid item xs={1}>
+              {/* Add tags for the post */}
               <CustomSingleLine
                 placeholder="Add tags (seperate by space)"
                 fullWidth
@@ -297,7 +305,6 @@ function CreatePostDialog({ isOpen, onClose }) {
           </Grid>
         </Grid>
       </StyledDialogContent>
-
     </CreatePostDialogCompo>
   );
 }
