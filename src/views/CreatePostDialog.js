@@ -45,22 +45,14 @@ const CustomMultiline = styled(InputBase)(({ theme }) => ({
 
 const StyledDialogContent = styled(Box)(({ theme }) => ({
   display: 'flex',
-  flexDirection: 'row',
-  // padding: '1em 0.5em'
+  flexDirection: 'row'
 }));
-
-// const StyledDialogContent = styled(DialogContent)({
-//   display: 'flex',
-//   flexDirection: 'column',
-//   alignItems: 'center'
-// });
 
 const CreatePostDialogCompo = styled(Dialog)(({ theme }) => ({
   '& .MuiPaper-root': {
     backgroundColor: theme.palette.postBackground.main, // 设置您喜欢的背景颜色
   },
 }));
-
 
 const ImageGrid = styled(Box)(({ theme }) => ({
   display: 'flex',
@@ -123,7 +115,7 @@ function CreatePostDialog({ isOpen, onClose }) {
     <CreatePostDialogCompo open={isOpen} onClose={onClose} maxWidth="md" fullWidth>
       <StyledDialogContent className={StyledDialogContent}>
         <Grid container spacing={2}>
-          <Grid id="ImagesBox" item xs={8} sx={{ padding: '10px' }}>
+          <Grid item xs={8} sx={{ padding: '10px' }}>
             <Grid container className={ImageGrid} spacing={1} sx={{ height: '100%' }}>
               {Array.from({ length: 9 }).map((_, index) => (
                 <Grid item xs={4} key={index}>
@@ -194,34 +186,62 @@ function CreatePostDialog({ isOpen, onClose }) {
               ))}
             </Grid>
           </Grid>
-          <Grid item xs={4}>
-            <UserInfoWrapper sx={{ flexGrow: 1 }} />
-            <CustomSingleLine placeholder="Write a title..." fullWidth />
-            <CustomMultiline
-              placeholder="Write the contents..."
-              fullWidth
-              multiline
-              rows={6}
-              onChange={handlePostContentsChange}
-            />
-            <Typography variant="body2" color="secondary.main" sx={{ textAlign: 'right' }}>
-              {postContents.length}/1000
-            </Typography>
-            {postContents.length > 1000 && (
-              <Typography variant="caption" color="error">
-                You have exceeded the maximum character limit.
+          <Grid container item xs direction="column" style={{ paddingRight: '15px', paddingBottom: '10px' }}>
+            <Grid item xs={1} style={{ paddingTop: '15px' }}>
+              <UserInfoWrapper />
+            </Grid>
+            <Grid item xs={1}>
+              <CustomSingleLine placeholder="Write a title..." fullWidth />
+            </Grid>
+            <Grid item xs={0.5}>
+              <Typography variant="body2" color="secondary.main" sx={{ textAlign: 'right' }}>
+                {postContents.length}/20
               </Typography>
-            )}
-            <DialogActions>
-              <Button variant="contained" onClick={onClose}>
-                Cancel
-              </Button>
-              <Button variant="contained" onClick={onClose}>
-                Post
-              </Button>
-            </DialogActions>
+              {postContents.length > 20 && (
+                <Typography variant="caption" color="error">
+                  You have exceeded the maximum character limit.
+                </Typography>
+              )}
+            </Grid>
+            <Grid item xs>
+              <CustomMultiline
+                placeholder="Write the contents..."
+                fullWidth
+                multiline
+                rows={9} // if the ui of this part is a bit strange, change to autosize textarea component
+                onChange={handlePostContentsChange}
+              />
+            </Grid>
+            <Grid item xs={0.5} >
+              <Typography variant="body2" color="secondary.main" sx={{ textAlign: 'right' }}>
+                {postContents.length}/1000
+              </Typography>
+              {postContents.length > 1000 && (
+                <Typography variant="caption" color="error">
+                  You have exceeded the maximum character limit.
+                </Typography>
+              )}
+            </Grid>
+            <Grid item xs={2}>
+              <CustomMultiline
+                placeholder="Choose the tags..."
+                fullWidth
+                multiline
+                rows={3}
+                onChange={handlePostContentsChange}
+              />
+            </Grid>
+            <Grid item xs={1}>
+              <DialogActions style={{ paddingRight: '0px' }}>
+                <Button variant="contained" color="error" onClick={onClose}>
+                  Cancel
+                </Button>
+                <Button variant="contained" onClick={onClose}>
+                  Post
+                </Button>
+              </DialogActions>
+            </Grid>
           </Grid>
-
         </Grid>
       </StyledDialogContent>
 
