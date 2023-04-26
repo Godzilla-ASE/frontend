@@ -81,13 +81,25 @@ const RightPanelWrapper = styled('div')({
   },
 });
 
+const placeholder = (
+  // Design a placeholder for the prompt message component to achieve consistent user interface in the reminder area.
+  <Typography variant="body2" color="error" fontWeight={700} sx={{ visibility: 'hidden' }}>
+    Exceeded the character limit.
+  </Typography>
+);
+
 
 function CreatePostDialog({ isOpen, onClose }) {
   const [images, setImages] = useState([]);
   const [postContents, setPostContents] = useState('')
+  const [titleContent, setTitleContent] = useState('')
 
   const handlePostContentsChange = (event) => {
     setPostContents(event.target.value);
+  };
+
+  const handleTitleChange = (event) => {
+    setTitleContent(event.target.value);
   };
 
   const handleImageUpload = (e, index) => {
@@ -191,36 +203,52 @@ function CreatePostDialog({ isOpen, onClose }) {
               <UserInfoWrapper />
             </Grid>
             <Grid item xs={1}>
-              <CustomSingleLine placeholder="Write a title..." fullWidth />
+              <CustomSingleLine
+                placeholder="Write a title..."
+                fullWidth
+                onChange={handleTitleChange}
+              />
             </Grid>
-            <Grid item xs={0.5}>
-              <Typography variant="body2" color="secondary.main" sx={{ textAlign: 'right' }}>
-                {postContents.length}/20
-              </Typography>
-              {postContents.length > 20 && (
-                <Typography variant="caption" color="error">
-                  You have exceeded the maximum character limit.
+            <Grid item container direction="row" alignItems="center">
+              <Grid item xs>
+                {titleContent.length > 20 ? (
+                  <Typography variant="body2" color="error" fontWeight={700}>
+                    Exceeded the character limit.
+                  </Typography>
+                ) : (
+                  placeholder
+                )}
+              </Grid>
+              <Grid item>
+                <Typography variant="body2" color="secondary.main" sx={{ textAlign: 'right' }}>
+                  {titleContent.length}/20
                 </Typography>
-              )}
+              </Grid>
             </Grid>
             <Grid item xs>
               <CustomMultiline
                 placeholder="Write the contents..."
                 fullWidth
                 multiline
-                rows={9} // if the ui of this part is a bit strange, change to autosize textarea component
+                rows={8} // if the ui of this part is a bit strange, change to autosize textarea component
                 onChange={handlePostContentsChange}
               />
             </Grid>
-            <Grid item xs={0.5} >
-              <Typography variant="body2" color="secondary.main" sx={{ textAlign: 'right' }}>
-                {postContents.length}/1000
-              </Typography>
-              {postContents.length > 1000 && (
-                <Typography variant="caption" color="error">
-                  You have exceeded the maximum character limit.
+            <Grid item container direction="row" alignItems="center">
+              <Grid item xs>
+                {postContents.length > 1000 ? (
+                  <Typography variant="body2" color="error" fontWeight={700}>
+                    Exceeded the character limit.
+                  </Typography>
+                ) : (
+                  placeholder
+                )}
+              </Grid>
+              <Grid item>
+                <Typography variant="body2" color="secondary.main" sx={{ textAlign: 'right' }}>
+                  {postContents.length}/1000
                 </Typography>
-              )}
+              </Grid>
             </Grid>
             <Grid item xs={2}>
               <CustomMultiline
