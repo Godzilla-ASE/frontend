@@ -53,22 +53,11 @@ const CreatePostDialogCompo = styled(Dialog)(({ theme }) => ({
   },
 }));
 
-const ImageGrid = styled(Box)(({ theme }) => ({
-  display: 'flex',
-  flexDirection: 'column',
-  flexWrap: 'wrap',
-  justifyContent: 'space-between',
-}));
+
 
 const ImageBox = styled(Box)(({ theme }) => ({
   position: 'relative',
   marginBottom: theme.spacing(1),
-}));
-
-const CloseButton = styled(IconButton)(({ theme }) => ({
-  position: 'absolute',
-  top: 0,
-  right: 0,
 }));
 
 const placeholder = (
@@ -85,6 +74,8 @@ function CreatePostDialog({ isOpen, onClose }) {
   The following are the states and handlers for the left side of the dialog.
   ============================================================*/
   const [images, setImages] = useState([]);
+  console.log('images', images)
+  console.log('images.filter(Boolean).length', images.filter(Boolean).length)
 
   const handleImageUpload = (e, index) => {
     const file = e.target.files[0];
@@ -101,10 +92,12 @@ function CreatePostDialog({ isOpen, onClose }) {
     }
   };
 
-  const handleImageDelete = (index) => {
-    const updatedImages = [...images];
-    updatedImages[index] = null;
-    setImages(updatedImages);
+  const handleImageDelete = (event, index) => {
+    event.stopPropagation();
+    event.preventDefault();
+    // const updatedImages = [...images];
+    // updatedImages[index] = null;
+    setImages(images.filter((_, i) => i !== index));
   };
 
   /*==========================================================
@@ -127,7 +120,6 @@ function CreatePostDialog({ isOpen, onClose }) {
   // Add and delete the tags
   const [tagsInput, setTagsInput] = useState('');
   const [tags, setTags] = useState([]);
-  console.log('tags', tags)
 
   const handleTagInputChange = (event) => {
     setTagsInput(event.target.value);
@@ -149,76 +141,9 @@ function CreatePostDialog({ isOpen, onClose }) {
     <CreatePostDialogCompo open={isOpen} onClose={onClose} maxWidth="md" fullWidth>
       <StyledDialogContent className={StyledDialogContent}>
         <Grid container spacing={2}>
-          <Grid item xs={8} sx={{ padding: '10px' }}>
-            <Grid container className={ImageGrid} spacing={1} sx={{ height: '100%' }}>
-              {Array.from({ length: 9 }).map((_, index) => (
-                <Grid item xs={4} key={index}>
-                  <Box
-                    className={ImageBox}
-                    sx={{
-                      width: '100%',
-                      height: 0,
-                      paddingBottom: '100%',
-                      position: 'relative',
-                    }}
-                  >
-                    {images[index] && (
-                      <IconButton
-                        className={CloseButton}
-                        onClick={() => handleImageDelete(index)}
-                      >
-                        <CloseIcon />
-                      </IconButton>
-                    )}
-                    <label htmlFor={`image-upload-${index}`}>
-                      <input
-                        accept="image/*"
-                        style={{ display: 'none' }}
-                        id={`image-upload-${index}`}
-                        type="file"
-                        onChange={(e) => handleImageUpload(e, index)}
-                      />
-                      {images[index] ? (
-                        <Box
-                          component="img"
-                          alt=""
-                          src={images[index]}
-                          sx={{
-                            width: '100%',
-                            height: '100%',
-                            objectFit: 'cover',
-                            position: 'absolute', // 使用绝对定位
-                            top: 0,
-                            left: 0,
-                          }}
-                        />
-                      ) : (
-                        <Box
-                          sx={{
-                            width: '100%',
-                            height: '100%',
-                            position: 'absolute', // 使用绝对定位
-                            top: 0,
-                            left: 0,
-                            display: 'flex',
-                            alignItems: 'center', // 垂直居中
-                            justifyContent: 'center', // 水平居中
-                            cursor: 'pointer',
-                          }}
-                        >
-                          <AddAPhotoIcon
-                            sx={{
-                              fontSize: 20, // 设置大小
-                              color: 'secondary.main', // 设置颜色为主题的主要颜色
-                            }}
-                          />
-                        </Box>
-                      )}
-                    </label>
-                  </Box>
-                </Grid>
-              ))}
-            </Grid>
+          {/* sx={{ padding: '10px' }} */}
+          <Grid item xs={8}>
+            
           </Grid>
           <Grid container item xs direction="column" style={{ paddingRight: '15px', paddingBottom: '10px' }}>
             <Grid item xs={1} style={{ paddingTop: '15px' }}>
@@ -304,8 +229,8 @@ function CreatePostDialog({ isOpen, onClose }) {
             </Grid>
           </Grid>
         </Grid>
-      </StyledDialogContent>
-    </CreatePostDialogCompo>
+      </StyledDialogContent >
+    </CreatePostDialogCompo >
   );
 }
 
