@@ -14,7 +14,8 @@ import UsernameSet from "./SignupComponents/UsernameSet";
 import EmailSet from "./SignupComponents/EmailSet";
 import PasswordSet from "./SignupComponents/PasswordSet";
 import LocationSet from "./SignupComponents/LocationSet";
-import SignupSubmit from "./Wrapper/SignupSubmit";
+import SignupSubmit from "../services/SignupSubmit";
+import { SIGNUP_API } from "../services/APIs";
 import "./SignupComponents/SignUp.css";
 
 const SignUp = () => {
@@ -67,7 +68,7 @@ const SignUp = () => {
           onSubmit={(event) => SignupSubmit(event, username, password, email, location, confirmPassword, isChecked,
             usernameError, emailError, passwordError, confirmPasswordError, locationError, isCheckedError,
              setUsernameError, setPasswordError, setConfirmPasswordError, setLocationError, setEmailError,
-              setUsernameexistError, setIsCheckedError, setPageStatus, navigate)}
+              setUsernameexistError, setIsCheckedError, setPageStatus, SIGNUP_API, navigate)}
           className="signup-form"
         >  
         <UsernameSet
