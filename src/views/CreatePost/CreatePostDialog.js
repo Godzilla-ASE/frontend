@@ -2,21 +2,17 @@ import React, { useState } from 'react';
 import {
   Button,
   Dialog,
-  DialogTitle,
-  DialogContent,
   DialogActions,
-  TextField,
   Grid,
-  IconButton,
   Typography,
   Box,
   Chip
 } from '@mui/material';
 import { styled } from '@mui/system';
-import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
-import CloseIcon from '@mui/icons-material/Close';
-import UserInfoWrapper from '../components/Wrapper/UserInfoWrapper';
+import UserInfoWrapper from '../../components/Wrapper/UserInfoWrapper';
 import InputBase from '@mui/material/InputBase';
+import ImageUpload from './ImageUpload';
+import PostTitle from './PostTitle';
 
 const CustomSingleLine = styled(InputBase)(({ theme }) => ({
   // 设置占位符文本的样式
@@ -51,13 +47,6 @@ const CreatePostDialogCompo = styled(Dialog)(({ theme }) => ({
   '& .MuiPaper-root': {
     backgroundColor: theme.palette.postBackground.main, // 设置您喜欢的背景颜色
   },
-}));
-
-
-
-const ImageBox = styled(Box)(({ theme }) => ({
-  position: 'relative',
-  marginBottom: theme.spacing(1),
 }));
 
 const placeholder = (
@@ -141,40 +130,15 @@ function CreatePostDialog({ isOpen, onClose }) {
     <CreatePostDialogCompo open={isOpen} onClose={onClose} maxWidth="md" fullWidth>
       <StyledDialogContent className={StyledDialogContent}>
         <Grid container spacing={2}>
-          {/* sx={{ padding: '10px' }} */}
           <Grid item xs={8}>
-            
+            <ImageUpload images={images} handleImageUpload={handleImageUpload} handleImageDelete={handleImageDelete} />
           </Grid>
           <Grid container item xs direction="column" style={{ paddingRight: '15px', paddingBottom: '10px' }}>
             <Grid item xs={1} style={{ paddingTop: '15px' }}>
               {/* Import user avatar and name */}
               <UserInfoWrapper />
             </Grid>
-            <Grid item xs={1}>
-              {/* Enter post title */}
-              <CustomSingleLine
-                placeholder="Write a title..."
-                fullWidth
-                onChange={handleTitleChange}
-              />
-            </Grid>
-            <Grid item container direction="row" alignItems="center">
-              {/* Control the word limit for the title: a message if the limit is exceeded & a word counter */}
-              <Grid item xs>
-                {titleContent.length > 20 ? (
-                  <Typography variant="body2" color="error" fontWeight={700}>
-                    Exceeded the character limit.
-                  </Typography>
-                ) : (
-                  placeholder
-                )}
-              </Grid>
-              <Grid item>
-                <Typography variant="body2" color="secondary.main" sx={{ textAlign: 'right' }}>
-                  {titleContent.length}/20
-                </Typography>
-              </Grid>
-            </Grid>
+            <PostTitle titleContent={titleContent} handleTitleChange={handleTitleChange} placeholder={placeholder} />
             <Grid item xs>
               {/* Enter the post contents */}
               <CustomMultiline

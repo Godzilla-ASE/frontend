@@ -10,9 +10,9 @@ const StyledInput = styled(InputBase)(({ theme }) => ({
   }
 }));
 
-const SingleLineInput = ({ placeholder }) => {
+const SingleLineInput = ({ placeholder, handleChange }) => {
   return (
-    <StyledInput placeholder={placeholder} fullWidth />
+    <StyledInput placeholder={placeholder} fullWidth onChange={handleChange}/>
   )
 }
 
