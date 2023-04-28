@@ -1,42 +1,11 @@
 import React, { useState } from 'react';
-import {
-  Button,
-  Dialog,
-  DialogActions,
-  Grid,
-  Typography,
-  Box,
-  Chip
-} from '@mui/material';
+import { Button, Dialog, DialogActions, Grid, Typography, Box, Chip } from '@mui/material';
 import { styled } from '@mui/system';
 import UserInfoWrapper from '../../components/Wrapper/UserInfoWrapper';
-import InputBase from '@mui/material/InputBase';
 import ImageUpload from './ImageUpload';
 import PostTitle from './PostTitle';
-
-const CustomSingleLine = styled(InputBase)(({ theme }) => ({
-  // 设置占位符文本的样式
-  '& input::placeholder': {
-    color: theme.palette.primary.main
-  },
-  // 设置输入框的样式
-  '& input': {
-    color: theme.palette.primary.main,
-    padding: '10px 0'
-  }
-}));
-
-const CustomMultiline = styled(InputBase)(({ theme }) => ({
-  // 设置占位符文本的样式
-  '& textarea::placeholder': {
-    color: theme.palette.primary.main,
-  },
-  // 设置输入框的样式
-  '& textarea': {
-    color: theme.palette.primary.main,
-    padding: '10px 0',
-  },
-}));
+import SingleLineInput from '../../components/Inputs/SingleLineInput';
+import PostContent from './PostContent';
 
 const StyledDialogContent = styled(Box)(({ theme }) => ({
   display: 'flex',
@@ -63,8 +32,6 @@ function CreatePostDialog({ isOpen, onClose }) {
   The following are the states and handlers for the left side of the dialog.
   ============================================================*/
   const [images, setImages] = useState([]);
-  console.log('images', images)
-  console.log('images.filter(Boolean).length', images.filter(Boolean).length)
 
   const handleImageUpload = (e, index) => {
     const file = e.target.files[0];
@@ -139,42 +106,10 @@ function CreatePostDialog({ isOpen, onClose }) {
               <UserInfoWrapper />
             </Grid>
             <PostTitle titleContent={titleContent} handleTitleChange={handleTitleChange} placeholder={placeholder} />
-            <Grid item xs>
-              {/* Enter the post contents */}
-              <CustomMultiline
-                placeholder="Write the contents..."
-                fullWidth
-                multiline
-                rows={8} // if the ui of this part is a bit strange, change to autosize textarea component
-                onChange={handlePostContentsChange}
-              />
-            </Grid>
-            <Grid item container direction="row" alignItems="center">
-              {/* Control the word limit for the content: a message if the limit is exceeded & a word counter */}
-              <Grid item xs>
-                {postContents.length > 1000 ? (
-                  <Typography variant="body2" color="error" fontWeight={700}>
-                    Exceeded the character limit.
-                  </Typography>
-                ) : (
-                  placeholder
-                )}
-              </Grid>
-              <Grid item>
-                <Typography variant="body2" color="secondary.main" sx={{ textAlign: 'right' }}>
-                  {postContents.length}/1000
-                </Typography>
-              </Grid>
-            </Grid>
+            <PostContent postContent={postContents} rows={8} handleContentChange={handlePostContentsChange} placeholder={placeholder} />
             <Grid item xs={1}>
               {/* Add tags for the post */}
-              <CustomSingleLine
-                placeholder="Add tags (seperate by space)"
-                fullWidth
-                value={tagsInput}
-                onChange={handleTagInputChange}
-                onKeyDown={handleTagsSubmit}
-              />
+              <SingleLineInput placeholder="Add tags (seperate by space)" handleChange={handleTagInputChange} handleKeyDown={handleTagsSubmit} value={tagsInput} />
             </Grid>
             <Grid item xs={2}>
               {tags.map((tag, index) => (
