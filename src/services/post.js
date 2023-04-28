@@ -12,4 +12,6 @@ const getOne = async (id) => {
   return returnedPost.data
 }
 
-export { getAll, getOne }
+const createPost = async (data) => { }
+
+export { getAll, getOne, createPost }
