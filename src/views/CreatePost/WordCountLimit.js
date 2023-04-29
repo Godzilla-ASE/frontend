@@ -8,8 +8,6 @@ const placeholder = (
 );
 
 const WordCountLimit = ({ content, count }) => {
-  console.log("------")
-  console.log('content', content)
   return (
     <Grid item container direction="row" alignItems="center">
       {/* Control the word limit for the title: a message if the limit is exceeded & a word counter */}

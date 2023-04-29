@@ -3,9 +3,6 @@ import { Grid, Box, Button } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
 import CloseIcon from '@mui/icons-material/Close';
-import { v4 as uuidv4 } from 'uuid';
-import AWS from 'aws-sdk';
-
 
 const ImageGrid = styled(Box)(({ theme }) => ({
   display: 'flex',
@@ -20,6 +17,8 @@ const ImageBox = styled(Box)(({ theme }) => ({
 }));
 
 const ImageUpload = ({ images, handleImageDelete, handleImageUpload }) => {
+
+  console.log('images', images);
 
   return (
     <Grid container className={ImageGrid} sx={{ height: '100%' }}>
