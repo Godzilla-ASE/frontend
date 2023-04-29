@@ -6,6 +6,7 @@ import ImageUpload from './ImageUpload';
 import PostTitle from './PostTitle';
 import SingleLineInput from '../../components/Inputs/SingleLineInput';
 import PostContent from './PostContent';
+import DialogComponent from '../../components/Wrapper/DialogComponent';
 
 const StyledDialogContent = styled(Box)(({ theme }) => ({
   display: 'flex',
@@ -94,42 +95,40 @@ function CreatePostDialog({ isOpen, onClose }) {
   };
 
   return (
-    <CreatePostDialogCompo open={isOpen} onClose={onClose} maxWidth="md" fullWidth>
-      <StyledDialogContent className={StyledDialogContent}>
-        <Grid container spacing={2}>
-          <Grid item xs={8}>
-            <ImageUpload images={images} handleImageUpload={handleImageUpload} handleImageDelete={handleImageDelete} />
+    <DialogComponent isOpen={isOpen} onClose={onClose}>
+      <Grid container spacing={2}>
+        <Grid item xs={8}>
+          <ImageUpload images={images} handleImageUpload={handleImageUpload} handleImageDelete={handleImageDelete} />
+        </Grid>
+        <Grid container item xs direction="column" style={{ paddingRight: '15px', paddingBottom: '10px' }}>
+          <Grid item xs={1} style={{ paddingTop: '15px' }}>
+            {/* Import user avatar and name */}
+            <UserInfoWrapper />
           </Grid>
-          <Grid container item xs direction="column" style={{ paddingRight: '15px', paddingBottom: '10px' }}>
-            <Grid item xs={1} style={{ paddingTop: '15px' }}>
-              {/* Import user avatar and name */}
-              <UserInfoWrapper />
-            </Grid>
-            <PostTitle titleContent={titleContent} handleTitleChange={handleTitleChange} placeholder={placeholder} />
-            <PostContent postContent={postContents} rows={8} handleContentChange={handlePostContentsChange} placeholder={placeholder} />
-            <Grid item xs={1}>
-              {/* Add tags for the post */}
-              <SingleLineInput placeholder="Add tags (seperate by space)" handleChange={handleTagInputChange} handleKeyDown={handleTagsSubmit} value={tagsInput} />
-            </Grid>
-            <Grid item xs={2}>
-              {tags.map((tag, index) => (
-                <Chip key={index} label={tag} color="primary" variant="outlined" style={{ marginRight: '8px', marginBottom: '8px' }} onDelete={() => handleTagDelete(tag)} />
-              ))}
-            </Grid>
-            <Grid item xs={1}>
-              <DialogActions style={{ paddingRight: '0px' }}>
-                <Button variant="contained" color="error" onClick={onClose}>
-                  Cancel
-                </Button>
-                <Button variant="contained" onClick={onClose}>
-                  Post
-                </Button>
-              </DialogActions>
-            </Grid>
+          <PostTitle titleContent={titleContent} handleTitleChange={handleTitleChange} placeholder={placeholder} />
+          <PostContent postContent={postContents} rows={8} handleContentChange={handlePostContentsChange} placeholder={placeholder} />
+          <Grid item xs={1}>
+            {/* Add tags for the post */}
+            <SingleLineInput placeholder="Add tags (seperate by space)" handleChange={handleTagInputChange} handleKeyDown={handleTagsSubmit} value={tagsInput} />
+          </Grid>
+          <Grid item xs={2}>
+            {tags.map((tag, index) => (
+              <Chip key={index} label={tag} color="primary" variant="outlined" style={{ marginRight: '8px', marginBottom: '8px' }} onDelete={() => handleTagDelete(tag)} />
+            ))}
+          </Grid>
+          <Grid item xs={1}>
+            <DialogActions style={{ paddingRight: '0px' }}>
+              <Button variant="contained" color="error" onClick={onClose}>
+                Cancel
+              </Button>
+              <Button variant="contained" onClick={onClose}>
+                Post
+              </Button>
+            </DialogActions>
           </Grid>
         </Grid>
-      </StyledDialogContent >
-    </CreatePostDialogCompo >
+      </Grid>
+    </DialogComponent>
   );
 }
 

@@ -1,6 +1,11 @@
-import { Grid, styled, Box, Button } from "@mui/material"
+import React, { useState } from 'react';
+import { Grid, Box, Button } from '@mui/material';
+import { styled } from '@mui/material/styles';
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
 import CloseIcon from '@mui/icons-material/Close';
+import { v4 as uuidv4 } from 'uuid';
+import AWS from 'aws-sdk';
+
 
 const ImageGrid = styled(Box)(({ theme }) => ({
   display: 'flex',
