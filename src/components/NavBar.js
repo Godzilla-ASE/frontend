@@ -6,7 +6,7 @@ import { CgProfile } from 'react-icons/cg';
 import { RiImageAddFill } from 'react-icons/ri';
 import { NavLink, Outlet } from 'react-router-dom';
 import { useTheme } from '@emotion/react';
-import CreatePostDialog from '../views/CreatePostDialog';
+import CreatePostDialog from '../views/CreatePost/CreatePostDialog';
 
 
 export default function NavBar() {

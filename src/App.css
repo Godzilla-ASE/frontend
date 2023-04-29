@@ -147,3 +147,9 @@ nav>div>a {
   vertical-align: center;
   font-size: 16px;
 }
+
+/* Modify IconButton style in CreatePostDialog.js */
+.MuiButton-startIcon.MuiButton-iconSizeMedium {
+  margin-left: 0;
+  margin-right: 0;
+}
