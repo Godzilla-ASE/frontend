@@ -12,6 +12,12 @@ const getOne = async (id) => {
   return returnedPost.data
 }
 
-const createPost = async (data) => { }
+const createPost = async newPost => {
+  // const config = {
+  //   headers: { Authorization: token },
+  // }
+  const response = await axios.post(baseUrl, newPost)
+  return response.data
+}
 
 export { getAll, getOne, createPost }
