@@ -2,7 +2,7 @@ import SingleLineInput from '../../components/Inputs/SingleLineInput';
 import WordCountLimit from './WordCountLimit';
 import { Grid } from '@mui/material';
 
-const PostTitle = ({ titleContent, handleTitleChange, placeholder }) => {
+const PostTitle = ({ titleContent, handleTitleChange }) => {
   return (
     <>
       <Grid item xs={1}>
@@ -11,7 +11,7 @@ const PostTitle = ({ titleContent, handleTitleChange, placeholder }) => {
           handleChange={handleTitleChange}
         />
       </Grid>
-      <WordCountLimit content={titleContent} placeholder={placeholder} count={20} />
+      <WordCountLimit content={titleContent} count={20} />
     </>
   )
 }

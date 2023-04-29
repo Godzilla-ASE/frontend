@@ -2,7 +2,7 @@ import MultiLineInput from "../../components/Inputs/MultiLineInput"
 import WordCountLimit from "./WordCountLimit"
 import { Grid } from "@mui/material"
 
-const PostContent = ({ rows, handleContentChange, placeholder, postContent }) => {
+const PostContent = ({ rows, handleContentChange, postContent }) => {
   return (
     <>
       <Grid item xs>
@@ -13,7 +13,7 @@ const PostContent = ({ rows, handleContentChange, placeholder, postContent }) =>
           handleChange={handleContentChange}
         />
       </Grid>
-      <WordCountLimit content={postContent} placeholder={placeholder} count={1000} />
+      <WordCountLimit content={postContent} count={1000} />
     </>
   )
 }

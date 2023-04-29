@@ -14,7 +14,7 @@ const StyledDialogContent = styled(Box)(({ theme }) => ({
 const DialogComponent = ({ children, isOpen, onClose }) => {
   return (
     <StyledDialog open={isOpen} onClose={onClose} maxWidth="md" fullWidth>
-      <StyledDialogContent class={StyledDialogContent}>
+      <StyledDialogContent className={StyledDialogContent}>
         {children}
       </StyledDialogContent>
     </StyledDialog>
