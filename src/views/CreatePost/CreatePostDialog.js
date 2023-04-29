@@ -8,23 +8,7 @@ import SingleLineInput from '../../components/Inputs/SingleLineInput';
 import PostContent from './PostContent';
 import DialogComponent from '../../components/Wrapper/DialogComponent';
 
-const StyledDialogContent = styled(Box)(({ theme }) => ({
-  display: 'flex',
-  flexDirection: 'row'
-}));
 
-const CreatePostDialogCompo = styled(Dialog)(({ theme }) => ({
-  '& .MuiPaper-root': {
-    backgroundColor: theme.palette.postBackground.main, // 设置您喜欢的背景颜色
-  },
-}));
-
-const placeholder = (
-  // Design a placeholder for the prompt message component to achieve consistent user interface in the reminder area.
-  <Typography variant="body2" color="error" fontWeight={700} sx={{ visibility: 'hidden' }}>
-    Exceeded the character limit.
-  </Typography>
-);
 
 
 function CreatePostDialog({ isOpen, onClose }) {
@@ -105,8 +89,8 @@ function CreatePostDialog({ isOpen, onClose }) {
             {/* Import user avatar and name */}
             <UserInfoWrapper />
           </Grid>
-          <PostTitle titleContent={titleContent} handleTitleChange={handleTitleChange} placeholder={placeholder} />
-          <PostContent postContent={postContents} rows={8} handleContentChange={handlePostContentsChange} placeholder={placeholder} />
+          <PostTitle titleContent={titleContent} handleTitleChange={handleTitleChange}/>
+          <PostContent postContent={postContents} rows={8} handleContentChange={handlePostContentsChange} />
           <Grid item xs={1}>
             {/* Add tags for the post */}
             <SingleLineInput placeholder="Add tags (seperate by space)" handleChange={handleTagInputChange} handleKeyDown={handleTagsSubmit} value={tagsInput} />

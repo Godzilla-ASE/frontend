@@ -1,6 +1,13 @@
 import { Grid, Typography } from "@mui/material"
 
-const WordCountLimit = ({ content, placeholder, count }) => {
+const placeholder = (
+  // Design a placeholder for the prompt message component to achieve consistent user interface in the reminder area.
+  <Typography variant="body2" color="error" fontWeight={700} sx={{ visibility: 'hidden' }}>
+    Exceeded the character limit.
+  </Typography>
+);
+
+const WordCountLimit = ({ content, count }) => {
   console.log("------")
   console.log('content', content)
   return (
