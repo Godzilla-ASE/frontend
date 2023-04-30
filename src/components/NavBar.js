@@ -1,6 +1,6 @@
 import xhs from '../assets/xhs.png';
 import { useState } from 'react'
-import { AiOutlineHome } from 'react-icons/ai';
+import { AiOutlineHome, AiOutlineLogin } from 'react-icons/ai';
 import { MdOutlineExplore } from 'react-icons/md';
 import { CgProfile } from 'react-icons/cg';
 import { RiImageAddFill } from 'react-icons/ri';
@@ -36,6 +36,7 @@ export default function NavBar() {
           <NavLink style={navLinkStyle} to="/"><AiOutlineHome size={28} /></NavLink>
           <NavLink style={navLinkStyle} onClick={handleCreate}><RiImageAddFill size={28} /></NavLink>
           <NavLink style={navLinkStyle} onClick={handleMessage}><BiMessageRoundedDetail size={28} /></NavLink>
+          <NavLink style={navLinkStyle} to="/login"><AiOutlineLogin size={28} /></NavLink>
           <NavLink style={navLinkStyle} to="/login"><CgProfile size={28} /></NavLink>
         </nav>
         <CreatePostDialog

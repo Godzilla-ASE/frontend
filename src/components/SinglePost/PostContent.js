@@ -1,9 +1,7 @@
-import AuthorWrapper from '../Wrapper/AuthorWrapper';
 import { Typography } from '@mui/material';
 import CommentsBox from './CommentsBox';
 
-const PostContent = ({ post, comments }) => {
-  console.log(comments);
+const PostContent = ({ post, comments, onreplyCommentChange }) => {
 
   return (
     // ｜-- PostContent（这篇post的内容）
@@ -36,7 +34,7 @@ const PostContent = ({ post, comments }) => {
       <Typography variant="h3" color="secondary" gutterBottom>
         Comments
       </Typography>
-      <CommentsBox comments={comments} />
+      <CommentsBox comments={comments} onreplyCommentChange={onreplyCommentChange}/>
     </div>
   )
 }

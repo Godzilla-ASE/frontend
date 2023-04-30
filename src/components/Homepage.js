@@ -5,7 +5,14 @@ import PostCardFooter from './PostCardFooter';
 import { usePosts } from './Helper/usePosts';
 
 export default function Homepage() {
+  const fakeUser = {
+    authToken: "authToken",
+    userID: 9999,
+    avatar: "userAvatar"
+  }
 
+  localStorage.setItem("loggedInUser", JSON.stringify(fakeUser));
+  //localStorage.removeItem("loggedInUser");
   const posts = usePosts()
 
   if (!posts) {

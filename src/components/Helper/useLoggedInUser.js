@@ -8,7 +8,6 @@ export default function useLoggedInUser() {
     const loggedUserJSON = window.localStorage.getItem('loggedInUser')
     if (loggedUserJSON) {
       const loggedUser = JSON.parse(loggedUserJSON)
-      console.log('user', loggedUser)
       setUser(loggedUser)
       // blogService.setToken(loggedUser.token)
     }

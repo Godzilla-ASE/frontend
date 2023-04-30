@@ -12,9 +12,9 @@ const StyledMultiLine = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-const MultiLineInput = ({ placeholder, rows, handleChange }) => {
+const MultiLineInput = ({ placeholder, rows, handleChange, value }) => {
   return (
-    <StyledMultiLine placeholder={placeholder} fullWidth multiline rows={rows} onChange={handleChange} />
+    <StyledMultiLine placeholder={placeholder} fullWidth multiline rows={rows} onChange={handleChange} value={value} />
   )
 }
 
