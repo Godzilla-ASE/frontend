@@ -53,8 +53,8 @@ const LoginSubmit = async (event, username, password,
         //   userID: 123,
         //   avatar: "userAvatar"
         //  }
-        const authToken = JSON.stringify({username:"abc",email:"22@22.22",fullName:"ABC",location:"Zurich",birthday:null,avatarUrl:"https://godzilla2023ase.s3.eu-central-1.amazonaws.com/846f28bd-1d2b-4a7f-8461-a3245dc1dd46.jpg"})
-        localStorage.setItem("authToken", authToken);
+        // const authToken = JSON.stringify({username:"abc",email:"22@22.22",fullName:"ABC",location:"Zurich",birthday:null,avatarUrl:"https://godzilla2023ase.s3.eu-central-1.amazonaws.com/846f28bd-1d2b-4a7f-8461-a3245dc1dd46.jpg"})
+        // localStorage.setItem("authToken", authToken);
 
 
       //  localStorage.setItem("loggedInUser", JSON.stringify(user));
