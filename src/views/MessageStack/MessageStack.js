@@ -17,7 +17,7 @@ const MessageStack = ({ isOpen, onClose }) => {
   useEffect(() => {
     // 创建并激活 STOMP 客户端
     const newClient = new Client({
-      webSocketFactory: () => new SockJS('http://localhost:3001/ase-websocket'),
+      webSocketFactory: () => new SockJS('http://localhost:9001/ase-websocket'),
       onConnect: () => {
         console.log('Connected');
 
