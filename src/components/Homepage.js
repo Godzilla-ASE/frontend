@@ -5,6 +5,9 @@ import PostCardFooter from './PostCardFooter';
 import { usePosts } from './Helper/usePosts';
 
 export default function Homepage() {
+
+  //localStorage.setItem("authToken", authToken);
+  //localStorage.setItem("userID", userID);
   const fakeUser = {
     authToken: "authToken",
     userID: 1,

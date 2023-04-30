@@ -16,7 +16,7 @@
   padding: 40px;
   border: 1px solid #dbdbdb;
   border-radius: 5px;
-  width: 350px;
+  width: 500px;
   background-color: #fff;
 }
 
@@ -33,6 +33,10 @@
 }
 
 .signup-input {
+  width: 100%;
+}
+
+.signup-date {
   width: 100%;
 }
 
@@ -97,3 +101,12 @@
   font-size: 12px;
   color: #999999;
 } */
+
+.logout-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 5vh;
+  background-color: #fafafa;
+}

@@ -11,7 +11,7 @@ import UsernameInput from "./UsernameInput";
 import PasswordInput from "./PasswordInput";
 import LoginSubmit from "../../services/LoginSubmit";
 import GetPageStatus from "../GetPageStatus";
-import { LOGIN_API } from "../../services/APIs";
+import { LOGIN_API} from "../../services/APIs";
 import "./Login.css"
 //import LoginStatus from "./LoginStatus";
 

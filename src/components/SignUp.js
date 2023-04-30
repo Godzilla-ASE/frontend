@@ -36,6 +36,11 @@ const SignUp = () => {
   const [locationError, setLocationError] = useState(false);
   const [isCheckedError, setIsCheckedError] = useState(false);
   const [pageStatus, setPageStatus] = useState("");
+
+  const [usernameChanged, setUsernameChanged] = useState(false);
+  const [emailChanged, setEmailChanged] = useState(false);
+  const [passwordChanged, setPasswordChanged] = useState(false);
+  const [locationChanged, setLocationChanged] = useState(false);
   
   const navigate = useNavigate(); 
 
@@ -79,6 +84,7 @@ const SignUp = () => {
             setPageStatus={setPageStatus}
             usernameError={usernameError}
             usernameexistError={usernameexistError}
+            setUsernameChanged={setUsernameChanged}
           />
           <EmailSet
             email={email}
@@ -86,6 +92,7 @@ const SignUp = () => {
             setEmail={setEmail}
             setEmailError={setEmailError}
             setPageStatus={setPageStatus}
+            setEmailChanged={setEmailChanged}
           />
           <PasswordSet
             password={password}
@@ -97,6 +104,7 @@ const SignUp = () => {
             setPasswordError={setPasswordError}
             setConfirmPasswordError={setConfirmPasswordError}
             setPageStatus={setPageStatus}
+            setPasswordChanged={setPasswordChanged}
           />
           <LocationSet
             location={location}
@@ -104,6 +112,7 @@ const SignUp = () => {
             setLocationError={setLocationError}
             locationError={locationError}
             setPageStatus={setPageStatus}
+            setLocationChanged={setLocationChanged}
           />
         <FormControlLabel
           control={<Checkbox checked={isChecked} onChange={handleCheckboxChange} />}
