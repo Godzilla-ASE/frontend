@@ -2,13 +2,14 @@
 import { useState } from 'react';
 import { AiOutlineLike, AiOutlineDislike, AiFillLike, AiFillDislike, AiOutlineShareAlt } from 'react-icons/ai';
 import { useNavigate } from 'react-router-dom'
-import LoggedInUser from '../Helper/LoggedInUser';
+import useLoggedInUser from '../Helper/useLoggedInUser';
 import { Typography, useTheme } from '@mui/material';
 
 const ReactionWrapper = ({ post }) => {
   const [liked, setLiked] = useState(false);
   const [disliked, setDisliked] = useState(false);
-  const user = LoggedInUser() // #TODO 可以直接获取还是需要等
+  // const user = LoggedInUser() // #TODO 可以直接获取还是需要等
+  const user = useLoggedInUser()
   const navigate = useNavigate();
   const theme = useTheme()
 
