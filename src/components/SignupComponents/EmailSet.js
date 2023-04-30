@@ -5,11 +5,13 @@ function EmailSet ({email,
   setEmail,
   setEmailError,
   emailError,
-  setPageStatus}){
+  setPageStatus,
+  setEmailChanged}){
 
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
     setEmailError(false);
+    setEmailChanged(true);
     setPageStatus("");
   };
 

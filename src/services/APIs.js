@@ -5,4 +5,6 @@ export const LOGIN_API = "/api/login";
 
 export const SIGNUP_API = "/api/signup";
 
+export const AccountCenter_API = "/api/accountcenter";
+
 export const LOGO_API = "/api/logo";

@@ -2,7 +2,8 @@
 import './App.css';
 //import Login from './components/LoginComponents/Login的副本';
 import Login from './components/Login';
-import SignUp from './components/SignUp'
+import SignUp from './components/SignUp';
+import AccountCenter from './components/AccountCenter';
 import Homepage from './components/Homepage';
 import SinglePost from './components/SinglePost';
 import NavBar from './components/NavBar';
@@ -16,6 +17,7 @@ function App() {
         <Route index element={<Homepage />}></Route> : null
         <Route path="/login" element={<Login />}></Route>
         <Route path="/signup" element={<SignUp />}></Route>
+        <Route path="/accountcenter" element={<AccountCenter />}></Route>
         <Route path="/post/:postId" element={<SinglePost />} />
         {/* #TODO Add Tag Page: something like homepage but with a tag title and filtered posts*/}
         {/* <Route path="/tag/:tagName" element={<SingleTag />} /> */}

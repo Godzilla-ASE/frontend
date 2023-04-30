@@ -6,6 +6,9 @@ import { usePosts } from './Helper/usePosts';
 
 export default function Homepage() {
 
+  //localStorage.setItem("authToken", authToken);
+  //localStorage.setItem("userID", userID);
+
   const posts = usePosts()
 
   if (!posts) {
