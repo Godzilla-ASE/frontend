@@ -12,13 +12,19 @@ const getOne = async (id) => {
   return returnedPost.data
 }
 
+const createPost = async newPost => {
+  // const config = {
+  //   headers: { Authorization: token },
+  // }
+  const response = await axios.post(baseUrl, newPost)
+  return response.data
+}
+
 const getPostsByUserID = async (id) => {
   const returnedPost = await axios.get(`${baseUrl}/users/${id}`)
   return getAll()
   //return returnedPost.data
 }
-
-const createPost = async (data) => { }
 
 const addLike = async (postID,userID) => {
   const response = await axios.put(`${baseUrl}/attitude`,{

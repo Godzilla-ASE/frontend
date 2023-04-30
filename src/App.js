@@ -11,6 +11,14 @@ import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } 
 
 function App() {
 
+  const fakeUser = {
+    authToken: "authToken",
+    userID: 9999,
+    avatar: "userAvatar"
+  }
+
+  localStorage.setItem("loggedInUser", JSON.stringify(fakeUser));
+
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path="/" element={<NavBar />}>
