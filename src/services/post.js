@@ -14,4 +14,43 @@ const getOne = async (id) => {
 
 const createPost = async (data) => { }
 
-export { getAll, getOne, createPost }
+const addLike = async (postID,userID) => {
+  const response = await axios.put(`${baseUrl}/attitude`,{
+    userid: userID,
+    postid: postID,
+    attitude_type: true,
+    isCancel: false
+  });
+  return response
+}
+
+const cancelLike = async (postID,userID) => {
+  const response = await axios.put(`${baseUrl}/attitude`,{
+    userid: userID,
+    postid: postID,
+    attitude_type: true,
+    isCancel: true
+  });
+  return response
+}
+const addDislike = async (postID,userID) => {
+  const response = await axios.put(`${baseUrl}/attitude`,{
+    userid: userID,
+    postid: postID,
+    attitude_type: false,
+    isCancel: false
+  });
+  return response
+}
+
+const cancelDislike = async (postID,userID) => {
+  const response = await axios.put(`${baseUrl}/attitude`,{
+    userid: userID,
+    postid: postID,
+    attitude_type: false,
+    isCancel: true
+  });
+  return response
+}
+
+export { getAll, getOne, createPost, addLike, cancelLike, addDislike, cancelDislike}
