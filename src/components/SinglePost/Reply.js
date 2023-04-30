@@ -5,8 +5,6 @@ import AuthorInfoWrapper from "../Wrapper/AuthorInfoWrapper";
 function Replys({ reply }) {
   const content = reply.content;
   const date = reply.creation_date;
-  const username_from = reply.username_from;
-
 
   return (
     <div>
@@ -21,7 +19,6 @@ function Replys({ reply }) {
       </CardContent>
     </div>
   )
-
 }
 
 export default Replys;
