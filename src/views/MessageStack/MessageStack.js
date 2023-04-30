@@ -10,7 +10,7 @@ const FullWidthBox = styled(Box)(({ theme }) => ({
 }));
 
 const MessageStack = ({ isOpen, onClose }) => {
-  // const userId = 1
+  const userId = 2
   const [client, setClient] = useState(null);
   const [messages, setMessages] = useState([]);
 
@@ -110,4 +110,3 @@ const MessageStack = ({ isOpen, onClose }) => {
 };
 
 export default MessageStack
-
