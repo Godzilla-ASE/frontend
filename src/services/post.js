@@ -12,6 +12,57 @@ const getOne = async (id) => {
   return returnedPost.data
 }
 
-const createPost = async (data) => { }
+const createPost = async newPost => {
+  // const config = {
+  //   headers: { Authorization: token },
+  // }
+  const response = await axios.post(baseUrl, newPost)
+  return response.data
+}
 
-export { getAll, getOne, createPost }
+const getPostsByUserID = async (id) => {
+  const returnedPost = await axios.get(`${baseUrl}/users/${id}`)
+  return getAll()
+  //return returnedPost.data
+}
+
+const addLike = async (postID,userID) => {
+  const response = await axios.put(`${baseUrl}/attitude`,{
+    userid: userID,
+    postid: postID,
+    attitude_type: true,
+    isCancel: false
+  });
+  return response
+}
+
+const cancelLike = async (postID,userID) => {
+  const response = await axios.put(`${baseUrl}/attitude`,{
+    userid: userID,
+    postid: postID,
+    attitude_type: true,
+    isCancel: true
+  });
+  return response
+}
+const addDislike = async (postID,userID) => {
+  const response = await axios.put(`${baseUrl}/attitude`,{
+    userid: userID,
+    postid: postID,
+    attitude_type: false,
+    isCancel: false
+  });
+  return response
+}
+
+const cancelDislike = async (postID,userID) => {
+  const response = await axios.put(`${baseUrl}/attitude`,{
+    userid: userID,
+    postid: postID,
+    attitude_type: false,
+    isCancel: true
+  });
+  return response
+}
+
+export { getAll, getOne, getPostsByUserID, createPost, addLike, cancelLike, addDislike, cancelDislike}

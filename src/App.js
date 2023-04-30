@@ -6,10 +6,19 @@ import SignUp from './components/SignUp';
 import AccountCenter from './components/AccountCenter';
 import Homepage from './components/Homepage';
 import SinglePost from './components/SinglePost';
+import Profile from './components/Profile'
 import NavBar from './components/NavBar';
 import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from 'react-router-dom';
 
 function App() {
+
+  const fakeUser = {
+    authToken: "authToken",
+    userID: 9999,
+    avatar: "userAvatar"
+  }
+
+  localStorage.setItem("loggedInUser", JSON.stringify(fakeUser));
 
   const router = createBrowserRouter(
     createRoutesFromElements(
@@ -17,6 +26,7 @@ function App() {
         <Route index element={<Homepage />}></Route> : null
         <Route path="/login" element={<Login />}></Route>
         <Route path="/signup" element={<SignUp />}></Route>
+        <Route path="/profile" element={<Profile />}></Route>
         <Route path="/accountcenter" element={<AccountCenter />}></Route>
         <Route path="/post/:postId" element={<SinglePost />} />
         {/* #TODO Add Tag Page: something like homepage but with a tag title and filtered posts*/}
