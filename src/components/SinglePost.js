@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Card, CardHeader, CardContent, Avatar, Grid } from '@mui/material';
+import { Card, Grid } from '@mui/material';
 import './SinglePost/singlepost.css';
 import { useParams } from 'react-router-dom';
 import { getOne } from '../services/post';

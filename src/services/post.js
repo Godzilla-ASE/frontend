@@ -12,6 +12,12 @@ const getOne = async (id) => {
   return returnedPost.data
 }
 
+const getPostsByUserID = async (id) => {
+  const returnedPost = await axios.get(`${baseUrl}/users/${id}`)
+  return getAll()
+  //return returnedPost.data
+}
+
 const createPost = async (data) => { }
 
 const addLike = async (postID,userID) => {
@@ -53,4 +59,4 @@ const cancelDislike = async (postID,userID) => {
   return response
 }
 
-export { getAll, getOne, createPost, addLike, cancelLike, addDislike, cancelDislike}
+export { getAll, getOne, getPostsByUserID, createPost, addLike, cancelLike, addDislike, cancelDislike}
