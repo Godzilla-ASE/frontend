@@ -1,6 +1,9 @@
 import axios from 'axios'
 // const baseUrl = 'http://localhost:9000/posts'
-const baseUrl = 'http://localhost:3001/posts'
+// const baseUrl = 'http://localhost:3001/posts'
+const baseUrl = 'http://172.20.10.3:9000/posts'
+
+// axios.defaults.withCredentials = true;
 
 const getAll = async () => {
   const response = await axios.get(baseUrl)
@@ -13,11 +16,6 @@ const getOne = async (id) => {
 }
 
 const createPost = async newPost => {
-  // const config = {
-  //   headers: { Authorization: token },
-  // }
-  // const response = await axios.post(baseUrl, newPost)
-  // return response.data
   await axios.post(baseUrl, newPost)
 }
 

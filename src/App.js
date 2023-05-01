@@ -14,7 +14,7 @@ function App() {
 
   const fakeUser = {
     authToken: "authToken",
-    userID: 9999,
+    userID: 2,
     avatar: "userAvatar"
   }
 

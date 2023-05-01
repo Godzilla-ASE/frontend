@@ -9,6 +9,7 @@ import DialogComponent from '../../components/Wrapper/DialogComponent';
 import useS3Upload from '../../Hooks/useS3Upload';
 import { createPost } from '../../services/post';
 import useLoggedInUser from '../../components/Helper/useLoggedInUser';
+import Location from './Location'
 
 function CreatePostDialog({ isOpen, onClose }) {
 
@@ -88,6 +89,9 @@ function CreatePostDialog({ isOpen, onClose }) {
     setTags(tags.filter((tag) => tag !== tagToDelete));
   };
 
+  // handle the location
+  const [location, setLocation] = useState('');
+
   // Create new post
 
   const CreateNewPost = async () => {
@@ -100,12 +104,12 @@ function CreatePostDialog({ isOpen, onClose }) {
       "content_date": new Date(),
       "tag": tags.join(","),
       "url": "url",
-      "location": "location" // #TODO
+      "location": location // #TODO
     }
 
     console.log('newPost', newPost)
 
-    await createPost(newPost)
+    // await createPost(newPost)
 
     // #TODO add notification for users
     onClose()
@@ -124,6 +128,9 @@ function CreatePostDialog({ isOpen, onClose }) {
           </Grid>
           <PostTitle titleContent={titleContent} handleTitleChange={handleTitleChange} />
           <PostContent postContent={postContents} rows={8} handleContentChange={handlePostContentsChange} />
+          <Grid item xs={1}>
+            <Location location={location} setLocation={setLocation} />
+          </Grid>
           <Grid item xs={1}>
             {/* Add tags for the post */}
             <SingleLineInput placeholder="Add tags (seperate by space)" handleChange={handleTagInputChange} handleKeyDown={handleTagsSubmit} value={tagsInput} />

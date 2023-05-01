@@ -10,19 +10,21 @@ const FullWidthBox = styled(Box)(({ theme }) => ({
 }));
 
 const MessageStack = ({ isOpen, onClose }) => {
-  const userId = 2
+  const userId = 1
   const [client, setClient] = useState(null);
   const [messages, setMessages] = useState([]);
+  console.log('messages', messages)
 
   useEffect(() => {
     // 创建并激活 STOMP 客户端
     const newClient = new Client({
-      webSocketFactory: () => new SockJS('http://localhost:9001/ase-websocket'),
+      webSocketFactory: () => new SockJS('http://172.20.10.3:10000/ase-websocket'),
       onConnect: () => {
         console.log('Connected');
 
         // 订阅消息监听接口
         newClient.subscribe(`/topic/post/${userId}`, (message) => {
+          console.log('message sent', message)
           const data = JSON.parse(message.body);
           setMessages((prevMessages) => [data, ...prevMessages]);
         });
