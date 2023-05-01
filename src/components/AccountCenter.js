@@ -31,7 +31,9 @@ const AccountCenter = () => {
     
   const navigate = useNavigate(); 
 
-  const user = JSON.parse(window.localStorage.getItem("authToken"));
+  const user = JSON.parse(window.localStorage.getItem("user_body"));
+  const token = JSON.parse(window.localStorage.getItem("authToken"));
+  const userID = window.localStorage.getItem("userID")
   //console.log(user.userName)
 
   const [username, setUsername] = useState(user ? user.username : "");
@@ -95,7 +97,7 @@ const AccountCenter = () => {
              setUsernameError, setPasswordError, setConfirmPasswordError, setLocationError, setEmailError,
               setUsernameexistError, setPageStatus, AccountCenter_API, navigate,
               selectedDate,dateChanged,usernameChanged,emailChanged,passwordChanged,locationChanged,
-              avatarUrl,avatarChanged)}
+              avatarUrl,avatarChanged,token,userID)}
           className="signup-form"
         >
         <div style={{ display: "flex", alignItems: "center" }}>

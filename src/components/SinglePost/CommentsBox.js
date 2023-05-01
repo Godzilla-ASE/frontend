@@ -6,7 +6,7 @@ const CommentsBox = ({ comments, onreplyCommentChange }) => {
 
     const commentsList = comments;
 
-    if(commentsList==null){
+    if(commentsList.length ===0){
         return (
             <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                 <Typography variant="body2" color="text.secondary">

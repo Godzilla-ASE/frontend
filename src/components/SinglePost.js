@@ -20,6 +20,7 @@ function SinglePost() {
   const [post, setPostData] = useState(null);
   const [comments, setComments] = useState([]);
   const [replyComment, setreplyComment] = useState([]);
+  //console.log(loginedUser);
 
   const handlereplyCommentChange = (newValue) => {
     setreplyComment(newValue);

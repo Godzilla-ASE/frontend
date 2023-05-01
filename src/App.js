@@ -12,13 +12,14 @@ import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } 
 
 function App() {
 
-  const fakeUser = {
-    authToken: "authToken",
-    userID: 9999,
-    avatar: "userAvatar"
-  }
+  // const fakeUser = {
+  //   authToken: "23e5e8d1-a521-4149-b3f9-fff222eec957",
+  //   userID: 3,
+  //   avatar: "userAvatar"
+  // }
 
-  localStorage.setItem("loggedInUser", JSON.stringify(fakeUser));
+  // localStorage.setItem("loggedInUser", JSON.stringify(fakeUser));
+  // localStorage.removeItem("loggedInUser");
 
   const router = createBrowserRouter(
     createRoutesFromElements(

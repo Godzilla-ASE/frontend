@@ -43,7 +43,7 @@ export default function NavBar() {
           isOpen={createPost}
           onClose={handleCreate}
         />
-        <MessageStack isOpen={openMessage} onClose={handleCreate} />
+        {/* <MessageStack isOpen={openMessage} onClose={handleCreate} /> */}
       </header>
 
       <main>

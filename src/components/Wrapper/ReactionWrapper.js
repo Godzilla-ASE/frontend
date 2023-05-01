@@ -9,8 +9,13 @@ import DialogComponent from './DialogComponent';
 import ShareCard from './ShareCard';
 
 const ReactionWrapper = ({ post }) => {
+  //console.log(post.like_users.split(","));
   const [liked, setLiked] = useState(false);
   const [disliked, setDisliked] = useState(false);
+  const [likedNum, setlikedNum] = useState(0);
+  const [dislikedNum, setDislikedNum] = useState(0);
+  const [likeList, setLikeList] = useState("");
+  const [dislikeList, setDislikeList] = useState("");
   const [sharing, setSharing] = useState(false);
   const logginedUser = useLoggedInUser(); 
   const navigate = useNavigate();
@@ -20,8 +25,15 @@ const ReactionWrapper = ({ post }) => {
   // 判断登陆用户是否已点赞点踩这篇帖子
   useEffect(() => {
     if (post && logginedUser) {
-      const likeList = post.like_users.split(",");
-      const dislikeList = post.unlike_users.split(",");
+      //console.log(post.like_users.split(','));
+      if(post.like_users){
+        console.log(post.like_users.split(','));
+        setLikeList(post.like_users.split(','));
+        setDislikeList(post.unlike_users.split(','));
+        setlikedNum(post.likeNum);
+        setDislikedNum(post.unlikeNum);
+      }
+
       if(likeList.includes(logginedUser.userID.toString())){
         setLiked(true);
       }else{
@@ -34,6 +46,7 @@ const ReactionWrapper = ({ post }) => {
       }
     }
   }, [post, logginedUser]);
+  // 按钮初始化结束
 
   if (!logginedUser) {
     return (
@@ -47,8 +60,10 @@ const ReactionWrapper = ({ post }) => {
     } else {
       if(liked){
         cancelLike(post.id, logginedUser.userID);
+        setlikedNum(likedNum-1);
       }else{
         addLike(post.id, logginedUser.userID);
+        setlikedNum(likedNum+1);
       }
       setLiked(!liked);
     }
@@ -60,8 +75,10 @@ const ReactionWrapper = ({ post }) => {
     } else {
       if(disliked){
         cancelDislike(post.id, logginedUser.userID);
+        setDislikedNum(dislikedNum-1);
       }else{
         addDislike(post.id, logginedUser.userID);
+        setDislikedNum(dislikedNum+1);
       }
       setDisliked(!disliked);
     }
@@ -76,16 +93,16 @@ const ReactionWrapper = ({ post }) => {
         {liked
           ? <AiFillLike className="likesIcon" color={theme.palette.secondary.main} size={theme.typography.body1.fontSize * 1.3} />
           : <AiOutlineLike className="likesIcon" color={theme.palette.secondary.main} size={theme.typography.body1.fontSize * 1.3} />}
-        {post.likeNum > 0
-          ? <Typography variant='body1' align="left" fontWeight="bold" color="secondary">{post.likeNum}</Typography>
+        {likedNum > 0
+          ? <Typography variant='body1' align="left" fontWeight="bold" color="secondary">{likedNum}</Typography>
           : null}
       </div>
       <div onClick={handleDisLikeClick} style={{ display: 'flex', alignContent: 'center' }}>
         {disliked
           ? <AiFillDislike className="dislikesIcon" color={theme.palette.secondary.main} size={theme.typography.body1.fontSize * 1.3} />
           : <AiOutlineDislike className="dislikesIcon" color={theme.palette.secondary.main} size={theme.typography.body1.fontSize * 1.3} />}
-        {post.unlikeNum > 0
-          ? <Typography variant='body1' align="left" fontWeight="bold" color="secondary">{post.unlikeNum}</Typography>
+        {dislikedNum > 0
+          ? <Typography variant='body1' align="left" fontWeight="bold" color="secondary">{dislikedNum}</Typography>
           : null}
       </div>
       <div onClick={handleShare} style={{ display: 'flex', alignContent: 'center' }}>

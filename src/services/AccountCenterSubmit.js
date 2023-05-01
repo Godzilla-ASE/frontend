@@ -3,7 +3,7 @@ const AccountCenterSubmit = async (event, username, password, email, location, c
     setUsernameError, setPasswordError, setConfirmPasswordError, setLocationError, setEmailError, 
     setUsernameexistError, setPageStatus, AccountCenter_API, navigate,
     selectedDate,dateChanged,usernameChanged,emailChanged,passwordChanged,locationChanged,
-    avatarUrl,avatarChanged) => {    
+    avatarUrl,avatarChanged,token,userID) => {    
     event.preventDefault();
 
     let requestBody = {};
@@ -67,9 +67,12 @@ const AccountCenterSubmit = async (event, username, password, email, location, c
     if (Object.keys(requestBody).length > 0 && (!(usernameError || emailError || passwordError || confirmPasswordError || locationError ))) { // fullnameError      
       console.log(JSON.stringify(requestBody))
       try {
-        const response = await fetch(AccountCenter_API, {
+        const response = await fetch(`${AccountCenter_API}/${userID}`, {
           method: "PUT",
-          headers: { "Content-Type": "application/json" },
+          headers: { 
+            "Content-Type": "application/json",
+            Authorization : token,
+         },
           body: JSON.stringify(requestBody),
         });
         if (response.ok) {
