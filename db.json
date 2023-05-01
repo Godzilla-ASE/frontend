@@ -322,6 +322,18 @@
       "url": null,
       "location": "Zurich",
       "creation_date": "2023-03-01"
+    },
+    {
+      "userid": "sss",
+      "title": "Here is a title",
+      "content_text": "Two pictures consist of the color of yellow. ",
+      "content_img": "https://godzilla2023ase.s3.eu-central-1.amazonaws.com/74d1cbd6-1792-4b5c-af44-3619ce2c9fe9.jpg,https://godzilla2023ase.s3.eu-central-1.amazonaws.com/bff06473-1e9a-4563-95ff-c2f9e8d2859c.jpg",
+      "coverImg": "https://godzilla2023ase.s3.eu-central-1.amazonaws.com/74d1cbd6-1792-4b5c-af44-3619ce2c9fe9.jpg",
+      "content_date": "2023-04-30T19:25:18.138Z",
+      "tag": "bright,colour",
+      "url": "url",
+      "location": "location",
+      "id": 18
     }
   ]
 }

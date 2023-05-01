@@ -8,8 +8,11 @@ import PostContent from './PostContent';
 import DialogComponent from '../../components/Wrapper/DialogComponent';
 import useS3Upload from '../../Hooks/useS3Upload';
 import { createPost } from '../../services/post';
+import useLoggedInUser from '../../components/Helper/useLoggedInUser';
 
 function CreatePostDialog({ isOpen, onClose }) {
+
+  const user = useLoggedInUser()
 
   /*==========================================================
   The following are the states and handlers for the left side of the dialog.
@@ -89,11 +92,11 @@ function CreatePostDialog({ isOpen, onClose }) {
 
   const CreateNewPost = async () => {
     const newPost = {
-      "userid": "sss", // #TODO
+      "userid": user.userID, // #TODO
       "title": titleContent,
       "content_text": postContents,
       "content_img": images.join(","),
-      "coverImg": String(images[0]),
+      "coverImage": String(images[0]),
       "content_date": new Date(),
       "tag": tags.join(","),
       "url": "url",

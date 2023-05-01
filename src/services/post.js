@@ -16,8 +16,9 @@ const createPost = async newPost => {
   // const config = {
   //   headers: { Authorization: token },
   // }
-  const response = await axios.post(baseUrl, newPost)
-  return response.data
+  // const response = await axios.post(baseUrl, newPost)
+  // return response.data
+  await axios.post(baseUrl, newPost)
 }
 
 const getPostsByUserID = async (id) => {
@@ -26,8 +27,8 @@ const getPostsByUserID = async (id) => {
   //return returnedPost.data
 }
 
-const addLike = async (postID,userID) => {
-  const response = await axios.put(`${baseUrl}/attitude`,{
+const addLike = async (postID, userID) => {
+  const response = await axios.put(`${baseUrl}/attitude`, {
     userid: userID,
     postid: postID,
     attitude_type: true,
@@ -36,8 +37,8 @@ const addLike = async (postID,userID) => {
   return response
 }
 
-const cancelLike = async (postID,userID) => {
-  const response = await axios.put(`${baseUrl}/attitude`,{
+const cancelLike = async (postID, userID) => {
+  const response = await axios.put(`${baseUrl}/attitude`, {
     userid: userID,
     postid: postID,
     attitude_type: true,
@@ -45,8 +46,8 @@ const cancelLike = async (postID,userID) => {
   });
   return response
 }
-const addDislike = async (postID,userID) => {
-  const response = await axios.put(`${baseUrl}/attitude`,{
+const addDislike = async (postID, userID) => {
+  const response = await axios.put(`${baseUrl}/attitude`, {
     userid: userID,
     postid: postID,
     attitude_type: false,
@@ -55,8 +56,8 @@ const addDislike = async (postID,userID) => {
   return response
 }
 
-const cancelDislike = async (postID,userID) => {
-  const response = await axios.put(`${baseUrl}/attitude`,{
+const cancelDislike = async (postID, userID) => {
+  const response = await axios.put(`${baseUrl}/attitude`, {
     userid: userID,
     postid: postID,
     attitude_type: false,
@@ -65,4 +66,4 @@ const cancelDislike = async (postID,userID) => {
   return response
 }
 
-export { getAll, getOne, getPostsByUserID, createPost, addLike, cancelLike, addDislike, cancelDislike}
+export { getAll, getOne, getPostsByUserID, createPost, addLike, cancelLike, addDislike, cancelDislike }
