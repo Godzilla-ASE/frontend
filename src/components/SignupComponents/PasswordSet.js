@@ -16,11 +16,13 @@ function PasswordSet({
   setConfirmPassword,
   setPasswordError,
   setConfirmPasswordError,
-  setPageStatus
+  setPageStatus,
+  setPasswordChanged
 }){
   const handlePasswordChange = (event) => {
     setPassword(event.target.value);
     setPasswordError(false);
+    setPasswordChanged(true);
     setPageStatus("");
   };
 

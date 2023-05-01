@@ -7,8 +7,12 @@ import SingleLineInput from '../../components/Inputs/SingleLineInput';
 import PostContent from './PostContent';
 import DialogComponent from '../../components/Wrapper/DialogComponent';
 import useS3Upload from '../../Hooks/useS3Upload';
+import { createPost } from '../../services/post';
+import useLoggedInUser from '../../components/Helper/useLoggedInUser';
 
 function CreatePostDialog({ isOpen, onClose }) {
+
+  const user = useLoggedInUser()
 
   /*==========================================================
   The following are the states and handlers for the left side of the dialog.
@@ -40,7 +44,6 @@ function CreatePostDialog({ isOpen, onClose }) {
       }
     }
   }
-
 
   const handleImageDelete = (event, index) => {
     event.stopPropagation();
@@ -85,6 +88,29 @@ function CreatePostDialog({ isOpen, onClose }) {
     setTags(tags.filter((tag) => tag !== tagToDelete));
   };
 
+  // Create new post
+
+  const CreateNewPost = async () => {
+    const newPost = {
+      "userid": user.userID, // #TODO
+      "title": titleContent,
+      "content_text": postContents,
+      "content_img": images.join(","),
+      "coverImage": String(images[0]),
+      "content_date": new Date(),
+      "tag": tags.join(","),
+      "url": "url",
+      "location": "location" // #TODO
+    }
+
+    console.log('newPost', newPost)
+
+    await createPost(newPost)
+
+    // #TODO add notification for users
+    onClose()
+  }
+
   return (
     <DialogComponent isOpen={isOpen} onClose={onClose}>
       <Grid container spacing={2}>
@@ -112,7 +138,7 @@ function CreatePostDialog({ isOpen, onClose }) {
               <Button variant="contained" color="error" onClick={onClose}>
                 Cancel
               </Button>
-              <Button variant="contained" onClick={onClose}>
+              <Button variant="contained" onClick={CreateNewPost}>
                 Post
               </Button>
             </DialogActions>

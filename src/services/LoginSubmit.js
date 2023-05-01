@@ -22,14 +22,20 @@ const LoginSubmit = async (event, username, password,
         // save user to localStorage
         // localStorage.setItem("loggedInUser", user);
         const user = {
-          authToken: authToken,
-          userID: userID,
-          avatar: userAvatar
+         authToken: authToken,
+         userID: userID,
+         avatar: userAvatar
         }
+        // const user = {
+        //    authToken: "authToken",
+        //    userID: 123,
+        //    avatar: "userAvatar"
+        //   }
 
-        localStorage.setItem("loggedInUser", user);
 
-        localStorage.setItem("authToken", authToken);
+        localStorage.setItem("loggedInUser", JSON.stringify(user));
+
+        localStorage.setItem("authToken", JSON.stringify(authToken));
         localStorage.setItem("userID", userID);
         setPageStatus("Logged in successfully.");
 
@@ -41,6 +47,18 @@ const LoginSubmit = async (event, username, password,
         const error = await response.text();
         setUsernamecorrectError(true);
         setPageStatus("Username not found.");
+
+        // const user = {
+        //   authToken: "authToken",
+        //   userID: 123,
+        //   avatar: "userAvatar"
+        //  }
+        // const authToken = JSON.stringify({username:"abc",email:"22@22.22",fullName:"ABC",location:"Zurich",birthday:null,avatarUrl:"https://godzilla2023ase.s3.eu-central-1.amazonaws.com/846f28bd-1d2b-4a7f-8461-a3245dc1dd46.jpg"})
+        // localStorage.setItem("authToken", authToken);
+
+
+      //  localStorage.setItem("loggedInUser", JSON.stringify(user));
+
       } else if (response.status === 409) {
         const error = await response.text();
         setPasswordcorrectError(true);

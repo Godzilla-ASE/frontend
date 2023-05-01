@@ -7,12 +7,14 @@ function UsernameSet({username,
   setUsername,
   setUsernameError,
   setUsernameexistError,
-  setPageStatus
+  setPageStatus,
+  setUsernameChanged
 }){
   const handleUsernameChange = (event) => {
     setUsername(event.target.value);
     setUsernameError(false);
     setUsernameexistError(false);
+    setUsernameChanged(true);
     setPageStatus("");
   };
 

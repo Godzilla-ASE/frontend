@@ -5,12 +5,10 @@ function LocationSet({location,
   setLocation,
   setLocationError,
   locationError,
-  setPageStatus,
-  setLocationChanged}){
+  setPageStatus}){
   const handleLocationChange = (event) => {
     setLocation(event.target.value);
     setLocationError(false);
-    setLocationChanged(true);
     setPageStatus("");
   };
 

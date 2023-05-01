@@ -2,7 +2,8 @@
 import './App.css';
 //import Login from './components/LoginComponents/Login的副本';
 import Login from './components/Login';
-import SignUp from './components/SignUp'
+import SignUp from './components/SignUp';
+import AccountCenter from './components/AccountCenter';
 import Homepage from './components/Homepage';
 import SinglePost from './components/SinglePost';
 import Profile from './components/Profile'
@@ -11,6 +12,14 @@ import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } 
 
 function App() {
 
+  const fakeUser = {
+    authToken: "authToken",
+    userID: 9999,
+    avatar: "userAvatar"
+  }
+
+  localStorage.setItem("loggedInUser", JSON.stringify(fakeUser));
+
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path="/" element={<NavBar />}>
@@ -18,6 +27,7 @@ function App() {
         <Route path="/login" element={<Login />}></Route>
         <Route path="/signup" element={<SignUp />}></Route>
         <Route path="/profile" element={<Profile />}></Route>
+        <Route path="/accountcenter" element={<AccountCenter />}></Route>
         <Route path="/post/:postId" element={<SinglePost />} />
         {/* #TODO Add Tag Page: something like homepage but with a tag title and filtered posts*/}
         {/* <Route path="/tag/:tagName" element={<SingleTag />} /> */}
