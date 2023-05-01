@@ -1,5 +1,5 @@
 import React from "react";
-import { CardHeader, CardContent, Avatar, Typography } from '@mui/material';
+import { CardContent, Typography } from '@mui/material';
 import AuthorInfoWrapper from "../Wrapper/AuthorInfoWrapper";
 
 function Replys({ reply }) {
@@ -14,7 +14,7 @@ function Replys({ reply }) {
           {content}
         </Typography>
         <Typography variant="body3" color="secondary">
-          {date} Zurich
+          {date}
         </Typography>
       </CardContent>
     </div>

@@ -1,6 +1,8 @@
 const LoginSubmit = async (event, username, password, 
   setUsernameError, setPasswordError, setUsernamecorrectError, setPasswordcorrectError, setPageStatus,
   LOGIN_API, navigate, previousUrl) => {
+
+    // response = {"id":14,"username":"aaaaaa","password":"Aa11111111!","birthday":null,"token":"d1976836-da1e-4479-af84-a176007a79df","creationDate":null,"email":"aa@aa.aa","location":"Zurich","fans":"","followings":"","haters":"","avatarUrl":null}
   event.preventDefault();
   if (!username) {
     setUsernameError(true);
@@ -16,9 +18,10 @@ const LoginSubmit = async (event, username, password,
         body: JSON.stringify({ username, password }),
       });
       if (response.ok) {
-        const authToken = await response.text();
-        const userID = authToken.userID;
-        const userAvatar = authToken.avatar;
+        const user_body = await response.text();
+        const authToken = user_body.token;
+        const userID = user_body.userID;
+        const userAvatar = user_body.avatar;
         // save user to localStorage
         // localStorage.setItem("loggedInUser", user);
         const user = {
@@ -34,15 +37,20 @@ const LoginSubmit = async (event, username, password,
 
 
         localStorage.setItem("loggedInUser", JSON.stringify(user));
+        localStorage.setItem("user_body",JSON.stringify(user_body))
 
-        localStorage.setItem("authToken", JSON.stringify(authToken));
+        
+
+        localStorage.setItem("authToken", authToken);
         localStorage.setItem("userID", userID);
+
+        console.log(user_body)
         setPageStatus("Logged in successfully.");
 
         // Redirect to login page after 3 seconds
-        setTimeout(() => {
-          navigate(previousUrl); // Replace "/login" with the actual URL of your login page
-        }, 1000);
+        // setTimeout(() => {
+        //   navigate(previousUrl); // Replace "/login" with the actual URL of your login page
+        // }, 1000);
       } else if (response.status === 404) {
         const error = await response.text();
         setUsernamecorrectError(true);
