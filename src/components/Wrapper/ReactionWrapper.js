@@ -12,7 +12,7 @@ const ReactionWrapper = ({ post }) => {
   const [liked, setLiked] = useState(false);
   const [disliked, setDisliked] = useState(false);
   const [sharing, setSharing] = useState(false);
-  const logginedUser = useLoggedInUser(); 
+  const logginedUser = useLoggedInUser();
   const navigate = useNavigate();
   const theme = useTheme();
 
@@ -20,16 +20,16 @@ const ReactionWrapper = ({ post }) => {
   // 判断登陆用户是否已点赞点踩这篇帖子
   useEffect(() => {
     if (post && logginedUser) {
-      const likeList = post.like_users.split(",");
-      const dislikeList = post.unlike_users.split(",");
-      if(likeList.includes(logginedUser.userID.toString())){
+      const likeList = post.like_users ? post.like_users.split(",") : [];
+      const dislikeList = post.unlike_users ? post.unlike_users.split(",") : [];
+      if (likeList.includes(logginedUser.userID.toString())) {
         setLiked(true);
-      }else{
+      } else {
         setLiked(false);
       }
-      if(dislikeList.includes(logginedUser.userID.toString())){
+      if (dislikeList.includes(logginedUser.userID.toString())) {
         setDisliked(true);
-      }else{
+      } else {
         setDisliked(false);
       }
     }
@@ -45,9 +45,9 @@ const ReactionWrapper = ({ post }) => {
     if (!logginedUser) {
       navigate('/login')
     } else {
-      if(liked){
+      if (liked) {
         cancelLike(post.id, logginedUser.userID);
-      }else{
+      } else {
         addLike(post.id, logginedUser.userID);
       }
       setLiked(!liked);
@@ -58,15 +58,15 @@ const ReactionWrapper = ({ post }) => {
     if (!logginedUser) {
       navigate('/login')
     } else {
-      if(disliked){
+      if (disliked) {
         cancelDislike(post.id, logginedUser.userID);
-      }else{
+      } else {
         addDislike(post.id, logginedUser.userID);
       }
       setDisliked(!disliked);
     }
   }
-  const handleShare = () =>{
+  const handleShare = () => {
     setSharing(true);
   }
 
@@ -92,9 +92,9 @@ const ReactionWrapper = ({ post }) => {
         <AiOutlineShareAlt color={theme.palette.secondary.main} size={theme.typography.body1.fontSize * 1.3} />
       </div>
       <DialogComponent
-          isOpen={sharing}
-          children={<ShareCard url={"http://localhost/post/"+post.id} setSharing = {setSharing}/>}
-        />
+        isOpen={sharing}
+        children={<ShareCard url={"http://localhost/post/" + post.id} setSharing={setSharing} />}
+      />
     </div>
   )
 }

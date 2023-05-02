@@ -1,22 +1,11 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Masonry from '@mui/lab/Masonry';
-import PostCardFooter from './PostCardFooter';
-import { usePosts } from './Helper/usePosts';
+import PostCardFooter from '../../components/PostCardFooter';
+import { usePostsByLocation } from '../../Hooks/usePostsByLocation';
 
-export default function Homepage() {
-
-  //localStorage.setItem("authToken", authToken);
-  //localStorage.setItem("userID", userID);
-  // const fakeUser = {
-  //   authToken: "authToken",
-  //   userID: 1,
-  //   avatar: "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.vecteezy.com%2Ffree-vector%2Favatar-icon&psig=AOvVaw3gIUhfkN91Gd-Mmfpuc98H&ust=1682966291470000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCKCy0pGg0v4CFQAAAAAdAAAAABAE"
-  // }
-
-  // localStorage.setItem("loggedInUser", JSON.stringify(fakeUser));
-  const posts = usePosts()
-  // console.log('posts', posts)
+export default function LocationPage() {
+  const posts = usePostsByLocation()
 
   if (!posts) {
     return (

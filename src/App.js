@@ -4,11 +4,12 @@ import './App.css';
 import Login from './components/Login';
 import SignUp from './components/SignUp';
 import AccountCenter from './components/AccountCenter';
-import Homepage from './components/Homepage';
+import Homepage from './views/Homepage/Homepage';
 import SinglePost from './components/SinglePost';
 import Profile from './components/Profile'
 import NavBar from './components/NavBar';
 import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from 'react-router-dom';
+import LocationPage from './views/LocationPage/LocationPage';
 
 function App() {
 
@@ -31,8 +32,7 @@ function App() {
         <Route path="/post/:postId" element={<SinglePost />} />
         {/* #TODO Add Tag Page: something like homepage but with a tag title and filtered posts*/}
         {/* <Route path="/tag/:tagName" element={<SingleTag />} /> */}
-        {/* #TODO Add Location Page: something like homepage but with a location title and filtered posts*/}
-        {/* <Route path="/location/:locationName" element={<SingleLocation />} /> */}
+        <Route path="/location/:locationName" element={<LocationPage />} />
       </Route>
     )
   )

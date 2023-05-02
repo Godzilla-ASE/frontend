@@ -28,7 +28,8 @@ const cantons = [
   'Valais',
   'Vaud',
   'Zug',
-  'Zurich'
+  'Zurich',
+  ''
 ]
 
 const Location = ({ location, setLocation }) => {
