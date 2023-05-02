@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Button, DialogActions, Grid, Chip } from '@mui/material';
+
 import UserInfoWrapper from '../../components/Wrapper/UserInfoWrapper';
 import ImageUpload from './ImageUpload';
 import Location from './Location'
@@ -7,10 +8,13 @@ import PostTitle from './PostTitle';
 import PostContent from './PostContent';
 import SingleLineInput from '../../components/Inputs/SingleLineInput';
 import DialogComponent from '../../components/Wrapper/DialogComponent';
-import useS3UploadWithProgress from '../../Hooks/useS3UploadWithProgress';
+import Notification from '../../components/Notification'
+
+import useS3UploadWithProgress from '../../hooks/useS3UploadWithProgress';
 import { createPost } from '../../services/post';
 import useLoggedInUser from '../../components/Helper/useLoggedInUser';
-import Notification from '../../components/Notification'
+
+import { PostContext } from '../../context/PostContext';
 
 function CreatePostDialog({ isOpen, onClose }) {
 
@@ -22,6 +26,7 @@ function CreatePostDialog({ isOpen, onClose }) {
   const [titleNotification, setTitleNotification] = useState(false)
   const [contentNotification, setContentNotification] = useState(false)
   const [imageNotification, setImageNotification] = useState(false)
+  const [successNotification, setSuccessNotification] = useState(false)
 
   /*==========================================================
   The following are the states and handlers for the left side of the dialog.
@@ -103,6 +108,8 @@ function CreatePostDialog({ isOpen, onClose }) {
 
   // Create new post
 
+  const { state, dispatch } = useContext(PostContext)
+
   const CreateNewPost = async () => {
 
     if (!titleContent) {
@@ -138,10 +145,12 @@ function CreatePostDialog({ isOpen, onClose }) {
       setTags([])
       setLocation('')
 
-      // #TODO add newpost to homepage
-
-      // #TODO add titleNotification for users
+      // add new post to the all posts
+      dispatch({ type: "CREATE_POST", newPost });
       onClose()
+
+      // send success notification
+      setSuccessNotification(true)
     } catch (error) {
       console.error('Error creating new post', error)
     }
@@ -220,6 +229,15 @@ function CreatePostDialog({ isOpen, onClose }) {
             status="error"
             content="The post must have at least one image!"
             closeCallback={() => setImageNotification(false)}
+          />
+        )
+      }
+      {
+        successNotification && (
+          <Notification
+            status="success"
+            content="The new post was successfully created!"
+            closeCallback={() => setSuccessNotification(false)}
           />
         )
       }

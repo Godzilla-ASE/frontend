@@ -26,7 +26,7 @@ const createPost = async newPost => {
 
 const getPostsByUserID = async (id) => {
   const returnedPost = await axios.get(`${baseUrl}/users/${id}`)
-  return getAll()
+  return getAll() //#TODO ?????
   //return returnedPost.data
 }
 
