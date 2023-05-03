@@ -6,7 +6,7 @@ import useLoggedInUser from '../Helper/useLoggedInUser';
 import { Typography, useTheme } from '@mui/material';
 import { addLike, cancelLike, addDislike, cancelDislike } from '../../services/post';
 import DialogComponent from './DialogComponent';
-import ShareCard from './ShareCard';
+import ShareCard from '../ShareCard';
 
 const ReactionWrapper = ({ post }) => {
   //console.log(post.like_users.split(","));
@@ -27,9 +27,9 @@ const ReactionWrapper = ({ post }) => {
     if (post && logginedUser) {
       //console.log(post.like_users.split(','));
       if(post.like_users){
-        console.log(post.like_users.split(','));
-        setLikeList(post.like_users.split(','));
-        setDislikeList(post.unlike_users.split(','));
+        //console.log(post.like_users.split(','));
+        setLikeList(post.like_users ? post.like_users.split(",") : []);
+        setDislikeList(post.unlike_users ? post.unlike_users.split(",") : []);
         setlikedNum(post.likeNum);
         setDislikedNum(post.unlikeNum);
       }

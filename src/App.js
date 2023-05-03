@@ -5,9 +5,10 @@ import Login from './components/Login';
 import SignUp from './components/SignUp';
 import AccountCenter from './components/AccountCenter';
 import Homepage from './components/Homepage';
-import SinglePost from './components/SinglePost';
-import Profile from './components/Profile'
+import SinglePost from './views/SinglePost/SinglePost';
+import Profile from './views/Profile/Profile'
 import NavBar from './components/NavBar';
+import Profile_visit from './views/Profile/Profile_visit'
 import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from 'react-router-dom';
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
         <Route path="/profile" element={<Profile />}></Route>
         <Route path="/accountcenter" element={<AccountCenter />}></Route>
         <Route path="/post/:postId" element={<SinglePost />} />
+        <Route path="/profile/:visitedUserId" element={<Profile_visit />} />
         {/* #TODO Add Tag Page: something like homepage but with a tag title and filtered posts*/}
         {/* <Route path="/tag/:tagName" element={<SingleTag />} /> */}
         {/* #TODO Add Location Page: something like homepage but with a location title and filtered posts*/}

@@ -1,9 +1,9 @@
 import { useState,useEffect } from 'react';
 import { Typography,Box } from '@mui/material';
 import Masonry from '@mui/lab/Masonry';
-import PostCardFooter from './PostCardFooter';
-import { usePosts } from './Helper/usePosts';
-import { getAll, getPostsByUserID } from '../services/post';
+import PostCardFooter from '../../components/PostCardFooter';
+import { usePosts } from '../../components/Helper/usePosts';
+import { getAll, getPostsByUserID } from '../../services/post';
 
 export default function MyPosts(userid) {
     //console.log(userid);

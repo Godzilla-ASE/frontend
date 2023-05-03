@@ -1,7 +1,7 @@
 import { Typography } from '@mui/material';
 import CommentsBox from './CommentsBox';
 
-const PostContent = ({ post, comments, onreplyCommentChange }) => {
+const PostContent = ({ post, comments, loginedUserID, onreplyCommentChange }) => {
 
   return (
     // ｜-- PostContent（这篇post的内容）
@@ -34,7 +34,7 @@ const PostContent = ({ post, comments, onreplyCommentChange }) => {
       <Typography variant="h3" color="secondary" gutterBottom>
         Comments
       </Typography>
-      <CommentsBox comments={comments} onreplyCommentChange={onreplyCommentChange}/>
+      <CommentsBox comments={comments} loginedUserID={loginedUserID} onreplyCommentChange={onreplyCommentChange}/>
     </div>
   )
 }

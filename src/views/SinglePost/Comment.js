@@ -1,9 +1,9 @@
 import React from "react";
 import { CardContent, Typography, Button } from '@mui/material';
 import Reply from "./Reply";
-import AuthorInfoWrapper from "../Wrapper/AuthorInfoWrapper";
+import AuthorInfoWrapper from "../../components/Wrapper/AuthorInfoWrapper";
 
-function Comment({ comment, onreplyCommentChange }) {
+function Comment({ comment, loginedUserID, onreplyCommentChange }) {
   const content = comment.content;
   const date = comment.creation_date;
   const replys = comment.reply;
@@ -13,6 +13,7 @@ function Comment({ comment, onreplyCommentChange }) {
   }
 
   if (replys.length !== 0) {
+    console.log(loginedUserID, comment.userid)
     return (
       <div>
         <AuthorInfoWrapper post={comment} />
@@ -24,13 +25,14 @@ function Comment({ comment, onreplyCommentChange }) {
             {date}
           </Typography>
           <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+            {loginedUserID !== comment.userid ? <div></div> : <Button onClick={handleReply}>Delete</Button>}
             <Button onClick={handleReply}>
               Reply
             </Button>
           </div><br></br>
           <div>
             {replys.map((reply) => (
-              <Reply reply={reply} />
+              <Reply reply={reply} loginedUserID={loginedUserID} />
             ))}
           </div>
         </CardContent>
@@ -50,6 +52,7 @@ function Comment({ comment, onreplyCommentChange }) {
             {date}
           </Typography>
           <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+          {loginedUserID !== comment.userid ? <div></div> : <Button onClick={handleReply}>Delete</Button>}
             <Button onClick={handleReply}>
               Reply
             </Button>

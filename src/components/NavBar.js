@@ -37,7 +37,7 @@ export default function NavBar() {
           <NavLink style={navLinkStyle} onClick={handleCreate}><RiImageAddFill size={28} /></NavLink>
           <NavLink style={navLinkStyle} onClick={handleMessage}><BiMessageRoundedDetail size={28} /></NavLink>
           <NavLink style={navLinkStyle} to="/login"><AiOutlineLogin size={28} /></NavLink>
-          <NavLink style={navLinkStyle} to="/login"><CgProfile size={28} /></NavLink>
+          <NavLink style={navLinkStyle} to="/profile"><CgProfile size={28} /></NavLink>
         </nav>
         <CreatePostDialog
           isOpen={createPost}

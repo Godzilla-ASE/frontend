@@ -21,6 +21,11 @@ const createPost = async newPost => {
   await axios.post(baseUrl, newPost)
 }
 
+const deletePost = async (postid) => {
+  const res = await axios.delete(`${baseUrl}/${postid}`)
+  return res
+}
+
 const getPostsByUserID = async (id) => {
   const returnedPost = await axios.get(`${baseUrl}/users/${id}`)
   return getAll()
@@ -66,4 +71,4 @@ const cancelDislike = async (postID, userID) => {
   return response
 }
 
-export { getAll, getOne, getPostsByUserID, createPost, addLike, cancelLike, addDislike, cancelDislike }
+export { getAll, getOne, getPostsByUserID, createPost, addLike, cancelLike, addDislike, cancelDislike, deletePost }

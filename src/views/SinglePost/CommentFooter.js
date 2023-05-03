@@ -2,10 +2,13 @@ import axios from 'axios'
 import React, { useState } from 'react';
 import './singlepost.css';
 import { useNavigate, useParams } from 'react-router-dom';
-import ReactionWrapper from '../Wrapper/ReactionWrapper';
-import SingleLineInput from '../Inputs/SingleLineInput';
-import MultiLineInput from '../Inputs/MultiLineInput';
-import SubmitButton from '../Buttons/SubmitButton';
+import ReactionWrapper from '../../components/Wrapper/ReactionWrapper';
+import SingleLineInput from '../../components/Inputs/SingleLineInput';
+import MultiLineInput from '../../components/Inputs/MultiLineInput';
+import SubmitButton from '../../components/Buttons/SubmitButton'
+import { Button } from '@mui/material';
+import { Delete } from '@mui/icons-material';
+import { deletePost } from '../../services/post';
 
 const CommentFooter = ({ post, user, replyComment }) => {
   const [commentText, setCommentText] = useState('');
@@ -38,6 +41,7 @@ const CommentFooter = ({ post, user, replyComment }) => {
         console.error(error);
       }
   }
+
   const addComment = async () => {
     const Now = new Date().toISOString();
     const year = new Date(Now).getFullYear();
@@ -71,14 +75,22 @@ const CommentFooter = ({ post, user, replyComment }) => {
     }
   }
 
+  const handlePostDelete = (postid) =>{
+    deletePost(postid);
+  }
+
   var placeholdertext = "Write your comments...";
   if(replyComment.length !== 0){
     placeholdertext = "Reply to " + replyComment.username;
   }
-
+  console.log(postAuthorID,logginedUserId);
+  console.log(postAuthorID===logginedUserId);
   return (
     <div>
+      <div style={{ display: 'flex', alignContent: 'center', justifyContent: 'space-between', padding: '5px'}}>
       <ReactionWrapper post={post} logginedUser = {user} />
+        {postAuthorID===logginedUserId ? <Button style={{color:'#dd0000'}} onClick={() => handlePostDelete(postId)}>Delete Post</Button> : <div></div>}
+      </div>
       <div style={{ display: 'flex' }}>
         <MultiLineInput placeholder={placeholdertext} value={commentText} handleChange={(e) => {setCommentText(e.target.value);}}/>
         <SubmitButton buttontext="Comment" onClick={handleSubmit}/>
@@ -86,4 +98,5 @@ const CommentFooter = ({ post, user, replyComment }) => {
     </div >
   )
 }
+
 export default CommentFooter

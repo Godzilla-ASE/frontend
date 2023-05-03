@@ -3,7 +3,6 @@ import Box from '@mui/material/Box';
 import Masonry from '@mui/lab/Masonry';
 import PostCardFooter from './PostCardFooter';
 import { usePosts } from './Helper/usePosts';
-import { addFollower } from '../services/user';
 
 export default function Homepage() {
 
