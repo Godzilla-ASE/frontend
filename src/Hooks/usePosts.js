@@ -10,7 +10,6 @@ export const usePosts = () => {
     const fetchData = async () => {
       const data = await getAll()
       setData(data)
-      // console.log('datainuseeffect', data)
       dispatch({ type: "SET_POSTS", data })
     }
 

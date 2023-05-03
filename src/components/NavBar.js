@@ -10,19 +10,19 @@ import { useTheme } from '@emotion/react';
 import CreatePostDialog from '../views/CreatePost/CreatePostDialog';
 import MessageStack from '../views/MessageStack/MessageStack';
 import MessageContext from '../context/MessageContext';
+import { MessageProvider } from '../context/MessageContext';
 
 
 export default function NavBar() {
 
   // Watch new messages
-  const [hasNewMessage, setHasNewMessage] = useState(false);
-  const [messages, setMessages] = useState([]);
+  // const [hasNewMessage, setHasNewMessage] = useState(false);
 
-  useEffect(() => {
-    if (messages.length > 0) {
-      setHasNewMessage(true);
-    }
-  }, [messages]);
+  // useEffect(() => {
+  //   if (messages.length > 0) {
+  //     setHasNewMessage(true);
+  //   }
+  // }, [messages]);
 
   const [createPost, setCreatePost] = useState(false)
   const [openMessage, setOpenMessage] = useState(false)
@@ -38,11 +38,11 @@ export default function NavBar() {
 
   const handleMessage = () => {
     setOpenMessage(prev => !prev);
-    setHasNewMessage(false);
+    // setHasNewMessage(false);
   }
 
   return (
-    <MessageContext.Provider value={{ messages, setMessages }} >
+    <MessageProvider>
       <div className="nav">
         <header>
           <nav>
@@ -51,7 +51,7 @@ export default function NavBar() {
             <NavLink style={navLinkStyle} onClick={handleCreate}><RiImageAddFill size={28} /></NavLink>
             <NavLink style={navLinkStyle} onClick={handleMessage}><BiMessageRoundedDetail size={28} /></NavLink>
             <div className="nav-link-container" onClick={handleMessage}>
-              {hasNewMessage && <div className="badge"></div>}
+              {/* {hasNewMessage && <div className="badge"></div>} */}
               <BiMessageRoundedDetail size={28} />
             </div>
             <NavLink style={navLinkStyle} to="/login"><AiOutlineLogin size={28} /></NavLink>
@@ -68,6 +68,6 @@ export default function NavBar() {
           <Outlet />
         </main>
       </div>
-    </MessageContext.Provider>
+    </MessageProvider>
   )
 }

@@ -5,7 +5,8 @@ import { Stack, Paper, Box, styled } from '@mui/material';
 import { FollowMessage, ReplyMessage, CommentMessage, LikeMessage } from './MessageType';
 import DialogComponent from '../../components/Wrapper/DialogComponent';
 import useLoggedInUser from '../../hooks/useLoggedInUser';
-import MessageContext from '../../context/MessageContext';
+import { MessageContext } from '../context/MessageContext';
+import { useHistoryMessages } from '../../hooks/useHistoryMessages';
 
 
 const FullWidthBox = styled(Box)(({ theme }) => ({
@@ -13,22 +14,24 @@ const FullWidthBox = styled(Box)(({ theme }) => ({
 }));
 
 const MessageStack = ({ isOpen, onClose }) => {
-  const userId = useLoggedInUser()
+  const userID = useLoggedInUser()
+  useHistoryMessages(userID)
+
+  const { state, dispatch } = useContext(MessageContext)
+
   const [client, setClient] = useState(null);
-  const { messages, setMessages } = useContext(MessageContext);
 
   useEffect(() => {
-    // 创建并激活 STOMP 客户端
+    // create and activate stomp
     const newClient = new Client({
       webSocketFactory: () => new SockJS('http://172.20.10.3:10000/ase-websocket'),
       onConnect: () => {
         console.log('Connected');
 
-        // 订阅消息监听接口
-        newClient.subscribe(`/topic/post/${userId}`, (message) => {
-          console.log('message sent', message)
-          const data = JSON.parse(message.body);
-          setMessages((prevMessages) => [data, ...prevMessages]);
+        // subscribe to the messages channel
+        newClient.subscribe(`/topic/post/${userID}`, (data) => {
+          const newMessage = JSON.parse(data.body);
+          dispatch({ type: "NEW_MESSAGE", newMessage })
         });
       },
     });
@@ -36,9 +39,9 @@ const MessageStack = ({ isOpen, onClose }) => {
     setClient(newClient);
     newClient.activate();
 
-    // 在组件卸载时关闭 STOMP 客户端
+    // close the stomp
     return () => newClient.deactivate();
-  }, [userId]);
+  }, []);
 
   const renderMessageContent = (type, message) => {
     switch (type) {
@@ -60,7 +63,7 @@ const MessageStack = ({ isOpen, onClose }) => {
       <FullWidthBox p={2}>
         <Stack spacing={2}>
           {/* The messages initiated by the user are dispatched as "null" through the backend. */}
-          {messages.map((msg, index) => (
+          {state.messages.slice(0, 5).map((msg, index) => (
             msg ? <Paper key={index} elevation={2}>
               <Box p={2}>{renderMessageContent(msg.type, msg)}</Box>
             </Paper> : null
