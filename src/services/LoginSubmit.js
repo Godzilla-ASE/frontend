@@ -18,15 +18,17 @@ const LoginSubmit = async (event, username, password,
         body: JSON.stringify({ username, password }),
       });
       if (response.ok) {
-        const user_body = await response.text();
+        const user_body = await response.json();
         const authToken = user_body.token;
-        const userID = user_body.userID;
+        const userID = user_body.id;
+        const userName = user_body.username;
         const userAvatar = user_body.avatar;
         // save user to localStorage
         // localStorage.setItem("loggedInUser", user);
         const user = {
          authToken: authToken,
          userID: userID,
+         userName: userName,
          avatar: userAvatar
         }
         // const user = {
@@ -37,12 +39,13 @@ const LoginSubmit = async (event, username, password,
 
 
         localStorage.setItem("loggedInUser", JSON.stringify(user));
-        localStorage.setItem("user_body",JSON.stringify(user_body))
+        localStorage.setItem("user",JSON.stringify(user_body))
 
         
 
         localStorage.setItem("authToken", authToken);
         localStorage.setItem("userID", userID);
+        localStorage.setItem("userName",userName)
 
         console.log(user_body)
         setPageStatus("Logged in successfully.");
