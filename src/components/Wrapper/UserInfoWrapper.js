@@ -1,6 +1,6 @@
 // contains information about the user avatar and name
 import { Avatar, Box, Typography } from '@mui/material';
-import useLoggedInUser from '../Helper/useLoggedInUser';
+import useLoggedInUser from '../../hooks/useLoggedInUser';
 
 
 const UserInfoWrapper = () => {

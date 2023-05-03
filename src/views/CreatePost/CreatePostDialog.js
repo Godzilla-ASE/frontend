@@ -12,7 +12,7 @@ import Notification from '../../components/Notification'
 
 import useS3UploadWithProgress from '../../hooks/useS3UploadWithProgress';
 import { createPost } from '../../services/post';
-import useLoggedInUser from '../../components/Helper/useLoggedInUser';
+import useLoggedInUser from '../../hooks/useLoggedInUser';
 
 import { PostContext } from '../../context/PostContext';
 

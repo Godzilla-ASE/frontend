@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import useLoggedInUser from "./Helper/useLoggedInUser";
+import useLoggedInUser from "../hooks/useLoggedInUser";
 import { useNavigate } from 'react-router-dom'
 import { Paper, Button, Typography, Avatar, Grid } from '@mui/material';
 import { getOneUserInfo } from "../services/user";

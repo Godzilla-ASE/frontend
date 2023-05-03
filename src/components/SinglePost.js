@@ -10,7 +10,7 @@ import CommentFooter from './SinglePost/CommentFooter';
 import PostContent from './SinglePost/PostContent';
 import { useTheme } from '@mui/material/styles';
 import UserInfoWrapper from './Wrapper/UserInfoWrapper';
-import useLoggedInUser from './Helper/useLoggedInUser';
+import useLoggedInUser from "../hooks/useLoggedInUser";
 
 
 function SinglePost() {
@@ -84,11 +84,11 @@ function SinglePost() {
           <Grid item xs={12} sm={6} style={{ display: 'grid', gridTemplateRows: 'auto 1fr auto', height: '100%' }}>
             <div style={{ display: 'flex', alignContent: 'center', justifyContent: 'space-between' }}>
               <UserInfoWrapper />
-              <FollowWapper loginUser={loginedUser} userID={userID}/>
+              <FollowWapper loginUser={loginedUser} userID={userID} />
             </div>
 
             <div style={{ marginTop: '20px', overflowY: 'auto', gridRow: '2 / 3' }}>
-              <PostContent post={post} comments={comments} onreplyCommentChange={handlereplyCommentChange}/>
+              <PostContent post={post} comments={comments} onreplyCommentChange={handlereplyCommentChange} />
             </div>
 
             <br></br>
