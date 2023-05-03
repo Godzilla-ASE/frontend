@@ -24,16 +24,17 @@ import "./SignupComponents/SignUp.css";
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import { Dayjs } from 'dayjs';
+import dayjs  from 'dayjs';
 import useS3Upload from '../Hooks/useS3Upload';
 
 const AccountCenter = () => {
     
   const navigate = useNavigate(); 
 
-  const user = JSON.parse(window.localStorage.getItem("user_body"));
-  const token = JSON.parse(window.localStorage.getItem("authToken"));
+  const user = JSON.parse(window.localStorage.getItem("user"));
+  const token = window.localStorage.getItem("authToken");
   const userID = window.localStorage.getItem("userID")
+  //console.log(user)
   //console.log(user.userName)
 
   const [username, setUsername] = useState(user ? user.username : "");
@@ -52,8 +53,9 @@ const AccountCenter = () => {
   const [fullnameError, setFullnameError] = useState(false);
   const [locationError, setLocationError] = useState(false);
   const [pageStatus, setPageStatus] = useState("");
+  //const datehere = dayjs(user.birthday)
 
-  const [selectedDate, setSelectedDate] = useState(user ? user.birthday: null);
+  const [selectedDate, setSelectedDate] = useState(user ? dayjs(user.birthday) : null);
 
   const [dateChanged, setDateChanged] = useState(false);
   const [usernameChanged, setUsernameChanged] = useState(false);
@@ -69,6 +71,7 @@ const AccountCenter = () => {
     setPageStatus("");
     setDateChanged(true);
   };
+
 
   const handleFileInputChange = async (event) => {
     const file = event.target.files[0];
@@ -166,9 +169,10 @@ const AccountCenter = () => {
           dateAdapter={AdapterDayjs}
           >
             <DatePicker 
+              defaultValue={null}
               value={selectedDate}
               onChange={handleDateChange}
-              format="MM-DD-YYYY"
+              format="YYYY-MM-DD"
               />
           </LocalizationProvider>
           </FormControl>  

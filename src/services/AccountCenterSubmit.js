@@ -79,10 +79,29 @@ const AccountCenterSubmit = async (event, username, password, email, location, c
           //const result = await response.text();
           setPageStatus(`Update Profile successfully.`);
 
+          const user_body = JSON.parse(localStorage.getItem("user"));
+          
+          const updatedUser = { ...user_body, ...requestBody };
+
+          localStorage.setItem("user", JSON.stringify(updatedUser));
+
+          const userName = updatedUser.username;
+          const userAvatar = updatedUser.avatar;
+
+          const user = {
+          authToken: token,
+          userID: userID,
+          userName: userName,
+          avatar: userAvatar
+          }
+
+        localStorage.setItem("loggedInUser", JSON.stringify(user));
+        localStorage.setItem("userName",userName)
+
           // Redirect to login page after 3 seconds
-          // setTimeout(() => {
-          //   navigate("/login"); // Replace "/login" with the actual URL of your login page
-          // }, 3000);
+          //  setTimeout(() => {
+          //    navigate("/accountcenter"); // Replace "/login" with the actual URL of your login page
+          //  }, 1000);
         } else if (response.status === 409) {
           const error = await response.text();
           setUsernameexistError(true);
