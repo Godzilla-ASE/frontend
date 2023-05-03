@@ -10,7 +10,6 @@ export default function Homepage() {
   usePosts()
   // const posts = usePostValue()
   const posts = usePostValue().posts;
-  console.log('posts', posts)
 
   if (!posts) {
     return (

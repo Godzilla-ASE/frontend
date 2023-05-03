@@ -4,7 +4,12 @@ import useLoggedInUser from '../../hooks/useLoggedInUser';
 
 
 const UserInfoWrapper = () => {
-  const user = useLoggedInUser()
+  const user = useLoggedInUser();
+
+  if (!user) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <Box display="flex" alignItems="center">
       <Avatar
@@ -16,7 +21,8 @@ const UserInfoWrapper = () => {
         {user.username}
       </Typography>
     </Box>
-  )
-}
+  );
+};
+
 
 export default UserInfoWrapper

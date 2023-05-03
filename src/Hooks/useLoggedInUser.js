@@ -9,7 +9,6 @@ export default function useLoggedInUser() {
     if (loggedUserJSON) {
       const loggedUser = JSON.parse(loggedUserJSON)
       setUser(loggedUser)
-      // blogService.setToken(loggedUser.token)
     }
   }, [])
 
