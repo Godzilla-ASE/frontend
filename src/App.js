@@ -10,6 +10,7 @@ import Profile from './components/Profile'
 import NavBar from './components/NavBar';
 import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from 'react-router-dom';
 import LocationPage from './views/LocationPage/LocationPage';
+import TagPage from './views/TagPage/TagPage';
 
 function App() {
 
@@ -31,7 +32,7 @@ function App() {
         <Route path="/accountcenter" element={<AccountCenter />}></Route>
         <Route path="/post/:postId" element={<SinglePost />} />
         {/* #TODO Add Tag Page: something like homepage but with a tag title and filtered posts*/}
-        {/* <Route path="/tag/:tagName" element={<SingleTag />} /> */}
+        <Route path="/tag/:tagName" element={<TagPage />} />
         <Route path="/location/:locationName" element={<LocationPage />} />
       </Route>
     )

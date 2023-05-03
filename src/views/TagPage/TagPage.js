@@ -2,12 +2,12 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Masonry from '@mui/lab/Masonry';
 import PostCardFooter from '../../components/PostCardFooter';
-import { usePostsByLocation } from '../../hooks/usePostsByLocation';
+import { usePostsByTag } from '../../hooks/usePostsByTag';
 import { useParams } from 'react-router-dom';
 
-export default function LocationPage() {
-  const location = useParams().locationName
-  const posts = usePostsByLocation()
+export default function TagPage() {
+  const tag = useParams().tagName
+  const posts = usePostsByTag()
 
   if (!posts) {
     return (
@@ -21,7 +21,7 @@ export default function LocationPage() {
 
   return (
     <>
-      <h2>{location}</h2>
+      <h2>#{tag}</h2>
       <Box sx={{ width: 4 / 5, minHeight: 829, margin: '0 auto', paddingTop: '80px' }}>
         <Masonry columns={5} spacing={2}>
           {posts.map((post, index) => (

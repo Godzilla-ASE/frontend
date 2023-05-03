@@ -15,6 +15,11 @@ const getAllByLocation = async location => {
   return response.data
 }
 
+const getAllByTag = async tag => {
+  const response = await axios.post(`${baseUrl}/tag/`, tag)
+  return response.data
+}
+
 const getOne = async (id) => {
   const returnedPost = await axios.get(`${baseUrl}/${id}`)
   return returnedPost.data
@@ -69,4 +74,4 @@ const cancelDislike = async (postID, userID) => {
   return response
 }
 
-export { getAll, getOne, getPostsByUserID, createPost, addLike, cancelLike, addDislike, cancelDislike, getAllByLocation }
+export { getAll, getOne, getPostsByUserID, createPost, addLike, cancelLike, addDislike, cancelDislike, getAllByLocation, getAllByTag }
