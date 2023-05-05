@@ -74,22 +74,22 @@ const ReactionWrapper = ({ post }) => {
     <div style={{ display: 'flex', alignContent: 'center', marginTop: '10px', gap: '10px' }}>
       <div onClick={handleLikeClick} style={{ display: 'flex', alignContent: 'center' }}>
         {liked
-          ? <AiFillLike className="likesIcon" color={theme.palette.secondary.main} size={theme.typography.body1.fontSize * 1.3} />
-          : <AiOutlineLike className="likesIcon" color={theme.palette.secondary.main} size={theme.typography.body1.fontSize * 1.3} />}
+          ? <AiFillLike className="likesIcon" color={theme.palette.secondary.main} size={theme.typography.body2.fontSize * 1.3} />
+          : <AiOutlineLike className="likesIcon" color={theme.palette.secondary.main} size={theme.typography.body2.fontSize * 1.3} />}
         {post.likeNum > 0
-          ? <Typography variant='body1' align="left" fontWeight="bold" color="secondary">{post.likeNum}</Typography>
+          ? <Typography variant='body2' align="left" fontWeight="bold" color="secondary">{post.likeNum}</Typography>
           : null}
       </div>
       <div onClick={handleDisLikeClick} style={{ display: 'flex', alignContent: 'center' }}>
         {disliked
-          ? <AiFillDislike className="dislikesIcon" color={theme.palette.secondary.main} size={theme.typography.body1.fontSize * 1.3} />
-          : <AiOutlineDislike className="dislikesIcon" color={theme.palette.secondary.main} size={theme.typography.body1.fontSize * 1.3} />}
+          ? <AiFillDislike className="dislikesIcon" color={theme.palette.secondary.main} size={theme.typography.body2.fontSize * 1.3} />
+          : <AiOutlineDislike className="dislikesIcon" color={theme.palette.secondary.main} size={theme.typography.body2.fontSize * 1.3} />}
         {post.unlikeNum > 0
-          ? <Typography variant='body1' align="left" fontWeight="bold" color="secondary">{post.unlikeNum}</Typography>
+          ? <Typography variant='body2' align="left" fontWeight="bold" color="secondary">{post.unlikeNum}</Typography>
           : null}
       </div>
       <div onClick={handleShare} style={{ display: 'flex', alignContent: 'center' }}>
-        <AiOutlineShareAlt color={theme.palette.secondary.main} size={theme.typography.body1.fontSize * 1.3} />
+        <AiOutlineShareAlt color={theme.palette.secondary.main} size={theme.typography.body2.fontSize * 1.3} />
       </div>
       <DialogComponent
         isOpen={sharing}

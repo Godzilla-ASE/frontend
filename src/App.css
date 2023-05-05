@@ -89,18 +89,8 @@ nav>div>a {
   width: 100%;
 }
 
-.authorWrapper {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: 10px;
-}
 
-.authorWrapper .userWrapper {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
+
 
 .authorWrapper .userWrapper .avatarWrapper {
   width: 20px;
