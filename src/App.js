@@ -8,7 +8,7 @@ import Homepage from './components/Homepage';
 import SinglePost from './views/SinglePost/SinglePost';
 import Profile from './views/Profile/Profile'
 import NavBar from './components/NavBar';
-import Profile_visit from './views/Profile/Profile_visit'
+import ProfileVisit from './views/Profile/ProfileVisit'
 import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from 'react-router-dom';
 
 function App() {
@@ -31,7 +31,7 @@ function App() {
         <Route path="/profile" element={<Profile />}></Route>
         <Route path="/accountcenter" element={<AccountCenter />}></Route>
         <Route path="/post/:postId" element={<SinglePost />} />
-        <Route path="/profile/:visitedUserId" element={<Profile_visit />} />
+        <Route path="/profile/:visitedUserId" element={<ProfileVisit />} />
         {/* #TODO Add Tag Page: something like homepage but with a tag title and filtered posts*/}
         {/* <Route path="/tag/:tagName" element={<SingleTag />} /> */}
         {/* #TODO Add Location Page: something like homepage but with a location title and filtered posts*/}

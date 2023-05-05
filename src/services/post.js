@@ -1,6 +1,6 @@
 import axios from 'axios'
 // const baseUrl = 'http://localhost:9000/posts'
-const baseUrl = 'http://localhost:3001/posts'
+const baseUrl = 'http://10.21.2.62:9000/posts'
 
 const getAll = async () => {
   const response = await axios.get(baseUrl)
@@ -28,8 +28,7 @@ const deletePost = async (postid) => {
 
 const getPostsByUserID = async (id) => {
   const returnedPost = await axios.get(`${baseUrl}/users/${id}`)
-  return getAll()
-  //return returnedPost.data
+  return returnedPost.data
 }
 
 const addLike = async (postID, userID) => {

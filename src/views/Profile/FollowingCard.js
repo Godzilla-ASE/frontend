@@ -5,7 +5,8 @@ import UserInfoWrapper from '../../components/Wrapper/UserInfoWrapper';
 import { useNavigate } from 'react-router-dom';
 
 const FollowingCard = ({ isFollowing, setfollowingCard, fansList, followingsList, logginedUser }) => {
-    //console.log(fansList);
+    console.log(followingsList);
+    console.log(logginedUser);
     const [selectedTab, setSelectedTab] = useState(isFollowing ? 'following' : 'followers');
     const navigate = useNavigate();
 
@@ -43,25 +44,25 @@ const FollowingCard = ({ isFollowing, setfollowingCard, fansList, followingsList
           </div>
            
       <div>
-        {selectedTab === 'following' ? 
+        {selectedTab === 'following' ? followingsList[0]==='' ? <Grid container spacing={1} style={{ marginTop: '0px' }}></Grid> : 
         <Grid container spacing={1} style={{ marginTop: '0px' }}>
           {followingsList.map((userId) => (
             <Grid item xs={12} key={userId} style={{paddingTop:'3%'}} >
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between',padding: '10px',border: '1px solid #ccc',borderRadius: '5px'}}>
                     <div onClick={()=>handleUserVist(userId)}>
-                        <UserInfoWrapper userId={userId}/>
+                        <UserInfoWrapper userID={userId}/>
                     </div>
-                    <FollowWrapper loginUser={logginedUser} userId={userId}/>
+                    <FollowWrapper loginUser={logginedUser} userID={userId}/>
                 </div>
             </Grid>
           ))}
-        </Grid> : 
+        </Grid> : fansList[0] === '' ? <Grid container spacing={1} style={{ marginTop: '0px' }}></Grid> :
         <Grid container spacing={2} style={{ marginTop: '10px' }}>
             {fansList.map((userId) => (
                 <Grid item xs={12} key={userId} style={{paddingTop:'3%'}} >
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between',padding: '10px',border: '1px solid #ccc',borderRadius: '5px'}}>
                     <div onClick={()=>handleUserVist(userId)}>
-                        <UserInfoWrapper userId={userId}/>
+                        <UserInfoWrapper userID={userId}/>
                     </div>
                     <FollowWrapper loginUser={logginedUser} userId={userId}/>
                 </div>

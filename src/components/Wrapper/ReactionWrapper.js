@@ -24,16 +24,14 @@ const ReactionWrapper = ({ post }) => {
   // 按钮初始化
   // 判断登陆用户是否已点赞点踩这篇帖子
   useEffect(() => {
+    
+    if(post){
+      setLikeList(post.like_users ? post.like_users.split(",") : []);
+      setDislikeList(post.unlike_users ? post.unlike_users.split(",") : []);
+      setlikedNum(post.likeNum);
+      setDislikedNum(post.unlikeNum);
+    }
     if (post && logginedUser) {
-      //console.log(post.like_users.split(','));
-      if(post.like_users){
-        //console.log(post.like_users.split(','));
-        setLikeList(post.like_users ? post.like_users.split(",") : []);
-        setDislikeList(post.unlike_users ? post.unlike_users.split(",") : []);
-        setlikedNum(post.likeNum);
-        setDislikedNum(post.unlikeNum);
-      }
-
       if(likeList.includes(logginedUser.userID.toString())){
         setLiked(true);
       }else{
@@ -48,11 +46,6 @@ const ReactionWrapper = ({ post }) => {
   }, [post, logginedUser]);
   // 按钮初始化结束
 
-  if (!logginedUser) {
-    return (
-      <pre>Loading...</pre>
-    )
-  }
 
   const handleLikeClick = () => {
     if (!logginedUser) {

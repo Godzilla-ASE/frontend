@@ -12,8 +12,7 @@ export default function MyPosts(userid) {
     // 根据ID取该用户的帖子
     useEffect(() => {
         const fetchData = async () => {
-        const data = await getAll()
-        //const data = await getPostsByUserID(userid)
+        const data = await getPostsByUserID(userid)
         setPostData(data)
     }
 

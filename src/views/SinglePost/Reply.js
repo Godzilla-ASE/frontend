@@ -7,8 +7,6 @@ function Replys({ reply, loginedUserID }) {
   const content = reply.content;
   const date = reply.creation_date;
 
-  console.log(loginedUserID, reply.userid_from);
-  console.log(loginedUserID === reply.userid_from);
   return (
     <div>
       <AuthorInfoWrapper post={reply} />
@@ -20,7 +18,7 @@ function Replys({ reply, loginedUserID }) {
           {date}
         </Typography>
         <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-          {loginedUserID === reply.userid_from ? <Button onClick={deleteReply(reply.ID)}>Delete</Button>:<div></div> }
+          {loginedUserID === reply.userid_from ? <Button onClick={()=>deleteReply(reply.replyId)}>Delete</Button>:<div></div> }
         </div>
       </CardContent>
     </div>

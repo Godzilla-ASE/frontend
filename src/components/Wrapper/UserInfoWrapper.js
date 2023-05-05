@@ -4,17 +4,18 @@ import { getOneUserInfo } from '../../services/user';
 import { useEffect, useState } from 'react';
 
 
-const UserInfoWrapper = (userID) => {
+const UserInfoWrapper = (props) => {
   // #TODO change this to logginuser later
   const [userInfo, setUserInfo] = useState(null);
+  console.log('userinfowarpper',props.userID)
 
   useEffect(() => {
     const fetchData = async () => {
-      const userInfo = await getOneUserInfo(userID);
+      const userInfo = await getOneUserInfo(props.userID);
       setUserInfo(userInfo);
     };
     fetchData();
-  }, [userID]);
+  }, [props.userID]);
 
       
   if (!userInfo) {

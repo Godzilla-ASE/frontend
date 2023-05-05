@@ -22,6 +22,7 @@ function SinglePost() {
   const [replyComment, setreplyComment] = useState([]);
   //console.log(loginedUser);
 
+  
   const handlereplyCommentChange = (newValue) => {
     setreplyComment(newValue);
   };
@@ -49,9 +50,11 @@ function SinglePost() {
   }
 
   const images = post.content_img.split(",");
-  const userID = post.userid != null ? post.userid : 0;
-  const loginedUserID = loginedUser.userID;
+  const AuthorID = post.userid;
 
+  //console.log("siglepost：post",post);
+  const loginedUserID = loginedUser ==null ? null : loginedUser.userID ;
+  console.log(comments);
   return (
     //结构是这样的
     //Card（整个post就是一个卡片）
@@ -85,8 +88,8 @@ function SinglePost() {
           </Grid>
           <Grid item xs={12} sm={6} style={{ display: 'grid', gridTemplateRows: 'auto 1fr auto', height: '100%' }}>
             <div style={{ display: 'flex', alignContent: 'center', justifyContent: 'space-between' }}>
-              <UserInfoWrapper />
-              <FollowWapper loginUser={loginedUser} userID={userID}/>
+              <UserInfoWrapper userID={AuthorID} />
+              <FollowWapper loginUser={loginedUser} userID={AuthorID}/>
             </div>
 
             <div style={{ marginTop: '20px', overflowY: 'auto', gridRow: '2 / 3' }}>

@@ -16,41 +16,44 @@ export default function Profile() {
     // 获取登陆用户信息，需要它的ID做事情
     const [logginedUserInfo, setlogginedUserInfo] = useState(null);
     const [followingCard, setfollowingCard] = useState(false);
+    const [fansCard, setfansCardCard] = useState(false);
     const navigate = useNavigate();
     const logginedUser = useLoggedInUser();
-    //console.log(logginedUser);
+    //console.log('profile:',logginedUser);
+    const targetID = localStorage.getItem("userID");
 
-    if(!logginedUser){
-        navigate('/login');
-    }
     // 根据ID拿用户信息
     useEffect(() => {
+        if(!targetID){
+            navigate('/login');
+        }
         const fetchData = async () => {
-          const userInfo = await getOneUserInfo(logginedUser.userID);
+          const userInfo = await getOneUserInfo(targetID);
           setlogginedUserInfo(userInfo);
         };
         fetchData();
-      }, [logginedUser]);
+      }, [targetID]);
 
     
     if (!logginedUserInfo) {
+
     return (
         <pre>Loading...</pre>
     )
     }
+    console.log('profile:',logginedUserInfo);
     const followingsList = logginedUserInfo.followings.split(',');
     const fansList = logginedUserInfo.fans.split(',');
-    console.log(fansList);
+    //console.log(fansList);
     function handleLogout() {
 
     }
 
-    function handleFollowingsList(isFollowings){
+    function handleFollowingsList(){
         setfollowingCard(true);
-        //console.log(isFollowings);
     }
 
-
+    
     return (
         <div style={{margin: '0', paddingTop: '7%' }}>
             <Paper style={{margin: '0', paddingTop: '1%',paddingBottom: '1%', backgroundColor: '#333333' }} >
@@ -80,10 +83,10 @@ export default function Profile() {
                     <Grid item xs={3}>
                     </Grid>
                     <Grid item xs={1}style={{}}>
-                        <Typography onClick={() => handleFollowingsList()} fontSize={16} color={'#ffffff'} style={{paddingTop: '3%',paddingBottom: '0%', cursor:'pointer'}} >  Followings <br></br> {logginedUserInfo.followings.split(',').length} </Typography>
+                        <Typography onClick={() => handleFollowingsList()} fontSize={16} color={'#ffffff'} style={{paddingTop: '3%',paddingBottom: '0%', cursor:'pointer'}} >  Followings <br></br> {logginedUserInfo.followings==="" ? 0 : logginedUserInfo.followings.split(',').length} </Typography>
                     </Grid>
                     <Grid item xs={1}>
-                        <Typography onClick={() => handleFollowingsList()} fontSize={16} color={'#ffffff'} style={{paddingTop: '3%',paddingBottom: '0%', cursor:'pointer' }} >  Fans <br></br> <></>{logginedUserInfo.fans.split(',').length} </Typography>
+                        <Typography onClick={() => handleFollowingsList()} fontSize={16} color={'#ffffff'} style={{paddingTop: '3%',paddingBottom: '0%', cursor:'pointer' }} >  Fans <br></br> <></>{logginedUserInfo.fans==="" ? 0 : logginedUserInfo.fans.split(',').length} </Typography>
                     </Grid>
                     <Grid item xs={2}>
                     <Typography fontSize={16} color={'#ffffff'} style={{paddingTop: '3%',paddingBottom: '0%' }} >  Location <br></br> {logginedUserInfo.location}<IoLocationOutline></IoLocationOutline> </Typography>
@@ -95,7 +98,11 @@ export default function Profile() {
         </Paper>
         <DialogComponent
           isOpen={followingCard}
-          children={<FollowingCard setfollowingCard = {setfollowingCard} fansList={fansList} followingsList={followingsList} logginedUser = {logginedUser}/>}
+          children={<FollowingCard isFollowing={true} setfollowingCard = {setfollowingCard} fansList={fansList} followingsList={followingsList} logginedUser = {logginedUser}/>}
+        />
+        <DialogComponent
+          isOpen={fansCard}
+          children={<FollowingCard isFollowing={false} setfollowingCard = {setfansCardCard} fansList={fansList} followingsList={followingsList} logginedUser = {logginedUser}/>}
         />
         </div>
     );
