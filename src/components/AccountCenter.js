@@ -24,8 +24,8 @@ import "./SignupComponents/SignUp.css";
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import dayjs  from 'dayjs';
-import useS3Upload from '../Hooks/useS3Upload';
+import dayjs from 'dayjs';
+import useS3Upload from "../hooks/useS3Upload";
 
 const AccountCenter = () => {
 
@@ -95,12 +95,12 @@ const AccountCenter = () => {
           Edit profile
         </Typography>
         <form
-          onSubmit={(event) => AccountCenterSubmit(event, username, password, email, location, confirmPassword, 
-            usernameError, emailError, passwordError, confirmPasswordError, locationError, 
-             setUsernameError, setPasswordError, setConfirmPasswordError, setLocationError, setEmailError,
-              setUsernameexistError, setPageStatus, AccountCenter_API, navigate,
-              selectedDate,dateChanged,usernameChanged,emailChanged,passwordChanged,locationChanged,
-              avatarUrl,avatarChanged,token,userID)}
+          onSubmit={(event) => AccountCenterSubmit(event, username, password, email, location, confirmPassword,
+            usernameError, emailError, passwordError, confirmPasswordError, locationError,
+            setUsernameError, setPasswordError, setConfirmPasswordError, setLocationError, setEmailError,
+            setUsernameexistError, setPageStatus, AccountCenter_API, navigate,
+            selectedDate, dateChanged, usernameChanged, emailChanged, passwordChanged, locationChanged,
+            avatarUrl, avatarChanged, token, userID)}
           className="signup-form"
         >
           <div style={{ display: "flex", alignItems: "center" }}>
@@ -162,21 +162,21 @@ const AccountCenter = () => {
             />
           </div>
 
-        <div style={{ display: 'inline-flex', alignItems: 'baseline' }}>
-        <div style={{ width: '100px' }}>Birthday </div>
-        <FormControl variant="outlined" className="signup-date">
-          <LocalizationProvider 
-          dateAdapter={AdapterDayjs}
-          >
-            <DatePicker 
-              defaultValue={null}
-              value={selectedDate}
-              onChange={handleDateChange}
-              format="YYYY-MM-DD"
-              />
-          </LocalizationProvider>
-          </FormControl>  
-        </div>
+          <div style={{ display: 'inline-flex', alignItems: 'baseline' }}>
+            <div style={{ width: '100px' }}>Birthday </div>
+            <FormControl variant="outlined" className="signup-date">
+              <LocalizationProvider
+                dateAdapter={AdapterDayjs}
+              >
+                <DatePicker
+                  defaultValue={null}
+                  value={selectedDate}
+                  onChange={handleDateChange}
+                  format="YYYY-MM-DD"
+                />
+              </LocalizationProvider>
+            </FormControl>
+          </div>
 
           <Button variant="contained" color="primary" type="submit" className="signup-button">
             Update Profiles
