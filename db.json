@@ -2,7 +2,7 @@
   "posts": [
     {
       "id": 1,
-      "userid": 12,
+      "userid": 2,
       "username": "abc",
       "title": "beautiful sunset",
       "coverImage": "https://images.unsplash.com/photo-1518756131217-31eb79b20e8f",
@@ -21,7 +21,7 @@
     },
     {
       "id": 2,
-      "userid": 23,
+      "userid": 8,
       "username": "bob",
       "title": "A day at the beach",
       "coverImage": "https://images.unsplash.com/photo-1627308595229-7830a5c91f9f",
@@ -40,7 +40,7 @@
     },
     {
       "id": 3,
-      "userid": 334,
+      "userid": 11,
       "username": "yuho",
       "title": "My favorite books",
       "coverImage": "https://images.unsplash.com/photo-1529655683826-aba9b3e77383",

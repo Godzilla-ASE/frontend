@@ -44,9 +44,9 @@ export default function FollowWapper({ loginUser, userID }) {
     }
     else {
       if(followed){
-        cancelFollower(loginUser.userID, userID);
+        cancelFollower(loginUser.userID, userID, loginUser.authToken);
       }else{
-        addFollower(loginUser.userID, userID);
+        addFollower(loginUser.userID, userID,loginUser.authToken);
       }
       setFollowed(!followed);
     }

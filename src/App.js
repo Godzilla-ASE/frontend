@@ -20,7 +20,8 @@ function App() {
     avatar: "userAvatar"
   }
 
-  localStorage.setItem("loggedInUser", JSON.stringify(fakeUser));
+  // localStorage.setItem("loggedInUser", JSON.stringify(fakeUser));
+  // localStorage.removeItem("loggedInUser");
 
   const router = createBrowserRouter(
     createRoutesFromElements(

@@ -1,9 +1,7 @@
 import React from "react";
-import { Card, CardActions, IconButton, CardHeader, CardContent, Avatar, Grid, Typography, Button } from '@mui/material';
-import ReplyIcon from "@mui/icons-material/Reply";
+import { CardContent, Typography, Button } from '@mui/material';
 import Reply from "./Reply";
 import AuthorInfoWrapper from "../Wrapper/AuthorInfoWrapper";
-import { AiOutlineFontSize } from "react-icons/ai";
 
 function Comment({ comment, onreplyCommentChange }) {
   const content = comment.content;
@@ -23,7 +21,7 @@ function Comment({ comment, onreplyCommentChange }) {
             {content}
           </Typography>
           <Typography variant="body3" color="secondary">
-            {date} Zurich
+            {date}
           </Typography>
           <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
             <Button onClick={handleReply}>
@@ -49,7 +47,7 @@ function Comment({ comment, onreplyCommentChange }) {
             {content}
           </Typography>
           <Typography variant="body3" color="secondary">
-            {date} Zurich
+            {date}
           </Typography>
           <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
             <Button onClick={handleReply}>
