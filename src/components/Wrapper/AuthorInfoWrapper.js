@@ -20,6 +20,7 @@ const AuthorInfoWrapper = ({ post }) => {
   let username
   let userAvatar
   const date = post.creation_date.slice(0, 10)
+
   if (post.username_from == null) {
     username = post.username;
     userAvatar = post.user_avatar

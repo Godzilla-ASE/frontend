@@ -9,7 +9,6 @@ import DialogComponent from './DialogComponent';
 import ShareCard from './ShareCard';
 
 const ReactionWrapper = ({ post }) => {
-  //console.log(post.like_users.split(","));
   const [liked, setLiked] = useState(false);
   const [disliked, setDisliked] = useState(false);
   const [likedNum, setlikedNum] = useState(0);
@@ -25,16 +24,14 @@ const ReactionWrapper = ({ post }) => {
   // 判断登陆用户是否已点赞点踩这篇帖子
   useEffect(() => {
     if (post && logginedUser) {
-      //console.log(post.like_users.split(','));
-      if(post.like_users){
-        console.log(post.like_users.split(','));
+      if (post.like_users) {
         setLikeList(post.like_users.split(','));
         setDislikeList(post.unlike_users.split(','));
         setlikedNum(post.likeNum);
         setDislikedNum(post.unlikeNum);
       }
 
-      if(likeList.includes(logginedUser.userID.toString())){
+      if (likeList.includes(logginedUser.userID.toString())) {
         setLiked(true);
       } else {
         setLiked(false);
@@ -60,10 +57,10 @@ const ReactionWrapper = ({ post }) => {
     } else {
       if (liked) {
         cancelLike(post.id, logginedUser.userID);
-        setlikedNum(likedNum-1);
-      }else{
+        setlikedNum(likedNum - 1);
+      } else {
         addLike(post.id, logginedUser.userID);
-        setlikedNum(likedNum+1);
+        setlikedNum(likedNum + 1);
       }
       setLiked(!liked);
     }
@@ -75,10 +72,10 @@ const ReactionWrapper = ({ post }) => {
     } else {
       if (disliked) {
         cancelDislike(post.id, logginedUser.userID);
-        setDislikedNum(dislikedNum-1);
-      }else{
+        setDislikedNum(dislikedNum - 1);
+      } else {
         addDislike(post.id, logginedUser.userID);
-        setDislikedNum(dislikedNum+1);
+        setDislikedNum(dislikedNum + 1);
       }
       setDisliked(!disliked);
     }

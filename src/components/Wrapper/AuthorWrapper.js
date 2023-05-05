@@ -15,12 +15,17 @@ const StyledDiv = styled('div')(({ theme }) => ({
   [theme.breakpoints.down(1290)]: {
     flexDirection: 'column',
   },
+  cursor: 'pointer',
 }));
 
 const AuthorWrapper = ({ post }) => {
-  console.log('width', window.innerWidth)
+
+  const openProfile = (userid) => {
+    // go to profile
+  }
+
   return (
-    <StyledDiv>
+    <StyledDiv onClick={() => openProfile(post.userid)}>
       <AuthorInfoWrapper post={post} />
       <ReactionWrapper post={post} />
     </StyledDiv>
