@@ -11,18 +11,14 @@ import CreatePostDialog from '../views/CreatePost/CreatePostDialog';
 import MessageStack from '../views/MessageStack/MessageStack';
 import MessageContext from '../context/MessageContext';
 import { MessageProvider } from '../context/MessageContext';
+import useLoggedInUser from '../hooks/useLoggedInUser';
+import { useNavigate } from 'react-router-dom'
 
 
 export default function NavBar() {
 
-  // Watch new messages
-  // const [hasNewMessage, setHasNewMessage] = useState(false);
-
-  // useEffect(() => {
-  //   if (messages.length > 0) {
-  //     setHasNewMessage(true);
-  //   }
-  // }, [messages]);
+  const loggedInUser = useLoggedInUser()
+  const navigate = useNavigate()
 
   const [createPost, setCreatePost] = useState(false)
   const [openMessage, setOpenMessage] = useState(false)
@@ -33,12 +29,19 @@ export default function NavBar() {
   }
 
   const handleCreate = () => {
-    setCreatePost(prev => !prev)
+    if (!loggedInUser) {
+      navigate('/login')
+    } else {
+      setCreatePost(prev => !prev)
+    }
   }
 
   const handleMessage = () => {
-    setOpenMessage(prev => !prev);
-    // setHasNewMessage(false);
+    if (!loggedInUser) {
+      navigate('/login')
+    } else {
+      setOpenMessage(prev => !prev);
+    }
   }
 
   return (
