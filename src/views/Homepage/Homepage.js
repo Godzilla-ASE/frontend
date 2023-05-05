@@ -1,28 +1,21 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Masonry from '@mui/lab/Masonry';
-import PostCardFooter from './PostCardFooter';
-import { usePosts } from './Helper/usePosts';
-import { addFollower } from '../services/user';
+import PostCardFooter from '../../components/PostCardFooter';
+import { usePostValue } from '../../context/PostContext';
+import { usePosts } from '../../hooks/usePosts';
+// import { usePosts } from '../../components/Helper/usePosts';
 
 export default function Homepage() {
-
-  //localStorage.setItem("authToken", authToken);
-  //localStorage.setItem("userID", userID);
-  const fakeUser = {
-    authToken: "23e5e8d1-a521-4149-b3f9-fff222eec957",
-    userID: 3,
-    avatar: "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.vecteezy.com%2Ffree-vector%2Favatar-icon&psig=AOvVaw3gIUhfkN91Gd-Mmfpuc98H&ust=1682966291470000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCKCy0pGg0v4CFQAAAAAdAAAAABAE"
-  }
-
-  localStorage.setItem("loggedInUser", JSON.stringify(fakeUser));
-
-  const posts = usePosts()
+  usePosts()
+  // const posts = usePostValue()
+  const posts = usePostValue().posts;
 
   if (!posts) {
     return (
-      // #TODO Loading
-      <pre>Loading</pre>
+      <div style={{ height: 829, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        <p> Loading </p>
+      </div>
     )
   }
 
@@ -55,6 +48,6 @@ export default function Homepage() {
           </div>
         ))}
       </Masonry>
-    </Box >
+    </Box>
   )
 }

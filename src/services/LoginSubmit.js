@@ -1,4 +1,4 @@
-const LoginSubmit = async (event, username, password, 
+const LoginSubmit = async (event, username, password,
   setUsernameError, setPasswordError, setUsernamecorrectError, setPasswordcorrectError, setPageStatus,
   LOGIN_API, navigate, previousUrl) => {
 
@@ -26,10 +26,16 @@ const LoginSubmit = async (event, username, password,
         // save user to localStorage
         // localStorage.setItem("loggedInUser", user);
         const user = {
+<<<<<<< HEAD
+          authToken: authToken,
+          userID: userID,
+          avatar: userAvatar
+=======
          authToken: authToken,
          userID: userID,
          userName: userName,
          avatar: userAvatar
+>>>>>>> main
         }
         // const user = {
         //    authToken: "authToken",
@@ -68,7 +74,7 @@ const LoginSubmit = async (event, username, password,
         // localStorage.setItem("authToken", authToken);
 
 
-      //  localStorage.setItem("loggedInUser", JSON.stringify(user));
+        //  localStorage.setItem("loggedInUser", JSON.stringify(user));
 
       } else if (response.status === 409) {
         const error = await response.text();

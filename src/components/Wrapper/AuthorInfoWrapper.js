@@ -1,9 +1,25 @@
 // contains information about the user avatar and name
 import { Typography, Avatar } from "@mui/material"
+import { styled } from '@mui/system';
+
+const AuthorInfo = styled('div')({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+});
+
+const Wrapper = styled('div')({
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'flex-start',
+  justifyContent: 'space-between',
+});
+
 
 const AuthorInfoWrapper = ({ post }) => {
   let username
   let userAvatar
+  const date = post.creation_date.slice(0, 10)
   if (post.username_from == null) {
     username = post.username;
     userAvatar = post.user_avatar
@@ -12,16 +28,21 @@ const AuthorInfoWrapper = ({ post }) => {
     userAvatar = post.userAvatar_from
   }
   return (
-    <div className="userWrapper">
+    <AuthorInfo>
       <Avatar
         src={userAvatar}
         alt={`${username}'s avatar`}
-        sx={{ width: 30, height: 30, marginRight: 1 }}
+        sx={{ width: 25, height: 25, marginRight: 1 }}
       />
-      <Typography variant="body2" color="secondary" fontWeight="bold">
-        {username}
-      </Typography>
-    </div>
+      <Wrapper>
+        <Typography variant="body2" color="secondary" fontWeight="bold">
+          {username}
+        </Typography>
+        <Typography variant="body3" color="secondary">
+          {date}
+        </Typography>
+      </Wrapper>
+    </AuthorInfo>
   )
 }
 

@@ -89,18 +89,8 @@ nav>div>a {
   width: 100%;
 }
 
-.authorWrapper {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: 10px;
-}
 
-.authorWrapper .userWrapper {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
+
 
 .authorWrapper .userWrapper .avatarWrapper {
   width: 20px;
@@ -152,4 +142,20 @@ nav>div>a {
 .MuiButton-startIcon.MuiButton-iconSizeMedium {
   margin-left: 0;
   margin-right: 0;
+}
+
+/* Modify notification icon badge */
+.nav-link-container {
+  position: relative;
+  display: inline-block;
+}
+
+.badge {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  width: 10px;
+  height: 10px;
+  background-color: red;
+  border-radius: 50%;
 }

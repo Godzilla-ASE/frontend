@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Grid, Box, Button } from '@mui/material';
+import { Grid, Box, Button, LinearProgress } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
 import CloseIcon from '@mui/icons-material/Close';
@@ -16,9 +16,7 @@ const ImageBox = styled(Box)(({ theme }) => ({
   marginBottom: theme.spacing(1),
 }));
 
-const ImageUpload = ({ images, handleImageDelete, handleImageUpload }) => {
-
-  console.log('images', images);
+const ImageUpload = ({ images, handleImageDelete, handleImageUpload, progress }) => {
 
   return (
     <Grid container className={ImageGrid} sx={{ height: '100%' }}>
@@ -44,12 +42,14 @@ const ImageUpload = ({ images, handleImageDelete, handleImageUpload }) => {
               />
               {images[index]
                 ? (
-                  <Box sx={{
-                    position: 'relative',
-                    width: '100%',
-                    paddingTop: '100%',
-                    overflow: 'hidden',
-                  }}>
+                  <Box
+                    sx={{
+                      position: 'relative',
+                      width: '100%',
+                      paddingTop: '100%',
+                      overflow: 'hidden',
+                    }}
+                  >
                     <Box
                       component="img"
                       alt=""
@@ -85,6 +85,21 @@ const ImageUpload = ({ images, handleImageDelete, handleImageUpload }) => {
                         }
                         onClick={(event) => handleImageDelete(event, index)}
                         style={{ padding: '6px 8px', minWidth: 'auto' }}
+                      />
+                    </Box>
+                    <Box
+                      sx={{
+                        position: 'absolute',
+                        bottom: 0,
+                        left: 0,
+                        width: '100%',
+                      }}
+                    >
+                      <LinearProgress
+                        variant="determinate"
+                        value={progress[index]}
+                        color="success"
+                        style={{ display: progress[index] === 100 ? 'none' : 'block' }}
                       />
                     </Box>
                   </Box>

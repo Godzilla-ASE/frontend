@@ -4,6 +4,8 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { CssBaseline } from '@mui/material';
+import { PostProvider } from './context/PostContext';
+
 
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
@@ -64,7 +66,9 @@ root.render(
 
   <ThemeProvider theme={theme}>
     <CssBaseline />
-    <App />
+    <PostProvider>
+      <App />
+    </PostProvider>
   </ThemeProvider>
 
 );
