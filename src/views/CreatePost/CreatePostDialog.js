@@ -1,12 +1,13 @@
 import React, { useState, useContext } from 'react';
-import { Button, DialogActions, Grid, Chip } from '@mui/material';
+import { Grid, Box } from '@mui/material';
 
 import UserInfoWrapper from '../../components/Wrapper/UserInfoWrapper';
 import ImageUpload from './ImageUpload';
 import Location from './Location'
+import Tag from './Tag';
+import Actions from './Actions';
 import PostTitle from './PostTitle';
 import PostContent from './PostContent';
-import SingleLineInput from '../../components/Inputs/SingleLineInput';
 import DialogComponent from '../../components/Wrapper/DialogComponent';
 import Notification from '../../components/Notification'
 
@@ -173,35 +174,15 @@ function CreatePostDialog({ isOpen, onClose }) {
           <Grid item xs={8}>
             <ImageUpload images={images} handleImageUpload={handleImageUpload} handleImageDelete={handleImageDelete} progress={uploadProgress} />
           </Grid>
-          <Grid container item xs direction="column" style={{ paddingRight: '15px', paddingBottom: '10px' }}>
+          <Grid container item xs={4} direction="column" style={{ paddingRight: '15px', paddingBottom: '10px' }}>
             <Grid item xs={1} style={{ paddingTop: '15px' }}>
-              {/* Import user avatar and name */}
               <UserInfoWrapper />
             </Grid>
             <PostTitle titleContent={titleContent} handleTitleChange={handleTitleChange} />
-            <PostContent postContent={postContents} rows={8} handleContentChange={handlePostContentsChange} />
-            <Grid item xs={1}>
-              <Location location={location} setLocation={setLocation} />
-            </Grid>
-            <Grid item xs={1}>
-              {/* Add tags for the post */}
-              <SingleLineInput placeholder="Add tags (seperate by space)" handleChange={handleTagInputChange} handleKeyDown={handleTagsSubmit} value={tagsInput} />
-            </Grid>
-            <Grid item xs={2}>
-              {tags.map((tag, index) => (
-                <Chip key={index} label={tag} color="primary" variant="outlined" style={{ marginRight: '8px', marginBottom: '8px' }} onDelete={() => handleTagDelete(tag)} />
-              ))}
-            </Grid>
-            <Grid item xs={1}>
-              <DialogActions style={{ paddingRight: '0px' }}>
-                <Button variant="contained" color="error" onClick={handleCancel}>
-                  Cancel
-                </Button>
-                <Button variant="contained" onClick={CreateNewPost}>
-                  Post
-                </Button>
-              </DialogActions>
-            </Grid>
+            <PostContent postContent={postContents} rows={3} handleContentChange={handlePostContentsChange} />
+            <Location location={location} setLocation={setLocation} />
+            <Tag handleTagInputChange={handleTagInputChange} handleTagsSubmit={handleTagsSubmit} tagsInput={tagsInput} tags={tags} handleTagDelete={handleTagDelete} />
+            <Actions handleCancel={handleCancel} CreateNewPost={CreateNewPost} />
           </Grid>
         </Grid>
       </DialogComponent>
