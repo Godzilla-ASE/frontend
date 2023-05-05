@@ -125,7 +125,7 @@ function CreatePostDialog({ isOpen, onClose }) {
     }
 
     const newPost = {
-      "userid": user.userID, // #TODO
+      "userid": user.userID,
       "title": titleContent,
       "content_text": postContents,
       "content_img": images.join(","),
@@ -133,7 +133,7 @@ function CreatePostDialog({ isOpen, onClose }) {
       "content_date": new Date(),
       "tag": tags.join(","),
       "url": "url",
-      "location": location // #TODO
+      "location": location
     }
 
     console.log('newPost', newPost)

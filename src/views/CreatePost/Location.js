@@ -53,7 +53,19 @@ const Location = ({ location, setLocation }) => {
           '& .MuiInputBase-input': {
             color: (theme) => theme.palette.secondary.main, // 更改聚焦时 placeholder 颜色
           },
-          'margin': '5px 0'
+          '& .MuiIconButton-root': {
+            color: (theme) => theme.palette.secondary.main, // 更改下拉菜单图标颜色
+          },
+          'margin': '5px 0',
+          '& .MuiOutlinedInput-notchedOutline': {
+            border: 'none',
+          },
+          '& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline': {
+            border: 'none',
+          },
+          '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
+            border: 'none',
+          },
         }}
         renderInput={(params) => <TextField {...params} placeholder="Location" />}
       />
