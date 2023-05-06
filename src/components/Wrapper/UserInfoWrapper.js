@@ -15,7 +15,7 @@ const UserInfoWrapper = (props) => {
       setUserInfo(userInfo);
     };
     fetchData();
-  }, [props.userID]);
+  }, []);
 
 
   if (!userInfo) {

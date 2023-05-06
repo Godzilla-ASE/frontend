@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Typography, Button } from '@mui/material';
-import { getOneUserInfo,addFollower,cancelFollower } from '../../services/user'
+import { getOneUserInfo, addFollower, cancelFollower } from '../../services/user'
 
 export default function FollowWapper({ loginUser, userID }) {
 
@@ -17,7 +17,7 @@ export default function FollowWapper({ loginUser, userID }) {
       setUserInfo(result)
       //console.log(result);
     });
-  }, [userID]);
+  }, []);
 
   // 判断当前登陆用户是否已关注这个用户
   useEffect(() => {
@@ -30,7 +30,7 @@ export default function FollowWapper({ loginUser, userID }) {
         setFollowed(false);
       }
     }
-  }, [UserInfo, loginUser]);
+  }, [UserInfo]);
 
   if (!UserInfo) {
     return (
@@ -44,10 +44,10 @@ export default function FollowWapper({ loginUser, userID }) {
       navigate("/login");
     }
     else {
-      if(followed){
+      if (followed) {
         cancelFollower(loginUser.userID, userID, loginUser.authToken);
-      }else{
-        addFollower(loginUser.userID, userID,loginUser.authToken);
+      } else {
+        addFollower(loginUser.userID, userID, loginUser.authToken);
       }
       setFollowed(!followed);
     }

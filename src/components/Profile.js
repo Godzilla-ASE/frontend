@@ -24,7 +24,7 @@ export default function Profile() {
       setlogginedUserInfo(userInfo);
     };
     fetchData();
-  }, [logginedUser]);
+  }, []);
 
 
   if (!logginedUserInfo) {

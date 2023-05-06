@@ -15,5 +15,6 @@ export const usePosts = () => {
 
     fetchData().catch(console.error)
   }, []);
+
   return data;
 };

@@ -24,7 +24,7 @@ const MessageStack = ({ isOpen, onClose }) => {
   useEffect(() => {
     // create and activate stomp
     const newClient = new Client({
-      webSocketFactory: () => new SockJS('http://172.20.10.3:10000/ase-websocket'),
+      webSocketFactory: () => new SockJS('http://10.28.54.76:10000/ase-websocket'),
       onConnect: () => {
         console.log('Connected');
 

@@ -6,17 +6,14 @@ export const useHistoryMessages = (user) => {
   const { state, dispatch } = useContext(MessageContext)
 
   useEffect(() => {
-    if (user) {
-      const userID = user.userID
-      const fetchData = async () => {
-        const data = await getHistoryMessages(userID)
-        dispatch({ type: "SET_HISTORY", data })
+    const userID = user.userID
+    const fetchData = async () => {
+      const data = await getHistoryMessages(userID)
+      dispatch({ type: "SET_HISTORY", data })
 
-      }
-
-      fetchData().catch(console.error)
     }
-
-  }, [user]);
+    console.log('???')
+    fetchData().catch(console.error)
+  }, []);
 
 };

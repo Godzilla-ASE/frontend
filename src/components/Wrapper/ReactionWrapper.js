@@ -23,8 +23,8 @@ const ReactionWrapper = ({ post }) => {
   // 按钮初始化
   // 判断登陆用户是否已点赞点踩这篇帖子
   useEffect(() => {
-    
-    if(post){
+
+    if (post) {
       setLikeList(post.like_users ? post.like_users.split(",") : []);
       setDislikeList(post.unlike_users ? post.unlike_users.split(",") : []);
       setlikedNum(post.likeNum);
@@ -49,7 +49,7 @@ const ReactionWrapper = ({ post }) => {
         setDisliked(false);
       }
     }
-  }, [post, logginedUser]);
+  }, []);
   // 按钮初始化结束
 
 
