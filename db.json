@@ -58,25 +58,6 @@
       "creation_date": "2023-03-06"
     },
     {
-      "id": 4,
-      "userid": 33,
-      "username": "alice",
-      "title": "My Favorite Recipes",
-      "coverImage": "https://images.unsplash.com/photo-1597645587822-e99fa5d45d25",
-      "content_text": " love cooking, and these are some of my favorite recipes: lasagna, roasted chicken, stir-fry, and chocolate cake. Each recipe has its own unique flavor and requires a different set of skills, but they all bring me joy and satisfy my taste buds.",
-      "content_img": "https://seopic.699pic.com/photo/40143/8462.jpg_wh1200.jpg",
-      "tag": "eee,uuu",
-      "likeNum": 2,
-      "unlikeNum": 1,
-      "comment": null,
-      "user_avatar": "image",
-      "like_users": "1,2,3,9999",
-      "unlike_users": "1,2,3",
-      "url": null,
-      "location": "Zurich",
-      "creation_date": "2023-03-29"
-    },
-    {
       "id": 5,
       "userid": 100,
       "username": "xiaoming",

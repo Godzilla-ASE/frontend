@@ -2,7 +2,7 @@ import { Typography } from '@mui/material';
 import React from "react";
 import Comment from "./Comment";
 
-const CommentsBox = ({ comments, onreplyCommentChange }) => {
+const CommentsBox = ({ comments, loginedUserID,  onreplyCommentChange }) => {
 
     const commentsList = comments;
 
@@ -19,7 +19,7 @@ const CommentsBox = ({ comments, onreplyCommentChange }) => {
         return(
         <div>
             {commentsList.map((comment) => (
-                <Comment comment={comment} onreplyCommentChange={onreplyCommentChange} />
+                <Comment comment={comment} loginedUserID = {loginedUserID} onreplyCommentChange={onreplyCommentChange} />
             ))}
         </div>
         )

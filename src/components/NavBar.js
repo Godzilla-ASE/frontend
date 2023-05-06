@@ -45,6 +45,24 @@ export default function NavBar() {
   }
 
   return (
+<<<<<<< HEAD
+    <div className="nav">
+      <header>
+        <nav>
+          {/* <NavLink to="/"><img src={xhs} alt="logo" /></NavLink> */}
+          <NavLink style={navLinkStyle} to="/"><AiOutlineHome size={28} /></NavLink>
+          <NavLink style={navLinkStyle} onClick={handleCreate}><RiImageAddFill size={28} /></NavLink>
+          <NavLink style={navLinkStyle} onClick={handleMessage}><BiMessageRoundedDetail size={28} /></NavLink>
+          <NavLink style={navLinkStyle} to="/login"><AiOutlineLogin size={28} /></NavLink>
+          <NavLink style={navLinkStyle} to="/profile"><CgProfile size={28} /></NavLink>
+        </nav>
+        <CreatePostDialog
+          isOpen={createPost}
+          onClose={handleCreate}
+        />
+        {/* <MessageStack isOpen={openMessage} onClose={handleCreate} /> */}
+      </header>
+=======
     <MessageProvider>
       <div className="nav">
         <header>
@@ -66,6 +84,7 @@ export default function NavBar() {
           />
           {/* <MessageStack isOpen={openMessage} onClose={handleMessage} /> */}
         </header>
+>>>>>>> origin/main
 
         <main>
           <Outlet />
