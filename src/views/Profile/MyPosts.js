@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Typography, Box } from '@mui/material';
 import Masonry from '@mui/lab/Masonry';
 import PostCardFooter from '../../components/PostCardFooter';
-import { usePosts } from '../../hooks/usePosts';
+import { usePosts } from '../../Hooks/usePosts';
 import { getAll, getPostsByUserID } from '../../services/post';
 
 export default function MyPosts(userid) {

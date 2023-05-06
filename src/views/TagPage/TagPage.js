@@ -2,7 +2,7 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Masonry from '@mui/lab/Masonry';
 import PostCardFooter from '../../components/PostCardFooter';
-import { usePostsByTag } from '../../hooks/usePostsByTag';
+import { usePostsByTag } from '../../Hooks/usePostsbyTag';
 import { useParams } from 'react-router-dom';
 
 export default function TagPage() {

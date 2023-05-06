@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { Autocomplete, TextField, inputAdornmentClasses } from "@mui/material"
 import Fuse from 'fuse.js';
-import { useUsers } from '../../hooks/useUsers'
+import { useUsers } from '../../Hooks/useUsers'
 
 const SearchUser = () => {
 

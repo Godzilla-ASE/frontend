@@ -10,7 +10,7 @@ import CommentFooter from './CommentFooter';
 import PostContent from './PostContent';
 import { useTheme } from '@mui/material/styles';
 import UserInfoWrapper from '../../components/Wrapper/UserInfoWrapper';
-import useLoggedInUser from "../../hooks/useLoggedInUser";
+import useLoggedInUser from "../../Hooks/useLoggedInUser";
 
 
 function SinglePost() {
