@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react';
 import { getAllByTag } from '../services/post';
 
-export const usePostsByTag = () => {
+export const usePostsByTag = (tag) => {
+  console.log('tag',tag)
   const [data, setData] = useState(null);
   useEffect(() => {
     const fetchData = async () => {
-      const data = await getAllByTag()
+      const data = await getAllByTag(tag)
       setData(data)
     }
 

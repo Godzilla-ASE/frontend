@@ -94,7 +94,7 @@ export default function Profile() {
         </Grid>
       </Paper>
       <Paper style={{ backgroundColor: '#222222' }}>
-        <MyPosts userid={logginedUser.userID} />
+        <MyPosts userid={targetID} />
       </Paper>
       <DialogComponent
         isOpen={followingCard}

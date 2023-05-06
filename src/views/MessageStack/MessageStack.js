@@ -13,7 +13,7 @@ const FullWidthBox = styled(Box)(({ theme }) => ({
   width: '100%',
 }));
 
-const MessageStack = ({ isOpen, onClose }) => {
+const MessageStack = ({ isOpen, onClose, setNewMessage }) => {
   const user = useLoggedInUser()
   useHistoryMessages(user)
   const userID = user.userID
@@ -33,6 +33,7 @@ const MessageStack = ({ isOpen, onClose }) => {
           const newMessage = JSON.parse(data.body);
           console.log('newMessage', newMessage)
           dispatch({ type: "NEW_MESSAGE", newMessage })
+          setNewMessage(true)
         });
       },
     });

@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { Paper, Button, Typography, Avatar, Grid } from '@mui/material';
 import { getOneUserInfo } from "../services/user";
 import MyPosts from "./MyPosts";
-import { getAll, getPostsByUserID } from "../services/post";
+import { getAll, localhost } from "../services/post";
 import { usePosts } from "../Hooks/usePosts";
 
 export default function Profile() {

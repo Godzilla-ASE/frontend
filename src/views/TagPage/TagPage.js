@@ -7,7 +7,8 @@ import { useParams } from 'react-router-dom';
 
 export default function TagPage() {
   const tag = useParams().tagName
-  const posts = usePostsByTag()
+  console.log('tag', tag)
+  const posts = usePostsByTag(tag)
 
   if (!posts) {
     return (

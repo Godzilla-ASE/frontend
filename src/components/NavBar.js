@@ -20,12 +20,12 @@ export default function NavBar() {
   const { state, dispatch } = useContext(MessageContext)
   const [newMessage, setNewMessage] = useState(false)
 
-  useEffect(() => {
-    if (state.messages.length > 0) {
-      console.log('messages', state.messages)
-      setNewMessage(true);
-    }
-  }, [state.messages]);
+  // useEffect(() => {
+  //   if (state.messages.length > 0) {
+  //     console.log('messages', state.messages)
+  //     setNewMessage(true);
+  //   }
+  // }, [state.messages]);
 
   const loggedInUser = useLoggedInUser()
   const navigate = useNavigate()
@@ -51,6 +51,7 @@ export default function NavBar() {
       navigate('/login')
     } else {
       setOpenMessage(prev => !prev);
+      setNewMessage(false)
     }
   }
 
@@ -63,17 +64,16 @@ export default function NavBar() {
           <NavLink style={navLinkStyle} onClick={handleCreate}><RiImageAddFill size={28} /></NavLink>
           <SearchUser />
           <div className="nav-link-container" onClick={handleMessage}>
-            <div className="badge"></div>
-            {newMessage && <BiMessageRoundedDetail size={28} />}
+            {newMessage && <div className="badge"></div>}
             <NavLink style={navLinkStyle} onClick={handleMessage}><BiMessageRoundedDetail size={28} /></NavLink>
           </div>
-          <NavLink style={navLinkStyle} to="/login"><CgProfile size={28} /></NavLink>
+          <NavLink style={navLinkStyle} to="/profile"><CgProfile size={28} /></NavLink>
         </nav>
         <CreatePostDialog
           isOpen={createPost}
           onClose={handleCreate}
         />
-        <MessageStack isOpen={openMessage} onClose={handleMessage} />
+        {loggedInUser ? <MessageStack isOpen={openMessage} onClose={handleMessage} setNewMessage={setNewMessage}/> : null}
       </header>
 
       <main>

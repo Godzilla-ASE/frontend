@@ -13,7 +13,7 @@ const getAllByLocation = async location => {
 }
 
 const getAllByTag = async tag => {
-  const response = await axios.post(`${baseUrl}/tag/`, tag)
+  const response = await axios.get(`${baseUrl}/tags/${tag}`, )
   return response.data
 }
 

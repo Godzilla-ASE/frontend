@@ -30,22 +30,27 @@ function SinglePost() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const post = await getOne(postId);
+      const postdata = await getOne(postId);
       const comments = await getPostComments(postId);
-      setPostData(post);
+      setPostData(postdata);
       setComments(comments);
     }
     fetchData()
   }, [])
-
+  console.log(post);
+  
   if (!post) {
     return (
-      <pre>Loading...</pre>
+      <div style={{ height: 829, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        <p> Loading post </p>
+      </div>
     )
   }
   if (!comments) {
     return (
-      <pre>Loading...</pre>
+      <div style={{ height: 829, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        <p> Loading comment </p>
+      </div>
     )
   }
 

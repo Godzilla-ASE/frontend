@@ -19,8 +19,19 @@ const Wrapper = styled('div')({
 const AuthorInfoWrapper = ({ post }) => {
   let username
   let userAvatar
+  
+  if (!post) {
+    return (
+      <div style={{ height: 829, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        <p> Loading post </p>
+      </div>
+    )
+  }
+  
+  console.log('post', post)
+  console.log('post.creation_date', post.creation_date)
   const date = post.creation_date.slice(0, 10)
-
+  
   if (post.username_from == null) {
     username = post.username;
     userAvatar = post.user_avatar
