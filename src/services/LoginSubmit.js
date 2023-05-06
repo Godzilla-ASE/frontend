@@ -1,8 +1,8 @@
-const LoginSubmit = async (event, username, password, 
+const LoginSubmit = async (event, username, password,
   setUsernameError, setPasswordError, setUsernamecorrectError, setPasswordcorrectError, setPageStatus,
   LOGIN_API, navigate, previousUrl) => {
 
-    // response = {"id":14,"username":"aaaaaa","password":"Aa11111111!","birthday":null,"token":"d1976836-da1e-4479-af84-a176007a79df","creationDate":null,"email":"aa@aa.aa","location":"Zurich","fans":"","followings":"","haters":"","avatarUrl":null}
+  // response = {"id":14,"username":"aaaaaa","password":"Aa11111111!","birthday":null,"token":"d1976836-da1e-4479-af84-a176007a79df","creationDate":null,"email":"aa@aa.aa","location":"Zurich","fans":"","followings":"","haters":"","avatarUrl":null}
   event.preventDefault();
   if (!username) {
     setUsernameError(true);
@@ -26,26 +26,21 @@ const LoginSubmit = async (event, username, password,
         // save user to localStorage
         // localStorage.setItem("loggedInUser", user);
         const user = {
-         authToken: authToken,
-         userID: userID,
-         userName: userName,
-         avatar: userAvatar
+          authToken: authToken,
+          userID: userID,
+          userName: userName,
+          avatar: userAvatar
         }
-        // const user = {
-        //    authToken: "authToken",
-        //    userID: 123,
-        //    avatar: "userAvatar"
-        //   }
 
 
         localStorage.setItem("loggedInUser", JSON.stringify(user));
-        localStorage.setItem("user",JSON.stringify(user_body))
+        localStorage.setItem("user", JSON.stringify(user_body))
 
-        
+
 
         localStorage.setItem("authToken", authToken);
         localStorage.setItem("userID", userID);
-        localStorage.setItem("userName",userName)
+        localStorage.setItem("userName", userName)
 
         console.log(user_body)
         setPageStatus("Logged in successfully.");
@@ -68,7 +63,7 @@ const LoginSubmit = async (event, username, password,
         // localStorage.setItem("authToken", authToken);
 
 
-      //  localStorage.setItem("loggedInUser", JSON.stringify(user));
+        //  localStorage.setItem("loggedInUser", JSON.stringify(user));
 
       } else if (response.status === 409) {
         const error = await response.text();

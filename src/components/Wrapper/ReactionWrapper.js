@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 import { AiOutlineLike, AiOutlineDislike, AiFillLike, AiFillDislike, AiOutlineShareAlt } from 'react-icons/ai';
 import { useNavigate } from 'react-router-dom'
-import useLoggedInUser from '../Helper/useLoggedInUser';
+import useLoggedInUser from '../../hooks/useLoggedInUser';
 import { Typography, useTheme } from '@mui/material';
 import { addLike, cancelLike, addDislike, cancelDislike } from '../../services/post';
 import DialogComponent from './DialogComponent';
@@ -17,7 +17,7 @@ const ReactionWrapper = ({ post }) => {
   const [likeList, setLikeList] = useState("");
   const [dislikeList, setDislikeList] = useState("");
   const [sharing, setSharing] = useState(false);
-  const logginedUser = useLoggedInUser(); 
+  const logginedUser = useLoggedInUser();
   const navigate = useNavigate();
   const theme = useTheme();
 
@@ -34,12 +34,12 @@ const ReactionWrapper = ({ post }) => {
     if (post && logginedUser) {
       if(likeList.includes(logginedUser.userID.toString())){
         setLiked(true);
-      }else{
+      } else {
         setLiked(false);
       }
-      if(dislikeList.includes(logginedUser.userID.toString())){
+      if (dislikeList.includes(logginedUser.userID.toString())) {
         setDisliked(true);
-      }else{
+      } else {
         setDisliked(false);
       }
     }
@@ -51,7 +51,7 @@ const ReactionWrapper = ({ post }) => {
     if (!logginedUser) {
       navigate('/login')
     } else {
-      if(liked){
+      if (liked) {
         cancelLike(post.id, logginedUser.userID);
         setlikedNum(likedNum-1);
       }else{
@@ -66,7 +66,7 @@ const ReactionWrapper = ({ post }) => {
     if (!logginedUser) {
       navigate('/login')
     } else {
-      if(disliked){
+      if (disliked) {
         cancelDislike(post.id, logginedUser.userID);
         setDislikedNum(dislikedNum-1);
       }else{
@@ -76,7 +76,7 @@ const ReactionWrapper = ({ post }) => {
       setDisliked(!disliked);
     }
   }
-  const handleShare = () =>{
+  const handleShare = () => {
     setSharing(true);
   }
 
@@ -84,27 +84,27 @@ const ReactionWrapper = ({ post }) => {
     <div style={{ display: 'flex', alignContent: 'center', marginTop: '10px', gap: '10px' }}>
       <div onClick={handleLikeClick} style={{ display: 'flex', alignContent: 'center' }}>
         {liked
-          ? <AiFillLike className="likesIcon" color={theme.palette.secondary.main} size={theme.typography.body1.fontSize * 1.3} />
-          : <AiOutlineLike className="likesIcon" color={theme.palette.secondary.main} size={theme.typography.body1.fontSize * 1.3} />}
-        {likedNum > 0
-          ? <Typography variant='body1' align="left" fontWeight="bold" color="secondary">{likedNum}</Typography>
+          ? <AiFillLike className="likesIcon" color={theme.palette.secondary.main} size={theme.typography.body2.fontSize * 1.3} />
+          : <AiOutlineLike className="likesIcon" color={theme.palette.secondary.main} size={theme.typography.body2.fontSize * 1.3} />}
+        {post.likeNum > 0
+          ? <Typography variant='body2' align="left" fontWeight="bold" color="secondary">{post.likeNum}</Typography>
           : null}
       </div>
       <div onClick={handleDisLikeClick} style={{ display: 'flex', alignContent: 'center' }}>
         {disliked
-          ? <AiFillDislike className="dislikesIcon" color={theme.palette.secondary.main} size={theme.typography.body1.fontSize * 1.3} />
-          : <AiOutlineDislike className="dislikesIcon" color={theme.palette.secondary.main} size={theme.typography.body1.fontSize * 1.3} />}
-        {dislikedNum > 0
-          ? <Typography variant='body1' align="left" fontWeight="bold" color="secondary">{dislikedNum}</Typography>
+          ? <AiFillDislike className="dislikesIcon" color={theme.palette.secondary.main} size={theme.typography.body2.fontSize * 1.3} />
+          : <AiOutlineDislike className="dislikesIcon" color={theme.palette.secondary.main} size={theme.typography.body2.fontSize * 1.3} />}
+        {post.unlikeNum > 0
+          ? <Typography variant='body2' align="left" fontWeight="bold" color="secondary">{post.unlikeNum}</Typography>
           : null}
       </div>
       <div onClick={handleShare} style={{ display: 'flex', alignContent: 'center' }}>
-        <AiOutlineShareAlt color={theme.palette.secondary.main} size={theme.typography.body1.fontSize * 1.3} />
+        <AiOutlineShareAlt color={theme.palette.secondary.main} size={theme.typography.body2.fontSize * 1.3} />
       </div>
       <DialogComponent
-          isOpen={sharing}
-          children={<ShareCard url={"http://localhost/post/"+post.id} setSharing = {setSharing}/>}
-        />
+        isOpen={sharing}
+        children={<ShareCard url={"http://localhost/post/" + post.id} setSharing={setSharing} />}
+      />
     </div>
   )
 }

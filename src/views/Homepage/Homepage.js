@@ -1,18 +1,21 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Masonry from '@mui/lab/Masonry';
-import PostCardFooter from './PostCardFooter';
-import { usePosts } from './Helper/usePosts';
+import PostCardFooter from '../../components/PostCardFooter';
+import { usePostValue } from '../../context/PostContext';
+import { usePosts } from '../../hooks/usePosts';
+// import { usePosts } from '../../components/Helper/usePosts';
 
 export default function Homepage() {
-  
-
-  const posts = usePosts()
+  usePosts()
+  // const posts = usePostValue()
+  const posts = usePostValue().posts;
 
   if (!posts) {
     return (
-      // #TODO Loading
-      <pre>Loading</pre>
+      <div style={{ height: 829, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        <p> Loading </p>
+      </div>
     )
   }
 
@@ -45,6 +48,6 @@ export default function Homepage() {
           </div>
         ))}
       </Masonry>
-    </Box >
+    </Box>
   )
 }

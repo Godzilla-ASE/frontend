@@ -4,20 +4,22 @@ import './App.css';
 import Login from './components/Login';
 import SignUp from './components/SignUp';
 import AccountCenter from './components/AccountCenter';
-import Homepage from './components/Homepage';
 import SinglePost from './views/SinglePost/SinglePost';
 import Profile from './views/Profile/Profile'
+import Homepage from './views/Homepage/Homepage';
 import NavBar from './components/NavBar';
 import ProfileVisit from './views/Profile/ProfileVisit'
 import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from 'react-router-dom';
+import LocationPage from './views/LocationPage/LocationPage';
+import TagPage from './views/TagPage/TagPage';
 
 function App() {
 
-  // const fakeUser = {
-  //   authToken: "23e5e8d1-a521-4149-b3f9-fff222eec957",
-  //   userID: 3,
-  //   avatar: "userAvatar"
-  // }
+  const fakeUser = {
+    authToken: "authToken",
+    userID: 2,
+    avatar: "userAvatar"
+  }
 
   // localStorage.setItem("loggedInUser", JSON.stringify(fakeUser));
   // localStorage.removeItem("loggedInUser");
@@ -33,9 +35,8 @@ function App() {
         <Route path="/post/:postId" element={<SinglePost />} />
         <Route path="/profile/:visitedUserId" element={<ProfileVisit />} />
         {/* #TODO Add Tag Page: something like homepage but with a tag title and filtered posts*/}
-        {/* <Route path="/tag/:tagName" element={<SingleTag />} /> */}
-        {/* #TODO Add Location Page: something like homepage but with a location title and filtered posts*/}
-        {/* <Route path="/location/:locationName" element={<SingleLocation />} /> */}
+        <Route path="/tag/:tagName" element={<TagPage />} />
+        <Route path="/location/:locationName" element={<LocationPage />} />
       </Route>
     )
   )
