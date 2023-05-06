@@ -7,6 +7,9 @@ export default function ShareCard({ url, setSharing }) {
   const handleCopyClick = () => {
     navigator.clipboard.writeText(url);
     setIsCopied(true);
+    setTimeout(() => {
+      setSharing(false);
+    }, 500);
   }
 
   const handleReturnClick = () => {

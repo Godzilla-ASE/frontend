@@ -5,6 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { CssBaseline } from '@mui/material';
 import { PostProvider } from './context/PostContext';
+import { MessageProvider } from './context/MessageContext';
 
 
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -67,10 +68,11 @@ root.render(
   <ThemeProvider theme={theme}>
     <CssBaseline />
     <PostProvider>
-      <App />
+      <MessageProvider>
+        <App />
+      </MessageProvider>
     </PostProvider>
   </ThemeProvider>
-
 );
 
 // If you want to start measuring performance in your app, pass a function
