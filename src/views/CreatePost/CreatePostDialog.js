@@ -124,13 +124,17 @@ function CreatePostDialog({ isOpen, onClose }) {
       return
     }
 
+    const date = new Date()
+    const formattedDate = date.toISOString();
+
     const newPost = {
+      "username": user.userName,
       "userid": user.userID,
       "title": titleContent,
       "content_text": postContents,
       "content_img": images.join(","),
       "coverImage": String(images[0]),
-      "content_date": new Date(),
+      "creation_date": formattedDate,
       "tag": tags.join(","),
       "url": "url",
       "location": location

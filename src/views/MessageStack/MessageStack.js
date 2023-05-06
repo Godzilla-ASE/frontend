@@ -14,11 +14,11 @@ const FullWidthBox = styled(Box)(({ theme }) => ({
 }));
 
 const MessageStack = ({ isOpen, onClose }) => {
-  const userID = useLoggedInUser()
-  useHistoryMessages(userID)
+  const user = useLoggedInUser()
+  useHistoryMessages(user)
+  const userID = user.userID
 
   const { state, dispatch } = useContext(MessageContext)
-
   const [client, setClient] = useState(null);
 
   useEffect(() => {
@@ -31,6 +31,7 @@ const MessageStack = ({ isOpen, onClose }) => {
         // subscribe to the messages channel
         newClient.subscribe(`/topic/post/${userID}`, (data) => {
           const newMessage = JSON.parse(data.body);
+          console.log('newMessage', newMessage)
           dispatch({ type: "NEW_MESSAGE", newMessage })
         });
       },
