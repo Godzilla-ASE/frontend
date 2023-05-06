@@ -1,7 +1,5 @@
 import axios from 'axios'
-// const baseUrl = 'http://localhost:9000/posts'
-const baseUrl = 'http://localhost:8080/posts'
-// const baseUrl = 'http://172.20.10.4:9000/posts'
+const baseUrl = 'http://172.20.10.3:9000/posts'
 
 // axios.defaults.withCredentials = true;
 
@@ -78,4 +76,4 @@ const cancelDislike = async (postID, userID) => {
   return response
 }
 
-export { getAll, getOne, getPostsByUserID, createPost, addLike, cancelLike, addDislike, cancelDislike, getAllByLocation, getAllByTag, deletePost}
+export { getAll, getOne, getPostsByUserID, createPost, addLike, cancelLike, addDislike, cancelDislike, getAllByLocation, getAllByTag, deletePost }

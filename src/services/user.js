@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const baseUserUrl = 'http://172.20.10.2:8080/users'
+const baseUserUrl = 'http://172.20.10.4:8080/users'
 
 
 const getOneUserInfo = async (id) => {
