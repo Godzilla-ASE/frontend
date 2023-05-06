@@ -1,35 +1,19 @@
 import { useState, useEffect } from 'react';
 import { Typography, Box } from '@mui/material';
 import Masonry from '@mui/lab/Masonry';
-<<<<<<< HEAD:src/views/Profile/MyPosts.js
 import PostCardFooter from '../../components/PostCardFooter';
-import { usePosts } from '../../components/Helper/usePosts';
+import { usePosts } from '../../hooks/usePosts';
 import { getAll, getPostsByUserID } from '../../services/post';
-=======
-import PostCardFooter from './PostCardFooter';
-import { usePosts } from '../hooks/usePosts';
-import { getAll, getPostsByUserID } from '../services/post';
->>>>>>> origin/main:src/components/MyPosts.js
 
 export default function MyPosts(userid) {
   //console.log(userid);
 
-<<<<<<< HEAD:src/views/Profile/MyPosts.js
-    const [posts, setPostData] = useState(null);
-    // 根据ID取该用户的帖子
-    useEffect(() => {
-        const fetchData = async () => {
-        const data = await getPostsByUserID(userid)
-        setPostData(data)
-=======
   const [posts, setPostData] = useState(null);
   // 根据ID取该用户的帖子
   useEffect(() => {
     const fetchData = async () => {
-      const data = await getAll()
-      //const data = await getPostsByUserID(userid)
+      const data = await getPostsByUserID(userid)
       setPostData(data)
->>>>>>> origin/main:src/components/MyPosts.js
     }
 
     fetchData().catch(console.error)

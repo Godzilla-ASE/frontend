@@ -10,7 +10,7 @@ import CommentFooter from './CommentFooter';
 import PostContent from './PostContent';
 import { useTheme } from '@mui/material/styles';
 import UserInfoWrapper from '../../components/Wrapper/UserInfoWrapper';
-import useLoggedInUser from '../../components/Helper/useLoggedInUser';
+import useLoggedInUser from "../../hooks/useLoggedInUser";
 
 
 function SinglePost() {
@@ -22,7 +22,7 @@ function SinglePost() {
   const [replyComment, setreplyComment] = useState([]);
   //console.log(loginedUser);
 
-  
+
   const handlereplyCommentChange = (newValue) => {
     setreplyComment(newValue);
   };
@@ -53,7 +53,7 @@ function SinglePost() {
   const AuthorID = post.userid;
 
   //console.log("siglepost：post",post);
-  const loginedUserID = loginedUser ==null ? null : loginedUser.userID ;
+  const loginedUserID = loginedUser == null ? null : loginedUser.userID;
   console.log(comments);
   return (
     //结构是这样的
@@ -89,11 +89,11 @@ function SinglePost() {
           <Grid item xs={12} sm={6} style={{ display: 'grid', gridTemplateRows: 'auto 1fr auto', height: '100%' }}>
             <div style={{ display: 'flex', alignContent: 'center', justifyContent: 'space-between' }}>
               <UserInfoWrapper userID={AuthorID} />
-              <FollowWapper loginUser={loginedUser} userID={AuthorID}/>
+              <FollowWapper loginUser={loginedUser} userID={AuthorID} />
             </div>
 
             <div style={{ marginTop: '20px', overflowY: 'auto', gridRow: '2 / 3' }}>
-              <PostContent post={post} comments={comments} loginedUserID={loginedUserID} onreplyCommentChange={handlereplyCommentChange}/>
+              <PostContent post={post} comments={comments} loginedUserID={loginedUserID} onreplyCommentChange={handlereplyCommentChange} />
             </div>
 
             <br></br>
