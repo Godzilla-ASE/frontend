@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react"
-import { getAll } from "../../services/user"
+import { useState } from "react"
 import { Autocomplete, TextField, inputAdornmentClasses } from "@mui/material"
 import Fuse from 'fuse.js';
+import { useUsers } from '../../hooks/useUsers'
 
 const SearchUser = () => {
 
@@ -16,30 +16,30 @@ const SearchUser = () => {
   ]
 
 
-  const [allUsers, setAllUsers] = useState('')
-  const [filteredUsers, setFilteredUsers] = useState(options.slice(0, 5))
+  // const [allUsers, setAllUsers] = useState('')
+  const allUsers = useUsers()
+  const [filteredUsers, setFilteredUsers] = useState([] || allUsers.slice(0, 5))
 
-  useEffect(() => {
-    const findUsers = async () => {
-      const users = await getAll()
-      setAllUsers(users)
-    }
-
-    findUsers()
-  }, [])
+  if (!allUsers) {
+    return (
+      <div style={{ height: 829, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        <p> Users are loading </p>
+      </div>
+    )
+  }
 
   const fuseOptions = {
     keys: ['username'],
     threshold: 0.6,
   };
 
-  const fuse = new Fuse(options, fuseOptions); // #TODO replace options
+  const fuse = new Fuse(allUsers, fuseOptions); // #TODO replace options
 
 
 
   const handleSearch = (value) => {
     if (value.trim() === '') {
-      setFilteredUsers(options.slice(0, 5)); // #TODO replace options
+      setFilteredUsers(allUsers.slice(0, 5)); // #TODO replace options
     } else {
       const results = fuse.search(value);
       setFilteredUsers(results.map((result) => result.item));
