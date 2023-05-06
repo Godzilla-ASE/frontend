@@ -67,14 +67,13 @@ export default function NavBar() {
             {newMessage && <BiMessageRoundedDetail size={28} />}
             <NavLink style={navLinkStyle} onClick={handleMessage}><BiMessageRoundedDetail size={28} /></NavLink>
           </div>
-          <NavLink style={navLinkStyle} to="/login"><AiOutlineLogin size={28} /></NavLink>
           <NavLink style={navLinkStyle} to="/login"><CgProfile size={28} /></NavLink>
         </nav>
         <CreatePostDialog
           isOpen={createPost}
           onClose={handleCreate}
         />
-        <MessageStack isOpen={openMessage} onClose={handleMessage} />
+        {/* <MessageStack isOpen={openMessage} onClose={handleMessage} /> */}
       </header>
 
       <main>

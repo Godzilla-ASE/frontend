@@ -6,7 +6,7 @@ import useLoggedInUser from '../../hooks/useLoggedInUser';
 import { Typography, useTheme } from '@mui/material';
 import { addLike, cancelLike, addDislike, cancelDislike } from '../../services/post';
 import DialogComponent from './DialogComponent';
-import ShareCard from './ShareCard';
+import ShareCard from '../ShareCard';
 
 const ReactionWrapper = ({ post }) => {
   const [liked, setLiked] = useState(false);
@@ -23,6 +23,13 @@ const ReactionWrapper = ({ post }) => {
   // 按钮初始化
   // 判断登陆用户是否已点赞点踩这篇帖子
   useEffect(() => {
+    
+    if(post){
+      setLikeList(post.like_users ? post.like_users.split(",") : []);
+      setDislikeList(post.unlike_users ? post.unlike_users.split(",") : []);
+      setlikedNum(post.likeNum);
+      setDislikedNum(post.unlikeNum);
+    }
     if (post && logginedUser) {
       if (post.like_users) {
         setLikeList(post.like_users.split(','));
@@ -45,11 +52,6 @@ const ReactionWrapper = ({ post }) => {
   }, [post, logginedUser]);
   // 按钮初始化结束
 
-  if (!logginedUser) {
-    return (
-      <pre>Loading...</pre>
-    )
-  }
 
   const handleLikeClick = () => {
     if (!logginedUser) {

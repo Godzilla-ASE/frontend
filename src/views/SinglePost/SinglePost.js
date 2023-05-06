@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { Card, Grid } from '@mui/material';
-import './SinglePost/singlepost.css';
+import './singlepost.css';
 import { useParams } from 'react-router-dom';
-import { getOne } from '../services/post';
-import { getPostComments } from '../services/comment';
-import PicGallry from './SinglePost/PicGallry';
-import FollowWapper from './Wrapper/FollowWrapper';
-import CommentFooter from './SinglePost/CommentFooter';
-import PostContent from './SinglePost/PostContent';
+import { getOne } from '../../services/post';
+import { getPostComments } from '../../services/comment';
+import PicGallry from './PicGallry';
+import FollowWapper from '../../components/Wrapper/FollowWrapper'
+import CommentFooter from './CommentFooter';
+import PostContent from './PostContent';
 import { useTheme } from '@mui/material/styles';
-import UserInfoWrapper from './Wrapper/UserInfoWrapper';
-import useLoggedInUser from "../hooks/useLoggedInUser";
+import UserInfoWrapper from '../../components/Wrapper/UserInfoWrapper';
+import useLoggedInUser from '../../components/Helper/useLoggedInUser';
 
 
 function SinglePost() {
@@ -22,6 +22,7 @@ function SinglePost() {
   const [replyComment, setreplyComment] = useState([]);
   //console.log(loginedUser);
 
+  
   const handlereplyCommentChange = (newValue) => {
     setreplyComment(newValue);
   };
@@ -49,8 +50,11 @@ function SinglePost() {
   }
 
   const images = post.content_img.split(",");
-  const userID = post.userid != null ? post.userid : 0;
+  const AuthorID = post.userid;
 
+  //console.log("siglepost：post",post);
+  const loginedUserID = loginedUser ==null ? null : loginedUser.userID ;
+  console.log(comments);
   return (
     //结构是这样的
     //Card（整个post就是一个卡片）
@@ -84,12 +88,12 @@ function SinglePost() {
           </Grid>
           <Grid item xs={12} sm={6} style={{ display: 'grid', gridTemplateRows: 'auto 1fr auto', height: '100%' }}>
             <div style={{ display: 'flex', alignContent: 'center', justifyContent: 'space-between' }}>
-              <UserInfoWrapper />
-              <FollowWapper loginUser={loginedUser} userID={userID} />
+              <UserInfoWrapper userID={AuthorID} />
+              <FollowWapper loginUser={loginedUser} userID={AuthorID}/>
             </div>
 
             <div style={{ marginTop: '20px', overflowY: 'auto', gridRow: '2 / 3' }}>
-              <PostContent post={post} comments={comments} onreplyCommentChange={handlereplyCommentChange} />
+              <PostContent post={post} comments={comments} loginedUserID={loginedUserID} onreplyCommentChange={handlereplyCommentChange}/>
             </div>
 
             <br></br>

@@ -11,6 +11,7 @@ export default function FollowWapper({ loginUser, userID }) {
   const navigate = useNavigate();
 
   // 获取被关注用户信息
+
   useEffect(() => {
     getOneUserInfo(userID).then((result) => {
       setUserInfo(result)

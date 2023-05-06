@@ -1,8 +1,8 @@
 import { Typography } from '@mui/material';
 import CommentsBox from './CommentsBox';
 
-const PostContent = ({ post, comments, onreplyCommentChange }) => {
-
+const PostContent = ({ post, comments, loginedUserID, onreplyCommentChange }) => {
+  console.log(post);
   return (
     // ｜-- PostContent（这篇post的内容）
     //        |-- <div> (这里面的内容可以上下滑动)
@@ -20,7 +20,7 @@ const PostContent = ({ post, comments, onreplyCommentChange }) => {
     //        |-- </div> (这里面的内容可以上下滑动)
     <div className="scrollable-container">
       <Typography variant="body2" color="secondary">
-        Publish Date: {post.creation_date != null ? post.creation_date : "NULL Date"}
+        Publish Date: {post.creation_Date != null ? post.creation_Date : "NULL Date"}
       </Typography>
       <Typography variant="h2" color="primary">
         {post.title != null ? post.title : "NULL title"}
@@ -34,7 +34,7 @@ const PostContent = ({ post, comments, onreplyCommentChange }) => {
       <Typography variant="h3" color="secondary" gutterBottom>
         Comments
       </Typography>
-      <CommentsBox comments={comments} onreplyCommentChange={onreplyCommentChange}/>
+      <CommentsBox comments={comments} loginedUserID={loginedUserID} onreplyCommentChange={onreplyCommentChange}/>
     </div>
   )
 }
