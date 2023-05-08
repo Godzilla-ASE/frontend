@@ -1,14 +1,12 @@
 import axios from 'axios'
 
-const baseCommentUrl = 'http://172.20.10.3:9000/comments'
-// const baseCommentUrl = 'http://172.20.10.3:9000/comments'
-// const getPostComments = async (id) => {
-//     const returnedComments = await axios.get(`${baseCommentUrl}/${id}`)
-//     return returnedComments.data
-//   }
+//const baseCommentUrl = 'http://172.20.10.3:9000/comments'
+const baseCommentUrl = 'http://localhost:3002/comments'
+
 
 const getPostComments = async (postid) => {
   const returnedComments = await axios.get(`${baseCommentUrl}/${postid}`)
+  // const returnedComments = await axios.get(`${baseCommentUrl}`)
   return returnedComments.data
 }
 

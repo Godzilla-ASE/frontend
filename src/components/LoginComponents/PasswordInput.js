@@ -24,19 +24,20 @@ function PasswordInput({
         onChange={handlePasswordChange}
         label="Password"
         error={passwordError && passwordcorrectError}
-        endAdornment={
+        /*endAdornment={
+          
           <InputAdornment position="end">
             {/* <Button color="primary" size="small" className="login-forgot-button">
               Forgot?
-            </Button> */}
+            </Button> *//*}
             <Link href="/forgetPassword" color="primary" size="small" className="login-forgot-button" style={{ color: "black" }}>
               Forgot?
-            </Link>
+          </Link>
           </InputAdornment>
-        }
+        }*/
         />
-        {passwordError && <FormHelperText sx={{ color: 'red' }}>Please enter your password.</FormHelperText>}
-        {passwordcorrectError && <FormHelperText sx={{ color: 'red' }}>Please enter correct password.</FormHelperText>}
+        {passwordError && <FormHelperText sx={{ fontSize:'body2.fontSize', color: 'red' }}>Please enter your password.</FormHelperText>}
+        {passwordcorrectError && <FormHelperText sx={{ fontSize:'body2.fontSize',color: 'red' }}>Please enter correct password.</FormHelperText>}
         </FormControl>
         );
   }

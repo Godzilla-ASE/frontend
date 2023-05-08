@@ -1,10 +1,11 @@
-const AccountCenterSubmit = async (event, username, password, email, location, confirmPassword,
-  usernameError, emailError, passwordError, confirmPasswordError, locationError,
-  setUsernameError, setPasswordError, setConfirmPasswordError, setLocationError, setEmailError,
-  setUsernameexistError, setPageStatus, AccountCenter_API, navigate,
-  selectedDate, dateChanged, usernameChanged, emailChanged, passwordChanged, locationChanged,
-  avatarUrl, avatarChanged, token, userID) => {
-  event.preventDefault();
+
+const AccountCenterSubmit = async (event, username, password, email, location, confirmPassword, 
+    usernameError, emailError, passwordError, confirmPasswordError, locationError, 
+    setUsernameError, setPasswordError, setConfirmPasswordError, setLocationError, setEmailError, 
+    setUsernameexistError, setPageStatus, AccountCenter_API, navigate,
+    selectedDate,dateChanged,usernameChanged,emailChanged,passwordChanged,locationChanged,
+    avatarUrl,avatarChanged,token,userID) => {    
+    event.preventDefault();
 
   let requestBody = {};
   // Get the history object from react-router-dom
@@ -85,30 +86,30 @@ const AccountCenterSubmit = async (event, username, password, email, location, c
 
         localStorage.setItem("user", JSON.stringify(updatedUser));
 
-        const userName = updatedUser.username;
-        const userAvatarUrl = updatedUser.avatarUrl;
+          const userName = updatedUser.username;
+          const userAvatarUrl = updatedUser.avatarUrl;
 
         const user = {
           authToken: token,
           userID: userID,
           userName: userName,
           avatarUrl: userAvatarUrl
-        }
+          }
 
         localStorage.setItem("loggedInUser", JSON.stringify(user));
         localStorage.setItem("userName", userName)
 
-        // Redirect to login page after 3 seconds
-        //  setTimeout(() => {
-        //    navigate("/accountcenter"); // Replace "/login" with the actual URL of your login page
-        //  }, 1000);
-      } else if (response.status === 409) {
-        const error = await response.text();
-        setUsernameexistError(true);
-        setPageStatus(`Username Exists. `);
-      }
-      else if (response.status === 404) {
-        setPageStatus("Failed to connect to backend.");
+          // Redirect to login page after 3 seconds
+           setTimeout(() => {
+             navigate("/profile"); // Replace "/login" with the actual URL of your login page
+           }, 1000);
+        } else if (response.status === 409) {
+          const error = await response.text();
+          setUsernameexistError(true);
+          setPageStatus(`Username Exists. `);
+        }
+        else if (response.status === 404){
+            setPageStatus("Failed to connect to backend.");
 
       }
     } catch (error) {

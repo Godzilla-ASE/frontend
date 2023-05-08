@@ -45,7 +45,7 @@ function PasswordSet({
               error={passwordError}
             />
             { 
-            <FormHelperText sx={{color: passwordError ? 'red' : 'inherit'}}>
+            <FormHelperText sx={{fontSize:'body2.fontSize',color: passwordError ? 'red' : 'secondary.main'}}>
               Must be between 8 and 16 characters, contain at least
               one uppercase letter, one lowercase letter, one number and one
               special character.
@@ -62,7 +62,7 @@ function PasswordSet({
               error={confirmPasswordError}
             />
             {confirmPasswordError &&
-            <FormHelperText sx={{  color: 'error' }}>
+            <FormHelperText sx={{ fontSize:'body2.fontSize', color: 'error' }}>
               Please type in the same password
               </FormHelperText>}
           </FormControl>

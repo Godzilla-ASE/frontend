@@ -3,7 +3,7 @@ import Typography from "@mui/material/Typography";
 
 function LoginStatus({ loginStatus }) {
   return (
-    <Typography variant="body2" color="error">
+    <Typography variant="body1" color="error">
       {loginStatus}
     </Typography>
   );

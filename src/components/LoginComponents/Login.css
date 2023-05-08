@@ -6,7 +6,7 @@
   padding-top: 5%;
   /* height: 100; */
   /*padding-bottom: 5%;*/
-  background-color: #fafafa;
+  /*background-color: #fafafa;*/
 }
 
 .login-container {
@@ -17,7 +17,7 @@
   padding-top: 2.5%;
   /* height: 100; */
   padding-bottom: 2.5%;
-  background-color: #fafafa;
+  /*background-color: #fafafa;*/
 }
 
 .login-form-container {
@@ -26,10 +26,10 @@
   flex-direction: column;
   gap: 20px;
   padding: 40px;
-  border: 1px solid #dbdbdb;
+  /*border: 1px solid #dbdbdb;*/
   border-radius: 5px;
   width: 350px;
-  background-color: #fff;
+  background-color: #333333;
 }
 
 .login-to-signup {
@@ -38,15 +38,15 @@
   flex-direction: column;
   gap: 20px;
   padding: 40px;
-  border: 1px solid #dbdbdb;
+ /* border: 1px solid #dbdbdb;*/
   border-radius: 5px;
   width: 350px;
-  background-color: #fff;
+  background-color: #333333;
 }
 
 .login-button {
   margin-top: 16px;
-  color :#0095f6;
+  /*color :#0095f6;*/
 }
 
 .login-input {
@@ -60,5 +60,5 @@
 
 .link {
   margin-left: auto;
-  color: black;
+  /*color: black;*/
 }

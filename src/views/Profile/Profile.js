@@ -10,13 +10,15 @@ import DialogComponent from "../../components/Wrapper/DialogComponent";
 import FollowingCard from "./FollowingCard";
 import { hover } from "@testing-library/user-event/dist/hover";
 import { IoLocationOutline } from "react-icons/io5";
+import LogoutButton from "../../components/AccountCenter/LogoutButton";
 
 
 export default function Profile() {
   // 获取登陆用户信息，需要它的ID做事情
   const [logginedUserInfo, setlogginedUserInfo] = useState(null);
   const [followingCard, setfollowingCard] = useState(false);
-  const [fansCard, setfansCardCard] = useState(false);
+  const [fansCard, setfansCard] = useState(false);
+  const [pageStatus, setPageStatus] = useState("");
   const navigate = useNavigate();
   const logginedUser = useLoggedInUser();
   //console.log('profile:',logginedUser);
@@ -41,9 +43,12 @@ export default function Profile() {
       <pre>Loading...</pre>
     )
   }
+
   console.log('profile:', logginedUserInfo);
   const followingsList = logginedUserInfo.followings.split(',');
   const fansList = logginedUserInfo.fans.split(',');
+  const avatar = logginedUserInfo.avatarUrl;
+  console.log(avatar);
   //console.log(fansList);
   function handleLogout() {
 
@@ -51,6 +56,12 @@ export default function Profile() {
 
   function handleFollowingsList() {
     setfollowingCard(true);
+  }
+  function handleFansList(){
+    setfansCard(true);
+  }
+  function handleSetting() {
+    navigate('/accountcenter');
   }
 
 
@@ -61,7 +72,7 @@ export default function Profile() {
           <Grid item xs={3}>
           </Grid>
           <Grid item xs={1}>
-            <Avatar alt="User Avatar" src="https://images.unsplash.com/photo-1558642452-9d2a7deb7f62" style={{ width: '70px', height: '70px' }} />
+            <Avatar alt="User Avatar" src={avatar} style={{ width: '70px', height: '70px' }} />
           </Grid>
           <Grid item xs={2}>
             <Typography variant="h4" color={'#ffffff'}>{logginedUserInfo.username}</Typography>
@@ -69,14 +80,14 @@ export default function Profile() {
           </Grid>
           <Grid item xs={1} />
           <Grid item>
-            <Button variant="contained" color="primary" >
+            <Button variant="contained" color="primary" onClick={() => handleSetting()}>
               Setting
             </Button>
           </Grid>
           <Grid item xs={1}>
-            <Button variant="contained" color="secondary" onClick={handleLogout}>
-              Logout
-            </Button>
+          <LogoutButton
+            setPageStatus={setPageStatus}
+        />
           </Grid>
         </Grid>
         <Grid container justify="center" alignItems="center" spacing={10} style={{ paddingTop: '1%', paddingBottom: '0%' }}>
@@ -86,7 +97,7 @@ export default function Profile() {
             <Typography onClick={() => handleFollowingsList()} fontSize={16} color={'#ffffff'} style={{ paddingTop: '3%', paddingBottom: '0%', cursor: 'pointer' }} >  Followings <br></br> {logginedUserInfo.followings === "" ? 0 : logginedUserInfo.followings.split(',').length} </Typography>
           </Grid>
           <Grid item xs={1}>
-            <Typography onClick={() => handleFollowingsList()} fontSize={16} color={'#ffffff'} style={{ paddingTop: '3%', paddingBottom: '0%', cursor: 'pointer' }} >  Fans <br></br> <></>{logginedUserInfo.fans === "" ? 0 : logginedUserInfo.fans.split(',').length} </Typography>
+            <Typography onClick={() => handleFansList()} fontSize={16} color={'#ffffff'} style={{ paddingTop: '3%', paddingBottom: '0%', cursor: 'pointer' }} >  Fans <br></br> <></>{logginedUserInfo.fans === "" ? 0 : logginedUserInfo.fans.split(',').length} </Typography>
           </Grid>
           <Grid item xs={2}>
             <Typography fontSize={16} color={'#ffffff'} style={{ paddingTop: '3%', paddingBottom: '0%' }} >  Location <br></br> {logginedUserInfo.location}<IoLocationOutline></IoLocationOutline> </Typography>
@@ -102,7 +113,7 @@ export default function Profile() {
       />
       <DialogComponent
         isOpen={fansCard}
-        children={<FollowingCard isFollowing={false} setfollowingCard={setfansCardCard} fansList={fansList} followingsList={followingsList} logginedUser={logginedUser} />}
+        children={<FollowingCard isFollowing={false} setfollowingCard={setfansCard} fansList={fansList} followingsList={followingsList} logginedUser={logginedUser} />}
       />
     </div>
   );

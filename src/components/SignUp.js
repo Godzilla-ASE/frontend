@@ -63,10 +63,10 @@ const SignUp = () => {
       <Box
         className="signup-form-container"
       >
-        <Typography variant="h4" className="signup-heading">
+        <Typography variant="h4" className="signup-heading" sx={{fontSize: 'h1.fontSize', color: 'primary.main'}}>
           Godzilla
         </Typography>
-        <Typography  align="center">
+        <Typography  align="center" sx={{fontSize: 'h2.fontSize', color: 'primary.main'}}>
           Sign up to see posts from your friends.
         </Typography>
         <form
@@ -118,10 +118,11 @@ const SignUp = () => {
           control={<Checkbox checked={isChecked} onChange={handleCheckboxChange} />}
           label="I agree to the policy, terms and conditions"
           className="signup-checkbox"
+          sx={{fontSize:'body2.fontSize',color:'secondary.main'}}
           error={isCheckedError}
         />
         {isCheckedError &&
-          <FormHelperText sx={{  color: 'red' }}>
+          <FormHelperText sx={{ fontSize:'body2.fontSize', color: 'red' }}>
             You should agree to our policy, terms and conditions. 
             </FormHelperText>}
         <Button variant="contained" color="primary" type="submit" className="signup-button">
@@ -131,14 +132,14 @@ const SignUp = () => {
           pageStatus={pageStatus} 
           />
         </form>
-        <Typography variant="body2" color="textSecondary" className="signup-footer">
+        <Typography variant="body2" color="secondary" className="signup-footer">
           By signing up, you agree to our Terms, Data Policy and Cookies Policy.
         </Typography>
       </Box>
     <Box className="signup-link-to-login">
-        <Typography>
+        <Typography color="secondary">
           Have an account? { }
-        <Link href="./login" className="link-to-login" style={{color:"black"}}>
+        <Link href="./login" className="primary">
           Log in
         </Link>
         </Typography>
