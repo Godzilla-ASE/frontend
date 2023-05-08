@@ -46,9 +46,9 @@ const LoginSubmit = async (event, username, password,
         setPageStatus("Logged in successfully.");
 
         // Redirect to login page after 3 seconds
-         setTimeout(() => {
-           navigate(previousUrl); // Replace "/login" with the actual URL of your login page
-         }, 1000);
+        setTimeout(() => {
+          navigate(previousUrl); // Replace "/login" with the actual URL of your login page
+        }, 1000);
       } else if (response.status === 404) {
         const error = await response.text();
         setUsernamecorrectError(true);

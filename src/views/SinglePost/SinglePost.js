@@ -10,7 +10,7 @@ import CommentFooter from './CommentFooter';
 import PostContent from './PostContent';
 import { useTheme } from '@mui/material/styles';
 import UserInfoWrapper from '../../components/Wrapper/UserInfoWrapper';
-import useLoggedInUser from "../../Hooks/useLoggedInUser";
+import useLoggedInUser from "../../hooks/useLoggedInUser";
 
 
 function SinglePost() {
@@ -20,7 +20,8 @@ function SinglePost() {
   const [post, setPostData] = useState(null);
   const [comments, setComments] = useState([]);
   const [replyComment, setreplyComment] = useState([]);
-  
+  //console.log(loginedUser);
+
 
   const handlereplyCommentChange = (newValue) => {
     setreplyComment(newValue);
@@ -92,8 +93,8 @@ function SinglePost() {
           <Grid item xs={12} sm={6} style={{ display: 'grid', gridTemplateRows: 'auto 1fr auto', height: '100%' }}>
             <div style={{ display: 'flex', alignContent: 'center', justifyContent: 'space-between' }}>
               <UserInfoWrapper userID={AuthorID} />
-              {AuthorID !== loginedUserID || loginedUserID === null ? 
-              <FollowWapper loginUser={loginedUser} userID={AuthorID} /> : <div></div>}
+              {AuthorID !== loginedUserID || loginedUserID === null ?
+                <FollowWapper loginUser={loginedUser} userID={AuthorID} /> : <div></div>}
             </div>
 
             <div style={{ marginTop: '20px', overflowY: 'auto', gridRow: '2 / 3' }}>

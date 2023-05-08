@@ -56,13 +56,13 @@ nav>img {
   margin-left: 50px;
 }
 
-nav>div {
+/* nav>div {
   display: flex;
   gap: 30px;
   margin-right: 50px;
   align-items: center;
   justify-content: space-between;
-}
+} */
 
 nav>div>a {
   text-decoration: none;

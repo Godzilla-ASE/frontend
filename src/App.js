@@ -15,11 +15,12 @@ import TagPage from './views/TagPage/TagPage';
 
 function App() {
 
-  const fakeUser = {
-    authToken: "authToken",
-    userID: 2,
-    avatar: "userAvatar"
-  }
+  // const fakeUser = {
+  //   username: 'Iamuser',
+  //   authToken: "authToken",
+  //   userID: 2,
+  //   avatarUrl: "https://images.unsplash.com/photo-1518756131217-31eb79b20e8f"
+  // }
 
   // localStorage.setItem("loggedInUser", JSON.stringify(fakeUser));
   // localStorage.removeItem("loggedInUser");
@@ -34,7 +35,6 @@ function App() {
         <Route path="/accountcenter" element={<AccountCenter />}></Route>
         <Route path="/post/:postId" element={<SinglePost />} />
         <Route path="/profile/:visitedUserId" element={<ProfileVisit />} />
-        {/* #TODO Add Tag Page: something like homepage but with a tag title and filtered posts*/}
         <Route path="/tag/:tagName" element={<TagPage />} />
         <Route path="/location/:locationName" element={<LocationPage />} />
       </Route>

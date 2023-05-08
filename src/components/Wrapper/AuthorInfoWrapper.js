@@ -2,24 +2,28 @@
 import { Typography, Avatar } from "@mui/material"
 import { styled } from '@mui/system';
 
-const AuthorInfo = styled('div')({
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'space-between',
-});
-
-const Wrapper = styled('div')({
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'flex-start',
-  justifyContent: 'space-between',
-});
 
 
-const AuthorInfoWrapper = ({ post }) => {
+
+
+
+const AuthorInfoWrapper = ({ post, styleSetting }) => {
   let username
   let userAvatar
-  
+
+  const AuthorInfo = styled('div')({
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: `${styleSetting}`,
+  });
+
+  const Wrapper = styled('div')({
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'flex-start',
+    justifyContent: `${styleSetting}`,
+  });
+
   if (!post) {
     return (
       <div style={{ height: 829, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
@@ -29,7 +33,7 @@ const AuthorInfoWrapper = ({ post }) => {
   }
   
   const date = post.creation_date.slice(0, 10)
-  
+
   if (post.username_from == null) {
     username = post.username;
     userAvatar = post.user_avatar

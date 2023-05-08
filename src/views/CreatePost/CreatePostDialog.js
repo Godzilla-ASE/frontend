@@ -11,9 +11,9 @@ import PostContent from './PostContent';
 import DialogComponent from '../../components/Wrapper/DialogComponent';
 import Notification from '../../components/Notification'
 
-import useS3UploadWithProgress from '../../Hooks/useS3UploadWithProgress';
+import useS3UploadWithProgress from '../../hooks/useS3UploadWithProgress';
 import { createPost } from '../../services/post';
-import useLoggedInUser from '../../Hooks/useLoggedInUser';
+import useLoggedInUser from '../../hooks/useLoggedInUser';
 
 import { PostContext } from '../../context/PostContext';
 
@@ -128,7 +128,7 @@ function CreatePostDialog({ isOpen, onClose }) {
     const formattedDate = date.toISOString();
 
     const newPost = {
-      "username": user.userName,
+      "username": user.username,
       "userid": user.userID,
       "title": titleContent,
       "content_text": postContents,
