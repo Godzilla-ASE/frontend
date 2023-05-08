@@ -57,8 +57,8 @@ function Comment({ comment, loginedUserID, onreplyCommentChange }) {
           {creation_date ? creation_date : <div></div>}
           </Typography>
           <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-          {loginedUserID !== comment.userid ? <div></div> : <Button onClick={()=>handleDeleteComment(comment.id)}>Delete</Button>}
-            <Button onClick={()=>handleReply()}>
+          {loginedUserID !== comment.userid ? <div></div> : <Button style={{fontSize: '12px'}} onClick={()=>handleDeleteComment(comment.id)}>Delete</Button>}
+            <Button style={{fontSize: '12px'}} onClick={()=>handleReply()}>
               Reply
             </Button>
           </div>
