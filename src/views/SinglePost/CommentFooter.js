@@ -50,8 +50,10 @@ const CommentFooter = ({ post, user, replyComment }) => {
   }
 
   var placeholdertext = "Write your comments...";
+  var bottomtext = "Comment";
   if(replyComment.length !== 0){
     placeholdertext = "Reply to " + replyComment.username;
+    bottomtext = "Reply";
   }
 
   return (
@@ -62,7 +64,7 @@ const CommentFooter = ({ post, user, replyComment }) => {
       </div>
       <div style={{ display: 'flex' }}>
         <MultiLineInput placeholder={placeholdertext} value={commentText} handleChange={(e) => {setCommentText(e.target.value);}}/>
-        <SubmitButton buttontext="Comment" onClick={handleSubmit}/>
+        <SubmitButton buttontext={bottomtext} onClick={handleSubmit}/>
       </div>
     </div >
   )
