@@ -25,12 +25,12 @@ function UsernameInput({
         error={usernameError && usernamecorrectError}
       />
       {usernameError && (
-        <FormHelperText sx={{ color: "red" }}>
+        <FormHelperText sx={{fontSize:'body2.fontSize', color: "red" }}>
           Please enter your username.
         </FormHelperText>
       )}
       {usernamecorrectError && (
-        <FormHelperText sx={{ color: "red" }}>
+        <FormHelperText sx={{ fontSize:'body2.fontSize', color: "red" }}>
           Please enter correct username.
         </FormHelperText>
       )}

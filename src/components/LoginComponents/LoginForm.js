@@ -69,9 +69,9 @@ function LoginForm(){
         </form>
       </Box>
       <Box align="center" className="link-to-signup">
-        <Typography variant="body3">
+        <Typography variant="body1" color="secondary">
           Don't have an account?{" "}
-          <Link href="/signup" variant="body3" style={{ color: "black" }}>
+          <Link href="/signup" variant="body1" style={{ color: "primary.main" }}>
             Sign up
           </Link>
         </Typography>

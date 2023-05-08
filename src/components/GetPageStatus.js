@@ -3,7 +3,7 @@ import Typography from "@mui/material/Typography";
 
 function GetPageStatus({ pageStatus }){
   return (
-    <Typography variant="body2" color="error">
+    <Typography variant="body1" color="error">
       {pageStatus}
     </Typography>
   );

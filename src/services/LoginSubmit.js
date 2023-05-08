@@ -22,14 +22,14 @@ const LoginSubmit = async (event, username, password,
         const authToken = user_body.token;
         const userID = user_body.id;
         const userName = user_body.username;
-        const userAvatar = user_body.avatar;
+        const userAvatarUrl = user_body.avatarUrl;
         // save user to localStorage
         // localStorage.setItem("loggedInUser", user);
         const user = {
           authToken: authToken,
           userID: userID,
           userName: userName,
-          avatar: userAvatar
+          avatarUrl: userAvatarUrl
         }
 
 
