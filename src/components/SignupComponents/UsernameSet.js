@@ -1,7 +1,17 @@
-import React from "react";
-import {FormControl,InputLabel,OutlinedInput,FormHelperText} from "@mui/material";
+import React, { useState } from "react";
+import { FormControl, InputLabel, OutlinedInput, FormHelperText, TextField, styled, Typography } from "@mui/material";
+import SingleLineInput from "../Inputs/SingleLineInput";
 
-function UsernameSet({username,
+const StyledInput = styled(TextField)(({ theme }) => ({
+  '& input::placeholder': {
+    color: theme.palette.primary.main
+  },
+  '& input': {
+    color: theme.palette.primary.main
+  }
+}));
+
+function UsernameSet({ username,
   usernameError,
   usernameexistError,
   setUsername,
@@ -9,35 +19,83 @@ function UsernameSet({username,
   setUsernameexistError,
   setPageStatus,
   setUsernameChanged
-}){
+}) {
+  const [noNameError, setNoNameError] = useState(false)
+
+  // #TODO 转移 usernameError， setUserNameError 到这个组件
+
   const handleUsernameChange = (event) => {
+    if (event.target.value) {
+      setNoNameError(false)
+    }
+    if (usernameError && /^[a-zA-Z0-9]{6,16}$/.test(event.target.value)) {
+      setUsernameError(false)
+    }
+    if (!/^[a-zA-Z0-9]{6,16}$/.test(event.target.value)) {
+      setUsernameError(true)
+    }
     setUsername(event.target.value);
-    setUsernameError(false);
     setUsernameexistError(false);
     setUsernameChanged(true);
     setPageStatus("");
   };
 
+  const handleUserNameBlur = () => {
+    if (username.length === 0) {
+      setNoNameError(true)
+    }
+    // #TODO handleBlur 的作用就是当用户的 focus 转移时会触发的动作，感觉可以把向后端请求 usernameexist 放到这里
+  }
+
   return (
-    <FormControl variant="outlined" className="signup-input">
-            <InputLabel htmlFor="username-input">Username</InputLabel>
-            <OutlinedInput
-              id="username-input"
-              type="username"
-              value={username}
-              onChange={handleUsernameChange}
-              label="username"
-              error={usernameError || usernameexistError}
-            />
-            {
-            <FormHelperText sx={{fontSize:'body2.fontSize',color: usernameError ? 'red' : 'secondary.main'}}>
-              Must be between 6 and 16 characters, alphanumeric only
-              </FormHelperText>}
-            {usernameexistError &&
-            <FormHelperText sx={{ fontSize:'body2.fontSize', color: 'red' }}>
-              Username exists, please try another 
-              </FormHelperText>}
-          </FormControl>
+    <>
+      {/* <FormControl variant="outlined" className="signup-input"> */}
+      {/* <InputLabel htmlFor="username-input" shrink="true">Username</InputLabel> */}
+      <StyledInput
+        value={username}
+        onChange={handleUsernameChange}
+        label="Username"
+        placeholder="6-16 alphanumeric characters"
+        color="primary"
+        focused
+        error={noNameError || usernameError || usernameexistError}
+        onBlur={handleUserNameBlur}
+      />
+      {(usernameError && username.length < 6)
+        ? <Typography variant="body2" color="error" align="center" fontWeight={700}>
+          Username is too short. It has to be at least 6 characters.
+        </Typography>
+        : null
+      }
+      {(usernameError && username.length >= 6 && username.length <= 16)
+        ? <Typography variant="body2" color="error" align="center" fontWeight={700}>
+          Username contains non-alphanumeric characters.
+        </Typography>
+        : null
+      }
+      {(usernameError && username.length > 16)
+        ? <Typography variant="body2" color="error" align="center" fontWeight={700}>
+          Username is too long. It has to be no more than 16 characters.
+        </Typography>
+        : null
+      }
+      {noNameError
+        ? <Typography variant="body2" color="error" align="center" fontWeight={700}>
+          What's your name?
+        </Typography>
+        : null
+      }
+      {usernameexistError &&
+        <Typography variant="body2" color="error" align="center" fontWeight={700}>
+          This username exists, please try another one.
+        </Typography>
+      }
+      {/* {
+        <FormHelperText sx={{ fontSize: 'body2.fontSize', color: usernameError ? 'red' : 'white' }}>
+          Must be between 6 and 16 characters, alphanumeric only
+        </FormHelperText>} */}
+      {/* </FormControl> */}
+    </>
   );
 };
 

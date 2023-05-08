@@ -43,7 +43,7 @@ const FollowingCard = ({ isFollowing, setfollowingCard, fansList, followingsList
       <div>
         {
           selectedTab === 'following' ?
-            followingsList[0] === '' ? <div></div> :
+            (followingsList[0] === '' ? <div></div> :
               <Grid container spacing={1} style={{ marginTop: '0px' }}>
                 {followingsList.map((userId) => (
                   <Grid item xs={12} key={userId} style={{ paddingTop: '3%' }} >
@@ -55,9 +55,9 @@ const FollowingCard = ({ isFollowing, setfollowingCard, fansList, followingsList
                     </div>
                   </Grid>
                 ))}
-              </Grid>
+              </Grid>)
             :
-            fansList[0] === '' ? <div></div> :
+            (fansList[0] === '' ? <div></div> :
               <Grid container spacing={2} style={{ marginTop: '10px' }}>
                 {fansList.map((userId) => (
                   <Grid item xs={12} key={userId} style={{ paddingTop: '3%' }} >
@@ -69,19 +69,8 @@ const FollowingCard = ({ isFollowing, setfollowingCard, fansList, followingsList
                     </div>
                   </Grid>
                 ))}
-              </Grid> : fansList[0] === '' ? <Grid container spacing={1} style={{ marginTop: '0px' }}></Grid> :
-        <Grid container spacing={2} style={{ marginTop: '10px' }}>
-            {fansList.map((userId) => (
-                <Grid item xs={12} key={userId} style={{paddingTop:'3%'}} >
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between',padding: '10px',border: '1px solid #ccc',borderRadius: '5px'}}>
-                    <div onClick={()=>handleUserVist(userId)}>
-                        <UserInfoWrapper userID={userId}/>
-                    </div>
-                    <FollowWrapper loginUser={logginedUser} userID={userId}/>
-                </div>
-            </Grid>
-            ))}
-        </Grid>}
+              </Grid>)
+        }
       </div>
     </Card>
   );
