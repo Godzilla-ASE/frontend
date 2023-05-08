@@ -13,7 +13,6 @@ const UserInfoWrapper = (props) => {
   console.log('user', user)
 
   useEffect(() => {
-    console.log('?????')
     if (props.userID) {
       const fetchData = async () => {
         const user = await getOneUserInfo(props.userID);
@@ -22,7 +21,6 @@ const UserInfoWrapper = (props) => {
       fetchData();
     }
     if (props.user) {
-      console.log('Runnn!!')
       setUser(props.user)
     }
   }, [props]);

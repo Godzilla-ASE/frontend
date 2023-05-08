@@ -1,31 +1,22 @@
 import xhs from '../assets/xhs.png';
-import { useState, useEffect, useContext } from 'react'
+import { useState, useContext } from 'react'
 import { AiOutlineHome, AiOutlineLogin } from 'react-icons/ai';
-import { MdOutlineExplore } from 'react-icons/md';
-import { CgProfile } from 'react-icons/cg';
 import { RiImageAddFill } from 'react-icons/ri';
-import { BiMessageRoundedDetail, BiSearch } from 'react-icons/bi';
-import { NavLink, Outlet } from 'react-router-dom';
+import { BiMessageRoundedDetail } from 'react-icons/bi';
+import { NavLink, Outlet, useNavigate } from 'react-router-dom';
 import { useTheme } from '@emotion/react';
 import CreatePostDialog from '../views/CreatePost/CreatePostDialog';
 import MessageStack from '../views/MessageStack/MessageStack';
-import { MessageContext } from '../context/MessageContext';
+// import { MessageContext } from '../context/MessageContext';
 import useLoggedInUser from '../hooks/useLoggedInUser';
-import { useNavigate } from 'react-router-dom'
 import SearchUser from '../views/NavBar/SearchUser';
+import { Avatar, Typography } from '@mui/material';
 
 
 export default function NavBar() {
 
-  const { state, dispatch } = useContext(MessageContext)
+  // const { state, dispatch } = useContext(MessageContext)
   const [newMessage, setNewMessage] = useState(false)
-
-  // useEffect(() => {
-  //   if (state.messages.length > 0) {
-  //     console.log('messages', state.messages)
-  //     setNewMessage(true);
-  //   }
-  // }, [state.messages]);
 
   const loggedInUser = useLoggedInUser()
   const navigate = useNavigate()
@@ -36,6 +27,15 @@ export default function NavBar() {
 
   const navLinkStyle = {
     color: theme.palette.primary.main
+  }
+
+  const navLinkStyleProfile = {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    color: theme.palette.primary.main,
+    textDecoration: 'none'
   }
 
   const handleCreate = () => {
@@ -56,14 +56,28 @@ export default function NavBar() {
       <header>
         <nav>
           {/* <NavLink to="/"><img src={xhs} alt="logo" /></NavLink> */}
+          {/* Home */}
           <NavLink style={navLinkStyle} to="/"><AiOutlineHome size={28} /></NavLink>
+          {/* Create New Post */}
           {loggedInUser ? <NavLink style={navLinkStyle} onClick={handleCreate}><RiImageAddFill size={28} /></NavLink> : null}
+          {/* Search Users */}
           <SearchUser />
+          {/* Messages */}
           {loggedInUser ? <div className="nav-link-container" onClick={handleMessage}>
             {newMessage && <div className="badge"></div>}
             <NavLink style={navLinkStyle} onClick={handleMessage}><BiMessageRoundedDetail size={28} /></NavLink>
           </div> : null}
-          <NavLink style={navLinkStyle} to="/profile"><CgProfile size={28} /></NavLink>
+          {/* Profile / LogIn */}
+          {loggedInUser
+            ? <NavLink style={navLinkStyleProfile} to={`/profile/${loggedInUser.userID}`}>
+              <Avatar
+                src={loggedInUser.avatarUrl}
+                alt={`${loggedInUser.username}'s avatar`}
+                sx={{ width: 30, height: 30, marginRight: 1 }}
+              />
+              <Typography variant="body2">{loggedInUser.username}</Typography>
+            </NavLink>
+            : <NavLink style={navLinkStyle} to="/login"><AiOutlineLogin size={28} /></NavLink>}
         </nav>
         {loggedInUser ? <CreatePostDialog
           isOpen={createPost}

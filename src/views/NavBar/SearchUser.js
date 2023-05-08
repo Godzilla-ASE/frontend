@@ -1,20 +1,34 @@
 import { useState } from "react"
-import { Autocomplete, TextField, InputAdornment } from "@mui/material"
-import SearchIcon from '@mui/icons-material/Search';
+import { Autocomplete, TextField, InputAdornment, styled } from "@mui/material"
 import Fuse from 'fuse.js';
 import { useUsers } from '../../hooks/useUsers'
 import { BiSearch } from 'react-icons/bi';
 import UserInfoWrapper from "../../components/Wrapper/UserInfoWrapper";
+import { useNavigate } from 'react-router-dom'
+
+const CustomOption = styled('div')(({ theme }) => ({
+  backgroundColor: theme.palette.postBackground.main,
+  '&:hover': {
+    backgroundColor: theme.palette.postBackground.main,
+  },
+}));
 
 const SearchUser = () => {
 
+  const navigate = useNavigate()
+
   const test = [
-    { username: 'A', avatarUrl: 'https://images.unsplash.com/photo-1518756131217-31eb79b20e8f' },
-    { username: 'B', avatarUrl: 'https://images.unsplash.com/photo-1518756131217-31eb79b20e8f' },
-    { username: 'C', avatarUrl: 'https://images.unsplash.com/photo-1518756131217-31eb79b20e8f' },
-    { username: 'D', avatarUrl: 'https://images.unsplash.com/photo-1518756131217-31eb79b20e8f' },
-    { username: 'BE', avatarUrl: 'https://images.unsplash.com/photo-1518756131217-31eb79b20e8f' },
+    { username: 'A', avatarUrl: 'https://images.unsplash.com/photo-1518756131217-31eb79b20e8f', id: 1 },
+    { username: 'B', avatarUrl: 'https://images.unsplash.com/photo-1518756131217-31eb79b20e8f', id: 1 },
+    { username: 'C', avatarUrl: 'https://images.unsplash.com/photo-1518756131217-31eb79b20e8f', id: 1 },
+    { username: 'D', avatarUrl: 'https://images.unsplash.com/photo-1518756131217-31eb79b20e8f', id: 1 },
+    { username: 'BE', avatarUrl: 'https://images.unsplash.com/photo-1518756131217-31eb79b20e8f', id: 1 },
   ]
+
+  const handleClick = (id) => {
+    console.log('navigate!')
+    navigate(`/profile/${id}`)
+  }
 
   // const allUsers = useUsers()
   const allUsers = test
@@ -56,12 +70,12 @@ const SearchUser = () => {
         handleSearch(newInputValue)
       }}
       renderOption={(props, option) => (
-        <UserInfoWrapper
-          user={option}
-          onClick={() => {
-            console.log('Clicked avatar:', option.name);
-          }}
-        />
+        <CustomOption {...props} onClick={() =>
+          handleClick(option.id)}>
+          <UserInfoWrapper
+            user={option}
+          />
+        </CustomOption>
       )}
       renderInput={(params) => (
         <TextField
@@ -80,7 +94,7 @@ const SearchUser = () => {
         />
       )}
       sx={{
-        width: '30%',
+        width: '15%',
         '& .MuiInputBase-input::placeholder': {
           color: (theme) => theme.palette.primary.main, // 更改 placeholder 颜色
         },
