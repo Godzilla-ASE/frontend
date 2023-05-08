@@ -28,8 +28,6 @@ const AuthorInfoWrapper = ({ post }) => {
     )
   }
   
-  console.log('post', post)
-  console.log('post.creation_date', post.creation_date)
   const date = post.creation_date.slice(0, 10)
   
   if (post.username_from == null) {

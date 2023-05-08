@@ -5,7 +5,7 @@ import { deleteComment, deleteReply } from "../../services/comment";
 
 function Replys({ reply, loginedUserID }) {
   const content = reply.content;
-  const date = reply.creation_date;
+  const date = reply.creation_date.slice(0,10);
 
   return (
     <div>
