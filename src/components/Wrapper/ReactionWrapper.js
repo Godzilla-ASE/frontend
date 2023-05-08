@@ -17,27 +17,27 @@ const ReactionWrapper = ({ post }) => {
   const [dislikeList, setDislikeList] = useState("");
   const [sharing, setSharing] = useState(false);
   const logginedUser = useLoggedInUser();
+  const logginedID = localStorage.getItem("userID");
   const navigate = useNavigate();
   const theme = useTheme();
 
   // 按钮初始化
   // 判断登陆用户是否已点赞点踩这篇帖子
   useEffect(() => {
-
     if (post) {
-      setLikeList(post.like_users ? post.like_users.split(",") : []);
-      setDislikeList(post.unlike_users ? post.unlike_users.split(",") : []);
+
+      const newLikeList = post.like_users ? post.like_users.split(",") : [];
+      const newDislikeList = post.unlike_users ? post.unlike_users.split(",") : [];
+      setLikeList(newLikeList);
+      setDislikeList(newDislikeList);
       setlikedNum(post.likeNum);
       setDislikedNum(post.unlikeNum);
     }
-    if (post && logginedUser) {
-      if (post.like_users) {
-        setLikeList(post.like_users.split(','));
-        setDislikeList(post.unlike_users.split(','));
-        setlikedNum(post.likeNum);
-        setDislikedNum(post.unlikeNum);
-      }
+  }, [post]);
 
+  useEffect(() =>{
+    if (logginedUser){
+      console.log(likeList.includes(logginedUser.userID.toString()));
       if (likeList.includes(logginedUser.userID.toString())) {
         setLiked(true);
       } else {
@@ -49,9 +49,8 @@ const ReactionWrapper = ({ post }) => {
         setDisliked(false);
       }
     }
-  }, []);
+  }, [logginedUser]);
   // 按钮初始化结束
-
 
   const handleLikeClick = () => {
     if (!logginedUser) {

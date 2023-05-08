@@ -46,6 +46,7 @@ const CommentFooter = ({ post, user, replyComment }) => {
 
   const handlePostDelete = (postid) =>{
     deletePost(postid);
+    navigate('');
   }
 
   var placeholdertext = "Write your comments...";

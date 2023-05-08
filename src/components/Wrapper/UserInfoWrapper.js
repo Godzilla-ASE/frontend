@@ -7,8 +7,7 @@ import { useEffect, useState } from 'react';
 const UserInfoWrapper = (props) => {
   // #TODO change this to logginuser later
   const [userInfo, setUserInfo] = useState(null);
-  console.log('userinfowarpper', props.userID)
-
+  
   useEffect(() => {
     const fetchData = async () => {
       const userInfo = await getOneUserInfo(props.userID);

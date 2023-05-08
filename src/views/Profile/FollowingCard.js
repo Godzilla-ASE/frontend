@@ -5,8 +5,6 @@ import UserInfoWrapper from '../../components/Wrapper/UserInfoWrapper';
 import { useNavigate } from 'react-router-dom';
 
 const FollowingCard = ({ isFollowing, setfollowingCard, fansList, followingsList, logginedUser }) => {
-    console.log(followingsList);
-    console.log(logginedUser);
     const [selectedTab, setSelectedTab] = useState(isFollowing ? 'following' : 'followers');
     const navigate = useNavigate();
 
@@ -19,7 +17,6 @@ const FollowingCard = ({ isFollowing, setfollowingCard, fansList, followingsList
   };
 
   const handleUserVist = (userId) => {
-    console.log(`/profile/${userId}`);
     navigate(`/profile/${userId}`)
   };
 
@@ -44,7 +41,9 @@ const FollowingCard = ({ isFollowing, setfollowingCard, fansList, followingsList
           </div>
            
       <div>
-        {selectedTab === 'following' ? followingsList[0]==='' ? <Grid container spacing={1} style={{ marginTop: '0px' }}></Grid> : 
+        {
+        selectedTab === 'following' ? 
+        followingsList[0]==='' ? <div></div> : 
         <Grid container spacing={1} style={{ marginTop: '0px' }}>
           {followingsList.map((userId) => (
             <Grid item xs={12} key={userId} style={{paddingTop:'3%'}} >
@@ -56,7 +55,9 @@ const FollowingCard = ({ isFollowing, setfollowingCard, fansList, followingsList
                 </div>
             </Grid>
           ))}
-        </Grid> : fansList[0] === '' ? <Grid container spacing={1} style={{ marginTop: '0px' }}></Grid> :
+        </Grid> 
+        : 
+        fansList[0] === '' ? <div></div> : 
         <Grid container spacing={2} style={{ marginTop: '10px' }}>
             {fansList.map((userId) => (
                 <Grid item xs={12} key={userId} style={{paddingTop:'3%'}} >
@@ -64,7 +65,7 @@ const FollowingCard = ({ isFollowing, setfollowingCard, fansList, followingsList
                     <div onClick={()=>handleUserVist(userId)}>
                         <UserInfoWrapper userID={userId}/>
                     </div>
-                    <FollowWrapper loginUser={logginedUser} userId={userId}/>
+                    <FollowWrapper loginUser={logginedUser} userID={userId}/>
                 </div>
             </Grid>
             ))}

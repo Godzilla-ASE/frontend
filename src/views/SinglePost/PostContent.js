@@ -2,7 +2,7 @@ import { Typography } from '@mui/material';
 import CommentsBox from './CommentsBox';
 
 const PostContent = ({ post, comments, loginedUserID, onreplyCommentChange }) => {
-  console.log(post);
+  //console.log(post);
   return (
     // ｜-- PostContent（这篇post的内容）
     //        |-- <div> (这里面的内容可以上下滑动)

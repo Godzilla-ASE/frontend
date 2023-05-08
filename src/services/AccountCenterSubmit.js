@@ -1,3 +1,4 @@
+
 const AccountCenterSubmit = async (event, username, password, email, location, confirmPassword, 
     usernameError, emailError, passwordError, confirmPasswordError, locationError, 
     setUsernameError, setPasswordError, setConfirmPasswordError, setLocationError, setEmailError, 
@@ -99,9 +100,9 @@ const AccountCenterSubmit = async (event, username, password, email, location, c
         localStorage.setItem("userName",userName)
 
           // Redirect to login page after 3 seconds
-          //  setTimeout(() => {
-          //    navigate("/accountcenter"); // Replace "/login" with the actual URL of your login page
-          //  }, 1000);
+           setTimeout(() => {
+             navigate("/profile"); // Replace "/login" with the actual URL of your login page
+           }, 1000);
         } else if (response.status === 409) {
           const error = await response.text();
           setUsernameexistError(true);

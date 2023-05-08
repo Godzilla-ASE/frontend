@@ -8,14 +8,7 @@ function Comment({ comment, loginedUserID, onreplyCommentChange }) {
   const content = comment.content;
   const replys = comment.reply;
 
-  const creation_date = comment.creation_date;
-  
-  const timestamp = Date.parse(creation_date);
-  const creation_date_ = new Date(timestamp);
-  const year = new Date(creation_date_).getFullYear();
-  const month = new Date(creation_date_).getMonth() + 1;
-  const day = new Date(creation_date_).getDate();
-  const date = year+"-"+month+"-"+day;
+  const creation_date = comment.creation_date.slice(0,10);
 
   const handleReply = ()=>{
     onreplyCommentChange(comment);
@@ -34,7 +27,7 @@ function Comment({ comment, loginedUserID, onreplyCommentChange }) {
             {content}
           </Typography>
           <Typography variant="body3" color="secondary">
-            {creation_date ? date : <div></div>}
+            {creation_date ? creation_date : <div></div>}
           </Typography>
           <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
             {loginedUserID !== comment.userid ? <div></div> : <Button onClick={()=>handleDeleteComment(comment.id)}>Delete</Button>}
@@ -61,7 +54,7 @@ function Comment({ comment, loginedUserID, onreplyCommentChange }) {
             {content}
           </Typography>
           <Typography variant="body3" color="secondary">
-          {creation_date ? date : <div></div>}
+          {creation_date ? creation_date : <div></div>}
           </Typography>
           <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
           {loginedUserID !== comment.userid ? <div></div> : <Button onClick={()=>handleDeleteComment(comment.id)}>Delete</Button>}

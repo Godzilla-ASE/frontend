@@ -9,15 +9,16 @@ export default function FollowWapper({ loginUser, userID }) {
   const [UserInfo, setUserInfo] = useState(null);
   const [followed, setFollowed] = useState(false);
   const navigate = useNavigate();
-
+  //console.log(userID)
   // 获取被关注用户信息
 
   useEffect(() => {
-    getOneUserInfo(userID).then((result) => {
-      setUserInfo(result)
-      //console.log(result);
-    });
-  }, []);
+    const fetchData = async () => {
+      const result = await getOneUserInfo(userID);
+      setUserInfo(result);
+    };
+    fetchData();
+  }, [userID]);
 
   // 判断当前登陆用户是否已关注这个用户
   useEffect(() => {
@@ -34,10 +35,14 @@ export default function FollowWapper({ loginUser, userID }) {
 
   if (!UserInfo) {
     return (
-      <pre>Loading...</pre>
+      <pre>Loading.UserInfo..</pre>
     )
   }
   // 按钮初始化结束
+
+  if(loginUser.userID === userID){
+    return(<div></div>)
+  }
 
   const handleFollowClick = () => {
     if (!loginUser) {
