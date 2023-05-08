@@ -17,7 +17,7 @@
   /* border: 1px solid #dbdbdb; */
   border-radius: 5px;
   width: 500px;
-  /* background-color: #fff; */
+  background-color: #333333; 
 }
 
 .signup-heading {
@@ -42,6 +42,7 @@
 
 .signup-checkbox {
   margin-top: 8px;
+  border-color:#333333;
 }
 
 .signup-button {

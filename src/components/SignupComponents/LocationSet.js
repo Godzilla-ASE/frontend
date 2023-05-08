@@ -32,7 +32,7 @@ function LocationSet({location,
     <MenuItem value="St. Gallen">St. Gallen</MenuItem>
     </Select>
     {locationError &&
-    <FormHelperText sx={{ fontsize:'body2.fontSize', color: 'red' }}>
+    <FormHelperText sx={{ fontSize:'body2.fontSize', color: 'red' }}>
         Please select your location
         </FormHelperText>}
     </FormControl>

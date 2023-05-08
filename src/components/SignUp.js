@@ -118,10 +118,11 @@ const SignUp = () => {
           control={<Checkbox checked={isChecked} onChange={handleCheckboxChange} />}
           label="I agree to the policy, terms and conditions"
           className="signup-checkbox"
+          sx={{fontSize:'body2.fontSize',color:'secondary.main'}}
           error={isCheckedError}
         />
         {isCheckedError &&
-          <FormHelperText sx={{ fontSize:'body2.fontSize', color: 'secondary:main' }}>
+          <FormHelperText sx={{ fontSize:'body2.fontSize', color: 'red' }}>
             You should agree to our policy, terms and conditions. 
             </FormHelperText>}
         <Button variant="contained" color="primary" type="submit" className="signup-button">
@@ -136,7 +137,7 @@ const SignUp = () => {
         </Typography>
       </Box>
     <Box className="signup-link-to-login">
-        <Typography className="secondary">
+        <Typography color="secondary">
           Have an account? { }
         <Link href="./login" className="primary">
           Log in

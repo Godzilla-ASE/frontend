@@ -27,7 +27,7 @@ function EmailSet ({email,
               error={emailError}
         />
         {emailError &&
-        <FormHelperText sx={{ fontsize:'body2.fontSize', color: 'red' }}>
+        <FormHelperText sx={{ fontSize:'body2.fontSize', color: 'red' }}>
           Please type in correct email 
           </FormHelperText>}
     </FormControl>
