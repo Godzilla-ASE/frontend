@@ -63,10 +63,10 @@ const SignUp = () => {
       <Box
         className="signup-form-container"
       >
-        <Typography variant="h4" className="signup-heading">
+        <Typography variant="h4" className="signup-heading" sx={{fontSize: 'h1.fontSize', color: 'primary.main'}}>
           Godzilla
         </Typography>
-        <Typography  align="center">
+        <Typography  align="center" sx={{fontSize: 'h2.fontSize', color: 'primary.main'}}>
           Sign up to see posts from your friends.
         </Typography>
         <form
@@ -131,7 +131,7 @@ const SignUp = () => {
           pageStatus={pageStatus} 
           />
         </form>
-        <Typography variant="body2" color="textSecondary" className="signup-footer">
+        <Typography variant="body2" color="secondary" className="signup-footer">
           By signing up, you agree to our Terms, Data Policy and Cookies Policy.
         </Typography>
       </Box>
