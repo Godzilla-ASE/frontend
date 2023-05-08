@@ -4,7 +4,7 @@ import { Typography } from "@mui/material"
 export const FollowMessage = ({ message }) => {
   return (
     <>
-      <AuthorInfoWrapper post={message} />
+      <AuthorInfoWrapper post={message} styleSetting="start" />
       <Typography variant="body1" color="secondary">
         started to follow you.
       </Typography>
@@ -16,7 +16,7 @@ export const FollowMessage = ({ message }) => {
 export const LikeMessage = ({ message }) => {
   return (
     <>
-      <AuthorInfoWrapper post={message} />
+      <AuthorInfoWrapper post={message} styleSetting="start" />
       <Typography variant="body1" color="secondary">
         liked your post.
       </Typography>
@@ -28,7 +28,7 @@ export const LikeMessage = ({ message }) => {
 export const CommentMessage = ({ message }) => {
   return (
     <>
-      <AuthorInfoWrapper post={message} />
+      <AuthorInfoWrapper post={message} styleSetting="start" />
       <Typography variant="body1" color="secondary">
         commented: {message.send_to_client}
       </Typography>
@@ -40,7 +40,7 @@ export const CommentMessage = ({ message }) => {
 export const ReplyMessage = ({ message }) => {
   return (
     <>
-      <AuthorInfoWrapper post={message} />
+      <AuthorInfoWrapper post={message} styleSetting="start" />
       <Typography variant="body1" color="secondary">
         replied: {message.send_to_client}
       </Typography>

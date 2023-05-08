@@ -21,7 +21,7 @@ function Comment({ comment, loginedUserID, onreplyCommentChange }) {
     //console.log(loginedUserID, comment.userid)
     return (
       <div>
-        <AuthorInfoWrapper post={comment} />
+        <AuthorInfoWrapper post={comment} styleSetting="start" />
         <CardContent style={{ marginLeft: '9%' }}>
           <Typography color="secondary" variant="body2" >
             {content}
@@ -48,7 +48,7 @@ function Comment({ comment, loginedUserID, onreplyCommentChange }) {
     return (
       <div>
         <div style={{ borderTop: '1px solid #ccc', width: '70%', marginLeft: "15%" }}></div>
-        <AuthorInfoWrapper post={comment} />
+        <AuthorInfoWrapper post={comment} styleSetting="start" />
         <CardContent style={{ marginLeft: '10%' }}>
         <Typography color="secondary" variant="body2" >
             {content}

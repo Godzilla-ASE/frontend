@@ -4,9 +4,9 @@ import SockJS from 'sockjs-client';
 import { Stack, Paper, Box, styled } from '@mui/material';
 import { FollowMessage, ReplyMessage, CommentMessage, LikeMessage } from './MessageType';
 import DialogComponent from '../../components/Wrapper/DialogComponent';
-import useLoggedInUser from '../../Hooks/useLoggedInUser';
+import useLoggedInUser from '../../hooks/useLoggedInUser';
 import { MessageContext } from '../../context/MessageContext';
-import { useHistoryMessages } from '../../Hooks/useHistoryMessages';
+import { useHistoryMessages } from '../../hooks/useHistoryMessages';
 
 
 const FullWidthBox = styled(Box)(({ theme }) => ({
@@ -24,7 +24,7 @@ const MessageStack = ({ isOpen, onClose, setNewMessage }) => {
   useEffect(() => {
     // create and activate stomp
     const newClient = new Client({
-      webSocketFactory: () => new SockJS('http://localhost:10000/ase-websocket'),
+      webSocketFactory: () => new SockJS('http://172.20.10.3:10000/ase-websocket'),
       onConnect: () => {
         console.log('Connected');
 

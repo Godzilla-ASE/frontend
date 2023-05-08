@@ -26,7 +26,7 @@ const AuthorWrapper = ({ post }) => {
 
   return (
     <StyledDiv onClick={() => openProfile(post.userid)}>
-      <AuthorInfoWrapper post={post} />
+      <AuthorInfoWrapper post={post} styleSetting="space-between" />
       <ReactionWrapper post={post} />
     </StyledDiv>
   )

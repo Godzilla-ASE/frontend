@@ -5,11 +5,11 @@ import { deleteComment, deleteReply } from "../../services/comment";
 
 function Replys({ reply, loginedUserID }) {
   const content = reply.content;
-  const date = reply.creation_date.slice(0,10);
+  const date = reply.creation_date.slice(0, 10);
 
   return (
     <div>
-      <AuthorInfoWrapper post={reply} />
+      <AuthorInfoWrapper post={reply} styleSetting="start" />
       <CardContent style={{ marginLeft: '9%' }}>
         <Typography color="secondary" variant="body2" >
           {content}

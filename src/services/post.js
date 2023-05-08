@@ -1,7 +1,6 @@
 import axios from 'axios'
-//const baseUrl = 'http://172.20.10.3:9000/posts'
+const baseUrl = 'http://localhost:8080/posts'
 
-const baseUrl ='http://localhost:8080/posts'
 
 const getAll = async () => {
   const response = await axios.get(baseUrl)
@@ -14,7 +13,7 @@ const getAllByLocation = async location => {
 }
 
 const getAllByTag = async tag => {
-  const response = await axios.get(`${baseUrl}/tags/${tag}`, )
+  const response = await axios.get(`${baseUrl}/tags/${tag}`,)
   return response.data
 }
 
