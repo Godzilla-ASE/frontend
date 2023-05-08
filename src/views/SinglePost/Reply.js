@@ -18,7 +18,7 @@ function Replys({ reply, loginedUserID }) {
           {date}
         </Typography>
         <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-          {loginedUserID === reply.userid_from ? <Button onClick={()=>deleteReply(reply.replyId)}>Delete</Button>:<div></div> }
+          {loginedUserID === reply.userid_from ? <Button style={{fontSize: '12px'}} onClick={()=>deleteReply(reply.replyId)}>Delete</Button>:<div></div> }
         </div>
       </CardContent>
     </div>
