@@ -1,23 +1,24 @@
 import { useState } from "react"
-import { Autocomplete, TextField, inputAdornmentClasses } from "@mui/material"
+import { Autocomplete, TextField, InputAdornment } from "@mui/material"
+import SearchIcon from '@mui/icons-material/Search';
 import Fuse from 'fuse.js';
-import { useUsers } from '../../Hooks/useUsers'
+import { useUsers } from '../../hooks/useUsers'
+import { BiSearch } from 'react-icons/bi';
+import UserInfoWrapper from "../../components/Wrapper/UserInfoWrapper";
 
 const SearchUser = () => {
 
-  const options = [
-    { username: 'nmkdqzah', avatar: 'https://images.unsplash.com/photo-1479090793912-eb9929f4fdb2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1268&q=80' },
-    { username: 'eufgjzam', avatar: 'https://images.unsplash.com/photo-1479090793912-eb9929f4fdb2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1268&q=80' },
-    { username: 'vwomuyex', avatar: 'https://images.unsplash.com/photo-1479090793912-eb9929f4fdb2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1268&q=80' },
-    { username: 'crmyglps', avatar: 'https://images.unsplash.com/photo-1479090793912-eb9929f4fdb2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1268&q=80' },
-    { username: 'tbihmldx', avatar: 'https://images.unsplash.com/photo-1479090793912-eb9929f4fdb2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1268&q=80' },
-    { username: 'zvwdpmly', avatar: 'https://images.unsplash.com/photo-1479090793912-eb9929f4fdb2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1268&q=80' },
-    { username: 'xsjtnquz', avatar: 'https://images.unsplash.com/photo-1479090793912-eb9929f4fdb2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1268&q=80' }
+  const test = [
+    { username: 'A', avatarUrl: 'https://images.unsplash.com/photo-1518756131217-31eb79b20e8f' },
+    { username: 'B', avatarUrl: 'https://images.unsplash.com/photo-1518756131217-31eb79b20e8f' },
+    { username: 'C', avatarUrl: 'https://images.unsplash.com/photo-1518756131217-31eb79b20e8f' },
+    { username: 'D', avatarUrl: 'https://images.unsplash.com/photo-1518756131217-31eb79b20e8f' },
+    { username: 'BE', avatarUrl: 'https://images.unsplash.com/photo-1518756131217-31eb79b20e8f' },
   ]
 
-
-  // const [allUsers, setAllUsers] = useState('')
-  const allUsers = useUsers()
+  // const allUsers = useUsers()
+  const allUsers = test
+  // const [filteredUsers, setFilteredUsers] = useState([] || allUsers.slice(0, 5))
   const [filteredUsers, setFilteredUsers] = useState([] || allUsers.slice(0, 5))
 
   if (!allUsers) {
@@ -54,8 +55,29 @@ const SearchUser = () => {
       onInputChange={(event, newInputValue) => {
         handleSearch(newInputValue)
       }}
+      renderOption={(props, option) => (
+        <UserInfoWrapper
+          user={option}
+          onClick={() => {
+            console.log('Clicked avatar:', option.name);
+          }}
+        />
+      )}
       renderInput={(params) => (
-        <TextField {...params} label="" />
+        <TextField
+          {...params}
+          label=""
+          placeholder="Search for Users"
+          InputProps={{
+            ...params.InputProps,
+            startAdornment: (
+              <InputAdornment position="start">
+                {/* <SearchIcon color="primary" fontSize="28" /> */}
+                <BiSearch size={30} color="white" />
+              </InputAdornment>
+            ),
+          }}
+        />
       )}
       sx={{
         width: '30%',

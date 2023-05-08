@@ -22,14 +22,14 @@ const LoginSubmit = async (event, username, password,
         const authToken = user_body.token;
         const userID = user_body.id;
         const userName = user_body.username;
-        const userAvatar = user_body.avatar;
+        const userAvatarUrl = user_body.avatarUrl;
         // save user to localStorage
         // localStorage.setItem("loggedInUser", user);
         const user = {
           authToken: authToken,
           userID: userID,
           userName: userName,
-          avatar: userAvatar
+          avatarUrl: userAvatarUrl
         }
 
 
@@ -46,9 +46,9 @@ const LoginSubmit = async (event, username, password,
         setPageStatus("Logged in successfully.");
 
         // Redirect to login page after 3 seconds
-         setTimeout(() => {
-           navigate(previousUrl); // Replace "/login" with the actual URL of your login page
-         }, 1000);
+        setTimeout(() => {
+          navigate(previousUrl); // Replace "/login" with the actual URL of your login page
+        }, 1000);
       } else if (response.status === 404) {
         const error = await response.text();
         setUsernamecorrectError(true);

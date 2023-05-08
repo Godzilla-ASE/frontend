@@ -4,13 +4,13 @@ import { AiOutlineHome, AiOutlineLogin } from 'react-icons/ai';
 import { MdOutlineExplore } from 'react-icons/md';
 import { CgProfile } from 'react-icons/cg';
 import { RiImageAddFill } from 'react-icons/ri';
-import { BiMessageRoundedDetail } from 'react-icons/bi';
+import { BiMessageRoundedDetail, BiSearch } from 'react-icons/bi';
 import { NavLink, Outlet } from 'react-router-dom';
 import { useTheme } from '@emotion/react';
 import CreatePostDialog from '../views/CreatePost/CreatePostDialog';
 import MessageStack from '../views/MessageStack/MessageStack';
 import { MessageContext } from '../context/MessageContext';
-import useLoggedInUser from '../Hooks/useLoggedInUser';
+import useLoggedInUser from '../hooks/useLoggedInUser';
 import { useNavigate } from 'react-router-dom'
 import SearchUser from '../views/NavBar/SearchUser';
 
@@ -39,11 +39,7 @@ export default function NavBar() {
   }
 
   const handleCreate = () => {
-    if (!loggedInUser) {
-      navigate('/login')
-    } else {
-      setCreatePost(prev => !prev)
-    }
+    setCreatePost(prev => !prev)
   }
 
   const handleMessage = () => {
@@ -61,19 +57,19 @@ export default function NavBar() {
         <nav>
           {/* <NavLink to="/"><img src={xhs} alt="logo" /></NavLink> */}
           <NavLink style={navLinkStyle} to="/"><AiOutlineHome size={28} /></NavLink>
-          <NavLink style={navLinkStyle} onClick={handleCreate}><RiImageAddFill size={28} /></NavLink>
+          {loggedInUser ? <NavLink style={navLinkStyle} onClick={handleCreate}><RiImageAddFill size={28} /></NavLink> : null}
           <SearchUser />
-          <div className="nav-link-container" onClick={handleMessage}>
+          {loggedInUser ? <div className="nav-link-container" onClick={handleMessage}>
             {newMessage && <div className="badge"></div>}
             <NavLink style={navLinkStyle} onClick={handleMessage}><BiMessageRoundedDetail size={28} /></NavLink>
-          </div>
+          </div> : null}
           <NavLink style={navLinkStyle} to="/profile"><CgProfile size={28} /></NavLink>
         </nav>
-        <CreatePostDialog
+        {loggedInUser ? <CreatePostDialog
           isOpen={createPost}
           onClose={handleCreate}
-        />
-        {loggedInUser ? <MessageStack isOpen={openMessage} onClose={handleMessage} setNewMessage={setNewMessage}/> : null}
+        /> : null}
+        {loggedInUser ? <MessageStack isOpen={openMessage} onClose={handleMessage} setNewMessage={setNewMessage} /> : null}
       </header>
 
       <main>

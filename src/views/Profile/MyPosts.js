@@ -2,10 +2,10 @@ import { useState, useEffect } from 'react';
 import { Typography, Box } from '@mui/material';
 import Masonry from '@mui/lab/Masonry';
 import PostCardFooter from '../../components/PostCardFooter';
-import { usePosts } from '../../Hooks/usePosts';
+import { usePosts } from '../../hooks/usePosts';
 import { getAll, getPostsByUserID } from '../../services/post';
 
-export default function MyPosts({userid}) {
+export default function MyPosts({ userid }) {
   //console.log(userid);
 
   const [posts, setPostData] = useState(null);

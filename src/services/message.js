@@ -1,6 +1,6 @@
 import axios from "axios"
 
-const baseUrl = 'http://localhost:10000/notification'
+const baseUrl = 'http://172.20.10.3:10000/notification'
 
 const getHistoryMessages = async (userID) => {
   const response = await axios.get(`${baseUrl}/${userID}`);

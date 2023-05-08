@@ -9,7 +9,7 @@ function Replys({ reply, loginedUserID }) {
 
   return (
     <div>
-      <AuthorInfoWrapper post={reply} />
+      <AuthorInfoWrapper post={reply} styleSetting="start" />
       <CardContent style={{ marginLeft: '9%' }}>
         <Typography color="secondary" variant="body2" >
           {content}
@@ -18,7 +18,7 @@ function Replys({ reply, loginedUserID }) {
           {date}
         </Typography>
         <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-          {loginedUserID === reply.userid_from ? <Button onClick={()=>deleteReply(reply.replyId)}>Delete</Button>:<div></div> }
+          {loginedUserID === reply.userid_from ? <Button onClick={() => deleteReply(reply.replyId)}>Delete</Button> : <div></div>}
         </div>
       </CardContent>
     </div>

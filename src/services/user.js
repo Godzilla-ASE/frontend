@@ -4,9 +4,7 @@ const baseUserUrl = 'http://172.20.10.4:8080/users'
 
 
 const getOneUserInfo = async (id) => {
-  //console.log("发到了这个接口：",`${baseUserUrl}/${id}`)
   const returnedUser = await axios.get(`${baseUserUrl}/${id}`)
-  //console.log("得到了这些数据",returnedUser.data)
   return returnedUser.data
 }
 

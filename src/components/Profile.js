@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
-import useLoggedInUser from "../Hooks/useLoggedInUser";
+import useLoggedInUser from "../hooks/useLoggedInUser";
 import { useNavigate } from 'react-router-dom'
 import { Paper, Button, Typography, Avatar, Grid } from '@mui/material';
 import { getOneUserInfo } from "../services/user";
 import MyPosts from "./MyPosts";
-import { getAll, localhost } from "../services/post";
-import { usePosts } from "../Hooks/usePosts";
+import { getAll, 172.20.10.3 } from "../services/post";
+import { usePosts } from "../hooks/usePosts";
 
 export default function Profile() {
   // 获取登陆用户信息，需要它的ID做事情

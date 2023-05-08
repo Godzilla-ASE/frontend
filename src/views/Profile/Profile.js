@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
-import useLoggedInUser from "../../Hooks/useLoggedInUser";
+import useLoggedInUser from "../../hooks/useLoggedInUser";
 import { useNavigate } from 'react-router-dom'
 import { Paper, Button, Typography, Avatar, Grid } from '@mui/material';
 import { getOneUserInfo } from "../../services/user";
 import MyPosts from "./MyPosts";
 import { getAll, getPostsByUserID } from "../../services/post";
-import { usePosts } from "../../Hooks/usePosts";
+import { usePosts } from "../../hooks/usePosts";
 import DialogComponent from "../../components/Wrapper/DialogComponent";
 import FollowingCard from "./FollowingCard";
 import { hover } from "@testing-library/user-event/dist/hover";

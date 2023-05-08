@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 import { AiOutlineLike, AiOutlineDislike, AiFillLike, AiFillDislike, AiOutlineShareAlt } from 'react-icons/ai';
 import { useNavigate } from 'react-router-dom'
-import useLoggedInUser from '../../Hooks/useLoggedInUser';
+import useLoggedInUser from '../../hooks/useLoggedInUser';
 import { Typography, useTheme } from '@mui/material';
 import { addLike, cancelLike, addDislike, cancelDislike } from '../../services/post';
 import DialogComponent from './DialogComponent';
@@ -109,7 +109,7 @@ const ReactionWrapper = ({ post }) => {
       </div>
       <DialogComponent
         isOpen={sharing}
-        children={<ShareCard url={"http://localhost/post/" + post.id} setSharing={setSharing} />}
+        children={<ShareCard url={"http://172.20.10.3/post/" + post.id} setSharing={setSharing} />}
       />
     </div>
   )

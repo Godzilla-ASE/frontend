@@ -10,7 +10,7 @@ import CommentFooter from './CommentFooter';
 import PostContent from './PostContent';
 import { useTheme } from '@mui/material/styles';
 import UserInfoWrapper from '../../components/Wrapper/UserInfoWrapper';
-import useLoggedInUser from "../../Hooks/useLoggedInUser";
+import useLoggedInUser from "../../hooks/useLoggedInUser";
 
 
 function SinglePost() {
@@ -38,7 +38,7 @@ function SinglePost() {
     fetchData()
   }, [])
   console.log(post);
-  
+
   if (!post) {
     return (
       <div style={{ height: 829, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>

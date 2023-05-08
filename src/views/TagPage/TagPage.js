@@ -2,12 +2,12 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Masonry from '@mui/lab/Masonry';
 import PostCardFooter from '../../components/PostCardFooter';
-import { usePostsByTag } from '../../Hooks/usePostsbyTag';
+import { usePostsByTag } from '../../hooks/usePostsbyTag';
 import { useParams } from 'react-router-dom';
+import { Typography } from '@mui/material';
 
 export default function TagPage() {
   const tag = useParams().tagName
-  console.log('tag', tag)
   const posts = usePostsByTag(tag)
 
   if (!posts) {
@@ -22,7 +22,9 @@ export default function TagPage() {
 
   return (
     <>
-      <h2>#{tag}</h2>
+      <Typography variant="h2">
+        {tag}
+      </Typography>
       <Box sx={{ width: 4 / 5, minHeight: 829, margin: '0 auto', paddingTop: '80px' }}>
         <Masonry columns={5} spacing={2}>
           {posts.map((post, index) => (

@@ -34,7 +34,6 @@ function App() {
         <Route path="/accountcenter" element={<AccountCenter />}></Route>
         <Route path="/post/:postId" element={<SinglePost />} />
         <Route path="/profile/:visitedUserId" element={<ProfileVisit />} />
-        {/* #TODO Add Tag Page: something like homepage but with a tag title and filtered posts*/}
         <Route path="/tag/:tagName" element={<TagPage />} />
         <Route path="/location/:locationName" element={<LocationPage />} />
       </Route>
