@@ -1,15 +1,6 @@
 import React, { useState } from "react";
 import { FormControl, InputLabel, OutlinedInput, FormHelperText, TextField, styled, Typography } from "@mui/material";
-import SingleLineInput from "../Inputs/SingleLineInput";
-
-const StyledInput = styled(TextField)(({ theme }) => ({
-  '& input::placeholder': {
-    color: theme.palette.primary.main
-  },
-  '& input': {
-    color: theme.palette.primary.main
-  }
-}));
+import StyledTextField from '../Inputs/StyledTextField'
 
 function UsernameSet({ username,
   usernameError,
@@ -51,7 +42,7 @@ function UsernameSet({ username,
     <>
       {/* <FormControl variant="outlined" className="signup-input"> */}
       {/* <InputLabel htmlFor="username-input" shrink="true">Username</InputLabel> */}
-      <StyledInput
+      <StyledTextField
         value={username}
         onChange={handleUsernameChange}
         label="Username"
