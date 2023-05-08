@@ -15,9 +15,14 @@ function UsernameSet({ username,
 
   // #TODO 转移 usernameError， setUserNameError 到这个组件
 
+  const hasSymbol = /[,.?!@#$%^&_=+-]+/
+
   const handleUsernameChange = (event) => {
     if (event.target.value) {
       setNoNameError(false)
+    }
+    if (hasSymbol.test(event.target.value)) {
+      setUsernameError(true)
     }
     if (usernameError && /^[a-zA-Z0-9]{6,16}$/.test(event.target.value)) {
       setUsernameError(false)
@@ -46,30 +51,34 @@ function UsernameSet({ username,
         value={username}
         onChange={handleUsernameChange}
         label="Username"
-        placeholder="6-16 alphanumeric characters"
         color="primary"
         focused
         error={noNameError || usernameError || usernameexistError}
         onBlur={handleUserNameBlur}
       />
-      {(usernameError && username.length < 6)
+      <Typography variant="body2" component="div">
+        <ul>
+          <li style={{ color: (username.length >= 6 && username.length <= 16) ? 'green' : 'white', fontWeight: 700 }}>Between 6-16 charaters.</li>
+        </ul>
+      </Typography>
+      {/* {(usernameError && username.length < 6)
         ? <Typography variant="body2" color="error" align="center" fontWeight={700}>
           Username is too short. It has to be at least 6 characters.
         </Typography>
         : null
-      }
-      {(usernameError && username.length >= 6 && username.length <= 16)
+      } */}
+      {hasSymbol.test(username)
         ? <Typography variant="body2" color="error" align="center" fontWeight={700}>
           Username contains non-alphanumeric characters.
         </Typography>
         : null
       }
-      {(usernameError && username.length > 16)
+      {/* {(usernameError && username.length > 16)
         ? <Typography variant="body2" color="error" align="center" fontWeight={700}>
           Username is too long. It has to be no more than 16 characters.
         </Typography>
         : null
-      }
+      } */}
       {noNameError
         ? <Typography variant="body2" color="error" align="center" fontWeight={700}>
           What's your name?

@@ -63,7 +63,7 @@ const SignUp = () => {
       <Box
         className="signup-form-container"
       >
-        <Typography variant="h4" className="signup-heading" sx={{ fontSize: 'h1.fontSize', color: 'primary.main' }}>
+        <Typography variant="h2" className="signup-heading" sx={{ color: 'primary.main' }}>
           Godzilla
         </Typography>
         <Typography variant="body1" align="center" color="primary">
@@ -115,7 +115,7 @@ const SignUp = () => {
             setLocationChanged={setLocationChanged}
           />
           <FormControlLabel
-            control={<Checkbox checked={isChecked} onChange={handleCheckboxChange} />}
+            control={<Checkbox color="primary" checked={isChecked} onChange={handleCheckboxChange} />}
             label="I agree to the policy, terms and conditions"
             className="signup-checkbox"
             sx={{ fontSize: 'body2.fontSize', color: 'secondary.main' }}
@@ -132,9 +132,9 @@ const SignUp = () => {
             pageStatus={pageStatus}
           />
         </form>
-        <Typography variant="body2" color="secondary" className="signup-footer">
+        {/* <Typography variant="body2" color="secondary" className="signup-footer">
           By signing up, you agree to our Terms, Data Policy and Cookies Policy.
-        </Typography>
+        </Typography> */}
       </Box>
       <Box className="signup-link-to-login">
         <Link to="/login" style={{ textDecoration: 'none' }}>
