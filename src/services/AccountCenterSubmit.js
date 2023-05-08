@@ -87,13 +87,13 @@ const AccountCenterSubmit = async (event, username, password, email, location, c
           localStorage.setItem("user", JSON.stringify(updatedUser));
 
           const userName = updatedUser.username;
-          const userAvatar = updatedUser.avatar;
+          const userAvatarUrl = updatedUser.avatarUrl;
 
           const user = {
           authToken: token,
           userID: userID,
           userName: userName,
-          avatar: userAvatar
+          avatarUrl: userAvatarUrl
           }
 
         localStorage.setItem("loggedInUser", JSON.stringify(user));

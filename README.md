@@ -1,5 +1,6 @@
 # 最近commit
-Refactor, 添加查看Commets,replys,share 功能
+
+- finished avatarUrl changed.
 
 ----
 

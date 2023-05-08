@@ -121,7 +121,7 @@ const SignUp = () => {
           error={isCheckedError}
         />
         {isCheckedError &&
-          <FormHelperText sx={{  color: 'red' }}>
+          <FormHelperText sx={{ fontSize:'body2.fontSize', color: 'secondary:main' }}>
             You should agree to our policy, terms and conditions. 
             </FormHelperText>}
         <Button variant="contained" color="primary" type="submit" className="signup-button">
@@ -136,9 +136,9 @@ const SignUp = () => {
         </Typography>
       </Box>
     <Box className="signup-link-to-login">
-        <Typography>
+        <Typography className="secondary">
           Have an account? { }
-        <Link href="./login" className="link-to-login" style={{color:"black"}}>
+        <Link href="./login" className="primary">
           Log in
         </Link>
         </Typography>

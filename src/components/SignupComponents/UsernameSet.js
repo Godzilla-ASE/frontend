@@ -30,11 +30,11 @@ function UsernameSet({username,
               error={usernameError || usernameexistError}
             />
             {
-            <FormHelperText sx={{color: usernameError ? 'red' : 'inherit'}}>
+            <FormHelperText sx={{fontsize:'body2.fontSize',color: usernameError ? 'red' : 'secondary.main'}}>
               Must be between 6 and 16 characters, alphanumeric only
               </FormHelperText>}
             {usernameexistError &&
-            <FormHelperText sx={{  color: 'red' }}>
+            <FormHelperText sx={{ fontsize:'body2.fontSize', color: 'red' }}>
               Username exists, please try another 
               </FormHelperText>}
           </FormControl>
