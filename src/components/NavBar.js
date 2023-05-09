@@ -43,12 +43,8 @@ export default function NavBar() {
   }
 
   const handleMessage = () => {
-    if (!loggedInUser) {
-      navigate('/login')
-    } else {
-      setOpenMessage(prev => !prev);
-      setNewMessage(false)
-    }
+    setOpenMessage(prev => !prev);
+    setNewMessage(false)
   }
 
   return (
