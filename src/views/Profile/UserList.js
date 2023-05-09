@@ -39,9 +39,6 @@ const UserList = ({ titleText, setCardOpen, userList, logginedUser }) => {
                 ))}
             </Grid> 
             }
-            
-
-
         </Card>
     )
 

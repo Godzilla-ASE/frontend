@@ -11,6 +11,7 @@ import FollowingCard from "./FollowingCard";
 import { hover } from "@testing-library/user-event/dist/hover";
 import { IoLocationOutline } from "react-icons/io5";
 import LogoutButton from "../../components/AccountCenter/LogoutButton";
+import UserList from "./UserLIst";
 
 
 export default function Profile() {
@@ -44,15 +45,9 @@ export default function Profile() {
     )
   }
 
-  console.log('profile:', logginedUserInfo);
   const followingsList = logginedUserInfo.followings.split(',');
   const fansList = logginedUserInfo.fans.split(',');
   const avatar = logginedUserInfo.avatarUrl;
-  console.log(avatar);
-  //console.log(fansList);
-  function handleLogout() {
-
-  }
 
   function handleFollowingsList() {
     setfollowingCard(true);
@@ -97,7 +92,7 @@ export default function Profile() {
             <Typography onClick={() => handleFollowingsList()} fontSize={16} color={'#ffffff'} style={{ paddingTop: '3%', paddingBottom: '0%', cursor: 'pointer' }} >  Followings <br></br> {logginedUserInfo.followings === "" ? 0 : logginedUserInfo.followings.split(',').length} </Typography>
           </Grid>
           <Grid item xs={1}>
-            <Typography onClick={() => handleFansList()} fontSize={16} color={'#ffffff'} style={{ paddingTop: '3%', paddingBottom: '0%', cursor: 'pointer' }} >  Fans <br></br> <></>{logginedUserInfo.fans === "" ? 0 : logginedUserInfo.fans.split(',').length} </Typography>
+            <Typography onClick={() => handleFansList()} fontSize={16} color={'#ffffff'} style={{ paddingTop: '3%', paddingBottom: '0%', cursor: 'pointer' }} >  Followers <br></br> <></>{logginedUserInfo.fans === "" ? 0 : logginedUserInfo.fans.split(',').length} </Typography>
           </Grid>
           <Grid item xs={2}>
             <Typography fontSize={16} color={'#ffffff'} style={{ paddingTop: '3%', paddingBottom: '0%' }} >  Location <br></br> {logginedUserInfo.location}<IoLocationOutline></IoLocationOutline> </Typography>
@@ -109,11 +104,11 @@ export default function Profile() {
       </Paper>
       <DialogComponent
         isOpen={followingCard}
-        children={<FollowingCard isFollowing={true} setfollowingCard={setfollowingCard} fansList={fansList} followingsList={followingsList} logginedUser={logginedUser} />}
+        children={<UserList titleText={"You are following:"} setCardOpe={setfollowingCard} userList={followingsList} logginedUser={logginedUser} />}
       />
       <DialogComponent
         isOpen={fansCard}
-        children={<FollowingCard isFollowing={false} setfollowingCard={setfansCard} fansList={fansList} followingsList={followingsList} logginedUser={logginedUser} />}
+        children={<UserList titleText={"Your followers:"} setCardOpe={setfansCard} userList={fansList} logginedUser={logginedUser} />}
       />
     </div>
   );
