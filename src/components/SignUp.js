@@ -5,9 +5,9 @@ import {
   Checkbox,
   FormControlLabel,
   FormHelperText,
-  Link,
   Typography,
 } from "@mui/material";
+import { Link } from 'react-router-dom';
 import { useNavigate } from "react-router-dom"; // Import useHistory hook from react-router-dom
 import GetPageStatus from "./GetPageStatus";
 import UsernameSet from "./SignupComponents/UsernameSet";
@@ -41,8 +41,8 @@ const SignUp = () => {
   const [emailChanged, setEmailChanged] = useState(false);
   const [passwordChanged, setPasswordChanged] = useState(false);
   const [locationChanged, setLocationChanged] = useState(false);
-  
-  const navigate = useNavigate(); 
+
+  const navigate = useNavigate();
 
   const handleFullnameChange = (event) => {
     setFullname(event.target.value);
@@ -63,20 +63,20 @@ const SignUp = () => {
       <Box
         className="signup-form-container"
       >
-        <Typography variant="h4" className="signup-heading">
+        <Typography variant="h2" className="signup-heading" sx={{ color: 'primary.main' }}>
           Godzilla
         </Typography>
-        <Typography  align="center">
+        <Typography variant="body1" align="center" color="primary">
           Sign up to see posts from your friends.
         </Typography>
         <form
           onSubmit={(event) => SignupSubmit(event, username, password, email, location, confirmPassword, isChecked,
             usernameError, emailError, passwordError, confirmPasswordError, locationError, isCheckedError,
-             setUsernameError, setPasswordError, setConfirmPasswordError, setLocationError, setEmailError,
-              setUsernameexistError, setIsCheckedError, setPageStatus, SIGNUP_API, navigate)}
+            setUsernameError, setPasswordError, setConfirmPasswordError, setLocationError, setEmailError,
+            setUsernameexistError, setIsCheckedError, setPageStatus, SIGNUP_API, navigate)}
           className="signup-form"
-        >  
-        <UsernameSet
+        >
+          <UsernameSet
             username={username}
             setUsername={setUsername}
             setUsernameError={setUsernameError}
@@ -114,34 +114,34 @@ const SignUp = () => {
             setPageStatus={setPageStatus}
             setLocationChanged={setLocationChanged}
           />
-        <FormControlLabel
-          control={<Checkbox checked={isChecked} onChange={handleCheckboxChange} />}
-          label="I agree to the policy, terms and conditions"
-          className="signup-checkbox"
-          error={isCheckedError}
-        />
-        {isCheckedError &&
-          <FormHelperText sx={{  color: 'red' }}>
-            You should agree to our policy, terms and conditions. 
+          <FormControlLabel
+            control={<Checkbox color="primary" checked={isChecked} onChange={handleCheckboxChange} />}
+            label="I agree to the policy, terms and conditions"
+            className="signup-checkbox"
+            sx={{ fontSize: 'body2.fontSize', color: 'secondary.main' }}
+            error={isCheckedError}
+          />
+          {isCheckedError &&
+            <FormHelperText sx={{ fontSize: 'body2.fontSize', color: 'red' }}>
+              You should agree to our policy, terms and conditions.
             </FormHelperText>}
-        <Button variant="contained" color="primary" type="submit" className="signup-button">
-          Sign up
-        </Button>
-        <GetPageStatus 
-          pageStatus={pageStatus} 
+          <Button variant="contained" color="primary" type="submit" className="signup-button">
+            Sign up
+          </Button>
+          <GetPageStatus
+            pageStatus={pageStatus}
           />
         </form>
-        <Typography variant="body2" color="textSecondary" className="signup-footer">
+        {/* <Typography variant="body2" color="secondary" className="signup-footer">
           By signing up, you agree to our Terms, Data Policy and Cookies Policy.
-        </Typography>
+        </Typography> */}
       </Box>
-    <Box className="signup-link-to-login">
-        <Typography>
-          Have an account? { }
-        <Link href="./login" className="link-to-login" style={{color:"black"}}>
-          Log in
+      <Box className="signup-link-to-login">
+        <Link to="/login" style={{ textDecoration: 'none' }}>
+          <Typography color="secondary">
+            Have an account? Log in.
+          </Typography>
         </Link>
-        </Typography>
       </Box>
     </Box>
   );

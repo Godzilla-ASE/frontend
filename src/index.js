@@ -59,6 +59,20 @@ const theme = createTheme({
     submit: {
       main: '#0095f6'
     }
+  },
+  components: {
+    MuiCheckbox: {
+      styleOverrides: {
+        root: {
+          '& .MuiSvgIcon-root': {
+            color: 'white',
+            '&.Mui-checked': {
+              color: 'white',
+            },
+          },
+        },
+      },
+    },
   }
 });
 

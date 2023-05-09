@@ -25,7 +25,7 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import dayjs from 'dayjs';
-import useS3Upload from '../Hooks/useS3Upload'
+import useS3Upload from '../hooks/useS3Upload'
 
 const AccountCenter = () => {
 
@@ -35,7 +35,7 @@ const AccountCenter = () => {
   const token = window.localStorage.getItem("authToken");
   const userID = window.localStorage.getItem("userID")
   //console.log(user)
-  //console.log(user.userName)
+  //console.log(user.username)
 
   const [username, setUsername] = useState(user ? user.username : "");
   const [email, setEmail] = useState(user ? user.email : "");

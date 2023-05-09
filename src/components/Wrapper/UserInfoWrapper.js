@@ -2,38 +2,42 @@
 import { Avatar, Box, Typography } from '@mui/material';
 import { getOneUserInfo } from '../../services/user';
 import { useEffect, useState } from 'react';
+import useLoggedInUser from '../../hooks/useLoggedInUser'
 
 
 const UserInfoWrapper = (props) => {
-  // #TODO change this to logginuser later
-  const [userInfo, setUserInfo] = useState(null);
-  
+  console.log('props', props)
+  const loggedInUser = useLoggedInUser()
+  const [user, setUser] = useState(loggedInUser);
+
+  console.log('user', user)
+
   useEffect(() => {
-    const fetchData = async () => {
-      const userInfo = await getOneUserInfo(props.userID);
-      setUserInfo(userInfo);
-    };
-    fetchData();
-  }, []);
-
-
-  if (!userInfo) {
-    return (
-      <pre>Loading...</pre>
-    )
-  }
+    if (props.userID) {
+      const fetchData = async () => {
+        const user = await getOneUserInfo(props.userID);
+        setUser(user);
+      };
+      fetchData();
+    }
+    if (props.user) {
+      setUser(props.user)
+    }
+  }, [props]);
 
   return (
-    <Box display="flex" alignItems="center">
-      <Avatar
-        src="https://images.unsplash.com/photo-1558642452-9d2a7deb7f62"
-        alt={`${userInfo.username}'s avatar`}
-        sx={{ width: 30, height: 30, marginRight: 1 }}
-      />
-      <Typography variant="body2" color="secondary" fontWeight="bold">
-        {userInfo.username}
-      </Typography>
-    </Box>
+    (user &&
+      <Box display="flex" alignItems="center">
+        <Avatar
+          src={user.avatarUrl}
+          alt={`${user.username}'s avatar`}
+          sx={{ width: 30, height: 30, marginRight: 1 }}
+        />
+        <Typography variant="body2" color="secondary" fontWeight="bold">
+          {user.username}
+        </Typography>
+      </Box >
+    ) || null
   );
 };
 

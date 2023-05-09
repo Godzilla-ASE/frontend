@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import { getAllByLocation } from '../services/post';
 
-export const usePostsByLocation = () => {
+export const usePostsByLocation = (location) => {
   const [data, setData] = useState(null);
   useEffect(() => {
     const fetchData = async () => {
-      const data = await getAllByLocation()
+      const data = await getAllByLocation(location)
       setData(data)
     }
 

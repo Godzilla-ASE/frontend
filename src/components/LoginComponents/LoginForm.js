@@ -2,20 +2,20 @@ import React, { useState } from "react";
 import {
   Box,
   Button,
-  Link,
   Typography,
 } from "@mui/material";
+import { Link } from 'react-router-dom';
 import { useNavigate, useLocation } from 'react-router-dom';
 
 import UsernameInput from "./UsernameInput";
 import PasswordInput from "./PasswordInput";
 import LoginSubmit from "../../services/LoginSubmit";
 import GetPageStatus from "../GetPageStatus";
-import { LOGIN_API} from "../../services/APIs";
+import { LOGIN_API } from "../../services/APIs";
 import "./Login.css"
 //import LoginStatus from "./LoginStatus";
 
-function LoginForm(){
+function LoginForm() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [usernameError, setUsernameError] = useState(false);
@@ -26,7 +26,7 @@ function LoginForm(){
 
   const location = useLocation();
   const previousUrl = location.state?.from === '/login' || location.state?.from === '/signup' ? '/' : location.state?.from ?? '/';
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   const handleUsernameChange = (event) => {
     setUsername(event.target.value);
@@ -45,7 +45,7 @@ function LoginForm(){
   return (
     <Box className="login-container">
       <Box className="login-form-container">
-        <form onSubmit={(event) => LoginSubmit(event, username, password, 
+        <form onSubmit={(event) => LoginSubmit(event, username, password,
           setUsernameError, setPasswordError, setUsernamecorrectError, setPasswordcorrectError, setPageStatus,
           LOGIN_API, navigate, previousUrl)} className="login-form">
           <UsernameInput
@@ -63,18 +63,23 @@ function LoginForm(){
           <Button variant="contained" color="primary" type="submit" className="login-button">
             Log In
           </Button>
-          <GetPageStatus 
-          pageStatus={pageStatus} 
+          <GetPageStatus
+            pageStatus={pageStatus}
           />
         </form>
       </Box>
       <Box align="center" className="link-to-signup">
-        <Typography variant="body3">
+        <Link to="/signup" style={{ textDecoration: 'none' }}>
+          <Typography color="secondary">
+            Don't have an account? Sign up
+          </Typography>
+        </Link>
+        {/* <Typography variant="body1" color="secondary">
           Don't have an account?{" "}
-          <Link href="/signup" variant="body3" style={{ color: "black" }}>
-            Sign up
+          <Link href="/signup" variant="body1" style={{ color: "primary.main" }}>
+            
           </Link>
-        </Typography>
+        </Typography> */}
       </Box>
     </Box>
   );
