@@ -2,12 +2,12 @@
 import { useState, useEffect } from 'react';
 import { AiOutlineLike, AiOutlineDislike, AiFillLike, AiFillDislike, AiOutlineShareAlt } from 'react-icons/ai';
 import { useNavigate } from 'react-router-dom'
-import useLoggedInUser from '../../hooks/useLoggedInUser';
+import useLoggedInUser from '../../Hooks/useLoggedInUser';
 import { Typography, useTheme } from '@mui/material';
 import { addLike, cancelLike, addDislike, cancelDislike } from '../../services/post';
 import DialogComponent from './DialogComponent';
 import ShareCard from '../ShareCard';
-import UserList from '../../views/Profile/UserLIst';
+import UserList from '../../views/Profile/UserList';
 
 const ReactionWrapper = ({ post }) => {
   const [liked, setLiked] = useState(false);
@@ -103,7 +103,7 @@ const ReactionWrapper = ({ post }) => {
           : <AiOutlineLike className="likesIcon" color={theme.palette.secondary.main} size={theme.typography.body2.fontSize * 1.3} />
         }
       </div>
-      <div onClick={openLikeList} >
+      <div onClick={openLikeList} style={{ cursor: 'pointer'}}>
         { post.likeNum > 0
           ? <Typography variant='body2' align="left" fontWeight="bold" color="secondary">{post.likeNum}</Typography>
           : null}
@@ -117,9 +117,9 @@ const ReactionWrapper = ({ post }) => {
           : <AiOutlineDislike className="dislikesIcon" color={theme.palette.secondary.main} size={theme.typography.body2.fontSize * 1.3} />
         }
       </div>
-      <div onClick={openDisLikeList} >
+      <div onClick={openDisLikeList} style={{ cursor: 'pointer'}}>
           { post.unlikeNum > 0
-            ? <Typography variant='body2' align="left" fontWeight="bold" color="secondary">{post.unlikeNum}</Typography>
+            ? <Typography variant='body2' align="left" fontWeight="bold" color="secondary" >{post.unlikeNum}</Typography>
             : null}
       </div>
       </div>

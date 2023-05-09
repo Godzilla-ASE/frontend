@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import Masonry from '@mui/lab/Masonry';
 import PostCardFooter from '../../components/PostCardFooter';
 import { usePostValue } from '../../context/PostContext';
-import { usePosts } from '../../hooks/usePosts';
+import { usePosts } from '../../Hooks/usePosts';
 // import { usePosts } from '../../components/Helper/usePosts';
 
 export default function Homepage() {

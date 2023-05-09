@@ -8,7 +8,7 @@ import { useTheme } from '@emotion/react';
 import CreatePostDialog from '../views/CreatePost/CreatePostDialog';
 import MessageStack from '../views/MessageStack/MessageStack';
 // import { MessageContext } from '../context/MessageContext';
-import useLoggedInUser from '../hooks/useLoggedInUser';
+import useLoggedInUser from '../Hooks/useLoggedInUser';
 import SearchUser from '../views/NavBar/SearchUser';
 import { Avatar, Typography } from '@mui/material';
 
@@ -65,7 +65,7 @@ export default function NavBar() {
           </div> : null}
           {/* Profile / LogIn */}
           {loggedInUser
-            ? <NavLink style={navLinkStyleProfile} to={`/profile/${loggedInUser.userID}`}>
+            ? <NavLink style={navLinkStyleProfile} to={`/profile`}>
               <Avatar
                 src={loggedInUser.avatarUrl}
                 alt={`${loggedInUser.username}'s avatar`}
