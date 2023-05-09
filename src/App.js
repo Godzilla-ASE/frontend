@@ -15,14 +15,14 @@ import TagPage from './views/TagPage/TagPage';
 
 function App() {
 
-  const fakeUser = {
-    username: 'Iamuser',
-    authToken: "authToken",
-    userID: 2,
-    avatarUrl: "https://images.unsplash.com/photo-1518756131217-31eb79b20e8f"
-  }
+  // const fakeUser = {
+  //   username: 'Iamuser',
+  //   authToken: "authToken",
+  //   userID: 2,
+  //   avatarUrl: "https://images.unsplash.com/photo-1518756131217-31eb79b20e8f"
+  // }
 
-  localStorage.setItem("loggedInUser", JSON.stringify(fakeUser));
+  // localStorage.setItem("loggedInUser", JSON.stringify(fakeUser));
   // localStorage.removeItem("loggedInUser");
 
   const router = createBrowserRouter(
