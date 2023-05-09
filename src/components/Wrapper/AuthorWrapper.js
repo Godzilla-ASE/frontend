@@ -2,6 +2,7 @@
 import AuthorInfoWrapper from "./AuthorInfoWrapper"
 import ReactionWrapper from "./ReactionWrapper"
 import { styled } from '@mui/system';
+import { useNavigate } from "react-router-dom";
 
 const StyledDiv = styled('div')(({ theme }) => ({
   display: 'flex',
@@ -20,8 +21,10 @@ const StyledDiv = styled('div')(({ theme }) => ({
 
 const AuthorWrapper = ({ post }) => {
 
+  const navigate = useNavigate()
+
   const openProfile = (userid) => {
-    // go to profile
+    navigate(`/profile/${userid}`)
   }
 
   return (
