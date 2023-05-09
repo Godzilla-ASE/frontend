@@ -10,7 +10,7 @@ import DialogComponent from "../../components/Wrapper/DialogComponent";
 import FollowingCard from "./FollowingCard";
 import { hover } from "@testing-library/user-event/dist/hover";
 import { IoLocationOutline } from "react-icons/io5";
-import UserList from "./UserLIst";
+import UserList from "./UserList";
 
 export default function Profile() {
   // 获取登陆用户信息，需要它的ID做事情
@@ -45,7 +45,7 @@ export default function Profile() {
   function handleFollowingsList() {
     setfollowingCard(true);
   }
-  function handleFansList(){
+  function handleFansList() {
     setfansCard(true);
   }
 

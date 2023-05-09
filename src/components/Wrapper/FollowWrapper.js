@@ -3,28 +3,27 @@ import { useNavigate } from 'react-router-dom';
 import { Typography, Button } from '@mui/material';
 import { getOneUserInfo, addFollower, cancelFollower } from '../../services/user'
 
-export default function FollowWapper({ loginUser, userID }) {
+export default function FollowWapper({ loginUser, id }) {
 
   // 按钮初始化，如果已登陆且已经关注，就显示followed
   const [UserInfo, setUserInfo] = useState(null);
   const [followed, setFollowed] = useState(false);
   const navigate = useNavigate();
-  //console.log(userID)
   // 获取被关注用户信息
 
   useEffect(() => {
     const fetchData = async () => {
-      const result = await getOneUserInfo(userID);
+      const result = await getOneUserInfo(id);
       setUserInfo(result);
     };
     fetchData();
-  }, [userID]);
+  }, [id]);
 
   // 判断当前登陆用户是否已关注这个用户
   useEffect(() => {
     if (UserInfo && loginUser) {
       const authorFans = UserInfo.fans.split(",");
-      const loginUserID = loginUser.userID;
+      const loginUserID = loginUser.id;
       if (authorFans.includes(loginUserID.toString())) {
         setFollowed(true);
       } else {
@@ -40,8 +39,8 @@ export default function FollowWapper({ loginUser, userID }) {
   }
   // 按钮初始化结束
 
-  if(loginUser.userID === userID){
-    return(<div></div>)
+  if (loginUser && loginUser.id === id) {
+    return (<div></div>)
   }
 
   const handleFollowClick = () => {
@@ -50,9 +49,9 @@ export default function FollowWapper({ loginUser, userID }) {
     }
     else {
       if (followed) {
-        cancelFollower(loginUser.userID, userID, loginUser.authToken);
+        cancelFollower(loginUser.id, id, loginUser.authToken);
       } else {
-        addFollower(loginUser.userID, userID, loginUser.authToken);
+        addFollower(loginUser.id, id, loginUser.authToken);
       }
       setFollowed(!followed);
     }

@@ -1,5 +1,5 @@
 import axios from 'axios'
-const baseUrl = 'http://10.21.6.112:9000/posts'
+const baseUrl = 'http://10.21.6.117:9000/posts'
 
 
 const getAll = async () => {
@@ -36,9 +36,9 @@ const getPostsByUserID = async (id) => {
   return returnedPost.data
 }
 
-const addLike = async (postID, userID) => {
+const addLike = async (postID, id) => {
   const response = await axios.put(`${baseUrl}/attitude`, {
-    userid: userID,
+    userid: id,
     postid: postID,
     attitude_type: true,
     isCancel: false
@@ -46,18 +46,18 @@ const addLike = async (postID, userID) => {
   return response
 }
 
-const cancelLike = async (postID, userID) => {
+const cancelLike = async (postID, id) => {
   const response = await axios.put(`${baseUrl}/attitude`, {
-    userid: userID,
+    userid: id,
     postid: postID,
     attitude_type: true,
     isCancel: true
   });
   return response
 }
-const addDislike = async (postID, userID) => {
+const addDislike = async (postID, id) => {
   const response = await axios.put(`${baseUrl}/attitude`, {
-    userid: userID,
+    userid: id,
     postid: postID,
     attitude_type: false,
     isCancel: false
@@ -65,9 +65,9 @@ const addDislike = async (postID, userID) => {
   return response
 }
 
-const cancelDislike = async (postID, userID) => {
+const cancelDislike = async (postID, id) => {
   const response = await axios.put(`${baseUrl}/attitude`, {
-    userid: userID,
+    userid: id,
     postid: postID,
     attitude_type: false,
     isCancel: true

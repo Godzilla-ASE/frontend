@@ -129,7 +129,7 @@ function CreatePostDialog({ isOpen, onClose }) {
 
     const newPost = {
       "username": user.username,
-      "userid": user.userID,
+      "userid": user.id,
       "title": titleContent,
       "content_text": postContents,
       "content_img": images.join(","),

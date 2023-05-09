@@ -16,7 +16,7 @@ const FullWidthBox = styled(Box)(({ theme }) => ({
 const MessageStack = ({ isOpen, onClose, setNewMessage }) => {
   const user = useLoggedInUser()
   useHistoryMessages(user)
-  const userID = user.userID
+  const id = user.id
 
   const { state, dispatch } = useContext(MessageContext)
   const [client, setClient] = useState(null);
@@ -24,12 +24,12 @@ const MessageStack = ({ isOpen, onClose, setNewMessage }) => {
   useEffect(() => {
     // create and activate stomp
     const newClient = new Client({
-      webSocketFactory: () => new SockJS('http://10.21.6.112:10000/ase-websocket'),
+      webSocketFactory: () => new SockJS('http://10.21.6.117:10000/ase-websocket'),
       onConnect: () => {
         console.log('Connected');
 
         // subscribe to the messages channel
-        newClient.subscribe(`/topic/post/${userID}`, (data) => {
+        newClient.subscribe(`/topic/post/${id}`, (data) => {
           const newMessage = JSON.parse(data.body);
           console.log('newMessage', newMessage)
           dispatch({ type: "NEW_MESSAGE", newMessage })

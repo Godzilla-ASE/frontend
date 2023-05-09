@@ -1,6 +1,6 @@
 // APIs.js
 
-const baseUrl = 'http://10.21.6.192:8080/users'
+const baseUrl = 'http://10.21.5.126:8080/users'
 
 export const LOGIN_API = `${baseUrl}/login`;
 // Add other API URLs as needed

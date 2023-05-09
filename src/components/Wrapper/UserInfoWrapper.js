@@ -13,14 +13,16 @@ const UserInfoWrapper = (props) => {
   console.log('user', user)
 
   useEffect(() => {
-    if (props.userID) {
+    if (props.id) {
+      console.log('id is passed in')
       const fetchData = async () => {
-        const user = await getOneUserInfo(props.userID);
+        const user = await getOneUserInfo(props.id);
         setUser(user);
       };
       fetchData();
     }
     if (props.user) {
+      console.log('a user is passed in')
       setUser(props.user)
     }
   }, [props]);

@@ -20,7 +20,7 @@ export default function Profile() {
   // 根据ID拿用户信息
   useEffect(() => {
     const fetchData = async () => {
-      const userInfo = await getOneUserInfo(logginedUser.userID);
+      const userInfo = await getOneUserInfo(logginedUser.id);
       setlogginedUserInfo(userInfo);
     };
     fetchData();
@@ -64,7 +64,7 @@ export default function Profile() {
         </Grid>
       </Paper>
       <Paper style={{ backgroundColor: '#222222' }}>
-        <MyPosts userid={logginedUser.userID} />
+        <MyPosts userid={logginedUser.id} />
       </Paper>
     </div>
   );

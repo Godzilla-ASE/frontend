@@ -38,7 +38,7 @@ function SinglePost() {
     fetchData()
   }, [])
   //console.log(post);
-  
+
   if (!post) {
     return (
       <div style={{ height: 829, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
@@ -58,7 +58,7 @@ function SinglePost() {
   const AuthorID = post.userid;
 
   //console.log("siglepost：post",post);
-  const loginedUserID = loginedUser == null ? null : loginedUser.userID;
+  const loginedUserID = loginedUser == null ? null : loginedUser.id;
   return (
     //结构是这样的
     //Card（整个post就是一个卡片）
@@ -92,9 +92,9 @@ function SinglePost() {
           </Grid>
           <Grid item xs={12} sm={6} style={{ display: 'grid', gridTemplateRows: 'auto 1fr auto', height: '100%' }}>
             <div style={{ display: 'flex', alignContent: 'center', justifyContent: 'space-between' }}>
-              <UserInfoWrapper userID={AuthorID} />
+              <UserInfoWrapper id={AuthorID} />
               {AuthorID !== loginedUserID || loginedUserID === null ?
-                <FollowWapper loginUser={loginedUser} userID={AuthorID} /> : <div></div>}
+                <FollowWapper loginUser={loginedUser} id={AuthorID} /> : <div></div>}
             </div>
 
             <div style={{ marginTop: '20px', overflowY: 'auto', gridRow: '2 / 3' }}>

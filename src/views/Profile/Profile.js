@@ -11,7 +11,7 @@ import FollowingCard from "./FollowingCard";
 import { hover } from "@testing-library/user-event/dist/hover";
 import { IoLocationOutline } from "react-icons/io5";
 import LogoutButton from "../../components/AccountCenter/LogoutButton";
-import UserList from "./UserLIst";
+import UserList from "./UserList";
 
 
 export default function Profile() {
@@ -23,7 +23,7 @@ export default function Profile() {
   const navigate = useNavigate();
   const logginedUser = useLoggedInUser();
   //console.log('profile:',logginedUser);
-  const targetID = localStorage.getItem("userID");
+  const targetID = localStorage.getItem("id");
 
   // 根据ID拿用户信息
   useEffect(() => {
@@ -52,7 +52,7 @@ export default function Profile() {
   function handleFollowingsList() {
     setfollowingCard(true);
   }
-  function handleFansList(){
+  function handleFansList() {
     setfansCard(true);
   }
   function handleSetting() {
@@ -80,9 +80,9 @@ export default function Profile() {
             </Button>
           </Grid>
           <Grid item xs={1}>
-          <LogoutButton
-            setPageStatus={setPageStatus}
-        />
+            <LogoutButton
+              setPageStatus={setPageStatus}
+            />
           </Grid>
         </Grid>
         <Grid container justify="center" alignItems="center" spacing={10} style={{ paddingTop: '1%', paddingBottom: '0%' }}>

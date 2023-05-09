@@ -65,7 +65,7 @@ export default function NavBar() {
           </div> : null}
           {/* Profile / LogIn */}
           {loggedInUser
-            ? <NavLink style={navLinkStyleProfile} to={`/profile/${loggedInUser.userID}`}>
+            ? <NavLink style={navLinkStyleProfile} to={`/profile/${loggedInUser.id}`}>
               <Avatar
                 src={loggedInUser.avatarUrl}
                 alt={`${loggedInUser.username}'s avatar`}

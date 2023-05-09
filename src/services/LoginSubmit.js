@@ -20,14 +20,14 @@ const LoginSubmit = async (event, username, password,
       if (response.ok) {
         const user_body = await response.json();
         const authToken = user_body.token;
-        const userID = user_body.id;
+        const id = user_body.id;
         const userName = user_body.username;
         const userAvatarUrl = user_body.avatarUrl;
         // save user to localStorage
         // localStorage.setItem("loggedInUser", user);
         const user = {
           authToken: authToken,
-          userID: userID,
+          id: id,
           userName: userName,
           avatarUrl: userAvatarUrl
         }
@@ -39,7 +39,7 @@ const LoginSubmit = async (event, username, password,
 
 
         localStorage.setItem("authToken", authToken);
-        localStorage.setItem("userID", userID);
+        localStorage.setItem("id", id);
         localStorage.setItem("userName", userName)
 
         console.log(user_body)
@@ -56,7 +56,7 @@ const LoginSubmit = async (event, username, password,
 
         // const user = {
         //   authToken: "authToken",
-        //   userID: 123,
+        //   id: 123,
         //   avatar: "userAvatar"
         //  }
         // const authToken = JSON.stringify({username:"abc",email:"22@22.22",fullName:"ABC",location:"Zurich",birthday:null,avatarUrl:"https://godzilla2023ase.s3.eu-central-1.amazonaws.com/846f28bd-1d2b-4a7f-8461-a3245dc1dd46.jpg"})

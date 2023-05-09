@@ -18,7 +18,7 @@ function App() {
   // const fakeUser = {
   //   username: 'Iamuser',
   //   authToken: "authToken",
-  //   userID: 2,
+  //   id: 2,
   //   avatarUrl: "https://images.unsplash.com/photo-1518756131217-31eb79b20e8f"
   // }
 
