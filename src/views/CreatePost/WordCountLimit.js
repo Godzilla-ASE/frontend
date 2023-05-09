@@ -9,7 +9,7 @@ const placeholder = (
 
 const WordCountLimit = ({ content, count }) => {
   return (
-    <Grid item xs={0.5}>
+    <Grid item xs={0.5} sx={{ borderBottom: '2px solid #CECECE' }}>
       <Grid item container direction="row" alignItems="center">
         {/* Control the word limit for the title: a message if the limit is exceeded & a word counter */}
         <Grid item xs>

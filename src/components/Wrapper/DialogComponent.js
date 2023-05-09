@@ -6,7 +6,7 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 
 const StyledDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiPaper-root': {
-    backgroundColor: theme.palette.postBackground.main,
+    backgroundColor: theme.palette.background.default,
   },
 }));
 
