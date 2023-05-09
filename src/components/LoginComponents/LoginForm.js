@@ -45,6 +45,12 @@ function LoginForm() {
   return (
     <Box className="login-container">
       <Box className="login-form-container">
+        <Typography variant="h2" className="signup-heading" sx={{ color: 'primary.main' }}>
+          Godzilla
+        </Typography>
+        <Typography variant="body1" align="center" color="primary">
+          Log in to see posts from your friends.
+        </Typography>
         <form onSubmit={(event) => LoginSubmit(event, username, password,
           setUsernameError, setPasswordError, setUsernamecorrectError, setPasswordcorrectError, setPageStatus,
           LOGIN_API, navigate, previousUrl)} className="login-form">

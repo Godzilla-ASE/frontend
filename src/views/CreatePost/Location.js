@@ -34,7 +34,7 @@ const cantons = [
 const Location = ({ location, setLocation }) => {
 
   return (
-    <Grid item xs={1}>
+    <Grid item xs={1} sx={{ borderBottom: '2px solid #CECECE' }}>
       <Autocomplete
         value={location}
         onChange={(event, newValue) => {

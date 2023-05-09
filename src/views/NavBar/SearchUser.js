@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { Autocomplete, TextField, InputAdornment, styled } from "@mui/material"
 import Fuse from 'fuse.js';
-import { useUsers } from '../../hooks/useUsers'
+import { useUsers } from '../../Hooks/useUsers'
 import { BiSearch } from 'react-icons/bi';
 import UserInfoWrapper from "../../components/Wrapper/UserInfoWrapper";
 import { useNavigate } from 'react-router-dom'

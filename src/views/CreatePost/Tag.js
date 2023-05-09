@@ -18,6 +18,7 @@ const Tag = ({ handleTagInputChange, handleTagsSubmit, tagsInput, tags, handleTa
           padding: 1,
           display: 'flex',
           flexWrap: 'wrap',
+          // borderBottom: '2px solid white'
         }}>
         {tags.map((tag, index) => (
           <Chip key={index} label={tag} color="primary" variant="outlined" style={{ marginRight: '8px', marginBottom: '8px' }} onDelete={() => handleTagDelete(tag)} />

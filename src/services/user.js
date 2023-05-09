@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const baseUserUrl = 'http://10.21.6.192:8080/users'
+const baseUserUrl = 'http://10.21.7.119:8080/users'
 //const baseUserUrl = 'http://172.20.10.4:8080/users'
 
 
