@@ -2,7 +2,7 @@
 import AuthorInfoWrapper from "./AuthorInfoWrapper"
 import ReactionWrapper from "./ReactionWrapper"
 import { styled } from '@mui/system';
-import { useNavigate } from "react-router-dom";
+
 
 const StyledDiv = styled('div')(({ theme }) => ({
   display: 'flex',
@@ -21,14 +21,8 @@ const StyledDiv = styled('div')(({ theme }) => ({
 
 const AuthorWrapper = ({ post }) => {
 
-  const navigate = useNavigate()
-
-  const openProfile = (userid) => {
-    navigate(`/profile/${userid}`)
-  }
-
   return (
-    <StyledDiv onClick={() => openProfile(post.userid)}>
+    <StyledDiv>
       <AuthorInfoWrapper post={post} styleSetting="space-between" />
       <ReactionWrapper post={post} />
     </StyledDiv>

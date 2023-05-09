@@ -9,6 +9,7 @@ export const useHistoryMessages = (user) => {
     const id = user.id
     const fetchData = async () => {
       const data = await getHistoryMessages(id)
+      console.log('history', data)
       dispatch({ type: "SET_HISTORY", data })
 
     }

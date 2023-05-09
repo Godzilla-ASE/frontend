@@ -23,6 +23,9 @@ export default function NavBar() {
 
   const [createPost, setCreatePost] = useState(false)
   const [openMessage, setOpenMessage] = useState(false)
+  console.log("=======================================")
+  console.log('openMessage', openMessage)
+  console.log('newMessage', newMessage)
   const theme = useTheme()
 
   const navLinkStyle = {
@@ -66,7 +69,7 @@ export default function NavBar() {
           {/* Search Users */}
           <SearchUser />
           {/* Messages */}
-          {loggedInUser ? <div className="nav-link-container" onClick={handleMessage}>
+          {loggedInUser ? <div className="nav-link-container">
             {newMessage && <div className="badge"></div>}
             <NavLink style={navLinkStyle} onClick={handleMessage}><BiMessageRoundedDetail size={28} /></NavLink>
           </div> : null}

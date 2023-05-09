@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { Client } from '@stomp/stompjs';
 import SockJS from 'sockjs-client';
-import { Stack, Paper, Box, styled } from '@mui/material';
+import { Stack, Paper, Box, styled, Typography } from '@mui/material';
 import { FollowMessage, ReplyMessage, CommentMessage, LikeMessage } from './MessageType';
 import DialogComponent from '../../components/Wrapper/DialogComponent';
 import useLoggedInUser from '../../Hooks/useLoggedInUser';
@@ -63,6 +63,9 @@ const MessageStack = ({ isOpen, onClose, setNewMessage }) => {
   return (
     <DialogComponent isOpen={isOpen} onClose={onClose}>
       <FullWidthBox p={2}>
+        <Typography variant="h2" className="signup-heading" sx={{ color: 'primary.main' }}>
+          Messages
+        </Typography>
         <Stack spacing={2}>
           {/* The messages initiated by the user are dispatched as "null" through the backend. */}
           {state.messages.slice(0, 5).map((msg, index) => (
