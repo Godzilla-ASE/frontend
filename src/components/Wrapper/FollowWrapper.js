@@ -21,7 +21,8 @@ export default function FollowWapper({ loginUser, id }) {
 
   // 判断当前登陆用户是否已关注这个用户
   useEffect(() => {
-    if (UserInfo && loginUser) {
+    if (UserInfo !== null && loginUser) {
+      console.log("用户", id, UserInfo);
       const authorFans = UserInfo.fans.split(",");
       const loginUserID = loginUser.id;
       if (authorFans.includes(loginUserID.toString())) {
@@ -38,8 +39,7 @@ export default function FollowWapper({ loginUser, id }) {
     )
   }
   // 按钮初始化结束
-
-  if (loginUser && loginUser.id === id) {
+  if (loginUser && loginUser.id.toString() === id.toString()) {
     return (<div></div>)
   }
 
@@ -60,13 +60,13 @@ export default function FollowWapper({ loginUser, id }) {
   return (
     <div>
       {!followed
-        ? <Button onClick={handleFollowClick} color="submit" size="small">
+        ? <Button onClick={handleFollowClick} size="small">
           <Typography variant="body2" fontWeight="bold">
             Follow
           </Typography>
         </Button>
         :
-        <Button onClick={handleFollowClick} color="submit" variant="contained" size="small">
+        <Button onClick={handleFollowClick} variant="contained" size="small">
           <Typography variant="body2" fontWeight="bold">
             Unfollow
           </Typography>

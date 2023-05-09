@@ -1,14 +1,10 @@
 import { useState, useEffect } from "react";
-import useLoggedInUser from "../../hooks/useLoggedInUser";
+import useLoggedInUser from "../../Hooks/useLoggedInUser";
 import { useNavigate, useParams } from 'react-router-dom'
 import { Paper, Button, Typography, Avatar, Grid } from '@mui/material';
 import { getOneUserInfo } from "../../services/user";
 import MyPosts from "./MyPosts";
-import { getAll, getPostsByUserID } from "../../services/post";
-import { usePosts } from "../../hooks/usePosts";
 import DialogComponent from "../../components/Wrapper/DialogComponent";
-import FollowingCard from "./FollowingCard";
-import { hover } from "@testing-library/user-event/dist/hover";
 import { IoLocationOutline } from "react-icons/io5";
 import UserList from "./UserList";
 
@@ -83,11 +79,11 @@ export default function Profile() {
       </Paper>
       <DialogComponent
         isOpen={followingCard}
-        children={<UserList titleText={"You are following:"} setCardOpe={setfollowingCard} userList={followingsList} logginedUser={logginedUser} />}
+        children={<UserList titleText={"You are following:"} setCardOpen={setfollowingCard} userList={followingsList} logginedUser={logginedUser} />}
       />
       <DialogComponent
         isOpen={fansCard}
-        children={<UserList titleText={"Your followers:"} setCardOpe={setfansCard} userList={fansList} logginedUser={logginedUser} />}
+        children={<UserList titleText={"Your followers:"} setCardOpen={setfansCard} userList={fansList} logginedUser={logginedUser} />}
       />
     </div>
   );
