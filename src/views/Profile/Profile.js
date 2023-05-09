@@ -18,13 +18,13 @@ export default function Profile() {
   const navigate = useNavigate();
   const logginedUser = useLoggedInUser();
   //console.log('profile:',logginedUser);
-  const targetID = localStorage.getItem("id");
+  const targetID = logginedUser.id
 
   // 根据ID拿用户信息
   useEffect(() => {
-    if (!targetID) {
-      navigate('/login');
-    }
+    // if (!targetID) {
+    //   navigate('/login');
+    // }
     const fetchData = async () => {
       const userInfo = await getOneUserInfo(targetID);
       setlogginedUserInfo(userInfo);
@@ -34,9 +34,8 @@ export default function Profile() {
 
 
   if (!logginedUserInfo) {
-
     return (
-      <pre>Loading...</pre>
+      <pre>The profile is loading...</pre>
     )
   }
 
@@ -56,42 +55,46 @@ export default function Profile() {
 
 
   return (
-    <div style={{ margin: '0', paddingTop: '7%' }}>
-      <Paper style={{ margin: '0', paddingTop: '1%', paddingBottom: '1%', backgroundColor: '#333333' }} >
-        <Grid container justify="center" alignItems="center" spacing={2}>
-          <Grid item xs={3}>
-          </Grid>
-          <Grid item xs={1}>
-            <Avatar alt="User Avatar" src={avatar} style={{ width: '70px', height: '70px' }} />
-          </Grid>
-          <Grid item xs={2}>
-            <Typography variant="h4" color={'#ffffff'}>{logginedUserInfo.username}</Typography>
-            <Typography variant="subtitle1" color={'#ffffff'}>{logginedUserInfo.email}</Typography>
-          </Grid>
-          <Grid item xs={1} />
-          <Grid item>
-            <Button variant="contained" color="primary" onClick={() => handleSetting()}>
-              Setting
-            </Button>
-          </Grid>
-          <Grid item xs={1}>
-            <LogoutButton
-              setPageStatus={setPageStatus}
-            />
+    <div style={{ marginTop: '80px' }}>
+      <Paper style={{
+        margin: '0',
+        paddingTop: '1%',
+        paddingBottom: '1%',
+        backgroundColor: '#333333',
+        display: 'flex',
+        gap: '20px',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center'
+      }}>
+        <Grid className="avatar-username" container spacing={2} justifyContent="center" alignItems="center">
+          <Grid item container xs={1} justifyContent="center" alignItems="center" flexDirection="row" gap="5px">
+            <Avatar alt={`${logginedUser.username}'s Avatar`} src={avatar} style={{ width: '70px', height: '70px', border: '2px solid #fff' }} />
+            <Typography variant="h2" color='primary'>{logginedUserInfo.username}</Typography>
+            <Typography variant="body2" color='primary'>{logginedUserInfo.email}</Typography>
           </Grid>
         </Grid>
-        <Grid container justify="center" alignItems="center" spacing={10} style={{ paddingTop: '1%', paddingBottom: '0%' }}>
-          <Grid item xs={3}>
+        <Grid className="follow" container spacing={10} justifyContent="center" alignItems="center">
+          <Grid item container justifyContent="center" alignItems="center" flexDirection="column" xs={1} >
+            <Typography fontSize={16} color="primary">Following</Typography>
+            <Typography onClick={() => handleFollowingsList()} fontSize={16} color="primary" style={{ paddingTop: '3%', paddingBottom: '0%', cursor: 'pointer' }}> {logginedUserInfo.followings === "" ? 0 : logginedUserInfo.followings.split(',').length} </Typography>
           </Grid>
-          <Grid item xs={1} style={{}}>
-            <Typography onClick={() => handleFollowingsList()} fontSize={16} color={'#ffffff'} style={{ paddingTop: '3%', paddingBottom: '0%', cursor: 'pointer' }} >  Followings <br></br> {logginedUserInfo.followings === "" ? 0 : logginedUserInfo.followings.split(',').length} </Typography>
+          <Grid item xs={1} container justifyContent="center" alignItems="center" flexDirection="column">
+            <Typography fontSize={16} color="primary">Follower</Typography>
+            <Typography onClick={() => handleFansList()} fontSize={16} color="primary" style={{ paddingTop: '3%', paddingBottom: '0%', cursor: 'pointer' }} >{logginedUserInfo.fans === "" ? 0 : logginedUserInfo.fans.split(',').length} </Typography>
           </Grid>
-          <Grid item xs={1}>
-            <Typography onClick={() => handleFansList()} fontSize={16} color={'#ffffff'} style={{ paddingTop: '3%', paddingBottom: '0%', cursor: 'pointer' }} >  Followers <br></br> <></>{logginedUserInfo.fans === "" ? 0 : logginedUserInfo.fans.split(',').length} </Typography>
+          <Grid item xs={1} container justifyContent="center" alignItems="center">
+            <Typography fontSize={16} color="primary">Location</Typography>
+            <Typography fontSize={16} color="primary"><IoLocationOutline />{logginedUserInfo.location}</Typography>
           </Grid>
-          <Grid item xs={2}>
-            <Typography fontSize={16} color={'#ffffff'} style={{ paddingTop: '3%', paddingBottom: '0%' }} >  Location <br></br> {logginedUserInfo.location}<IoLocationOutline></IoLocationOutline> </Typography>
-          </Grid>
+        </Grid>
+        <Grid className="profile-buttons" container justifyContent="center" alignItems="center" gap="10px">
+          <Button variant="contained" color="primary" onClick={() => handleSetting()}>
+            Settings
+          </Button>
+          <LogoutButton
+            setPageStatus={setPageStatus}
+          />
         </Grid>
       </Paper>
       <Paper style={{ backgroundColor: '#222222' }}>

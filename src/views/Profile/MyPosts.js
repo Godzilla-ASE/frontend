@@ -34,7 +34,7 @@ export default function MyPosts({ userid }) {
 
   return (
     <Box sx={{ width: 3 / 5, minHeight: 829, margin: '0 auto', paddingTop: '1%' }}>
-      <Masonry columns={2} spacing={2}>
+      <Masonry columns={3} spacing={3}>
         {posts.map((post, index) => (
           <div key={index}>
             <div>
