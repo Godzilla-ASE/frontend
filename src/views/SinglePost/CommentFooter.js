@@ -36,9 +36,11 @@ const CommentFooter = ({ post, user, replyComment }) => {
         const commentID = replyComment.id; // 评论ID
         addReply(logginedUserId, postAuthorID, commentID, commentText, Now);
         setCommentText(''); // 清空输入框
+        navigate(`/post/${postId}`);
       }else{
         addComment(logginedUserId, postId, commentText, Now);
         setCommentText(''); // 清空输入框
+        navigate(`/post/${postId}`);
       }
     }
     
@@ -50,10 +52,10 @@ const CommentFooter = ({ post, user, replyComment }) => {
   }
 
   var placeholdertext = "Write your comments...";
-  var bottomtext = "Comment";
+  var buttontext = "Comment";
   if(replyComment.length !== 0){
     placeholdertext = "Reply to " + replyComment.username;
-    bottomtext = "Reply";
+    buttontext = "Reply";
   }
 
   return (
@@ -64,7 +66,7 @@ const CommentFooter = ({ post, user, replyComment }) => {
       </div>
       <div style={{ display: 'flex' }}>
         <MultiLineInput placeholder={placeholdertext} value={commentText} handleChange={(e) => {setCommentText(e.target.value);}}/>
-        <SubmitButton buttontext={bottomtext} onClick={handleSubmit}/>
+        <SubmitButton buttontext={buttontext} onClick={handleSubmit}/>
       </div>
     </div >
   )

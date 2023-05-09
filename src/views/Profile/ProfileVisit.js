@@ -10,6 +10,7 @@ import DialogComponent from "../../components/Wrapper/DialogComponent";
 import FollowingCard from "./FollowingCard";
 import { hover } from "@testing-library/user-event/dist/hover";
 import { IoLocationOutline } from "react-icons/io5";
+import UserList from "./UserLIst";
 
 export default function Profile() {
   // 获取登陆用户信息，需要它的ID做事情
@@ -70,7 +71,7 @@ export default function Profile() {
             <Typography onClick={() => handleFollowingsList()} fontSize={16} color={'#ffffff'} style={{ paddingTop: '3%', paddingBottom: '0%', cursor: 'pointer' }} >  Followings <br></br> {visitedUserInfo.followings === "" ? 0 : visitedUserInfo.followings.split(',').length} </Typography>
           </Grid>
           <Grid item xs={1}>
-            <Typography onClick={() => handleFansList()} fontSize={16} color={'#ffffff'} style={{ paddingTop: '3%', paddingBottom: '0%', cursor: 'pointer' }} >  Fans <br></br> <></>{visitedUserInfo.fans === "" ? 0 : visitedUserInfo.fans.split(',').length} </Typography>
+            <Typography onClick={() => handleFansList()} fontSize={16} color={'#ffffff'} style={{ paddingTop: '3%', paddingBottom: '0%', cursor: 'pointer' }} >  Followers <br></br> <></>{visitedUserInfo.fans === "" ? 0 : visitedUserInfo.fans.split(',').length} </Typography>
           </Grid>
           <Grid item xs={2}>
             <Typography fontSize={16} color={'#ffffff'} style={{ paddingTop: '3%', paddingBottom: '0%' }} >  Location <br></br> {visitedUserInfo.location}<IoLocationOutline></IoLocationOutline> </Typography>
@@ -82,11 +83,11 @@ export default function Profile() {
       </Paper>
       <DialogComponent
         isOpen={followingCard}
-        children={<FollowingCard isFollowing={true} setfollowingCard={setfollowingCard} fansList={fansList} followingsList={followingsList} logginedUser={logginedUser} />}
+        children={<UserList titleText={"You are following:"} setCardOpe={setfollowingCard} userList={followingsList} logginedUser={logginedUser} />}
       />
       <DialogComponent
         isOpen={fansCard}
-        children={<FollowingCard isFollowing={false} setfollowingCard={setfansCard} fansList={fansList} followingsList={followingsList} logginedUser={logginedUser} />}
+        children={<UserList titleText={"Your followers:"} setCardOpe={setfansCard} userList={fansList} logginedUser={logginedUser} />}
       />
     </div>
   );
