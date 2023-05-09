@@ -30,9 +30,7 @@ const SearchUser = () => {
     navigate(`/profile/${id}`)
   }
 
-  // const allUsers = useUsers()
-  const allUsers = test
-  // const [filteredUsers, setFilteredUsers] = useState([] || allUsers.slice(0, 5))
+  const allUsers = useUsers()
   const [filteredUsers, setFilteredUsers] = useState([] || allUsers.slice(0, 5))
 
   if (!allUsers) {
@@ -45,7 +43,7 @@ const SearchUser = () => {
 
   const fuseOptions = {
     keys: ['username'],
-    threshold: 0.6,
+    threshold: 0.3,
   };
 
   const fuse = new Fuse(allUsers, fuseOptions); // #TODO replace options

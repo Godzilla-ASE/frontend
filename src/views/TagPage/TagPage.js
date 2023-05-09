@@ -5,6 +5,7 @@ import PostCardFooter from '../../components/PostCardFooter';
 import { usePostsByTag } from '../../Hooks/usePostsbyTag';
 import { useParams } from 'react-router-dom';
 import { Typography } from '@mui/material';
+import { AiFillTag } from 'react-icons/ai';
 
 export default function TagPage() {
   const tag = useParams().tagName
@@ -21,9 +22,9 @@ export default function TagPage() {
   };
 
   return (
-    <>
-      <Typography variant="h2">
-        {tag}
+    <div style={{ marginTop: '100px' }}>
+      <Typography variant="h2" color="primary" align='center' textTransform="uppercase">
+        <AiFillTag style={{ marginRight: '5px' }} />{tag}
       </Typography>
       <Box sx={{ width: 4 / 5, minHeight: 829, margin: '0 auto', paddingTop: '80px' }}>
         <Masonry columns={5} spacing={2}>
@@ -50,6 +51,6 @@ export default function TagPage() {
           ))}
         </Masonry>
       </Box >
-    </>
+    </div>
   )
 }

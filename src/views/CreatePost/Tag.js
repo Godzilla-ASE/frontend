@@ -6,7 +6,7 @@ const Tag = ({ handleTagInputChange, handleTagsSubmit, tagsInput, tags, handleTa
     <>
       <Grid item xs={1}>
         {/* Add tags for the post */}
-        <SingleLineInput placeholder="Add tags (seperate by space)" handleChange={handleTagInputChange} handleKeyDown={handleTagsSubmit} value={tagsInput} />
+        <SingleLineInput placeholder="Add tags (seperate by space)..." handleChange={handleTagInputChange} handleKeyDown={handleTagsSubmit} value={tagsInput} />
       </Grid>
       <Grid
         item

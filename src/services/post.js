@@ -8,7 +8,10 @@ const getAll = async () => {
 }
 
 const getAllByLocation = async location => {
-  const response = await axios.post(`${baseUrl}/location/`, location)
+  const requestLocation = {
+    location: location
+  }
+  const response = await axios.post(`${baseUrl}/location`, requestLocation)
   return response.data
 }
 

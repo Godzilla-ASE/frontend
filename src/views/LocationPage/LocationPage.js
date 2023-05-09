@@ -5,6 +5,7 @@ import PostCardFooter from '../../components/PostCardFooter';
 import { usePostsByLocation } from '../../Hooks/usePostsByLocation';
 import { useParams } from 'react-router-dom';
 import { Typography } from '@mui/material';
+import { IoLocationOutline } from "react-icons/io5";
 
 export default function LocationPage() {
   const location = useParams().locationName
@@ -21,9 +22,9 @@ export default function LocationPage() {
   };
 
   return (
-    <>
-      <Typography variant="h2">
-        {location}
+    <div style={{ marginTop: '100px' }}>
+      <Typography variant="h2" color="primary" align='center' textTransform="uppercase">
+        <IoLocationOutline style={{ marginRight: '5px' }} />{location}
       </Typography>
       <Box sx={{ width: 4 / 5, minHeight: 829, margin: '0 auto', paddingTop: '80px' }}>
         <Masonry columns={5} spacing={2}>
@@ -50,6 +51,6 @@ export default function LocationPage() {
           ))}
         </Masonry>
       </Box >
-    </>
+    </div>
   )
 }

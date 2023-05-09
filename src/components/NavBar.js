@@ -47,13 +47,20 @@ export default function NavBar() {
     setNewMessage(false)
   }
 
+  const handleHome = () => {
+    setOpenMessage(false);
+    setCreatePost(false)
+  }
+
   return (
     <div className="nav">
       <header>
         <nav>
-          {/* <NavLink to="/"><img src={xhs} alt="logo" /></NavLink> */}
+          <Typography variant="h2" className="signup-heading" sx={{ color: 'primary.main' }}>
+            Godzilla
+          </Typography>
           {/* Home */}
-          <NavLink style={navLinkStyle} to="/"><AiOutlineHome size={28} /></NavLink>
+          <NavLink style={navLinkStyle} to="/" onClick={handleHome}><AiOutlineHome size={28} /></NavLink>
           {/* Create New Post */}
           {loggedInUser ? <NavLink style={navLinkStyle} onClick={handleCreate}><RiImageAddFill size={28} /></NavLink> : null}
           {/* Search Users */}
