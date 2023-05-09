@@ -11,8 +11,8 @@ function Login() {
       <img
           src={LOGO_API}
           alt="Godzilla logo"
-          style={{ width: "100px", // Set the width to your desired size
-          height: "auto", // Set the height to "auto" to maintain aspect ratiomarginBottom: "20px" 
+          style={{ width: "300px", // Set the width to your desired size
+          height: "200px", // Set the height to "auto" to maintain aspect ratiomarginBottom: "20px" 
         }}
           align="center"
       />

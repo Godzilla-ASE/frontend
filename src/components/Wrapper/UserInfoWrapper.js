@@ -2,7 +2,7 @@
 import { Avatar, Box, Typography } from '@mui/material';
 import { getOneUserInfo } from '../../services/user';
 import { useEffect, useState } from 'react';
-import useLoggedInUser from '../../hooks/useLoggedInUser'
+import useLoggedInUser from '../../Hooks/useLoggedInUser'
 
 
 const UserInfoWrapper = (props) => {

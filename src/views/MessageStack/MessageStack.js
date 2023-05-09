@@ -4,9 +4,9 @@ import SockJS from 'sockjs-client';
 import { Stack, Paper, Box, styled } from '@mui/material';
 import { FollowMessage, ReplyMessage, CommentMessage, LikeMessage } from './MessageType';
 import DialogComponent from '../../components/Wrapper/DialogComponent';
-import useLoggedInUser from '../../hooks/useLoggedInUser';
+import useLoggedInUser from '../../Hooks/useLoggedInUser';
 import { MessageContext } from '../../context/MessageContext';
-import { useHistoryMessages } from '../../hooks/useHistoryMessages';
+import { useHistoryMessages } from '../../Hooks/useHistoryMessages';
 
 
 const FullWidthBox = styled(Box)(({ theme }) => ({

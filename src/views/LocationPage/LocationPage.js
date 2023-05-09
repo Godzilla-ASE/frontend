@@ -2,7 +2,7 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Masonry from '@mui/lab/Masonry';
 import PostCardFooter from '../../components/PostCardFooter';
-import { usePostsByLocation } from '../../hooks/usePostsByLocation';
+import { usePostsByLocation } from '../../Hooks/usePostsByLocation';
 import { useParams } from 'react-router-dom';
 import { Typography } from '@mui/material';
 
