@@ -55,7 +55,7 @@ const AccountCenter = () => {
   const [pageStatus, setPageStatus] = useState("");
   //const datehere = dayjs(user.birthday)
 
-  const [selectedDate, setSelectedDate] = useState(user ? dayjs(user.birthday) : dayjs("1900-01-01"));
+  const [selectedDate, setSelectedDate] = useState(user && user.birthday ? dayjs(user.birthday) : dayjs("1900-01-01"));
 
   const [dateChanged, setDateChanged] = useState(false);
   const [usernameChanged, setUsernameChanged] = useState(false);
@@ -156,6 +156,7 @@ const AccountCenter = () => {
           >
             <DatePicker
               label="Birthday"
+              defaultValue={dayjs("1900-01-01")}
               value={selectedDate}
               onChange={handleDateChange}
               format="YYYY-MM-DD"
