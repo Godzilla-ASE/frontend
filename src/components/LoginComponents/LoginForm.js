@@ -11,7 +11,7 @@ import UsernameInput from "./UsernameInput";
 import PasswordInput from "./PasswordInput";
 import LoginSubmit from "../../services/LoginSubmit";
 import GetPageStatus from "../GetPageStatus";
-import { LOGIN_API } from "../../services/APIs";
+import { LOGIN_API,LOGO_API } from "../../services/APIs";
 import "./Login.css"
 //import LoginStatus from "./LoginStatus";
 
@@ -44,10 +44,20 @@ function LoginForm() {
 
   return (
     <Box className="login-container">
-      <Box className="login-form-container">
-        <Typography variant="h2" className="signup-heading" sx={{ color: 'primary.main' }}>
+      <Box className="login-form-container">      
+      <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+        <img
+          src={LOGO_API}
+          alt="Godzilla logo"
+          style={{ width: "200px", // Set the width to your desired size
+          height: "100px", // Set the height to "auto" to maintain aspect ratiomarginBottom: "20px" 
+        }}
+          align="center"
+        />
+      </div>
+        {/* <Typography variant="h2" className="signup-heading" sx={{ color: 'primary.main' }}>
           Godzilla
-        </Typography>
+        </Typography> */}
         <Typography variant="body1" align="center" color="primary">
           Log in to see posts from your friends.
         </Typography>
@@ -69,6 +79,7 @@ function LoginForm() {
           <Button variant="contained" color="primary" type="submit" className="login-button">
             Log In
           </Button>
+          {/* TODO: Message store in pageStatus*/}
           <GetPageStatus
             pageStatus={pageStatus}
           />
