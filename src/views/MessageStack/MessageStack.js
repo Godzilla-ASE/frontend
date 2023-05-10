@@ -48,7 +48,7 @@ const MessageStack = ({ isOpen, onClose, setNewMessage }) => {
   const renderMessageContent = (type, message) => {
     switch (type) {
       case 'LIKE_POST':
-        return <LikeMessage message={message} />;
+        return <LikeMessage message={message} handleMessageDialog={onClose}/>;
       case 'FOLLOW_USER':
         return <FollowMessage message={message} />;
       case 'COMMENT':
