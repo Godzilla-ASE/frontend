@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom'
 import { Paper, Button, Typography, Avatar, Grid } from '@mui/material';
 import { getOneUserInfo } from "../../services/user";
 import MyPosts from "./MyPosts";
+import { getAll, getPostsByUserID } from "../../services/post";
+import { usePosts } from "../../Hooks/usePosts";
 import DialogComponent from "../../components/Wrapper/DialogComponent";
 import { IoLocationOutline } from "react-icons/io5";
 import LogoutButton from "../../components/AccountCenter/LogoutButton";
