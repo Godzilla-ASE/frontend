@@ -13,10 +13,10 @@ const TagBox = styled(Box)({
 
 const PostTagWrapper = ({ post }) => {
   const theme = useTheme()
-  const tags = post.tag.split(',')
+  const tags = post.tag.length > 0 ? post.tag.split(',') : post.tag
   return (
     <TagBox>
-      {tags.map((tag, index) => (
+      {tags.length > 0 && tags.map((tag, index) => (
         <Link key={tag} to={`/tag/${tag}`} style={{ textDecoration: 'none' }}>
           <Typography variant='body2' align="left" color={theme.palette.thirdInformation.main}
             style={{

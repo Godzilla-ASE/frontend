@@ -21,7 +21,6 @@ export default function MyPosts({ userid }) {
 
   if (!posts) {
     return (
-      // #TODO Loading
       <Typography variant="h2" color="primary" style={{ textAlign: 'center' }}>
         You have No Post So Far.
       </Typography>

@@ -46,13 +46,13 @@ const SearchUser = () => {
     threshold: 0.3,
   };
 
-  const fuse = new Fuse(allUsers, fuseOptions); // #TODO replace options
+  const fuse = new Fuse(allUsers, fuseOptions);
 
 
 
   const handleSearch = (value) => {
     if (value.trim() === '') {
-      setFilteredUsers(allUsers.slice(0, 5)); // #TODO replace options
+      setFilteredUsers(allUsers.slice(0, 5)); 
     } else {
       const results = fuse.search(value);
       setFilteredUsers(results.map((result) => result.item));
