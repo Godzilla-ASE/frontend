@@ -11,7 +11,7 @@ const Logout = async (setPageStatus, navigate) => {
   else {
     // Clear userId from localStorage
     try {
-      const id = localStorage.getItem("id")
+      const id = localStorage.getItem("userID")
       const token = localStorage.getItem("authToken")
       const response = await fetch(`${LOGOUT_API}/${id}`, {
         method: "DELETE",
@@ -20,13 +20,14 @@ const Logout = async (setPageStatus, navigate) => {
           Authorization: token,
         },
       });
+      console.log(response)
       if (response.ok) {
         setPageStatus("Logged out successfully.");
 
         setTimeout(() => {
           navigate('/'); // Replace "/login" with the actual URL of your login page
           localStorage.removeItem("loggedInUser");
-          localStorage.removeItem("id");
+          localStorage.removeItem("userID");
           localStorage.removeItem("authToken");
           localStorage.removeItem("user");
           localStorage.removeItem("userName");
