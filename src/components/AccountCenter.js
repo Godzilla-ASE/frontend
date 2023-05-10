@@ -33,7 +33,7 @@ const AccountCenter = () => {
 
   const user = JSON.parse(window.localStorage.getItem("user"));
   const token = window.localStorage.getItem("authToken");
-  const userID = window.localStorage.getItem("userID")
+  const id = window.localStorage.getItem("id")
   //console.log(user)
   //console.log(user.username)
 
@@ -56,6 +56,7 @@ const AccountCenter = () => {
   //const datehere = dayjs(user.birthday)
 
   const [selectedDate, setSelectedDate] = useState(user ? dayjs(user.birthday) : null);
+  console.log('date', selectedDate) // #TODO dayjs 返回的格式有问题
 
   const [dateChanged, setDateChanged] = useState(false);
   const [usernameChanged, setUsernameChanged] = useState(false);
@@ -88,11 +89,8 @@ const AccountCenter = () => {
       <Box
         className="signup-form-container"
       >
-        <Typography variant="h4" className="signup-heading">
+        <Typography variant="h2" align="center" color="primary">
           Account Center
-        </Typography>
-        <Typography variant="h6" align="center">
-          Edit profile
         </Typography>
         <form
           onSubmit={(event) => AccountCenterSubmit(event, username, password, email, location, confirmPassword,
@@ -100,96 +98,81 @@ const AccountCenter = () => {
             setUsernameError, setPasswordError, setConfirmPasswordError, setLocationError, setEmailError,
             setUsernameexistError, setPageStatus, AccountCenter_API, navigate,
             selectedDate, dateChanged, usernameChanged, emailChanged, passwordChanged, locationChanged,
-            avatarUrl, avatarChanged, token, userID)}
+            avatarUrl, avatarChanged, token, id)}
           className="signup-form"
         >
-          <div style={{ display: "flex", alignItems: "center" }}>
-            <Avatar alt={username} src={avatarUrl} sx={{ width: 56, height: 56, marginX: 'auto' }} />
-            <input type="file" accept="image/*" onChange={handleFileInputChange} />
+          <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "flex-start" }}>
+              <Avatar alt={username} src={avatarUrl} sx={{ width: 56, height: 56, border: '2px solid #fff' }} />
+              <label htmlFor="file-upload" style={{ display: 'inline-block', color: 'white', padding: '6px 12px', cursor: 'pointer' }}>
+                Change Avatar
+              </label>
+              <input id="file-upload" type="file" accept="image/*" onChange={handleFileInputChange} style={{ display: 'none' }} />
+              {/* <input type="file" accept="image/*" onChange={handleFileInputChange} /> */}
+            </div>
           </div>
+          <UsernameSet
+            username={username}
+            setUsername={setUsername}
+            setUsernameError={setUsernameError}
+            setUsernameexistError={setUsernameexistError}
+            setPageStatus={setPageStatus}
+            usernameError={usernameError}
+            usernameexistError={usernameexistError}
+            setUsernameChanged={setUsernameChanged}
+          />
+          <EmailSet
+            email={email}
+            emailError={emailError}
+            setEmail={setEmail}
+            setEmailError={setEmailError}
+            setPageStatus={setPageStatus}
+            setEmailChanged={setEmailChanged}
+          />
 
-          <div style={{ display: 'inline-flex', alignItems: 'baseline' }}>
-            <div style={{ width: '100px' }}>Name </div>
-            <UsernameSet
-              username={username}
-              setUsername={setUsername}
-              setUsernameError={setUsernameError}
-              setUsernameexistError={setUsernameexistError}
-              setPageStatus={setPageStatus}
-              usernameError={usernameError}
-              usernameexistError={usernameexistError}
-              setUsernameChanged={setUsernameChanged}
+          <PasswordSet
+            password={password}
+            passwordError={passwordError}
+            confirmPassword={confirmPassword}
+            confirmPasswordError={confirmPasswordError}
+            setPassword={setPassword}
+            setConfirmPassword={setConfirmPassword}
+            setPasswordError={setPasswordError}
+            setConfirmPasswordError={setConfirmPasswordError}
+            setPageStatus={setPageStatus}
+            setPasswordChanged={setPasswordChanged}
+          />
+
+          <LocationSet
+            location={location}
+            setLocation={setLocation}
+            setLocationError={setLocationError}
+            locationError={locationError}
+            setPageStatus={setPageStatus}
+            setLocationChanged={setLocationChanged}
+          />
+
+          <LocalizationProvider
+            dateAdapter={AdapterDayjs}
+          >
+            <DatePicker
+              label="Birthday"
+              value={selectedDate}
+              onChange={handleDateChange}
+              format="YYYY-MM-DD"
             />
-          </div>
-
-          <div style={{ display: 'inline-flex', alignItems: 'baseline' }}>
-            <div style={{ width: '100px' }}>Email </div>
-            <EmailSet
-              email={email}
-              emailError={emailError}
-              setEmail={setEmail}
-              setEmailError={setEmailError}
-              setPageStatus={setPageStatus}
-              setEmailChanged={setEmailChanged}
-            />
-          </div>
-
-          <div style={{ display: 'inline-flex', alignItems: 'center' }}>
-            <div style={{ width: '100px' }}>Password </div>
-            <PasswordSet
-              password={password}
-              passwordError={passwordError}
-              confirmPassword={confirmPassword}
-              confirmPasswordError={confirmPasswordError}
-              setPassword={setPassword}
-              setConfirmPassword={setConfirmPassword}
-              setPasswordError={setPasswordError}
-              setConfirmPasswordError={setConfirmPasswordError}
-              setPageStatus={setPageStatus}
-              setPasswordChanged={setPasswordChanged}
-            />
-          </div>
-
-          <div style={{ display: 'inline-flex', alignItems: 'baseline' }}>
-            <div style={{ width: '100px' }}>Location </div>
-            <LocationSet
-              location={location}
-              setLocation={setLocation}
-              setLocationError={setLocationError}
-              locationError={locationError}
-              setPageStatus={setPageStatus}
-              setLocationChanged={setLocationChanged}
-            />
-          </div>
-
-          <div style={{ display: 'inline-flex', alignItems: 'baseline' }}>
-            <div style={{ width: '100px' }}>Birthday </div>
-            <FormControl variant="outlined" className="signup-date">
-              <LocalizationProvider
-                dateAdapter={AdapterDayjs}
-              >
-                <DatePicker
-                  defaultValue={null}
-                  value={selectedDate}
-                  onChange={handleDateChange}
-                  format="YYYY-MM-DD"
-                />
-              </LocalizationProvider>
-            </FormControl>
-          </div>
+          </LocalizationProvider>
 
           <Button variant="contained" color="primary" type="submit" className="signup-button">
-            Update Profiles
+            Update
           </Button>
+          <LogoutButton
+            setPageStatus={setPageStatus}
+          />
           <GetPageStatus
             pageStatus={pageStatus}
           />
         </form>
-      </Box>
-      <Box className="signup-form-container">
-        <LogoutButton
-          setPageStatus={setPageStatus}
-        />
       </Box>
     </Box>
   );

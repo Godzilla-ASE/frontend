@@ -23,6 +23,9 @@ export default function NavBar() {
 
   const [createPost, setCreatePost] = useState(false)
   const [openMessage, setOpenMessage] = useState(false)
+  console.log("=======================================")
+  console.log('openMessage', openMessage)
+  console.log('newMessage', newMessage)
   const theme = useTheme()
 
   const navLinkStyle = {
@@ -43,33 +46,36 @@ export default function NavBar() {
   }
 
   const handleMessage = () => {
-    if (!loggedInUser) {
-      navigate('/login')
-    } else {
-      setOpenMessage(prev => !prev);
-      setNewMessage(false)
-    }
+    setOpenMessage(prev => !prev);
+    setNewMessage(false)
+  }
+
+  const handleHome = () => {
+    setOpenMessage(false);
+    setCreatePost(false)
   }
 
   return (
     <div className="nav">
       <header>
         <nav>
-          {/* <NavLink to="/"><img src={xhs} alt="logo" /></NavLink> */}
+          <Typography variant="h2" className="signup-heading" sx={{ color: 'primary.main' }}>
+            Godzilla
+          </Typography>
           {/* Home */}
-          <NavLink style={navLinkStyle} to="/"><AiOutlineHome size={28} /></NavLink>
+          <NavLink style={navLinkStyle} to="/" onClick={handleHome}><AiOutlineHome size={28} /></NavLink>
           {/* Create New Post */}
           {loggedInUser ? <NavLink style={navLinkStyle} onClick={handleCreate}><RiImageAddFill size={28} /></NavLink> : null}
           {/* Search Users */}
           <SearchUser />
           {/* Messages */}
-          {loggedInUser ? <div className="nav-link-container" onClick={handleMessage}>
+          {loggedInUser ? <div className="nav-link-container">
             {newMessage && <div className="badge"></div>}
             <NavLink style={navLinkStyle} onClick={handleMessage}><BiMessageRoundedDetail size={28} /></NavLink>
           </div> : null}
           {/* Profile / LogIn */}
           {loggedInUser
-            ? <NavLink style={navLinkStyleProfile} to={`/profile/${loggedInUser.userID}`}>
+            ? <NavLink style={navLinkStyleProfile} to={`/profile`}>
               <Avatar
                 src={loggedInUser.avatarUrl}
                 alt={`${loggedInUser.username}'s avatar`}

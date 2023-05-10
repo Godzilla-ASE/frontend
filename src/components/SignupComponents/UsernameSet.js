@@ -79,11 +79,10 @@ function UsernameSet({ username,
         </Typography>
         : null
       } */}
-      {noNameError
-        ? <Typography variant="body2" color="error" align="center" fontWeight={700}>
+      {noNameError &&
+        <Typography variant="body2" color="error" align="center" fontWeight={700}>
           What's your name?
         </Typography>
-        : null
       }
       {usernameexistError &&
         <Typography variant="body2" color="error" align="center" fontWeight={700}>

@@ -3,6 +3,7 @@ import AuthorInfoWrapper from "./AuthorInfoWrapper"
 import ReactionWrapper from "./ReactionWrapper"
 import { styled } from '@mui/system';
 
+
 const StyledDiv = styled('div')(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
@@ -20,12 +21,8 @@ const StyledDiv = styled('div')(({ theme }) => ({
 
 const AuthorWrapper = ({ post }) => {
 
-  const openProfile = (userid) => {
-    // go to profile
-  }
-
   return (
-    <StyledDiv onClick={() => openProfile(post.userid)}>
+    <StyledDiv>
       <AuthorInfoWrapper post={post} styleSetting="space-between" />
       <ReactionWrapper post={post} />
     </StyledDiv>

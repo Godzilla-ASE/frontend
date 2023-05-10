@@ -8,7 +8,7 @@ const PostContent = ({ rows, handleContentChange, postContent }) => {
       <Grid item xs>
         {/* Enter the post contents */}
         <MultiLineInput
-          placeholder="Write the contents..."
+          placeholder="Add contents..."
           rows={rows}
           handleChange={handleContentChange}
         />

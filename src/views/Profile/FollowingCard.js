@@ -49,9 +49,9 @@ const FollowingCard = ({ isFollowing, setfollowingCard, fansList, followingsList
                   <Grid item xs={12} key={userId} style={{ paddingTop: '3%' }} >
                     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '10px', border: '1px solid #ccc', borderRadius: '5px' }}>
                       <div onClick={() => handleUserVist(userId)}>
-                        <UserInfoWrapper userID={userId} />
+                        <UserInfoWrapper id={userId} />
                       </div>
-                      <FollowWrapper loginUser={logginedUser} userID={userId} />
+                      <FollowWrapper loginUser={logginedUser} id={userId} />
                     </div>
                   </Grid>
                 ))}
@@ -63,9 +63,9 @@ const FollowingCard = ({ isFollowing, setfollowingCard, fansList, followingsList
                   <Grid item xs={12} key={userId} style={{ paddingTop: '3%' }} >
                     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '10px', border: '1px solid #ccc', borderRadius: '5px' }}>
                       <div onClick={() => handleUserVist(userId)}>
-                        <UserInfoWrapper userID={userId} />
+                        <UserInfoWrapper id={userId} />
                       </div>
-                      <FollowWrapper loginUser={logginedUser} userID={userId} />
+                      <FollowWrapper loginUser={logginedUser} id={userId} />
                     </div>
                   </Grid>
                 ))}

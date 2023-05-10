@@ -1,15 +1,12 @@
 // contains information about the user avatar and name
 import { Typography, Avatar } from "@mui/material"
 import { styled } from '@mui/system';
-
-
-
-
-
+import { useNavigate } from "react-router-dom";
 
 const AuthorInfoWrapper = ({ post, styleSetting }) => {
   let username
   let userAvatar
+  const navigate = useNavigate()
 
   const AuthorInfo = styled('div')({
     display: 'flex',
@@ -31,8 +28,13 @@ const AuthorInfoWrapper = ({ post, styleSetting }) => {
       </div>
     )
   }
-  
+
   const date = post.creation_date.slice(0, 10)
+
+
+  const openProfile = (userid) => {
+    navigate(`/profile/${userid}`)
+  }
 
   if (post.username_from == null) {
     username = post.username;
@@ -42,7 +44,7 @@ const AuthorInfoWrapper = ({ post, styleSetting }) => {
     userAvatar = post.userAvatar_from
   }
   return (
-    <AuthorInfo>
+    <AuthorInfo onClick={() => openProfile(post.userid)}>
       <Avatar
         src={userAvatar}
         alt={`${username}'s avatar`}

@@ -7,7 +7,7 @@ const PostTitle = ({ titleContent, handleTitleChange }) => {
     <>
       <Grid item xs={1}>
         <SingleLineInput
-          placeholder="Write a title..."
+          placeholder="Add a title..."
           handleChange={handleTitleChange}
         />
       </Grid>

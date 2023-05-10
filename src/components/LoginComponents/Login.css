@@ -31,8 +31,14 @@
   padding: 40px;
   /*border: 1px solid #dbdbdb;*/
   border-radius: 5px;
-  width: 350px;
+  width: 500px;
   background-color: #333333;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
 .login-to-signup {
@@ -41,7 +47,7 @@
   flex-direction: column;
   gap: 20px;
   padding: 40px;
- /* border: 1px solid #dbdbdb;*/
+  /* border: 1px solid #dbdbdb;*/
   border-radius: 5px;
   width: 350px;
   background-color: #333333;

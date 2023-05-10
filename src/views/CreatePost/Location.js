@@ -34,7 +34,7 @@ const cantons = [
 const Location = ({ location, setLocation }) => {
 
   return (
-    <Grid item xs={1}>
+    <Grid item xs={1} sx={{ borderBottom: '2px solid #CECECE' }}>
       <Autocomplete
         value={location}
         onChange={(event, newValue) => {
@@ -60,6 +60,9 @@ const Location = ({ location, setLocation }) => {
           '& .MuiOutlinedInput-notchedOutline': {
             border: 'none',
           },
+          '.MuiOutlinedInput-root': {
+            paddingLeft: '0px'
+          },
           '& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline': {
             border: 'none',
           },
@@ -67,7 +70,7 @@ const Location = ({ location, setLocation }) => {
             border: 'none',
           },
         }}
-        renderInput={(params) => <TextField {...params} placeholder="Location" />}
+        renderInput={(params) => <TextField {...params} placeholder="Add a location..." />}
       />
     </Grid>
   )

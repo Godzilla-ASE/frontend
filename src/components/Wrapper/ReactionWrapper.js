@@ -7,6 +7,7 @@ import { Typography, useTheme } from '@mui/material';
 import { addLike, cancelLike, addDislike, cancelDislike } from '../../services/post';
 import DialogComponent from './DialogComponent';
 import ShareCard from '../ShareCard';
+import UserList from '../../views/Profile/UserList';
 
 const ReactionWrapper = ({ post }) => {
   const [liked, setLiked] = useState(false);
@@ -16,8 +17,10 @@ const ReactionWrapper = ({ post }) => {
   const [likeList, setLikeList] = useState("");
   const [dislikeList, setDislikeList] = useState("");
   const [sharing, setSharing] = useState(false);
+  const [openlikeList, setOpenlikeList] = useState(false);
+  const [openDislikeList, setOpenDislikeList] = useState(false);
   const logginedUser = useLoggedInUser();
-  const logginedID = localStorage.getItem("userID");
+  const logginedID = localStorage.getItem("id");
   const navigate = useNavigate();
   const theme = useTheme();
 
@@ -35,15 +38,15 @@ const ReactionWrapper = ({ post }) => {
     }
   }, [post]);
 
-  useEffect(() =>{
-    if (logginedUser){
-      console.log(likeList.includes(logginedUser.userID.toString()));
-      if (likeList.includes(logginedUser.userID.toString())) {
+  useEffect(() => {
+    if (logginedUser) {
+      console.log(likeList.includes(logginedUser.id.toString()));
+      if (likeList.includes(logginedUser.id.toString())) {
         setLiked(true);
       } else {
         setLiked(false);
       }
-      if (dislikeList.includes(logginedUser.userID.toString())) {
+      if (dislikeList.includes(logginedUser.id.toString())) {
         setDisliked(true);
       } else {
         setDisliked(false);
@@ -57,10 +60,10 @@ const ReactionWrapper = ({ post }) => {
       navigate('/login')
     } else {
       if (liked) {
-        cancelLike(post.id, logginedUser.userID);
+        cancelLike(post.id, logginedUser.id);
         setlikedNum(likedNum - 1);
       } else {
-        addLike(post.id, logginedUser.userID);
+        addLike(post.id, logginedUser.id);
         setlikedNum(likedNum + 1);
       }
       setLiked(!liked);
@@ -72,10 +75,10 @@ const ReactionWrapper = ({ post }) => {
       navigate('/login')
     } else {
       if (disliked) {
-        cancelDislike(post.id, logginedUser.userID);
+        cancelDislike(post.id, logginedUser.id);
         setDislikedNum(dislikedNum - 1);
       } else {
-        addDislike(post.id, logginedUser.userID);
+        addDislike(post.id, logginedUser.id);
         setDislikedNum(dislikedNum + 1);
       }
       setDisliked(!disliked);
@@ -84,24 +87,41 @@ const ReactionWrapper = ({ post }) => {
   const handleShare = () => {
     setSharing(true);
   }
+  const openLikeList = () => {
+    setOpenlikeList(true);
+  }
+  const openDisLikeList = () => {
+    setOpenDislikeList(true);
+  }
 
   return (
     <div style={{ display: 'flex', alignContent: 'center', marginTop: '10px', gap: '10px' }}>
-      <div onClick={handleLikeClick} style={{ display: 'flex', alignContent: 'center' }}>
-        {liked
+      <div style={{ display: 'flex', alignContent: 'center' }}>
+      <div onClick={handleLikeClick} >
+        { liked
           ? <AiFillLike className="likesIcon" color={theme.palette.secondary.main} size={theme.typography.body2.fontSize * 1.3} />
-          : <AiOutlineLike className="likesIcon" color={theme.palette.secondary.main} size={theme.typography.body2.fontSize * 1.3} />}
-        {post.likeNum > 0
+          : <AiOutlineLike className="likesIcon" color={theme.palette.secondary.main} size={theme.typography.body2.fontSize * 1.3} />
+        }
+      </div>
+      <div onClick={openLikeList} style={{ cursor: 'pointer'}}>
+        { post.likeNum > 0
           ? <Typography variant='body2' align="left" fontWeight="bold" color="secondary">{post.likeNum}</Typography>
           : null}
       </div>
-      <div onClick={handleDisLikeClick} style={{ display: 'flex', alignContent: 'center' }}>
-        {disliked
+      </div>
+      <div style={{ display: 'flex', alignContent: 'center' }}>
+      <div onClick={handleDisLikeClick} >
+        {
+         disliked
           ? <AiFillDislike className="dislikesIcon" color={theme.palette.secondary.main} size={theme.typography.body2.fontSize * 1.3} />
-          : <AiOutlineDislike className="dislikesIcon" color={theme.palette.secondary.main} size={theme.typography.body2.fontSize * 1.3} />}
-        {post.unlikeNum > 0
-          ? <Typography variant='body2' align="left" fontWeight="bold" color="secondary">{post.unlikeNum}</Typography>
-          : null}
+          : <AiOutlineDislike className="dislikesIcon" color={theme.palette.secondary.main} size={theme.typography.body2.fontSize * 1.3} />
+        }
+      </div>
+      <div onClick={openDisLikeList} style={{ cursor: 'pointer'}}>
+          { post.unlikeNum > 0
+            ? <Typography variant='body2' align="left" fontWeight="bold" color="secondary" >{post.unlikeNum}</Typography>
+            : null}
+        </div>
       </div>
       <div onClick={handleShare} style={{ display: 'flex', alignContent: 'center' }}>
         <AiOutlineShareAlt color={theme.palette.secondary.main} size={theme.typography.body2.fontSize * 1.3} />
@@ -109,6 +129,14 @@ const ReactionWrapper = ({ post }) => {
       <DialogComponent
         isOpen={sharing}
         children={<ShareCard url={"http://172.20.10.3/post/" + post.id} setSharing={setSharing} />}
+      />
+      <DialogComponent
+        isOpen={openlikeList}
+        children={<UserList titleText={"Who like this post:"} setCardOpe={setOpenlikeList} userList={likeList} logginedUser={logginedUser} />}
+      />
+      <DialogComponent
+        isOpen={openDislikeList}
+        children={<UserList titleText={"Who dislike this post:"} setCardOpe={setOpenDislikeList} userList={dislikeList} logginedUser={logginedUser} />}
       />
     </div>
   )
