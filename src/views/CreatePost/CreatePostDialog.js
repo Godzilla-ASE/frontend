@@ -140,8 +140,6 @@ function CreatePostDialog({ isOpen, onClose }) {
       "location": location
     }
 
-    console.log('newPost', newPost)
-
     try {
       await createPost(newPost)
       setPostContents('')
@@ -150,7 +148,7 @@ function CreatePostDialog({ isOpen, onClose }) {
       setTags([])
       setLocation('')
 
-      // add new post to the all posts
+      // add new post to the client state
       dispatch({ type: "CREATE_POST", newPost });
       onClose()
 

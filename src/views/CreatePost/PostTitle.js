@@ -11,7 +11,7 @@ const PostTitle = ({ titleContent, handleTitleChange }) => {
           handleChange={handleTitleChange}
         />
       </Grid>
-      <WordCountLimit content={titleContent} count={20} />
+      <WordCountLimit content={titleContent} count={30} />
     </>
   )
 }
