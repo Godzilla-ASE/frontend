@@ -15,13 +15,12 @@ const addFollower = async (logginedUserId, authorID, logginedUserToken) => {
 }
 
 const cancelFollower = async (logginedUserId, authorID, logginedUserToken) => {
-  console.log("发到了这个接口：", `${baseUserUrl}/${logginedUserId}/follow`)
   const response = await axios.put(`${baseUserUrl}/${logginedUserId}/follow/${authorID}`);
 
   return response
 }
 
-const getAll = async () => {
+const getAll = async () => { 
   const response = await axios.get(`${baseUserUrl}`)
   return response.data
 }

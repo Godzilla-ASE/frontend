@@ -12,9 +12,6 @@ const getPostComments = async (postid) => {
 
 const addComment = async (logginedUserId, postId, commentText, creationDate) => {
 
-  console.log("addcommet发到了这个接口：", `${baseCommentUrl}`)
-  console.log("评论：帖子id", postId, "内容", commentText, "日期", creationDate, "用户ID", logginedUserId);
-
   await axios.post(`${baseCommentUrl}`, {
     userid: logginedUserId,
     postid: postId,
@@ -26,8 +23,6 @@ const addComment = async (logginedUserId, postId, commentText, creationDate) => 
 }
 
 const addReply = async (user_from, user_to, commentID, commentText, creationDate) => {
-  console.log("addReply发到了这个接口：", `${baseCommentUrl}/reply`)
-  console.log("回复：评论ID", commentID, "回复内容", commentText, "日期", creationDate, "FROM：", user_from, "TO:", user_to);
 
   await axios.post(`${baseCommentUrl}/reply`, {
     userid_from: user_from,
@@ -41,13 +36,11 @@ const addReply = async (user_from, user_to, commentID, commentText, creationDate
 }
 
 const deleteComment = async (commentId) => {
-  console.log("deleteComment发到了这个接口：", `${baseCommentUrl}/${commentId}`)
   const res = await axios.delete(`${baseCommentUrl}/${commentId}`)
   return res
 }
 
 const deleteReply = async (replyId) => {
-  console.log("deleteReply发到了这个接口：", `${baseCommentUrl}/reply/${replyId}`)
   const res = await axios.delete(`${baseCommentUrl}/reply/${replyId}`)
   return res
 }
