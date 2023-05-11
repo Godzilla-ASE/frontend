@@ -16,7 +16,7 @@ const ImageBox = styled(Box)(({ theme }) => ({
   marginBottom: theme.spacing(1),
 }));
 
-const ImageUpload = ({ images, handleImageDelete, handleImageUpload, progress }) => {
+const ImageUpload = ({ images, handleImageDelete, handleImageUpload }) => {
 
   return (
     <Grid container className={ImageGrid} sx={{ height: '100%' }}>
@@ -87,7 +87,7 @@ const ImageUpload = ({ images, handleImageDelete, handleImageUpload, progress })
                         style={{ padding: '6px 8px', minWidth: 'auto' }}
                       />
                     </Box>
-                    <Box
+                    {/* <Box
                       sx={{
                         position: 'absolute',
                         bottom: 0,
@@ -101,7 +101,7 @@ const ImageUpload = ({ images, handleImageDelete, handleImageUpload, progress })
                         color="success"
                         style={{ display: progress[index] === 100 ? 'none' : 'block' }}
                       />
-                    </Box>
+                    </Box> */}
                   </Box>
                 )
                 : index <= images.filter(Boolean).length ? (

@@ -11,7 +11,7 @@ import PostContent from './PostContent';
 import DialogComponent from '../../components/Wrapper/DialogComponent';
 import Notification from '../../components/Notification'
 
-import useS3UploadWithProgress from '../../Hooks/useS3UploadWithProgress';
+import useS3Upload from '../../Hooks/useS3Upload';
 import { createPost } from '../../services/post';
 import useLoggedInUser from '../../Hooks/useLoggedInUser';
 
@@ -35,8 +35,8 @@ function CreatePostDialog({ isOpen, onClose }) {
 
   // handle image uploaded to AWS S3
   const [images, setImages] = useState([]);
-  const { progress, uploadImageToS3 } = useS3UploadWithProgress();
-  // const [uploadProgress, setUploadProgress] = useState(Array(9).fill(0))
+  console.log('images', images)
+  const { uploadImageToS3 } = useS3Upload();
 
 
   const handleImageUpload = async (e, index) => {
@@ -174,7 +174,7 @@ function CreatePostDialog({ isOpen, onClose }) {
       <DialogComponent isOpen={isOpen} onClose={handleCancel}>
         <Grid container spacing={2}>
           <Grid item xs={8}>
-            <ImageUpload images={images} handleImageUpload={handleImageUpload} handleImageDelete={handleImageDelete} progress={progress} />
+            <ImageUpload images={images} handleImageUpload={handleImageUpload} handleImageDelete={handleImageDelete} />
           </Grid>
           <Grid container item xs={4} direction="column" style={{ paddingRight: '15px', paddingBottom: '10px' }}>
             <Grid item xs={1} style={{ paddingTop: '15px' }}>

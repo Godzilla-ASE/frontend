@@ -81,6 +81,7 @@ const useFileUpload = () => {
       const data = JSON.parse(e.data);
       if (data.type === 'progress') {
         setProgress(data.progress);
+        console.log('progress', data.progress)
       }
     };
 
@@ -101,7 +102,7 @@ const useFileUpload = () => {
     formData.append('socketId', socket.id); // 发送socketId到服务器
 
     try {
-      const response = await axios.post('/upload-progress', formData, {
+      const response = await axios.post('http://localhost:3001/upload-progress', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
