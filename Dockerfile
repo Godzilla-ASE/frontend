@@ -1,4 +1,4 @@
-FROM node:12-alpine
+FROM node:16.17.0-alpine
 
 # 设置工作目录
 WORKDIR /app

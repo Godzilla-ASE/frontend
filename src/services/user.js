@@ -1,7 +1,6 @@
 import axios from 'axios'
 
-const baseUserUrl = 'http://10.21.10.228:8080/users'
-//const baseUserUrl = 'http://172.20.10.4:8080/users'
+const baseUserUrl = 'http://user:8080/users'
 
 
 const getOneUserInfo = async (id) => {
@@ -20,7 +19,7 @@ const cancelFollower = async (logginedUserId, authorID, logginedUserToken) => {
   return response
 }
 
-const getAll = async () => { 
+const getAll = async () => {
   const response = await axios.get(`${baseUserUrl}`)
   return response.data
 }
