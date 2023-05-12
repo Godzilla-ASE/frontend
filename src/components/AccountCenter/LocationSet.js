@@ -10,7 +10,7 @@ function LocationSet({ location,
   const handleLocationChange = (event) => {
     setLocation(event.target.value);
     setLocationError(false);
-    setPageStatus("");
+
   };
 
   const cantons = [

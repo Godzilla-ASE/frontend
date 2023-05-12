@@ -4,14 +4,12 @@ import { FormControl, InputLabel, Select, MenuItem, FormHelperText, Autocomplete
 function LocationSet({ location,
   setLocation,
   setLocationError,
-  locationError,
-  setPageStatus,
   setLocationChanged }) {
   const handleLocationChange = (newLocation) => {
     setLocation(newLocation);
     setLocationError(false);
     setLocationChanged(true);
-    setPageStatus("");
+
   };
 
   const cantons = [
@@ -44,36 +42,6 @@ function LocationSet({ location,
   ]
 
   return (
-    // <FormControl variant="outlined" className="signup-input">
-    //   <InputLabel htmlFor="location-select">Location</InputLabel>
-    //   <Select
-    //     labelId="location-select"
-    //     id="location-select"
-    //     value={location}
-    //     onChange={handleLocationChange}
-    //     label="Location"
-    //     error={locationError}
-    //   >
-    //     {cantons.map((canton) => <MenuItem key={canton} value={canton}>{canton}</MenuItem>)}
-    //     {/* <MenuItem value="Zurich">Zurich</MenuItem>
-    //     <MenuItem value="Bern">Bern</MenuItem>
-    //     <MenuItem value="Geneva">Geneva</MenuItem>
-    //     <MenuItem value="Lucerne">Lucerne</MenuItem>
-    //     <MenuItem value="St. Gallen">St. Gallen</MenuItem> */}
-    //   </Select>
-    //   {locationError &&
-    //     <FormHelperText sx={{ fontSize: 'body2.fontSize', color: 'red' }}>
-    //       Please select your location
-    //     </FormHelperText>}
-    // </FormControl>
-
-    // <Autocomplete
-    //   focused
-    //   disablePortal
-    //   options={cantons}
-    //   sx={{ width: 300 }}
-    //   renderInput={(params) => <TextField {...params} label="Location" />}
-    // />
     <Autocomplete
       sx={{
         '& .MuiIconButton-root': {

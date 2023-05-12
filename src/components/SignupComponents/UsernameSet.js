@@ -33,7 +33,7 @@ function UsernameSet({ username,
     setUsername(event.target.value);
     setUsernameexistError(false);
     setUsernameChanged(true);
-    setPageStatus("");
+
   };
 
   const handleUserNameBlur = () => {

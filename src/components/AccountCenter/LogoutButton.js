@@ -1,24 +1,47 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Button,
 } from "@mui/material";
 import { useNavigate } from 'react-router-dom';
 
-import Logout from '../../services/Logout'; // Import the Logout function from logout.js
+import Logout from '../../services/Logout';
 import "../SignupComponents/SignUp.css";
+import Notification from "../Notifications"
 
-const LogoutButton = ({ setPageStatus }) => {
+const LogoutButton = ({ setSuccess, setError }) => {
+  const [logOutSuccess, setLogOutSuccess] = useState('')
+  const [logOutError, setLogOutError] = useState('')
 
   const navigate = useNavigate();
 
   return (
-    <Button
-      className="signup-button"
-      variant="contained"
-      color="error"
-      onClick={(event) => Logout(setPageStatus, navigate)}>
-      Logout
-    </Button>
+    <>
+      <Button
+        className="signup-button"
+        variant="contained"
+        color="error"
+        onClick={(event) => Logout(navigate, setSuccess, setError)}>
+        Logout
+      </Button>
+      {
+        !!logOutSuccess && (
+          <Notification
+            status="success"
+            content="Log in successfully!"
+            closeCallback={() => setLogOutSuccess('')}
+          />
+        )
+      }
+      {
+        !!logOutError && (
+          <Notification
+            status="error"
+            content={logOutError}
+            closeCallback={() => setLogOutError('')}
+          />
+        )
+      }
+    </>
   );
 };
 

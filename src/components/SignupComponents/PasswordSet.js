@@ -38,7 +38,7 @@ function PasswordSet({
     }
     setPassword(event.target.value);
     setPasswordChanged(true);
-    setPageStatus("");
+
     if (confirmPassword !== event.target.value) {
       setConfirmPasswordError(true)
     } else {
@@ -53,7 +53,7 @@ function PasswordSet({
       setConfirmPasswordError(false);
     }
     setConfirmPassword(event.target.value);
-    setPageStatus("");
+
   };
 
   return (

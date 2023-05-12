@@ -11,7 +11,6 @@ import {
   Typography,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom"; // Import useHistory hook from react-router-dom
-import GetPageStatus from "./GetPageStatus";
 import UsernameSet from "./SignupComponents/UsernameSet";
 import EmailSet from "./SignupComponents/EmailSet";
 import PasswordSet from "./SignupComponents/PasswordSet";
@@ -26,6 +25,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import dayjs from 'dayjs';
 import useS3Upload from '../Hooks/useS3Upload'
+import Notification from "./Notification";
 
 const AccountCenter = () => {
 
@@ -50,10 +50,10 @@ const AccountCenter = () => {
   const [emailError, setEmailError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
   const [confirmPasswordError, setConfirmPasswordError] = useState(false);
-  const [fullnameError, setFullnameError] = useState(false);
   const [locationError, setLocationError] = useState(false);
-  const [pageStatus, setPageStatus] = useState("");
-  //const datehere = dayjs(user.birthday)
+
+  const [accountSuccess, setAccountSuccess] = useState('')
+  const [accountError, setAccountError] = useState('')
 
   const [selectedDate, setSelectedDate] = useState(user && user.birthday ? dayjs(user.birthday) : dayjs("1900-01-01"));
 
@@ -68,7 +68,7 @@ const AccountCenter = () => {
 
   const handleDateChange = (newselectedDate) => {
     setSelectedDate(newselectedDate);
-    setPageStatus("");
+
     setDateChanged(true);
   };
 
@@ -82,100 +82,111 @@ const AccountCenter = () => {
   };
 
   return (
-    <Box
-      className="signup-container"
-    >
+    <>
       <Box
-        className="signup-form-container"
+        className="signup-container"
       >
-        <Typography variant="h2" align="center" color="primary">
-          Account Center
-        </Typography>
-        <form
-          onSubmit={(event) => AccountCenterSubmit(event, username, password, email, location, confirmPassword,
-            usernameError, emailError, passwordError, confirmPasswordError, locationError,
-            setUsernameError, setPasswordError, setConfirmPasswordError, setLocationError, setEmailError,
-            setUsernameexistError, setPageStatus, AccountCenter_API, navigate,
-            selectedDate, dateChanged, usernameChanged, emailChanged, passwordChanged, locationChanged,
-            avatarUrl, avatarChanged, token, id)}
-          className="signup-form"
+        <Box
+          className="signup-form-container"
         >
-          <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-            <div style={{ display: "flex", alignItems: "center", justifyContent: "flex-start" }}>
-              <Avatar alt={username} src={avatarUrl} sx={{ width: 56, height: 56, border: '2px solid #fff' }} />
-              <label htmlFor="file-upload" style={{ display: 'inline-block', color: 'white', padding: '6px 12px', cursor: 'pointer' }}>
-                Change Avatar
-              </label>
-              <input id="file-upload" type="file" accept="image/*" onChange={handleFileInputChange} style={{ display: 'none' }} />
-              {/* <input type="file" accept="image/*" onChange={handleFileInputChange} /> */}
-            </div>
-          </div>
-          <UsernameSet
-            username={username}
-            setUsername={setUsername}
-            setUsernameError={setUsernameError}
-            setUsernameexistError={setUsernameexistError}
-            setPageStatus={setPageStatus}
-            usernameError={usernameError}
-            usernameexistError={usernameexistError}
-            setUsernameChanged={setUsernameChanged}
-          />
-          <EmailSet
-            email={email}
-            emailError={emailError}
-            setEmail={setEmail}
-            setEmailError={setEmailError}
-            setPageStatus={setPageStatus}
-            setEmailChanged={setEmailChanged}
-          />
-
-          <PasswordSet
-            password={password}
-            passwordError={passwordError}
-            confirmPassword={confirmPassword}
-            confirmPasswordError={confirmPasswordError}
-            setPassword={setPassword}
-            setConfirmPassword={setConfirmPassword}
-            setPasswordError={setPasswordError}
-            setConfirmPasswordError={setConfirmPasswordError}
-            setPageStatus={setPageStatus}
-            setPasswordChanged={setPasswordChanged}
-          />
-
-          <LocationSet
-            location={location}
-            setLocation={setLocation}
-            setLocationError={setLocationError}
-            locationError={locationError}
-            setPageStatus={setPageStatus}
-            setLocationChanged={setLocationChanged}
-          />
-
-          <LocalizationProvider
-            dateAdapter={AdapterDayjs}
+          <Typography variant="h2" align="center" color="primary">
+            Account Center
+          </Typography>
+          <form
+            onSubmit={(event) => AccountCenterSubmit(event, username, password, email, location, confirmPassword,
+              usernameError, emailError, passwordError, confirmPasswordError, locationError,
+              setUsernameError, setPasswordError, setConfirmPasswordError, setLocationError, setEmailError,
+              setUsernameexistError, setAccountSuccess, setAccountError, AccountCenter_API, navigate,
+              selectedDate, dateChanged, usernameChanged, emailChanged, passwordChanged, locationChanged,
+              avatarUrl, avatarChanged, token, id)}
+            className="signup-form"
           >
-            <DatePicker
-              label="Birthday"
-              defaultValue={dayjs("1900-01-01")}
-              value={selectedDate}
-              onChange={handleDateChange}
-              format="YYYY-MM-DD"
+            <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+              <div style={{ display: "flex", alignItems: "center", justifyContent: "flex-start" }}>
+                <Avatar alt={username} src={avatarUrl} sx={{ width: 56, height: 56, border: '2px solid #fff' }} />
+                <label htmlFor="file-upload" style={{ display: 'inline-block', color: 'white', padding: '6px 12px', cursor: 'pointer' }}>
+                  Change Avatar
+                </label>
+                <input id="file-upload" type="file" accept="image/*" onChange={handleFileInputChange} style={{ display: 'none' }} />
+                {/* <input type="file" accept="image/*" onChange={handleFileInputChange} /> */}
+              </div>
+            </div>
+            <UsernameSet
+              username={username}
+              setUsername={setUsername}
+              setUsernameError={setUsernameError}
+              setUsernameexistError={setUsernameexistError}
+              usernameError={usernameError}
+              usernameexistError={usernameexistError}
+              setUsernameChanged={setUsernameChanged}
             />
-          </LocalizationProvider>
+            <EmailSet
+              email={email}
+              emailError={emailError}
+              setEmail={setEmail}
+              setEmailError={setEmailError}
+              setEmailChanged={setEmailChanged}
+            />
 
-          <Button variant="contained" color="primary" type="submit" className="signup-button">
-            Update
-          </Button>
-          <LogoutButton
-            setPageStatus={setPageStatus}
-          />
-          {/* TODO: Message store in pageStatus*/}
-          <GetPageStatus
-            pageStatus={pageStatus}
-          />
-        </form>
+            <PasswordSet
+              password={password}
+              passwordError={passwordError}
+              confirmPassword={confirmPassword}
+              confirmPasswordError={confirmPasswordError}
+              setPassword={setPassword}
+              setConfirmPassword={setConfirmPassword}
+              setPasswordError={setPasswordError}
+              setConfirmPasswordError={setConfirmPasswordError}
+              setPasswordChanged={setPasswordChanged}
+            />
+
+            <LocationSet
+              location={location}
+              setLocation={setLocation}
+              setLocationError={setLocationError}
+              locationError={locationError}
+              setLocationChanged={setLocationChanged}
+            />
+
+            <LocalizationProvider
+              dateAdapter={AdapterDayjs}
+            >
+              <DatePicker
+                label="Birthday"
+                defaultValue={dayjs("1900-01-01")}
+                value={selectedDate}
+                onChange={handleDateChange}
+                format="YYYY-MM-DD"
+              />
+            </LocalizationProvider>
+
+            <Button variant="contained" color="primary" type="submit" className="signup-button">
+              Update
+            </Button>
+            <LogoutButton
+            />
+          </form>
+        </Box>
       </Box>
-    </Box>
+      {
+        !!accountSuccess && (
+          <Notification
+            status="success"
+            content={accountSuccess}
+            closeCallback={() => setAccountSuccess('')}
+          />
+        )
+      }
+      {
+        !!accountError && (
+          <Notification
+            status="error"
+            content={accountError}
+            closeCallback={() => setAccountError('')}
+          />
+        )
+      }
+    </>
   );
 };
 

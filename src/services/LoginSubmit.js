@@ -1,5 +1,5 @@
 const LoginSubmit = async (event, username, password,
-  setUsernameError, setPasswordError, setUsernamecorrectError, setPasswordcorrectError, setPageStatus,
+  setUsernameError, setPasswordError, setUsernamecorrectError, setPasswordcorrectError, setLogInSuccess, setLogInError,
   LOGIN_API, navigate, previousUrl) => {
 
   // response = {"id":14,"username":"aaaaaa","password":"Aa11111111!","birthday":null,"token":"d1976836-da1e-4479-af84-a176007a79df","creationDate":null,"email":"aa@aa.aa","location":"Zurich","fans":"","followings":"","haters":"","avatarUrl":null}
@@ -43,7 +43,7 @@ const LoginSubmit = async (event, username, password,
         localStorage.setItem("userName", userName)
 
         console.log(user_body)
-        setPageStatus("Logged in successfully.");
+        setLogInSuccess("Logged in successfully.");
 
         // Redirect to login page after 3 seconds
         setTimeout(() => {
@@ -52,7 +52,7 @@ const LoginSubmit = async (event, username, password,
       } else if (response.status === 404) {
         const error = await response.text();
         setUsernamecorrectError(true);
-        setPageStatus("Username not found.");
+        setLogInError("Username not found.");
 
         // const user = {
         //   authToken: "authToken",
@@ -68,11 +68,11 @@ const LoginSubmit = async (event, username, password,
       } else if (response.status === 409) {
         const error = await response.text();
         setPasswordcorrectError(true);
-        setPageStatus("Wrong credentials.");
+        setLogInError("Wrong credentials.");
       }
     } catch (error) {
       console.error(error);
-      setPageStatus("Failed to log in.");
+      setLogInError("Failed to log in.");
     }
   }
 };
