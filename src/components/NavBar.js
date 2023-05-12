@@ -23,9 +23,6 @@ export default function NavBar() {
 
   const [createPost, setCreatePost] = useState(false)
   const [openMessage, setOpenMessage] = useState(false)
-  console.log("=======================================")
-  console.log('openMessage', openMessage)
-  console.log('newMessage', newMessage)
   const theme = useTheme()
 
   const navLinkStyle = {

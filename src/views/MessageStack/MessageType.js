@@ -1,5 +1,6 @@
 import AuthorInfoWrapper from "../../components/Wrapper/AuthorInfoWrapper"
 import { Typography } from "@mui/material"
+import { Link } from 'react-router-dom'
 
 export const FollowMessage = ({ message }) => {
   return (
@@ -13,12 +14,12 @@ export const FollowMessage = ({ message }) => {
   )
 }
 
-export const LikeMessage = ({ message }) => {
+export const LikeMessage = ({ message, handleMessageDialog }) => {
   return (
     <>
       <AuthorInfoWrapper post={message} styleSetting="start" />
       <Typography variant="body1" color="secondary">
-        liked your post.
+        liked your post: <Link to={`/post/${message.send_to_client_id}`} style={{ color: '#ffffff' }} onClick={handleMessageDialog}>{message.send_to_client}</Link>
       </Typography>
       {/* link to your post */}
     </>

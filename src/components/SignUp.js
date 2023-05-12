@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import {
+  Avatar,
   Box,
   Button,
   Checkbox,
@@ -15,8 +16,9 @@ import EmailSet from "./SignupComponents/EmailSet";
 import PasswordSet from "./SignupComponents/PasswordSet";
 import LocationSet from "./SignupComponents/LocationSet";
 import SignupSubmit from "../services/SignupSubmit";
-import { SIGNUP_API } from "../services/APIs";
+import { SIGNUP_API,LOGO_API } from "../services/APIs";
 import "./SignupComponents/SignUp.css";
+import useS3Upload from '../Hooks/useS3Upload'
 
 const SignUp = () => {
   const [username, setUsername] = useState("");
@@ -36,11 +38,15 @@ const SignUp = () => {
   const [locationError, setLocationError] = useState(false);
   const [isCheckedError, setIsCheckedError] = useState(false);
   const [pageStatus, setPageStatus] = useState("");
+  const [avatarUrl, setAvatarUrl] = useState("https://robohash.org/31.10.156.227.png");
 
   const [usernameChanged, setUsernameChanged] = useState(false);
   const [emailChanged, setEmailChanged] = useState(false);
   const [passwordChanged, setPasswordChanged] = useState(false);
   const [locationChanged, setLocationChanged] = useState(false);
+  const [avatarChanged, setAvatarChanged] = useState(false);
+
+  const { uploadImageToS3 } = useS3Upload();
 
   const navigate = useNavigate();
 
@@ -56,16 +62,33 @@ const SignUp = () => {
     setPageStatus("");
   };
 
+  const handleFileInputChange = async (event) => {
+    const file = event.target.files[0];
+    const URL = await uploadImageToS3(file);
+    //console.log(URL)
+    setAvatarUrl(URL);
+    setAvatarChanged(true);
+  };
+
   return (
     <Box
       className="signup-container"
     >
       <Box
         className="signup-form-container"
-      >
-        <Typography variant="h2" className="signup-heading" sx={{ color: 'primary.main' }}>
+      >       
+        <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+        <img
+          src={LOGO_API}
+          alt="Godzilla logo"
+          style={{ width: "200px", // Set the width to your desired size
+          height: "100px", // Set the height to "auto" to maintain aspect ratiomarginBottom: "20px" 
+        }}
+          align="center"
+        />
+      </div>{/* <Typography variant="h2" className="signup-heading" sx={{ color: 'primary.main' }}>
           Godzilla
-        </Typography>
+        </Typography> */}
         <Typography variant="body1" align="center" color="primary">
           Sign up to see posts from your friends.
         </Typography>
@@ -73,9 +96,19 @@ const SignUp = () => {
           onSubmit={(event) => SignupSubmit(event, username, password, email, location, confirmPassword, isChecked,
             usernameError, emailError, passwordError, confirmPasswordError, locationError, isCheckedError,
             setUsernameError, setPasswordError, setConfirmPasswordError, setLocationError, setEmailError,
-            setUsernameexistError, setIsCheckedError, setPageStatus, SIGNUP_API, navigate)}
+            setUsernameexistError, setIsCheckedError, setPageStatus, avatarUrl, avatarChanged, SIGNUP_API, navigate)}
           className="signup-form"
         >
+          <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "flex-start" }}>
+              <Avatar alt={username} src={avatarUrl} sx={{ width: 56, height: 56, border: '2px solid #fff' }} />
+              <label htmlFor="file-upload" style={{ display: 'inline-block', color: 'white', padding: '6px 12px', cursor: 'pointer' }}>
+                Set Avatar
+              </label>
+              <input id="file-upload" type="file" accept="image/*" onChange={handleFileInputChange} style={{ display: 'none' }} />
+              {/* <input type="file" accept="image/*" onChange={handleFileInputChange} /> */}
+            </div>
+          </div>
           <UsernameSet
             username={username}
             setUsername={setUsername}
@@ -128,6 +161,7 @@ const SignUp = () => {
           <Button variant="contained" color="primary" type="submit" className="signup-button">
             Sign up
           </Button>
+          {/* TODO: Message store in pageStatus*/}
           <GetPageStatus
             pageStatus={pageStatus}
           />

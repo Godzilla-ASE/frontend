@@ -39,6 +39,11 @@ function PasswordSet({
     setPassword(event.target.value);
     setPasswordChanged(true);
     setPageStatus("");
+    if (confirmPassword !== event.target.value) {
+      setConfirmPasswordError(true)
+    } else {
+      setConfirmPasswordError(false);
+    }
   };
 
   const handleConfirmPasswordChange = (event) => {

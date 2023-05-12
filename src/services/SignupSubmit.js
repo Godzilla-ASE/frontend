@@ -1,7 +1,7 @@
 const SignupSubmit = async (event, username, password, email, location, confirmPassword, isChecked,
   usernameError, emailError, passwordError, confirmPasswordError, locationError, isCheckedError,
   setUsernameError, setPasswordError, setConfirmPasswordError, setLocationError, setEmailError,
-  setUsernameexistError, setIsCheckedError, setPageStatus, SIGNUP_API, navigate) => {
+  setUsernameexistError, setIsCheckedError, setPageStatus, avatarUrl, avatarChanged,SIGNUP_API, navigate) => {
   event.preventDefault();
   // Get the history object from react-router-dom
   if (!/^[a-zA-Z0-9]{6,16}$/.test(username)) {
@@ -32,16 +32,41 @@ const SignupSubmit = async (event, username, password, email, location, confirmP
       const response = await fetch(SIGNUP_API, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username, email, password, location }),
+        body: JSON.stringify({ username, email, password, location, avatarUrl }),
       });
       if (response.ok) {
         //const result = await response.text();
         setPageStatus(`Sign up successfully.`);
+        console.log(response);
+        const user_body = await response.json();
+
+        const authToken = user_body.token;
+        const userID = user_body.id;
+        const userName = user_body.username;
+        const userAvatarUrl = user_body.avatarUrl;
+        // save user to localStorage
+        // localStorage.setItem("loggedInUser", user);
+        const user = {
+          authToken: authToken,
+          userID: userID,
+          userName: userName,
+          avatarUrl: userAvatarUrl
+        }
+
+
+        localStorage.setItem("loggedInUser", JSON.stringify(user));
+        localStorage.setItem("user", JSON.stringify(user_body))
+
+
+
+        localStorage.setItem("authToken", authToken);
+        localStorage.setItem("userID", userID);
+        localStorage.setItem("userName", userName)
 
         // Redirect to login page after 3 seconds
         setTimeout(() => {
-          navigate("/login"); // Replace "/login" with the actual URL of your login page
-        }, 3000);
+          navigate("/"); // Replace "/login" with the actual URL of your login page
+        }, 1000);
       } else if (response.status === 409) {
         const error = await response.text();
         setUsernameexistError(true);

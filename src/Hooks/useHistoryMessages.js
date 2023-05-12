@@ -13,7 +13,6 @@ export const useHistoryMessages = (user) => {
       dispatch({ type: "SET_HISTORY", data })
 
     }
-    console.log('???')
     fetchData().catch(console.error)
   }, []);
 

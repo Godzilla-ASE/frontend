@@ -29,7 +29,7 @@ const AuthorInfoWrapper = ({ post, styleSetting }) => {
     )
   }
 
-  const date = post.creation_date.slice(0, 10)
+  const date = post.creation_date.slice(0, 10) + ' ' + post.creation_date.slice(11, 16)
 
 
   const openProfile = (userid) => {

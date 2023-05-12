@@ -6,15 +6,11 @@ import useLoggedInUser from '../../Hooks/useLoggedInUser'
 
 
 const UserInfoWrapper = (props) => {
-  console.log('props', props)
   const loggedInUser = useLoggedInUser()
   const [user, setUser] = useState(loggedInUser);
 
-  console.log('user', user)
-
   useEffect(() => {
     if (props.id) {
-      console.log('id is passed in')
       const fetchData = async () => {
         const user = await getOneUserInfo(props.id);
         setUser(user);
@@ -22,7 +18,6 @@ const UserInfoWrapper = (props) => {
       fetchData();
     }
     if (props.user) {
-      console.log('a user is passed in')
       setUser(props.user)
     }
   }, [props]);
