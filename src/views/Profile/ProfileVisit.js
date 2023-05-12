@@ -9,6 +9,7 @@ import { usePosts } from "../../Hooks/usePosts";
 import DialogComponent from "../../components/Wrapper/DialogComponent";
 import { IoLocationOutline } from "react-icons/io5";
 import UserList from "./UserList";
+import FollowWapper from "../../components/Wrapper/FollowWrapper";
 
 export default function Profile() {
   // 获取登陆用户信息，需要它的ID做事情
@@ -82,7 +83,7 @@ export default function Profile() {
           </Grid>
         </Grid>
         <Grid className="profile-buttons" container justifyContent="center" alignItems="center" gap="10px">
-          {/* #TODO 添加 Follow Button 在这 */}
+          <FollowWapper loginUser={logginedUser} id={visitedUserID} />
         </Grid>
       </Paper>
       <Paper style={{ backgroundColor: '#222222' }}>

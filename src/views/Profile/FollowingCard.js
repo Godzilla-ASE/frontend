@@ -17,7 +17,8 @@ const FollowingCard = ({ isFollowing, setfollowingCard, fansList, followingsList
   };
 
   const handleUserVist = (userId) => {
-    navigate(`/profile/${userId}`)
+    handleBack();
+    navigate(`/profile/${userId}`);
   };
 
   if (!logginedUser) {
