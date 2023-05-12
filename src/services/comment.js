@@ -1,7 +1,6 @@
 import axios from 'axios'
 
-//const baseCommentUrl = 'http://172.20.10.3:9000/comments'
-const baseCommentUrl = 'http://10.21.10.220:9000/comments'
+const baseCommentUrl = 'http://localhost:8082/comments'
 
 
 const getPostComments = async (postid) => {

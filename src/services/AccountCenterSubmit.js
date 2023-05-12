@@ -2,7 +2,7 @@
 const AccountCenterSubmit = async (event, username, password, email, location, confirmPassword,
   usernameError, emailError, passwordError, confirmPasswordError, locationError,
   setUsernameError, setPasswordError, setConfirmPasswordError, setLocationError, setEmailError,
-  setUsernameexistError, setPageStatus, AccountCenter_API, navigate,
+  setUsernameexistError, setAccountSuccess, setAccountError, AccountCenter_API, navigate,
   selectedDate, dateChanged, usernameChanged, emailChanged, passwordChanged, locationChanged,
   avatarUrl, avatarChanged, token, id) => {
   event.preventDefault();
@@ -77,8 +77,7 @@ const AccountCenterSubmit = async (event, username, password, email, location, c
         body: JSON.stringify(requestBody),
       });
       if (response.ok) {
-        //const result = await response.text();
-        setPageStatus(`Update Profile successfully.`);
+        setAccountSuccess("Update Profile successfully.");
 
         const user_body = JSON.parse(localStorage.getItem("user"));
 
@@ -98,23 +97,21 @@ const AccountCenterSubmit = async (event, username, password, email, location, c
 
         localStorage.setItem("loggedInUser", JSON.stringify(user));
         localStorage.setItem("userName", userName)
-
-        // Redirect to login page after 3 seconds
+        // Redirect to login page after 1 second
         setTimeout(() => {
-          navigate("/profile"); // Replace "/login" with the actual URL of your login page
+          navigate("/profile");
         }, 1000);
       } else if (response.status === 409) {
-        const error = await response.text();
         setUsernameexistError(true);
-        setPageStatus(`Username Exists. `);
+        setAccountError(`Username Exists. `);
       }
       else if (response.status === 404) {
-        setPageStatus("Failed to connect to backend.");
+        setAccountError("Failed to connect to backend.");
 
       }
     } catch (error) {
       console.error(error);
-      setPageStatus("Failed to update profile.");
+      setAccountError("Failed to update profile.");
     }
   }
 };

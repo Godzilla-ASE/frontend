@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Grid, Typography, Button, Avatar, Card, CardHeader, CardContent, CardActions, Box, IconButton, colors } from '@mui/material';
+import { Grid, Typography, IconButton, Card} from '@mui/material';
 import FollowWrapper from '../../components/Wrapper/FollowWrapper';
 import UserInfoWrapper from '../../components/Wrapper/UserInfoWrapper';
 import { useNavigate } from 'react-router-dom';

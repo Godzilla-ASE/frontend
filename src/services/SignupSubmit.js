@@ -1,7 +1,8 @@
+
 const SignupSubmit = async (event, username, password, email, location, confirmPassword, isChecked,
   usernameError, emailError, passwordError, confirmPasswordError, locationError, isCheckedError,
   setUsernameError, setPasswordError, setConfirmPasswordError, setLocationError, setEmailError,
-  setUsernameexistError, setIsCheckedError, setPageStatus, avatarUrl, avatarChanged,SIGNUP_API, navigate) => {
+  setUsernameexistError, setIsCheckedError, setSignUpSuccess, setSignUpError, avatarUrl, avatarChanged, SIGNUP_API, navigate) => {
   event.preventDefault();
   // Get the history object from react-router-dom
   if (!/^[a-zA-Z0-9]{6,16}$/.test(username)) {
@@ -35,8 +36,7 @@ const SignupSubmit = async (event, username, password, email, location, confirmP
         body: JSON.stringify({ username, email, password, location, avatarUrl }),
       });
       if (response.ok) {
-        //const result = await response.text();
-        setPageStatus(`Sign up successfully.`);
+        setSignUpSuccess('Log in successfully!');
         console.log(response);
         const user_body = await response.json();
 
@@ -68,17 +68,17 @@ const SignupSubmit = async (event, username, password, email, location, confirmP
           navigate("/"); // Replace "/login" with the actual URL of your login page
         }, 1000);
       } else if (response.status === 409) {
-        const error = await response.text();
+        // const error = await response.text();
         setUsernameexistError(true);
-        setPageStatus(`Username Exists. `);
+        setSignUpError("Username Exists. Please choose another one.");
       }
       else if (response.status === 404) {
-        setPageStatus("Failed to connect to backend.");
+        setSignUpError("Failed to connect to backend. Please try again later.");
 
       }
     } catch (error) {
       console.error(error);
-      setPageStatus("Failed to sign up.");
+      setSignUpError("Failed to sign up. Please try again later.");
     }
   }
 };

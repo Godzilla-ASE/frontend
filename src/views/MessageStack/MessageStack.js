@@ -24,7 +24,7 @@ const MessageStack = ({ isOpen, onClose, setNewMessage }) => {
   useEffect(() => {
     // create and activate stomp
     const newClient = new Client({
-      webSocketFactory: () => new SockJS('http://10.21.10.220:10000/ase-websocket'),
+      webSocketFactory: () => new SockJS('http://localhost:8083/ase-websocket'),
       onConnect: () => {
         console.log('Connected');
 
@@ -48,7 +48,7 @@ const MessageStack = ({ isOpen, onClose, setNewMessage }) => {
   const renderMessageContent = (type, message) => {
     switch (type) {
       case 'LIKE_POST':
-        return <LikeMessage message={message} handleMessageDialog={onClose}/>;
+        return <LikeMessage message={message} handleMessageDialog={onClose} />;
       case 'FOLLOW_USER':
         return <FollowMessage message={message} />;
       case 'COMMENT':

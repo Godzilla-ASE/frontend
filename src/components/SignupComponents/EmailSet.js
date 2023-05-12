@@ -16,7 +16,7 @@ function EmailSet({ email,
     setEmail(event.target.value);
     setEmailError(false);
     setEmailChanged(true);
-    setPageStatus("");
+
   };
 
   const handleEmailBlur = () => {
