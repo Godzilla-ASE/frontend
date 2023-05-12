@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const baseUserUrl = 'http://user:8080/users'
+const baseUserUrl = 'http://localhost:8080/users'
 
 
 const getOneUserInfo = async (id) => {

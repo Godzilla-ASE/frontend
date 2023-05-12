@@ -10,7 +10,7 @@ const useS3Upload = () => {
     formData.append('fileName', fileName);
 
     try {
-      const response = await axios.post('http://s3server:3001/upload', formData, {
+      const response = await axios.post('http://localhost:3001/upload', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
