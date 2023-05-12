@@ -83,10 +83,6 @@ function LoginForm() {
             <Button variant="contained" color="primary" type="submit" className="login-button">
               Log In
             </Button>
-            {/* TODO: Message store in pageStatus*/}
-            <GetPageStatus
-              pageStatus={pageStatus}
-            />
           </form>
         </Box>
         <Box align="center" className="link-to-signup">

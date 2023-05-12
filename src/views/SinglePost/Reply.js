@@ -1,7 +1,7 @@
 import React from "react";
 import { CardContent, Typography, Button } from '@mui/material';
 import AuthorInfoWrapper from "../../components/Wrapper/AuthorInfoWrapper";
-import { deleteComment, deleteReply } from "../../services/comment";
+import {deleteReply } from "../../services/comment";
 
 function Replys({ reply, loginedUserID }) {
   const content = reply.content;

@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 
 import Logout from '../../services/Logout';
 import "../SignupComponents/SignUp.css";
-import Notification from "../Notifications"
+import Notification from "../Notification"
 
 const LogoutButton = ({ setSuccess, setError }) => {
   const [logOutSuccess, setLogOutSuccess] = useState('')

@@ -1,13 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState} from "react";
 import {
   Avatar,
   Box,
   Button,
-  Checkbox,
-  FormControl,
-  FormControlLabel,
-  FormHelperText,
-  Link,
   Typography,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom"; // Import useHistory hook from react-router-dom

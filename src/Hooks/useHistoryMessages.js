@@ -1,4 +1,4 @@
-import { useEffect, useState, useContext } from 'react';
+import { useEffect, useContext } from 'react';
 import { getHistoryMessages } from '../services/message';
 import { MessageContext } from '../context/MessageContext';
 
