@@ -20,26 +20,22 @@ const CommentFooter = ({ post, user, replyComment }) => {
   const postAuthorID = post.userid; // 帖子作者ID
 
   const handleSubmit = () => {
-    // update it to communicate with the server
     if (!user) {
       navigate('/login');
     }
     const Now = new Date();
-    const year = new Date(Now).getFullYear();
-    const month = new Date(Now).getMonth() + 1;
-    const day = new Date(Now).getDate();
-    const creationDate = year + "-" + month + "-" + day;
 
-    //console.log(replyComment.length, replyComment.length !== 0);
     if (commentText !== "") {
       if (replyComment.length !== 0) {
         const commentID = replyComment.id; // 评论ID
         addReply(logginedUserId, postAuthorID, commentID, commentText, Now);
         setCommentText(''); // 清空输入框
+        // #TODO 添加回复成功提示消息
         navigate(`/post/${postId}`);
       } else {
         addComment(logginedUserId, postId, commentText, Now);
         setCommentText(''); // 清空输入框
+        // #TODO 添加评论成功提示消息
         navigate(`/post/${postId}`);
       }
     }
@@ -47,8 +43,13 @@ const CommentFooter = ({ post, user, replyComment }) => {
   }
 
   const handlePostDelete = (postid) => {
+
     deletePost(postid);
-    navigate('');
+    setTimeout(() => {
+      navigate('/'); // Replace "/login" with the actual URL of your login page
+    }, 1000);
+
+    // #TODO 删除梯帖子成功提示消息
   }
 
   var placeholdertext = "Write your comments...";

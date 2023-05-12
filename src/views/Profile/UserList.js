@@ -14,6 +14,7 @@ const UserList = ({ titleText, setCardOpen, userList, logginedUser }) => {
       };
     
     const handleUserVist = (userId) => {
+        handleBack();
         navigate(`/profile/${userId}`)
     };
     console.log(userList);
@@ -34,7 +35,7 @@ const UserList = ({ titleText, setCardOpen, userList, logginedUser }) => {
                         <div onClick={()=>handleUserVist(userId)}>
                             {userId === "" ? <div></div> : <UserUnit userId={userId}/>}
                         </div>
-                        <FollowWrapper loginUser={logginedUser} userID={userId}/>
+                        <FollowWrapper loginUser={logginedUser} id={userId}/>
                     </div>
                 </Grid>
                 ))}

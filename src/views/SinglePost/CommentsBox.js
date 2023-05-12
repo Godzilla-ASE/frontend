@@ -9,7 +9,7 @@ const CommentsBox = ({ comments, loginedUserID,  onreplyCommentChange }) => {
     if(commentsList.length ===0){
         return (
             <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                <Typography variant="body2" color="text.secondary">
+                <Typography variant="body2" color="white" style={{padding: '10px'}}>
                     No comment so far
                 </Typography>
             </div>

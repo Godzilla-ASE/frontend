@@ -20,17 +20,16 @@ const ReactionWrapper = ({ post }) => {
   const [openlikeList, setOpenlikeList] = useState(false);
   const [openDislikeList, setOpenDislikeList] = useState(false);
   const logginedUser = useLoggedInUser();
-  const logginedID = localStorage.getItem("id");
+  const logginedID = localStorage.getItem("userID");
   const navigate = useNavigate();
   const theme = useTheme();
 
   // 按钮初始化
   // 判断登陆用户是否已点赞点踩这篇帖子
   useEffect(() => {
-    if (post) {
-
-      const newLikeList = post.like_users ? post.like_users.split(",") : [];
-      const newDislikeList = post.unlike_users ? post.unlike_users.split(",") : [];
+    if (post && post.like_users && post.unlike_users) {
+      const newLikeList = post.like_users === "" || post.like_users === null ? [] : post.like_users.slice(0,post.like_users.length-1).split(",");
+      const newDislikeList = post.unlike_users === "" || post.unlike_users === null  ? []:post.unlike_users.slice(0,post.unlike_users.length-1).split(",");
       setLikeList(newLikeList);
       setDislikeList(newDislikeList);
       setlikedNum(post.likeNum);
@@ -39,32 +38,33 @@ const ReactionWrapper = ({ post }) => {
   }, [post]);
 
   useEffect(() => {
-    if (logginedUser) {
-      console.log(likeList.includes(logginedUser.id.toString()));
-      if (likeList.includes(logginedUser.id.toString())) {
+    if (logginedID) {
+      if (likeList.includes(logginedID.toString())) {
         setLiked(true);
       } else {
         setLiked(false);
       }
-      if (dislikeList.includes(logginedUser.id.toString())) {
+      if (dislikeList.includes(logginedID.toString())) {
         setDisliked(true);
       } else {
         setDisliked(false);
       }
     }
-  }, [logginedUser]);
+  }, [logginedID, likeList, dislikeList]);
   // 按钮初始化结束
 
   const handleLikeClick = () => {
     if (!logginedUser) {
       navigate('/login')
     } else {
-      if (liked) {
+      if (likeList.includes(logginedID.toString())) {
         cancelLike(post.id, logginedUser.id);
         setlikedNum(likedNum - 1);
+        // #TODO 取消点赞 成功提示消息
       } else {
         addLike(post.id, logginedUser.id);
         setlikedNum(likedNum + 1);
+        // #TODO 取消点踩 成功提示消息
       }
       setLiked(!liked);
     }
@@ -74,12 +74,14 @@ const ReactionWrapper = ({ post }) => {
     if (!logginedUser) {
       navigate('/login')
     } else {
-      if (disliked) {
+      if (dislikeList.includes(logginedID.toString())) {
         cancelDislike(post.id, logginedUser.id);
         setDislikedNum(dislikedNum - 1);
+        // #TODO 取消点踩 成功提示消息
       } else {
         addDislike(post.id, logginedUser.id);
         setDislikedNum(dislikedNum + 1);
+        // #TODO 点踩 成功提示消息
       }
       setDisliked(!disliked);
     }
@@ -97,20 +99,20 @@ const ReactionWrapper = ({ post }) => {
   return (
     <div style={{ display: 'flex', alignContent: 'center', marginTop: '10px', gap: '10px' }}>
       <div style={{ display: 'flex', alignContent: 'center' }}>
-      <div onClick={handleLikeClick} >
+      <div onClick={() => handleLikeClick()} >
         { liked
           ? <AiFillLike className="likesIcon" color={theme.palette.secondary.main} size={theme.typography.body2.fontSize * 1.3} />
           : <AiOutlineLike className="likesIcon" color={theme.palette.secondary.main} size={theme.typography.body2.fontSize * 1.3} />
         }
       </div>
       <div onClick={openLikeList} style={{ cursor: 'pointer'}}>
-        { post.likeNum > 0
-          ? <Typography variant='body2' align="left" fontWeight="bold" color="secondary">{post.likeNum}</Typography>
+        { likedNum > 0
+          ? <Typography variant='body2' align="left" fontWeight="bold" color="secondary">{likedNum}</Typography>
           : null}
       </div>
       </div>
       <div style={{ display: 'flex', alignContent: 'center' }}>
-      <div onClick={handleDisLikeClick} >
+      <div onClick={() => handleDisLikeClick()} >
         {
          disliked
           ? <AiFillDislike className="dislikesIcon" color={theme.palette.secondary.main} size={theme.typography.body2.fontSize * 1.3} />
@@ -118,8 +120,8 @@ const ReactionWrapper = ({ post }) => {
         }
       </div>
       <div onClick={openDisLikeList} style={{ cursor: 'pointer'}}>
-          { post.unlikeNum > 0
-            ? <Typography variant='body2' align="left" fontWeight="bold" color="secondary" >{post.unlikeNum}</Typography>
+          { dislikedNum > 0
+            ? <Typography variant='body2' align="left" fontWeight="bold" color="secondary" >{dislikedNum}</Typography>
             : null}
         </div>
       </div>
@@ -128,15 +130,15 @@ const ReactionWrapper = ({ post }) => {
       </div>
       <DialogComponent
         isOpen={sharing}
-        children={<ShareCard url={"http://172.20.10.3/post/" + post.id} setSharing={setSharing} />}
+        children={<ShareCard url={"http://localhost:3000/post/" + post.id} setSharing={setSharing} />}
       />
       <DialogComponent
         isOpen={openlikeList}
-        children={<UserList titleText={"Who like this post:"} setCardOpe={setOpenlikeList} userList={likeList} logginedUser={logginedUser} />}
+        children={<UserList titleText={"Who like this post:"} setCardOpen={setOpenlikeList} userList={likeList} logginedUser={logginedUser} />}
       />
       <DialogComponent
         isOpen={openDislikeList}
-        children={<UserList titleText={"Who dislike this post:"} setCardOpe={setOpenDislikeList} userList={dislikeList} logginedUser={logginedUser} />}
+        children={<UserList titleText={"Who dislike this post:"} setCardOpen={setOpenDislikeList} userList={dislikeList} logginedUser={logginedUser} />}
       />
     </div>
   )

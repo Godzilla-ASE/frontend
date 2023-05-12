@@ -15,6 +15,7 @@ function Comment({ comment, loginedUserID, onreplyCommentChange }) {
   }
   const handleDeleteComment = (id)=>{
     deleteComment(id);
+    // #TODO 删除评论提示消息
   }
 
   if (replys.length !== 0) {
@@ -25,9 +26,6 @@ function Comment({ comment, loginedUserID, onreplyCommentChange }) {
         <CardContent style={{ marginLeft: '9%' }}>
           <Typography color="secondary" variant="body2" >
             {content}
-          </Typography>
-          <Typography variant="body3" color="secondary">
-            {creation_date ? creation_date : <div></div>}
           </Typography>
           <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
             {loginedUserID !== comment.userid ? <div></div> : <Button onClick={()=>handleDeleteComment(comment.id)}>Delete</Button>}

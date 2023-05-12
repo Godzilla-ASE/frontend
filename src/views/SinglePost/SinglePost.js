@@ -11,6 +11,7 @@ import PostContent from './PostContent';
 import { useTheme } from '@mui/material/styles';
 import UserInfoWrapper from '../../components/Wrapper/UserInfoWrapper';
 import useLoggedInUser from "../../Hooks/useLoggedInUser";
+import AuthorInfoWrapper from '../../components/Wrapper/AuthorInfoWrapper';
 
 
 function SinglePost() {
@@ -92,7 +93,7 @@ function SinglePost() {
           </Grid>
           <Grid item xs={12} sm={6} style={{ display: 'grid', gridTemplateRows: 'auto 1fr auto', height: '100%' }}>
             <div style={{ display: 'flex', alignContent: 'center', justifyContent: 'space-between' }}>
-              <UserInfoWrapper id={AuthorID} />
+              <AuthorInfoWrapper post={post} />
               {AuthorID !== loginedUserID || loginedUserID === null ?
                 <FollowWapper loginUser={loginedUser} id={AuthorID} /> : <div></div>}
             </div>
