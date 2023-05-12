@@ -1,8 +1,8 @@
 import { LOGOUT_API } from "../services/APIs";
 
-const Logout = async (navigate, setSuccess, setError) => {
+const Logout = async (navigate, setLogOutSuccess, setLogOutError) => {
   if (localStorage.getItem("authToken") === null) {
-    setError("Failed to log out. Can't log out when not logined.");
+    setLogOutError("Failed to log out. Can't log out when not logined.");
 
     setTimeout(() => {
       navigate('/login'); // Replace "/login" with the actual URL of your login page
@@ -22,7 +22,7 @@ const Logout = async (navigate, setSuccess, setError) => {
       });
       console.log(response)
       if (response.ok) {
-        setSuccess("Logged out successfully.");
+        setLogOutSuccess("Logged out successfully.");
 
         setTimeout(() => {
           navigate('/'); // Replace "/login" with the actual URL of your login page
@@ -35,7 +35,7 @@ const Logout = async (navigate, setSuccess, setError) => {
       }
     } catch (error) {
       console.error(error);
-      setError("Failed to log out. Can't log out when not logined.");
+      setLogOutError("Failed to log out. Can't log out when not logined.");
 
       setTimeout(() => {
         navigate('/login'); // Replace "/login" with the actual URL of your login page

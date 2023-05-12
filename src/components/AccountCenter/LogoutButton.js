@@ -8,7 +8,7 @@ import Logout from '../../services/Logout';
 import "../SignupComponents/SignUp.css";
 import Notification from "../Notification"
 
-const LogoutButton = ({ setSuccess, setError }) => {
+const LogoutButton = () => {
   const [logOutSuccess, setLogOutSuccess] = useState('')
   const [logOutError, setLogOutError] = useState('')
 
@@ -20,7 +20,7 @@ const LogoutButton = ({ setSuccess, setError }) => {
         className="signup-button"
         variant="contained"
         color="error"
-        onClick={(event) => Logout(navigate, setSuccess, setError)}>
+        onClick={(event) => Logout(navigate, setLogOutSuccess, setLogOutError)}>
         Logout
       </Button>
       {
