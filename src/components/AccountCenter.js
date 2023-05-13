@@ -1,4 +1,4 @@
-import React, { useState} from "react";
+import React, { useState } from "react";
 import {
   Avatar,
   Box,
@@ -152,6 +152,23 @@ const AccountCenter = () => {
                 value={selectedDate}
                 onChange={handleDateChange}
                 format="YYYY-MM-DD"
+                sx={{
+                  "& .MuiOutlinedInput-root": {
+                    "& .MuiOutlinedInput-notchedOutline": {
+                      borderColor: "white",
+                      borderWidth: "2px"
+                    },
+                  },
+                  '.MuiFormLabel-root': {
+                    color: "white",
+                  },
+                  '.MuiInputBase-root': {
+                    color: 'white',
+                  },
+                  '.MuiSvgIcon-root': {
+                    fill: 'white',
+                  },
+                }}
               />
             </LocalizationProvider>
 
