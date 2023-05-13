@@ -27,7 +27,7 @@ const LogoutButton = () => {
         !!logOutSuccess && (
           <Notification
             status="success"
-            content="Log in successfully!"
+            content={logOutSuccess}
             closeCallback={() => setLogOutSuccess('')}
           />
         )

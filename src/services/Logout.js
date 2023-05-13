@@ -11,7 +11,7 @@ const Logout = async (navigate, setLogOutSuccess, setLogOutError) => {
   else {
     // Clear userId from localStorage
     try {
-      const id = localStorage.getItem("userID")
+      const id = localStorage.getItem("id")
       const token = localStorage.getItem("authToken")
       const response = await fetch(`${LOGOUT_API}/${id}`, {
         method: "DELETE",
@@ -27,7 +27,7 @@ const Logout = async (navigate, setLogOutSuccess, setLogOutError) => {
         setTimeout(() => {
           navigate('/'); // Replace "/login" with the actual URL of your login page
           localStorage.removeItem("loggedInUser");
-          localStorage.removeItem("userID");
+          localStorage.removeItem("id");
           localStorage.removeItem("authToken");
           localStorage.removeItem("user");
           localStorage.removeItem("userName");

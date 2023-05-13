@@ -48,7 +48,7 @@ const SignupSubmit = async (event, username, password, email, location, confirmP
         // localStorage.setItem("loggedInUser", user);
         const user = {
           authToken: authToken,
-          userID: userID,
+          id: userID,
           userName: userName,
           avatarUrl: userAvatarUrl
         }
@@ -60,7 +60,7 @@ const SignupSubmit = async (event, username, password, email, location, confirmP
 
 
         localStorage.setItem("authToken", authToken);
-        localStorage.setItem("userID", userID);
+        localStorage.setItem("id", userID);
         localStorage.setItem("userName", userName)
 
         // Redirect to login page after 3 seconds

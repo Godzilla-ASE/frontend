@@ -20,7 +20,7 @@ const ReactionWrapper = ({ post }) => {
   const [openlikeList, setOpenlikeList] = useState(false);
   const [openDislikeList, setOpenDislikeList] = useState(false);
   const logginedUser = useLoggedInUser();
-  const logginedID = localStorage.getItem("userID");
+  const logginedID = localStorage.getItem("id");
   const navigate = useNavigate();
   const theme = useTheme();
 
