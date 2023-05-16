@@ -1,3 +1,7 @@
+/*
+This is the footer of the card on the homepage.
+It contains information about the author, location, author, date of a post.
+*/
 import AuthorWrapper from './Wrapper/AuthorWrapper';
 import PostTagWrapper from './Wrapper/PostTagWrapper';
 import PostLocationWrapper from './Wrapper/PostLocationWrapper';

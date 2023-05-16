@@ -1,4 +1,5 @@
-// contains information about the post author: user avatar and name, likes button and the count of likes
+// contains information about the post author: user avatar and name, likes button and the count of likes, dislikes button and the count of dislikes
+
 import AuthorInfoWrapper from "./AuthorInfoWrapper"
 import ReactionWrapper from "./ReactionWrapper"
 import { styled } from '@mui/system';

@@ -7,9 +7,8 @@ import { Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { useTheme } from "@mui/system";
 
-// Wrap the div in a styled Box component.
 const LocationBox = styled(Box)({
-  display: 'flex', // Set up Flex layout
+  display: 'flex',
   flexDirection: 'row',
   justifyContent: 'flex-end',
   marginTop: '10px',

@@ -36,6 +36,8 @@ const AuthorInfoWrapper = ({ post, styleSetting }) => {
     navigate(`/profile/${userid}`)
   }
 
+
+  // This AuthorInfoWrapper will be used not only for the posts on the Homepage, there are different return fields for different purposes. So we need the logic here to handle these differences.
   if (post.username_from == null) {
     username = post.username;
     userAvatar = post.user_avatar
@@ -43,6 +45,7 @@ const AuthorInfoWrapper = ({ post, styleSetting }) => {
     username = post.username_from;
     userAvatar = post.userAvatar_from
   }
+
   return (
     <AuthorInfo onClick={() => openProfile(post.userid)}>
       <Avatar
