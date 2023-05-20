@@ -15,9 +15,9 @@ const CommentFooter = ({ post, user, replyComment }) => {
   const [commentText, setCommentText] = useState('');
   const navigate = useNavigate();
 
-  const postId = useParams().postId; //帖子ID
-  const logginedUserId = user != null ? user.id : 0; // 登陆用户ID
-  const postAuthorID = post.userid; // 帖子作者ID
+  const postId = useParams().postId; 
+  const logginedUserId = user != null ? user.id : 0;
+  const postAuthorID = post.userid;
 
   const handleSubmit = () => {
     if (!user) {
@@ -27,15 +27,13 @@ const CommentFooter = ({ post, user, replyComment }) => {
 
     if (commentText !== "") {
       if (replyComment.length !== 0) {
-        const commentID = replyComment.id; // 评论ID
+        const commentID = replyComment.id; 
         addReply(logginedUserId, postAuthorID, commentID, commentText, Now);
-        setCommentText(''); // 清空输入框
-        // #TODO 添加回复成功提示消息
+        setCommentText(''); 
         navigate(`/post/${postId}`);
       } else {
         addComment(logginedUserId, postId, commentText, Now);
-        setCommentText(''); // 清空输入框
-        // #TODO 添加评论成功提示消息
+        setCommentText(''); 
         navigate(`/post/${postId}`);
       }
     }
@@ -46,10 +44,9 @@ const CommentFooter = ({ post, user, replyComment }) => {
 
     deletePost(postid);
     setTimeout(() => {
-      navigate('/'); // Replace "/login" with the actual URL of your login page
+      navigate('/');
     }, 1000);
 
-    // #TODO 删除梯帖子成功提示消息
   }
 
   var placeholdertext = "Write your comments...";

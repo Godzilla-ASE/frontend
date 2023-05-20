@@ -10,20 +10,17 @@ import LogoutButton from "../../components/AccountCenter/LogoutButton";
 import UserList from "./UserList";
 
 export default function Profile() {
-  // 获取登陆用户信息，需要它的ID做事情
+  // get loggined user info, initial
   const [logginedUserInfo, setlogginedUserInfo] = useState(null);
   const [followingCard, setfollowingCard] = useState(false);
   const [fansCard, setfansCard] = useState(false);
   const navigate = useNavigate();
   const logginedUser = useLoggedInUser();
-  //console.log('profile:',logginedUser);
+
   const targetID = logginedUser.id
 
-  // 根据ID拿用户信息
+  // get more info by loggined userid
   useEffect(() => {
-    // if (!targetID) {
-    //   navigate('/login');
-    // }
     const fetchData = async () => {
       const userInfo = await getOneUserInfo(targetID);
       setlogginedUserInfo(userInfo);

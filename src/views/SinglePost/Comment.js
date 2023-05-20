@@ -15,11 +15,10 @@ function Comment({ comment, loginedUserID, onreplyCommentChange }) {
   }
   const handleDeleteComment = (id)=>{
     deleteComment(id);
-    // #TODO 删除评论提示消息
   }
 
+  // comment without replys
   if (replys.length !== 0) {
-    //console.log(loginedUserID, comment.userid)
     return (
       <div>
         <AuthorInfoWrapper post={comment} styleSetting="start" />
@@ -43,6 +42,7 @@ function Comment({ comment, loginedUserID, onreplyCommentChange }) {
     );
   }
   else {
+    // comment with replys
     return (
       <div>
         <div style={{ borderTop: '1px solid #ccc', width: '70%', marginLeft: "15%" }}></div>

@@ -10,7 +10,7 @@ import UserList from "./UserList";
 import FollowWapper from "../../components/Wrapper/FollowWrapper";
 
 export default function Profile() {
-  // 获取登陆用户信息，需要它的ID做事情
+  // get target user id
   const visitedUserID = useParams().visitedUserId;
   const [visitedUserInfo, setvisitedUserInfo] = useState(null);
   const [logginedUserInfo, setlogginedUserInfo] = useState(null);
@@ -18,9 +18,8 @@ export default function Profile() {
   const navigate = useNavigate();
   const [fansCard, setfansCard] = useState(false);
   const logginedUser = useLoggedInUser();
-  //console.log(logginedUser);
 
-  // 根据ID拿用户信息
+  // get more info of target user id
   useEffect(() => {
     const fetchData = async () => {
       const userInfo = await getOneUserInfo(visitedUserID);

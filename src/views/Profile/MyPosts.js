@@ -6,10 +6,9 @@ import { usePosts } from '../../Hooks/usePosts';
 import { getAll, getPostsByUserID } from '../../services/post';
 
 export default function MyPosts({ userid }) {
-  //console.log(userid);
 
   const [posts, setPostData] = useState(null);
-  // 根据ID取该用户的帖子
+  // get posts by userID
   useEffect(() => {
     const fetchData = async () => {
       const data = await getPostsByUserID(userid)

@@ -21,8 +21,6 @@ function SinglePost() {
   const [post, setPostData] = useState(null);
   const [comments, setComments] = useState([]);
   const [replyComment, setreplyComment] = useState([]);
-  //console.log(loginedUser);
-
 
   const handlereplyCommentChange = (newValue) => {
     setreplyComment(newValue);
@@ -38,7 +36,6 @@ function SinglePost() {
     }
     fetchData()
   }, [])
-  //console.log(post);
 
   if (!post) {
     return (
@@ -62,19 +59,19 @@ function SinglePost() {
   const loginedUserID = loginedUser == null ? null : loginedUser.id;
   return (
     //结构是这样的
-    //Card（整个post就是一个卡片）
-    //｜- Grid container（格子组件，分成左右两个）
-    //  ｜-- Grid （左格子）
-    //      ｜-- PicGallry (放相册的)
-    //  ｜-- Grid （右格子）
-    //      ｜-- CardHeader (最上面的用户信息栏)
+    //Card（The whole post is a card）
+    //｜- Grid container（grid : left & right）
+    //  ｜-- Grid （left）
+    //      ｜-- PicGallry 
+    //  ｜-- Grid （right）
+    //      ｜-- CardHeader (author info)
     //      ｜-- CardContent 
-    //          ｜-- PostContent（这篇post的内容）
-    //              |-- <div> (这里面的内容可以上下滑动)
+    //          ｜-- PostContent
+    //              |-- <div> (scrollable)
     //                  |-- Typography 
     //                  |-- Typography
-    //                  |-- Typography (几个并排的文字信息：时间，标题，帖子内容)
-    //                  |-- CommentsBox (用来放这篇帖子的n条评论)
+    //                  |-- Typography 
+    //                  |-- CommentsBox 
     //                      |-- Comments 1
     //                          |-- Reply 1.1
     //                          ...
@@ -82,8 +79,8 @@ function SinglePost() {
     //                          |-- Reply 2.1
     //                          ...
     //                      ...
-    //              |-- </div> (这里面的内容可以上下滑动)
-    //          ｜-- CommentFooter (点赞、点踩、分享、回复等操作)
+    //              |-- </div> 
+    //          ｜-- CommentFooter
 
     <div style={{ height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: theme.palette.background.default }} >
       <Card className="post-card" style={{ backgroundColor: theme.palette.background.default }}>
