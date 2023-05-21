@@ -46,6 +46,7 @@ function Comment({comment, loginedUserID, onreplyCommentChange}) {
       </div>
     );
   } else {
+    // comment with replys
     return (
       <div>
         <div

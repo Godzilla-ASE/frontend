@@ -23,7 +23,7 @@ function SinglePost() {
     setreplyComment(newValue);
   };
   const theme = useTheme();
-
+  // load post data and comment from two API
   useEffect(() => {
     const fetchData = async () => {
       const postdata = await getOne(postId);

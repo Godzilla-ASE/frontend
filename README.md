@@ -1,77 +1,49 @@
-# 最近commit
+#  [frontend]Godzila Social Comunity Website 
+## Introduction
+This is the frontend part of Godzila Social Comunity Website in course ASE II. It is build with react framework as well as S3 server in AWS by 3 group members. It contains all the pages, components within the presentation. It also handle and reply to all the user interaction on website.
 
-- finished avatarUrl changed.
+## Features
+The project inlcludes but not limited to the following features:
+- Listen to, handle and reply users interaction.
+- Communicate with micro-servers through API interfaces.
+- Communicate with S3 AWS server, store user's uploaded images.
+- User can take actions related to account like login, register, setting profile, etc.
+- User can take actions related post like view posts, create post, interact with a post, etc.
+- You can see more features in detail in Usage part.
 
-----
+## Installation
+###Environment requirement
+Node.js V16.0
+docker compose up
 
+###Install and test without back-end server
+step1. You can directly clone this repo from 'main' branch.
+step2. cd into project root directory in your terminal. (Like cd /Users/username/frontend)
+step3. Execute 'npm i', then execute 'npm run start' .
+If you start without docker environment, your experience would be very limited. However, you can still see the UI and website framwork.
 
-# Getting Started with Create React App
+## Usage
+If you sucessfully run the project within docker, then just see it as a normal pictures community.
+You can creat new account, login a exsiting account, modify your profile and logout in account center. 
+You can view posts, filter post by tags or location, interacte with a post, create post in homepage.
+You can view post detial by clicking the title of a post. Then you can comment on post, reply on comment, follow author, delete post, etc.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Development
+We follow a branch policy. Developers should always develop features in their branch.
+Before you start your work, please make sure your code version is the newest from main branch. You can either merge main branch into your exsiting branch by pull request, or clone main branch and creacte a new branch in your local device.
+Don't forget to excute 'npm i' after a new clone or pull.
+After you finish your work, please make sure your code is pushed to your branch on github. Then merge your branch into main branch by pull request. In case there is any conflict while merging, discuss it with the contributors of conflict files.
 
-## Available Scripts
+API referrence: you can find API file in Repo/submission.
+Please put your new file in proper folder:
+- Components: Maintain a consistent design and functionality across the application.
+- Context: Efficiently update client state across components to avoid "props drilling" issues.
+- Services: API endpoints and communication with the backend for easy maintenance.
+- Hooks: Reusable stateful logic for improved reusability and maintenance between components.
+- Views: Organized into subfolders containing relevant components as the primary user interface.
 
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://172.20.10.3:3000](http://172.20.10.3:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Testing
+We use sonarqube to conduct quality check before every commit and push. 
+ 
+## Contributing
+To participate in the project, you can push your branch to the repo, and let us see what you did or what you advise in your readme.md.
