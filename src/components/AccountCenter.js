@@ -120,14 +120,18 @@ const AccountCenter = () => {
             Account Center
           </Typography>
           <form
-            onSubmit={(event) => {
-              handlerequestbodychange()
-              AccountCenterSubmit(event, requestBody, accdetail,
-                setUsernameexistError, setAccountSuccess, setAccountError, 
-                navigate)}}
-            className="signup-form"
-          >
-            <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+              onSubmit={async (event) => {
+                handlerequestbodychange();
+                try {
+                  await AccountCenterSubmit(event, requestBody, accdetail, setUsernameexistError, setAccountSuccess, setAccountError, navigate);
+                } catch (error) {
+                  // Handle the error or provide appropriate feedback
+                  console.log(error)
+                }
+              }}
+              className="signup-form"
+            >
+              <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
               <div style={{ display: "flex", alignItems: "center", justifyContent: "flex-start" }}>
                 <Avatar alt={username} src={avatarUrl} sx={{ width: 56, height: 56, border: '2px solid #fff' }} />
                 <label htmlFor="file-upload" style={{ display: 'inline-block', color: 'white', padding: '6px 12px', cursor: 'pointer' }}>
