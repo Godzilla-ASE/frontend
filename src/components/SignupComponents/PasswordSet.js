@@ -1,3 +1,4 @@
+import React, {useState} from "react";
 import {
   Typography
 } from "@mui/material";
@@ -5,42 +6,72 @@ import {
 import StyledTextField from '../Inputs/StyledTextField'
 
 function PasswordSet({
-                       password,
-                       passwordError,
-                       confirmPassword,
-                       confirmPasswordError,
-                       setPassword,
-                       setConfirmPassword,
-                       setPasswordError,
-                       setConfirmPasswordError,
-                     }) {
+  password,
+  setPassword,
+  setIsFieldValid
+}) {
 
-  const hasLowerCase = /.*[a-z]+.*/;
-  const hasUpperCase = /.*[A-Z]+.*/;
-  const hasNumber = /.*\d+.*/;
+  const hasLowerCase = /[a-z]/;
+  const hasUpperCase = /[A-Z]/;
+  const hasNumber = /\d/;
   const hasSymbol = /[,.?!@#$%^&_=+-]+/
   const length8To16 = /^.{8,16}$/;
 
+  const [passwordError, setPasswordError] = useState(false);
+  const [confirmPasswordError, setConfirmPasswordError] = useState(false);
+  const [confirmPassword, setConfirmPassword] = useState("");
+
   const handlePasswordChange = (event) => {
-    if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[,.?!@#$%^&+-_=*]).{8,16}$/.test(event.target.value)) {
+    //if the password not fulfill the requirement
+    if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[,.?!@#$%^&_=+-]).{8,16}$/.test(event.target.value)) {
       setPasswordError(true);
+      setIsFieldValid((prevState) => ({
+        ...prevState,
+        password: false
+      }));
     } else {
       setPasswordError(false)
+      setIsFieldValid((prevState) => ({
+        ...prevState,
+        password: true
+      }));
     }
     setPassword(event.target.value);
 
+    //if the confirm part not the same as the password part
     if (confirmPassword !== event.target.value) {
       setConfirmPasswordError(true)
+      setIsFieldValid((prevState) => ({
+        ...prevState,
+        password: false
+      }));
     } else {
       setConfirmPasswordError(false);
+      setIsFieldValid((prevState) => ({
+        ...prevState,
+        password: true
+      }));
     }
   };
 
   const handleConfirmPasswordChange = (event) => {
+    //when first type in the confirm part
+    if(password === ""){
+      setPasswordError(true);
+    }
+    //when not the same
     if (event.target.value !== password) {
       setConfirmPasswordError(true)
+      setIsFieldValid((prevState) => ({
+        ...prevState,
+        password: false
+      }));
     } else {
       setConfirmPasswordError(false);
+      setIsFieldValid((prevState) => ({
+        ...prevState,
+        password: true
+      }));
     }
     setConfirmPassword(event.target.value);
 

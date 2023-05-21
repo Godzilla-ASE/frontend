@@ -8,15 +8,6 @@ function Login() {
 
   return (
     <Box className="Loginpage-container">
-        <img
-            src={LOGO_API}
-            alt="Godzilla logo"
-            style={{
-                width: "200px",
-                height: "100px",
-            }}
-            align="center"
-        />
       <LoginForm />
     </Box>
   );

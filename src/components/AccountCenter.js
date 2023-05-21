@@ -12,7 +12,6 @@ import PasswordSet from "./SignupComponents/PasswordSet";
 import LocationSet from "./SignupComponents/LocationSet";
 import LogoutButton from "./AccountCenter/LogoutButton";
 import AccountCenterSubmit from "../services/AccountCenterSubmit";
-import { AccountCenter_API } from "../services/APIs";
 import "./SignupComponents/SignUp.css";
 
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
@@ -29,43 +28,72 @@ const AccountCenter = () => {
   const user = JSON.parse(window.localStorage.getItem("user"));
   const token = window.localStorage.getItem("authToken");
   const id = window.localStorage.getItem("id")
-  //console.log(user)
-  //console.log(user.username)
 
   const [username, setUsername] = useState(user ? user.username : "");
   const [email, setEmail] = useState(user ? user.email : "");
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
   const [location, setLocation] = useState(user ? user.location : "");
   const [avatarUrl, setAvatarUrl] = useState(user ? user.avatarUrl : "");
 
 
-  const [usernameError, setUsernameError] = useState(false);
   const [usernameexistError, setUsernameexistError] = useState(false);
-  const [emailError, setEmailError] = useState(false);
-  const [passwordError, setPasswordError] = useState(false);
-  const [confirmPasswordError, setConfirmPasswordError] = useState(false);
-  const [locationError, setLocationError] = useState(false);
 
   const [accountSuccess, setAccountSuccess] = useState('')
   const [accountError, setAccountError] = useState('')
 
   const [selectedDate, setSelectedDate] = useState(user && user.birthday ? dayjs(user.birthday) : dayjs("1900-01-01"));
-
-  const [dateChanged, setDateChanged] = useState(false);
-  const [usernameChanged, setUsernameChanged] = useState(false);
-  const [emailChanged, setEmailChanged] = useState(false);
-  const [passwordChanged, setPasswordChanged] = useState(false);
-  const [locationChanged, setLocationChanged] = useState(false);
-  const [avatarChanged, setAvatarChanged] = useState(false);
+  //store which field is changed and whether it is correct
+  const [isFieldValid, setIsFieldValid] = useState({
+    avatar: false,
+    username: false,
+    email: false,
+    password: false,
+    location: false,
+    birthday: false
+  });
+  let requestBody = {};
+  let accdetail = {id,token};
 
   const { uploadImageToS3 } = useS3Upload();
 
   const handleDateChange = (newselectedDate) => {
     setSelectedDate(newselectedDate);
-
-    setDateChanged(true);
+    //if the new selected date not null
+    if(newselectedDate !== null && newselectedDate !=="M"){
+      setIsFieldValid((prevState) => ({
+        ...prevState,
+        birthday: true
+      }));
+    }
+    else{
+      setIsFieldValid((prevState) => ({
+        ...prevState,
+        birthday: false
+      }));
+    }
   };
+
+  const handlerequestbodychange = async (event) => {
+    //only change the field where changes
+    if(isFieldValid.username){
+      requestBody.username = username
+    }
+    if(isFieldValid.avatar){
+      requestBody.avatarUrl = avatarUrl
+    }
+    if(isFieldValid.email){
+      requestBody.email = email
+    }
+    if(isFieldValid.password){
+      requestBody.password = password
+    }
+    if(isFieldValid.location && location !== null && location !== ""){
+      requestBody.location = location
+    }
+    if(isFieldValid.birthday){
+      requestBody.birthday = selectedDate
+    }
+  }
 
 
   const handleFileInputChange = async (event) => {
@@ -73,7 +101,11 @@ const AccountCenter = () => {
     const URL = await uploadImageToS3(file);
     //console.log(URL)
     setAvatarUrl(URL);
-    setAvatarChanged(true);
+    //the avatar is changed
+    setIsFieldValid((prevState) => ({
+      ...prevState,
+      avatarUrl: true
+    }));
   };
 
   return (
@@ -88,15 +120,18 @@ const AccountCenter = () => {
             Account Center
           </Typography>
           <form
-            onSubmit={(event) => AccountCenterSubmit(event, username, password, email, location, confirmPassword,
-              usernameError, emailError, passwordError, confirmPasswordError, locationError,
-              setUsernameError, setPasswordError, setConfirmPasswordError, setLocationError, setEmailError,
-              setUsernameexistError, setAccountSuccess, setAccountError, AccountCenter_API, navigate,
-              selectedDate, dateChanged, usernameChanged, emailChanged, passwordChanged, locationChanged,
-              avatarUrl, avatarChanged, token, id)}
-            className="signup-form"
-          >
-            <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+              onSubmit={async (event) => {
+                handlerequestbodychange();
+                try {
+                  await AccountCenterSubmit(event, requestBody, accdetail, setUsernameexistError, setAccountSuccess, setAccountError, navigate);
+                } catch (error) {
+                  // Handle the error or provide appropriate feedback
+                  console.log(error)
+                }
+              }}
+              className="signup-form"
+            >
+              <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
               <div style={{ display: "flex", alignItems: "center", justifyContent: "flex-start" }}>
                 <Avatar alt={username} src={avatarUrl} sx={{ width: 56, height: 56, border: '2px solid #fff' }} />
                 <label htmlFor="file-upload" style={{ display: 'inline-block', color: 'white', padding: '6px 12px', cursor: 'pointer' }}>
@@ -109,38 +144,26 @@ const AccountCenter = () => {
             <UsernameSet
               username={username}
               setUsername={setUsername}
-              setUsernameError={setUsernameError}
-              setUsernameexistError={setUsernameexistError}
-              usernameError={usernameError}
+              setIsFieldValid={setIsFieldValid}
               usernameexistError={usernameexistError}
-              setUsernameChanged={setUsernameChanged}
+              setUsernameexistError={setUsernameexistError}
             />
             <EmailSet
               email={email}
-              emailError={emailError}
               setEmail={setEmail}
-              setEmailError={setEmailError}
-              setEmailChanged={setEmailChanged}
+              setIsFieldValid={setIsFieldValid}
             />
 
             <PasswordSet
               password={password}
-              passwordError={passwordError}
-              confirmPassword={confirmPassword}
-              confirmPasswordError={confirmPasswordError}
               setPassword={setPassword}
-              setConfirmPassword={setConfirmPassword}
-              setPasswordError={setPasswordError}
-              setConfirmPasswordError={setConfirmPasswordError}
-              setPasswordChanged={setPasswordChanged}
+              setIsFieldValid={setIsFieldValid}
             />
 
             <LocationSet
               location={location}
               setLocation={setLocation}
-              setLocationError={setLocationError}
-              locationError={locationError}
-              setLocationChanged={setLocationChanged}
+              setIsFieldValid={setIsFieldValid}
             />
 
             <LocalizationProvider

@@ -1,20 +1,20 @@
-const LoginSubmit = async (event, username, password,
-                           setUsernameError, setPasswordError, setUsernamecorrectError, setPasswordcorrectError, setLogInSuccess, setLogInError,
-                           LOGIN_API, navigate, previousUrl) => {
+
+import { LOGIN_API } from "./APIs";
+
+const LoginSubmit = async (event, requestbody, previousUrl, navigate,
+  functionbody, setLogInSuccess, setLogInError,
+    ) => {
 
   event.preventDefault();
-  if (!username) {
-    setUsernameError(true);
-  }
-  if (!password) {
-    setPasswordError(true);
-  }
-  if (username && password) {
+  
+
+
+  if (requestbody.username && requestbody.password) {
     try {
       const response = await fetch(LOGIN_API, {
         method: "POST",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify({username, password}),
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(requestbody),
       });
       if (response.ok) {
         const user_body = await response.json();
@@ -22,8 +22,7 @@ const LoginSubmit = async (event, username, password,
         const id = user_body.id;
         const userName = user_body.username;
         const userAvatarUrl = user_body.avatarUrl;
-
-        // Saving user to the localStorage
+        // save user to localStorage
         const user = {
           authToken: authToken,
           id: id,
@@ -41,21 +40,28 @@ const LoginSubmit = async (event, username, password,
         console.log(user_body)
         setLogInSuccess("Logged in successfully.");
 
-        // Redirect to login page after 3 seconds
+        // Redirect to login page after 1 seconds
         setTimeout(() => {
           navigate(previousUrl); // Replace "/login" with the actual URL of your login page
         }, 1000);
       } else if (response.status === 404) {
-        setUsernamecorrectError(true);
-        setLogInError("Username not found.")
+        //username not exist
+        functionbody.setUsernamecorrectError(true);
+        setLogInError("Username not found.");
+
       } else if (response.status === 409) {
-        setPasswordcorrectError(true);
+        //password not correct
+        functionbody.setPasswordcorrectError(true);
         setLogInError("Wrong credentials.");
       }
     } catch (error) {
       console.error(error);
       setLogInError("Failed to log in.");
     }
+  }
+  else{
+    //fields not filled
+    setLogInError("Please fill all the fields.");
   }
 };
 

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Typography
 } from "@mui/material";
@@ -6,10 +6,30 @@ import StyledTextField from '../Inputs/StyledTextField'
 
 function UsernameInput({
   username,
-  handleUsernameChange,
-  usernameError,
+  setUsername,
   usernamecorrectError,
+  setUsernamecorrectError
 }) {
+  const [noNameError, setNoNameError] = useState(false)
+
+  const handleUsernameChange = (event) => {
+    setUsername(event.target.value);
+    if(event.target.value){
+      setNoNameError(false);
+    }
+    else{
+      setNoNameError(true);
+    }
+    setUsernamecorrectError(false);
+
+  };
+
+  const handleUserNameBlur = () => {
+    //if empty
+    if (username.length === 0) {
+      setNoNameError(true)
+    }
+  }
 
   return (
     <>
@@ -19,10 +39,11 @@ function UsernameInput({
         label="Username"
         color="primary"
         focused
-        error={usernameError && usernamecorrectError}
+        error={noNameError || usernamecorrectError}
+        onBlur={handleUserNameBlur}
       />
       {
-        usernameError &&
+        noNameError &&
         <Typography variant="body2" color="error" align="center" fontWeight={700}>
           Please enter your username.
         </Typography>
@@ -34,28 +55,6 @@ function UsernameInput({
         </Typography>
       }
     </>
-
-    // <FormControl variant="outlined" className="login-input">
-    //   <InputLabel htmlFor="username-input">Username</InputLabel>
-    //   <OutlinedInput
-    //     id="username-input"
-    //     type="username"
-    //     value={username}
-    //     onChange={handleUsernameChange}
-    //     label="username"
-    //     error={usernameError && usernamecorrectError}
-    //   />
-    //   {usernameError && (
-    //     <FormHelperText sx={{fontSize:'body2.fontSize', color: "red" }}>
-    //       Please enter your username.
-    //     </FormHelperText>
-    //   )}
-    //   {usernamecorrectError && (
-    //     <FormHelperText sx={{ fontSize:'body2.fontSize', color: "red" }}>
-    //       Please enter correct username.
-    //     </FormHelperText>
-    //   )}
-    // </FormControl>
   );
 }
 

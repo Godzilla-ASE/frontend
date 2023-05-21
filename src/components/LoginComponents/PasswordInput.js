@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Typography
 } from "@mui/material";
@@ -6,10 +6,30 @@ import StyledTextField from '../Inputs/StyledTextField'
 
 function PasswordInput({
   password,
-  handlePasswordChange,
-  passwordError,
+  setPassword,
   passwordcorrectError,
+  setPasswordcorrectError
 }) {
+  const [noPasswordError, setNoPasswordError] = useState(false)
+
+  const handlePasswordChange = (event) => {
+    setPassword(event.target.value);
+    if(event.target.value){
+      setNoPasswordError(false);
+    }
+    else{
+      setNoPasswordError(true);
+    }
+    setPasswordcorrectError(false);
+
+  };
+
+  const handlePasswordBlur = () => {
+    //if empty
+    if (password.length === 0) {
+      setNoPasswordError(true)
+    }
+  }
   return (
     <>
       <StyledTextField
@@ -18,10 +38,11 @@ function PasswordInput({
         label="Password"
         color="primary"
         focused
-        error={passwordError && passwordcorrectError}
+        error={noPasswordError || passwordcorrectError}
+        onBlur={handlePasswordBlur}
       />
       {
-        passwordError &&
+        noPasswordError &&
         <Typography variant="body2" color="error" align="center" fontWeight={700}>
           Please enter your password.
         </Typography>

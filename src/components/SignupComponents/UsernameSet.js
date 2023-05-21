@@ -1,16 +1,15 @@
-import React, {useState} from "react";
-import {Typography} from "@mui/material";
+import React, { useState } from "react";
+import { Typography } from "@mui/material";
 import StyledTextField from '../Inputs/StyledTextField'
 
-function UsernameSet({
-                       username,
-                       usernameError,
-                       usernameexistError,
-                       setUsername,
-                       setUsernameError,
-                       setUsernameexistError,
-                     }) {
+function UsernameSet({ username,
+  setUsername,
+  setIsFieldValid,
+  usernameexistError,
+  setUsernameexistError,
+}) {
   const [noNameError, setNoNameError] = useState(false)
+  const [usernameError, setUsernameError] = useState(false);
 
   const hasSymbol = /[,.?!@#$%^&_=+-]+/
 
@@ -18,14 +17,29 @@ function UsernameSet({
     if (event.target.value) {
       setNoNameError(false)
     }
+    //if the value has symbol
     if (hasSymbol.test(event.target.value)) {
       setUsernameError(true)
+      setIsFieldValid((prevState) => ({
+        ...prevState,
+        username: false
+      }));
     }
+    //if the value within the required range
     if (usernameError && /^[a-zA-Z0-9]{6,16}$/.test(event.target.value)) {
       setUsernameError(false)
+      setIsFieldValid((prevState) => ({
+        ...prevState,
+        username: true
+      }));
     }
+    //if not
     if (!/^[a-zA-Z0-9]{6,16}$/.test(event.target.value)) {
       setUsernameError(true)
+      setIsFieldValid((prevState) => ({
+        ...prevState,
+        username: false
+      }));
     }
     setUsername(event.target.value);
     setUsernameexistError(false);
@@ -66,11 +80,6 @@ function UsernameSet({
       {noNameError &&
         <Typography variant="body2" color="error" align="center" fontWeight={700}>
           What's your name?
-        </Typography>
-      }
-      {usernameexistError &&
-        <Typography variant="body2" color="error" align="center" fontWeight={700}>
-          This username exists, please try another one.
         </Typography>
       }
     </>
