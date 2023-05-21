@@ -1,21 +1,20 @@
-const LoginSubmit = async (event, username, password,
-  setUsernameError, setPasswordError, setUsernamecorrectError, setPasswordcorrectError, setLogInSuccess, setLogInError,
-  LOGIN_API, navigate, previousUrl) => {
 
-  // response = {"id":14,"username":"aaaaaa","password":"Aa11111111!","birthday":null,"token":"d1976836-da1e-4479-af84-a176007a79df","creationDate":null,"email":"aa@aa.aa","location":"Zurich","fans":"","followings":"","haters":"","avatarUrl":null}
+import { LOGIN_API } from "./APIs";
+
+const LoginSubmit = async (event, requestbody, previousUrl, navigate,
+  functionbody, setLogInSuccess, setLogInError,
+    ) => {
+
   event.preventDefault();
-  if (!username) {
-    setUsernameError(true);
-  }
-  if (!password) {
-    setPasswordError(true);
-  }
-  if (username && password) {
+  
+
+
+  if (requestbody.username && requestbody.password) {
     try {
       const response = await fetch(LOGIN_API, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username, password }),
+        body: JSON.stringify(requestbody),
       });
       if (response.ok) {
         const user_body = await response.json();
@@ -24,7 +23,6 @@ const LoginSubmit = async (event, username, password,
         const userName = user_body.username;
         const userAvatarUrl = user_body.avatarUrl;
         // save user to localStorage
-        // localStorage.setItem("loggedInUser", user);
         const user = {
           authToken: authToken,
           id: id,
@@ -45,35 +43,28 @@ const LoginSubmit = async (event, username, password,
         console.log(user_body)
         setLogInSuccess("Logged in successfully.");
 
-        // Redirect to login page after 3 seconds
+        // Redirect to login page after 1 seconds
         setTimeout(() => {
           navigate(previousUrl); // Replace "/login" with the actual URL of your login page
         }, 1000);
       } else if (response.status === 404) {
-        const error = await response.text();
-        setUsernamecorrectError(true);
+        //username not exist
+        functionbody.setUsernamecorrectError(true);
         setLogInError("Username not found.");
 
-        // const user = {
-        //   authToken: "authToken",
-        //   id: 123,
-        //   avatar: "userAvatar"
-        //  }
-        // const authToken = JSON.stringify({username:"abc",email:"22@22.22",fullName:"ABC",location:"Zurich",birthday:null,avatarUrl:"https://godzilla2023ase.s3.eu-central-1.amazonaws.com/846f28bd-1d2b-4a7f-8461-a3245dc1dd46.jpg"})
-        // localStorage.setItem("authToken", authToken);
-
-
-        //  localStorage.setItem("loggedInUser", JSON.stringify(user));
-
       } else if (response.status === 409) {
-        const error = await response.text();
-        setPasswordcorrectError(true);
+        //password not correct
+        functionbody.setPasswordcorrectError(true);
         setLogInError("Wrong credentials.");
       }
     } catch (error) {
       console.error(error);
       setLogInError("Failed to log in.");
     }
+  }
+  else{
+    //fields not filled
+    setLogInError("Please fill all the fields.");
   }
 };
 

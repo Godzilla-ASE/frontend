@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Avatar,
   Box,
@@ -8,14 +8,13 @@ import {
   FormHelperText,
   Typography,
 } from "@mui/material";
-import { Link } from 'react-router-dom';
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from 'react-router-dom';
 import UsernameSet from "./SignupComponents/UsernameSet";
 import EmailSet from "./SignupComponents/EmailSet";
 import PasswordSet from "./SignupComponents/PasswordSet";
 import LocationSet from "./SignupComponents/LocationSet";
 import SignupSubmit from "../services/SignupSubmit";
-import { SIGNUP_API, LOGO_API } from "../services/APIs";
+import { LOGO_API } from "../services/APIs";
 import "./SignupComponents/SignUp.css";
 import useS3Upload from '../Hooks/useS3Upload'
 import Notification from './Notification'
@@ -24,51 +23,64 @@ const SignUp = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [fullname, setFullname] = useState("");
   const [location, setLocation] = useState("");
   const [isChecked, setIsChecked] = useState(false);
 
-  const [usernameError, setUsernameError] = useState(false);
-  const [usernameexistError, setUsernameexistError] = useState(false);
-  const [emailError, setEmailError] = useState(false);
-  const [passwordError, setPasswordError] = useState(false);
-  const [confirmPasswordError, setConfirmPasswordError] = useState(false);
-  const [fullnameError, setFullnameError] = useState(false);
-  const [locationError, setLocationError] = useState(false);
-  const [isCheckedError, setIsCheckedError] = useState(false);
   const [signUpSuccess, setSignUpSuccess] = useState('');
   const [signUpError, setSignUpError] = useState('');
   const [avatarUrl, setAvatarUrl] = useState("https://robohash.org/31.10.156.227.png");
+  const [pagehasError,setPageHasError] = useState(true);
+  const [usernameexistError, setUsernameexistError] = useState(false);
+  const [isCheckedError, setIsCheckedError] = useState(false);
+  //store the status of each required field
+  const [isFieldValid, setIsFieldValid] = useState({
+    username: false,
+    email: false,
+    password: false,
+    location: false,
+    isChecked: false
+  });
+  let requestBody = {};
 
-  const [usernameChanged, setUsernameChanged] = useState(false);
-  const [emailChanged, setEmailChanged] = useState(false);
-  const [passwordChanged, setPasswordChanged] = useState(false);
-  const [locationChanged, setLocationChanged] = useState(false);
-  const [avatarChanged, setAvatarChanged] = useState(false);
+  useEffect(() => {
+    // if all fields are filled as expected
+    if (isFieldValid.username && isFieldValid.email && isFieldValid.password && isFieldValid.location && isFieldValid.isChecked) {
+      setPageHasError(false);
+      requestBody = {username, email, password, location, avatarUrl};
+    }
+    else{
+      setPageHasError(true);
+    }
+  }, [isFieldValid]);
 
   const { uploadImageToS3 } = useS3Upload();
 
   const navigate = useNavigate();
 
-  const handleFullnameChange = (event) => {
-    setFullname(event.target.value);
-    setFullnameError(false);
-
-  };
-
   const handleCheckboxChange = (event) => {
     setIsChecked(event.target.checked);
-    setIsCheckedError(false);
-
+    //check whether the checkbox is clicked correctly
+    if(event.target.checked){
+      setIsCheckedError(false)
+      setIsFieldValid((prevState) => ({
+        ...prevState,
+        isChecked: true
+      }));
+    }
+    else{
+      setIsCheckedError(true)
+      setIsFieldValid((prevState) => ({
+        ...prevState,
+        isChecked: false
+      }));
+    }
   };
 
   const handleFileInputChange = async (event) => {
+    //check whether user upload a new avatar
     const file = event.target.files[0];
     const URL = await uploadImageToS3(file);
-    //console.log(URL)
     setAvatarUrl(URL);
-    setAvatarChanged(true);
   };
 
   return (
@@ -88,17 +100,13 @@ const SignUp = () => {
             }}
             align="center"
           />
-        </div>{/* <Typography variant="h2" className="signup-heading" sx={{ color: 'primary.main' }}>
-          Godzilla
-        </Typography> */}
+        </div>
         <Typography variant="body1" align="center" color="primary">
           Sign up to see posts from your friends.
         </Typography>
         <form
-          onSubmit={(event) => SignupSubmit(event, username, password, email, location, confirmPassword, isChecked,
-            usernameError, emailError, passwordError, confirmPasswordError, locationError, isCheckedError,
-            setUsernameError, setPasswordError, setConfirmPasswordError, setLocationError, setEmailError,
-            setUsernameexistError, setIsCheckedError, setSignUpSuccess, setSignUpError, avatarUrl, avatarChanged, SIGNUP_API, navigate)}
+          onSubmit={(event) => SignupSubmit(event, requestBody, pagehasError, setUsernameexistError,
+            setSignUpSuccess, setSignUpError, navigate)}
           className="signup-form"
         >
           <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
@@ -108,45 +116,29 @@ const SignUp = () => {
                 Set Avatar
               </label>
               <input id="file-upload" type="file" accept="image/*" onChange={handleFileInputChange} style={{ display: 'none' }} />
-              {/* <input type="file" accept="image/*" onChange={handleFileInputChange} /> */}
             </div>
           </div>
           <UsernameSet
             username={username}
             setUsername={setUsername}
-            setUsernameError={setUsernameError}
-            setUsernameexistError={setUsernameexistError}
-
-            usernameError={usernameError}
+            setIsFieldValid={setIsFieldValid}
             usernameexistError={usernameexistError}
-            setUsernameChanged={setUsernameChanged}
+            setUsernameexistError={setUsernameexistError}
           />
           <EmailSet
             email={email}
-            emailError={emailError}
             setEmail={setEmail}
-            setEmailError={setEmailError}
-
-            setEmailChanged={setEmailChanged}
+            setIsFieldValid={setIsFieldValid}
           />
           <PasswordSet
             password={password}
-            passwordError={passwordError}
-            confirmPassword={confirmPassword}
-            confirmPasswordError={confirmPasswordError}
             setPassword={setPassword}
-            setConfirmPassword={setConfirmPassword}
-            setPasswordError={setPasswordError}
-            setConfirmPasswordError={setConfirmPasswordError}
-
-            setPasswordChanged={setPasswordChanged}
+            setIsFieldValid={setIsFieldValid}
           />
           <LocationSet
             location={location}
             setLocation={setLocation}
-            setLocationError={setLocationError}
-            locationError={locationError}
-            setLocationChanged={setLocationChanged}
+            setIsFieldValid={setIsFieldValid}
           />
           <FormControlLabel
             control={<Checkbox color="primary" checked={isChecked} onChange={handleCheckboxChange} />}
@@ -181,9 +173,6 @@ const SignUp = () => {
             )
           }
         </form>
-        {/* <Typography variant="body2" color="secondary" className="signup-footer">
-          By signing up, you agree to our Terms, Data Policy and Cookies Policy.
-        </Typography> */}
       </Box>
       <Box className="signup-link-to-login">
         <Link to="/login" style={{ textDecoration: 'none' }}>

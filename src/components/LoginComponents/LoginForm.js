@@ -4,22 +4,18 @@ import {
   Button,
   Typography,
 } from "@mui/material";
-import { Link } from 'react-router-dom';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 import UsernameInput from "./UsernameInput";
 import PasswordInput from "./PasswordInput";
 import LoginSubmit from "../../services/LoginSubmit";
-import GetPageStatus from "../GetPageStatus";
-import { LOGIN_API, LOGO_API } from "../../services/APIs";
+import { LOGO_API } from "../../services/APIs";
 import "./Login.css"
 import Notification from "../Notification";
 
 function LoginForm() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [usernameError, setUsernameError] = useState(false);
-  const [passwordError, setPasswordError] = useState(false);
   const [usernamecorrectError, setUsernamecorrectError] = useState(false);
   const [passwordcorrectError, setPasswordcorrectError] = useState(false);
 
@@ -30,19 +26,8 @@ function LoginForm() {
   const previousUrl = location.state?.from === '/login' || location.state?.from === '/signup' ? '/' : location.state?.from ?? '/';
   const navigate = useNavigate();
 
-  const handleUsernameChange = (event) => {
-    setUsername(event.target.value);
-    setUsernameError(false);
-    setUsernamecorrectError(false);
-
-  };
-
-  const handlePasswordChange = (event) => {
-    setPassword(event.target.value);
-    setPasswordError(false);
-    setPasswordcorrectError(false);
-
-  };
+  let requestbody = {}
+  let functionbody = {}
 
   return (
     <>
@@ -59,26 +44,26 @@ function LoginForm() {
               align="center"
             />
           </div>
-          {/* <Typography variant="h2" className="signup-heading" sx={{ color: 'primary.main' }}>
-          Godzilla
-        </Typography> */}
           <Typography variant="body1" align="center" color="primary">
             Log in to see posts from your friends.
           </Typography>
-          <form onSubmit={(event) => LoginSubmit(event, username, password,
-            setUsernameError, setPasswordError, setUsernamecorrectError, setPasswordcorrectError, setLogInSuccess, setLogInError,
-            LOGIN_API, navigate, previousUrl)} className="login-form">
+          <form onSubmit={(event) => {
+            requestbody={username, password}
+            functionbody={setUsernamecorrectError, setPasswordcorrectError}
+            LoginSubmit(event, requestbody, previousUrl,navigate,functionbody, setLogInSuccess, setLogInError)
+   
+   }} className="login-form">
             <UsernameInput
               username={username}
-              handleUsernameChange={handleUsernameChange}
-              usernameError={usernameError}
+              setUsername={setUsername}
               usernamecorrectError={usernamecorrectError}
+              setUsernamecorrectError={setUsernamecorrectError}
             />
             <PasswordInput
               password={password}
-              handlePasswordChange={handlePasswordChange}
-              passwordError={passwordError}
+              setPassword={setPassword}
               passwordcorrectError={passwordcorrectError}
+              setPasswordcorrectError={setPasswordcorrectError}
             />
             <Button variant="contained" color="primary" type="submit" className="login-button">
               Log In

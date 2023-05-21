@@ -1,16 +1,37 @@
-import React from "react";
-import { Autocomplete, TextField } from "@mui/material";
+import React,{useState} from "react";
+import { Autocomplete, TextField, Typography } from "@mui/material";
 
 function LocationSet({ location,
   setLocation,
-  setLocationError,
-  setLocationChanged }) {
+  setIsFieldValid,}) {
+  const [noLocationError, setNoLocationError] = useState(false)
+
   const handleLocationChange = (newLocation) => {
     setLocation(newLocation);
-    setLocationError(false);
-    setLocationChanged(true);
+    setIsFieldValid((prevState) => ({
+      ...prevState,
+      location: true
+    }));
 
   };
+
+  const handleLocationBlur = () => {
+    //if empty
+    if (location === "" ) {
+      setNoLocationError(true)
+      setIsFieldValid((prevState) => ({
+        ...prevState,
+        location: false
+      }));
+    }
+    else{
+      setNoLocationError(false)
+      setIsFieldValid((prevState) => ({
+        ...prevState,
+        location: true
+      }));
+    }
+  }
 
   const cantons = [
     'Aargau',
@@ -42,6 +63,7 @@ function LocationSet({ location,
   ]
 
   return (
+    <>
     <Autocomplete
       sx={{
         '& .MuiIconButton-root': {
@@ -75,8 +97,17 @@ function LocationSet({ location,
         handleLocationChange(newValue);
       }}
       options={cantons}
+      error={noLocationError}
+      onBlur={handleLocationBlur}
       renderInput={(params) => <TextField {...params} focused label="Location" />}
     />
+    {
+      noLocationError &&
+      <Typography variant="body2" color="error" align="center" fontWeight={700}>
+        Please select a valid location.
+      </Typography>
+    }
+    </>
   );
 };
 

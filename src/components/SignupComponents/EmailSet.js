@@ -1,46 +1,38 @@
-import React from "react";
+import React,{useState} from "react";
 import { Typography } from "@mui/material";
 import StyledTextField from '../Inputs/StyledTextField'
 
 function EmailSet({ email,
   setEmail,
-  setEmailError,
-  emailError,
-  setPageStatus,
-  setEmailChanged }) {
+  setIsFieldValid }) {
+
+  const [emailError, setEmailError] = useState(false);
+  const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
 
   const handleEmailChange = (event) => {
-    if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(event.target.value)) {
+    //if not consist as the style of XX@XX.XX
+    if (emailRegex.test(event.target.value)) {
       setEmailError(false)
+      setIsFieldValid((prevState) => ({
+        ...prevState,
+        email: true
+      }));
     }
     setEmail(event.target.value);
-    setEmailError(false);
-    setEmailChanged(true);
 
   };
 
   const handleEmailBlur = () => {
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    if (!emailRegex.test(email)) {
       setEmailError(true)
+      setIsFieldValid((prevState) => ({
+        ...prevState,
+        email: false
+      }));
     }
   }
 
   return (
-    // <FormControl variant="outlined" className="signup-input">
-    //     <InputLabel htmlFor="email-input">Email</InputLabel>
-    //     <OutlinedInput
-    //           id="email-input"
-    //           type="email"
-    //           value={email}
-    //           onChange={handleEmailChange}
-    //           label="Email"
-    //           error={emailError}
-    //     />
-    //     {emailError &&
-    //     <FormHelperText sx={{ fontSize:'body2.fontSize', color: 'red' }}>
-    //       Please type in correct email 
-    //       </FormHelperText>}
-    // </FormControl>
     <>
       <StyledTextField
         value={email}

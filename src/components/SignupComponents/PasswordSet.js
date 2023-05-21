@@ -1,10 +1,5 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 import {
-  Box,
-  FormControl,
-  FormHelperText,
-  InputLabel,
-  OutlinedInput,
   Typography
 } from "@mui/material";
 
@@ -12,45 +7,71 @@ import StyledTextField from '../Inputs/StyledTextField'
 
 function PasswordSet({
   password,
-  passwordError,
-  confirmPassword,
-  confirmPasswordError,
   setPassword,
-  setConfirmPassword,
-  setPasswordError,
-  setConfirmPasswordError,
-  setPageStatus,
-  setPasswordChanged
+  setIsFieldValid
 }) {
 
-  const hasLowerCase = /.*[a-z]+.*/;
-  const hasUpperCase = /.*[A-Z]+.*/;
-  const hasNumber = /.*\d+.*/;
-  // /.*[,.?!@#$%^&+-_=*]+.*/ #TODO 这个写法有点问题，+-_不会匹配加号、减号、下划线，而是会匹配加号和下划线之间的所有内容，包括大写字母和数字。
+  const hasLowerCase = /[a-z]/;
+  const hasUpperCase = /[A-Z]/;
+  const hasNumber = /\d/;
   const hasSymbol = /[,.?!@#$%^&_=+-]+/
   const length8To16 = /^.{8,16}$/;
 
+  const [passwordError, setPasswordError] = useState(false);
+  const [confirmPasswordError, setConfirmPasswordError] = useState(false);
+  const [confirmPassword, setConfirmPassword] = useState("");
+
   const handlePasswordChange = (event) => {
-    if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[,.?!@#$%^&+-_=*]).{8,16}$/.test(event.target.value)) {
+    //if the password not fulfill the requirement
+    if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[,.?!@#$%^&_=+-]).{8,16}$/.test(event.target.value)) {
       setPasswordError(true);
+      setIsFieldValid((prevState) => ({
+        ...prevState,
+        password: false
+      }));
     } else {
       setPasswordError(false)
+      setIsFieldValid((prevState) => ({
+        ...prevState,
+        password: true
+      }));
     }
     setPassword(event.target.value);
-    setPasswordChanged(true);
 
+    //if the confirm part not the same as the password part
     if (confirmPassword !== event.target.value) {
       setConfirmPasswordError(true)
+      setIsFieldValid((prevState) => ({
+        ...prevState,
+        password: false
+      }));
     } else {
       setConfirmPasswordError(false);
+      setIsFieldValid((prevState) => ({
+        ...prevState,
+        password: true
+      }));
     }
   };
 
   const handleConfirmPasswordChange = (event) => {
+    //when first type in the confirm part
+    if(password === ""){
+      setPasswordError(true);
+    }
+    //when not the same
     if (event.target.value !== password) {
       setConfirmPasswordError(true)
+      setIsFieldValid((prevState) => ({
+        ...prevState,
+        password: false
+      }));
     } else {
       setConfirmPasswordError(false);
+      setIsFieldValid((prevState) => ({
+        ...prevState,
+        password: true
+      }));
     }
     setConfirmPassword(event.target.value);
 
@@ -83,40 +104,6 @@ function PasswordSet({
         focused
         error={confirmPasswordError}
       />
-      {/* <Box className="setPassword">
-        <FormControl variant="outlined" className="signup-input">
-          <InputLabel htmlFor="password-input">Password</InputLabel>
-          <OutlinedInput
-            id="password-input"
-            type="password"
-            value={password}
-            onChange={handlePasswordChange}
-            label="Password"
-            error={passwordError}
-          />
-          {
-            <FormHelperText sx={{ fontSize: 'body2.fontSize', color: passwordError ? 'red' : 'secondary.main' }}>
-              Must be between 8 and 16 characters, contain at least
-              one uppercase letter, one lowercase letter, one number and one
-              special character.
-            </FormHelperText>}
-        </FormControl>
-        <FormControl variant="outlined" className="signup-input">
-          <InputLabel htmlFor="confirm-password-input">Confirm Password</InputLabel>
-          <OutlinedInput
-            id="confirm-password-input"
-            type="password"
-            value={confirmPassword}
-            onChange={handleConfirmPasswordChange}
-            label="Confirm Password"
-            error={confirmPasswordError}
-          />
-          {confirmPasswordError &&
-            <FormHelperText sx={{ fontSize: 'body2.fontSize', color: 'error' }}>
-              Please type in the same password
-            </FormHelperText>}
-        </FormControl>
-      </Box> */}
     </>
   );
 };
