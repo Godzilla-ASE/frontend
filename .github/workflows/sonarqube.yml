@@ -19,8 +19,6 @@ jobs:
         node-version: '16'
     - name: Install Dependencies
       run: npm ci
-    - name: Build
-      run: npm run build
     - name: SonarCloud Scan
       uses: sonarsource/sonarcloud-github-action@master
       env:
