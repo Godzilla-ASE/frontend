@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FormControl, InputLabel, OutlinedInput, FormHelperText, TextField, styled, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import StyledTextField from '../Inputs/StyledTextField'
 
 function UsernameSet({ username,
@@ -8,12 +8,9 @@ function UsernameSet({ username,
   setUsername,
   setUsernameError,
   setUsernameexistError,
-  setPageStatus,
   setUsernameChanged
 }) {
   const [noNameError, setNoNameError] = useState(false)
-
-  // #TODO 转移 usernameError， setUserNameError 到这个组件
 
   const hasSymbol = /[,.?!@#$%^&_=+-]+/
 
@@ -40,13 +37,10 @@ function UsernameSet({ username,
     if (username.length === 0) {
       setNoNameError(true)
     }
-    // #TODO handleBlur 的作用就是当用户的 focus 转移时会触发的动作，感觉可以把向后端请求 usernameexist 放到这里
   }
 
   return (
     <>
-      {/* <FormControl variant="outlined" className="signup-input"> */}
-      {/* <InputLabel htmlFor="username-input" shrink="true">Username</InputLabel> */}
       <StyledTextField
         value={username}
         onChange={handleUsernameChange}
@@ -58,27 +52,15 @@ function UsernameSet({ username,
       />
       <Typography variant="body2" component="div">
         <ul>
-          <li style={{ color: (username.length >= 6 && username.length <= 16) ? 'green' : 'white', fontWeight: 700 }}>Between 6-16 charaters.</li>
+          <li style={{ color: (username.length >= 6 && username.length <= 16) ? 'green' : 'white', fontWeight: 700 }}>Between 6-16 characters.</li>
         </ul>
       </Typography>
-      {/* {(usernameError && username.length < 6)
-        ? <Typography variant="body2" color="error" align="center" fontWeight={700}>
-          Username is too short. It has to be at least 6 characters.
-        </Typography>
-        : null
-      } */}
       {hasSymbol.test(username)
         ? <Typography variant="body2" color="error" align="center" fontWeight={700}>
           Username contains non-alphanumeric characters.
         </Typography>
         : null
       }
-      {/* {(usernameError && username.length > 16)
-        ? <Typography variant="body2" color="error" align="center" fontWeight={700}>
-          Username is too long. It has to be no more than 16 characters.
-        </Typography>
-        : null
-      } */}
       {noNameError &&
         <Typography variant="body2" color="error" align="center" fontWeight={700}>
           What's your name?
@@ -89,11 +71,6 @@ function UsernameSet({ username,
           This username exists, please try another one.
         </Typography>
       }
-      {/* {
-        <FormHelperText sx={{ fontSize: 'body2.fontSize', color: usernameError ? 'red' : 'white' }}>
-          Must be between 6 and 16 characters, alphanumeric only
-        </FormHelperText>} */}
-      {/* </FormControl> */}
     </>
   );
 };

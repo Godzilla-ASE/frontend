@@ -4,7 +4,7 @@ import { PostContext } from '../context/PostContext';
 
 export const usePosts = () => {
   const [data, setData] = useState(null);
-  const { state, dispatch } = useContext(PostContext)
+  const { dispatch } = useContext(PostContext)
 
   useEffect(() => {
     const fetchData = async () => {

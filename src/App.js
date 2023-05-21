@@ -1,6 +1,4 @@
-//import logo from './logo.svg';
 import './App.css';
-//import Login from './components/LoginComponents/Login的副本';
 import Login from './components/Login';
 import SignUp from './components/SignUp';
 import AccountCenter from './components/AccountCenter';
@@ -14,16 +12,6 @@ import LocationPage from './views/LocationPage/LocationPage';
 import TagPage from './views/TagPage/TagPage';
 
 function App() {
-
-  // const fakeUser = {
-  //   username: 'Iamuser',
-  //   authToken: "authToken",
-  //   id: 2,
-  //   avatarUrl: "https://images.unsplash.com/photo-1518756131217-31eb79b20e8f"
-  // }
-
-  // localStorage.setItem("loggedInUser", JSON.stringify(fakeUser));
-  // localStorage.removeItem("loggedInUser");
 
   const router = createBrowserRouter(
     createRoutesFromElements(

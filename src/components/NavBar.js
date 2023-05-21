@@ -1,5 +1,4 @@
-import xhs from '../assets/xhs.png';
-import { useState, useContext } from 'react'
+import { useState,} from 'react'
 import { AiOutlineHome, AiOutlineLogin } from 'react-icons/ai';
 import { RiImageAddFill } from 'react-icons/ri';
 import { BiMessageRoundedDetail } from 'react-icons/bi';
@@ -7,15 +6,13 @@ import { NavLink, Outlet, useNavigate } from 'react-router-dom';
 import { useTheme } from '@emotion/react';
 import CreatePostDialog from '../views/CreatePost/CreatePostDialog';
 import MessageStack from '../views/MessageStack/MessageStack';
-// import { MessageContext } from '../context/MessageContext';
-import useLoggedInUser from '../Hooks/useLoggedInUser';
+import useLoggedInUser from '../hooks/useLoggedInUser';
 import SearchUser from '../views/NavBar/SearchUser';
 import { Avatar, Typography } from '@mui/material';
 
 
 export default function NavBar() {
 
-  // const { state, dispatch } = useContext(MessageContext)
   const [newMessage, setNewMessage] = useState(false)
 
   const loggedInUser = useLoggedInUser()

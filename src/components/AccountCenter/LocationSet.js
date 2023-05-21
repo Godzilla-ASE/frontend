@@ -1,6 +1,5 @@
 import React from "react";
 import { FormControl, InputLabel, Select, MenuItem, FormHelperText } from "@mui/material";
-import Location from "../../views/CreatePost/Location";
 
 function LocationSet({ location,
   setLocation,

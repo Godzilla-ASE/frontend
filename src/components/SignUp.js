@@ -17,7 +17,7 @@ import LocationSet from "./SignupComponents/LocationSet";
 import SignupSubmit from "../services/SignupSubmit";
 import { SIGNUP_API, LOGO_API } from "../services/APIs";
 import "./SignupComponents/SignUp.css";
-import useS3Upload from '../Hooks/useS3Upload'
+import useS3Upload from '../hooks/useS3Upload'
 import Notification from './Notification'
 
 const SignUp = () => {
@@ -83,8 +83,8 @@ const SignUp = () => {
             src={LOGO_API}
             alt="Godzilla logo"
             style={{
-              width: "200px", // Set the width to your desired size
-              height: "100px", // Set the height to "auto" to maintain aspect ratiomarginBottom: "20px" 
+              width: "200px",
+              height: "100px",
             }}
             align="center"
           />
