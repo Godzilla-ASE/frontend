@@ -23,7 +23,7 @@ jobs:
 
     - name: Run SonarQube analysis
       run: npm run sonarqube \
-        -Dsonar.organization=godzilla-ase \
-        -Dsonar.projectKey=Godzilla-ASE_frontend \
-        -Dsonar.host.url=https://sonarcloud.io \
-        -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+        -D sonar.organization=godzilla-ase \
+        -D sonar.projectKey=Godzilla-ASE_frontend \
+        -D sonar.host.url=https://sonarcloud.io \
+        -D sonar.login=${{ secrets.SONAR_TOKEN }}
