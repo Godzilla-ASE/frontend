@@ -64,7 +64,11 @@ function UsernameSet({ username,
       />
       <Typography variant="body2" component="div">
         <ul>
-          <li style={{ color: (username.length >= 6 && username.length <= 16) ? 'green' : 'white', fontWeight: 700 }}>Between 6-16 charaters.</li>
+          <li style={{
+            color: (username.length >= 6 && username.length <= 16) ? 'green' : 'white',
+            fontWeight: 700
+          }}>Between 6-16 characters.
+          </li>
         </ul>
       </Typography>
       {hasSymbol.test(username)

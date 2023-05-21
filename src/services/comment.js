@@ -4,7 +4,6 @@ const baseCommentUrl = 'http://localhost:8082/comments'
 
 const getPostComments = async (postid) => {
   const returnedComments = await axios.get(`${baseCommentUrl}/${postid}`)
-  // const returnedComments = await axios.get(`${baseCommentUrl}`)
   return returnedComments.data
 }
 

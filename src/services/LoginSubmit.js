@@ -30,11 +30,8 @@ const LoginSubmit = async (event, requestbody, previousUrl, navigate,
           avatarUrl: userAvatarUrl
         }
 
-
         localStorage.setItem("loggedInUser", JSON.stringify(user));
         localStorage.setItem("user", JSON.stringify(user_body))
-
-
 
         localStorage.setItem("authToken", authToken);
         localStorage.setItem("id", id);

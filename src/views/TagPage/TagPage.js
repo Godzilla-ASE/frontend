@@ -2,10 +2,10 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Masonry from '@mui/lab/Masonry';
 import PostCardFooter from '../../components/PostCardFooter';
-import { usePostsByTag } from '../../Hooks/usePostsbyTag';
-import { useParams } from 'react-router-dom';
-import { Typography } from '@mui/material';
-import { AiFillTag } from 'react-icons/ai';
+import {usePostsByTag} from '../../hooks/usePostsbyTag';
+import {useParams} from 'react-router-dom';
+import {Typography} from '@mui/material';
+import {AiFillTag} from 'react-icons/ai';
 
 export default function TagPage() {
   const tag = useParams().tagName
@@ -22,14 +22,14 @@ export default function TagPage() {
   };
 
   return (
-    <div style={{ marginTop: '100px' }}>
+    <div style={{marginTop: '100px'}}>
       <Typography variant="h2" color="primary" align='center' textTransform="uppercase">
-        <AiFillTag style={{ marginRight: '5px' }} />{tag}
+        <AiFillTag style={{marginRight: '5px'}}/>{tag}
       </Typography>
-      <Box sx={{ width: 4 / 5, minHeight: 829, margin: '0 auto', paddingTop: '80px' }}>
+      <Box sx={{width: 4 / 5, minHeight: 829, margin: '0 auto', paddingTop: '80px'}}>
         <Masonry columns={5} spacing={2}>
           {posts.map((post, index) => (
-            <div key={index}>
+            <div key={post.title}>
               <div>
                 <img
                   src={`${post.coverImage}?w=162&auto=format`}
@@ -46,11 +46,11 @@ export default function TagPage() {
                   onLoad={handleImage}
                 />
               </div>
-              <PostCardFooter post={post} />
+              <PostCardFooter post={post}/>
             </div>
           ))}
         </Masonry>
-      </Box >
+      </Box>
     </div>
   )
 }

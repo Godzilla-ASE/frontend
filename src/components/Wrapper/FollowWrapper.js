@@ -1,16 +1,21 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Typography, Button } from '@mui/material';
-import { getOneUserInfo, addFollower, cancelFollower } from '../../services/user'
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { Typography, Button } from "@mui/material";
+import {
+  getOneUserInfo,
+  addFollower,
+  cancelFollower,
+} from "../../services/user";
+import Notification from "../Notification";
 
 export default function FollowWapper({ loginUser, id }) {
-
-  // 按钮初始化，如果已登陆且已经关注，就显示followed
   const [UserInfo, setUserInfo] = useState(null);
   const [followed, setFollowed] = useState(false);
+  const [successFollow, setSuccessFollow] = useState("");
+  const [successUnfollow, setSuccessUnfollow] = useState("");
   const navigate = useNavigate();
-  // 获取被关注用户信息
 
+  // Retrieve the information about the user being followed
   useEffect(() => {
     const fetchData = async () => {
       const result = await getOneUserInfo(id);
@@ -19,7 +24,7 @@ export default function FollowWapper({ loginUser, id }) {
     fetchData();
   }, [id]);
 
-  // 判断当前登陆用户是否已关注这个用户
+  // Determine whether the current logged-in user has followed this user
   useEffect(() => {
     if (UserInfo !== null && loginUser) {
       const authorFans = UserInfo.fans.split(",");
@@ -30,48 +35,61 @@ export default function FollowWapper({ loginUser, id }) {
         setFollowed(false);
       }
     }
-  }, [UserInfo,id,loginUser]);
+  }, [UserInfo, id, loginUser]);
 
   if (!UserInfo) {
-    return (
-      <pre>Loading.UserInfo..</pre>
-    )
+    return <pre>Loading.UserInfo..</pre>;
   }
-  // 按钮初始化结束
   if (loginUser && loginUser.id.toString() === id.toString()) {
-    return (<div></div>)
+    return <div></div>;
   }
 
   const handleFollowClick = () => {
     if (!loginUser) {
       navigate("/login");
-    }
-    else {
+    } else {
       if (followed) {
         cancelFollower(loginUser.id, id, loginUser.authToken);
-        // #TODO 取消关注成功提示消息
+        setSuccessUnfollow(`Successfully unfollow user ${id} !`);
       } else {
         addFollower(loginUser.id, id, loginUser.authToken);
-        // #TODO 添加关注成功提示消息
+        setSuccessFollow(`Successfully follow user ${id} !`);
       }
       setFollowed(!followed);
     }
-  }
+  };
 
   return (
-    <div>
-      {!followed
-        ? <Button onClick={handleFollowClick} variant="contained" size="small">
-          <Typography variant="body2" fontWeight="bold">
-            Follow
-          </Typography>
-        </Button>
-        :
-        <Button onClick={handleFollowClick}  size="small">
-          <Typography variant="body2" fontWeight="bold">
-            Unfollow
-          </Typography>
-        </Button>}
-    </div>
-  )
+    <>
+      <div>
+        {!followed ? (
+          <Button onClick={handleFollowClick} variant="contained" size="small">
+            <Typography variant="body2" fontWeight="bold">
+              Follow
+            </Typography>
+          </Button>
+        ) : (
+          <Button onClick={handleFollowClick} size="small">
+            <Typography variant="body2" fontWeight="bold">
+              Unfollow
+            </Typography>
+          </Button>
+        )}
+      </div>
+      {!!successFollow && (
+        <Notification
+          status="success"
+          content={successFollow}
+          closeCallback={() => setSuccessFollow("")}
+        />
+      )}
+      {!!successUnfollow && (
+        <Notification
+          status="success"
+          content={successUnfollow}
+          closeCallback={() => setSuccessUnfollow("")}
+        />
+      )}
+    </>
+  );
 }

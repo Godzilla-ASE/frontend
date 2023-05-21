@@ -1,54 +1,54 @@
-import { Avatar, Box, Typography } from '@mui/material';
-import { getOneUserInfo } from '../../services/user';
-import { useEffect, useState } from 'react';
+import {Avatar, Typography} from '@mui/material';
+import {getOneUserInfo} from '../../services/user';
+import {useEffect, useState} from 'react';
 
-const UserUnit = ({ userId }) => {
-    const [userInfo, setUserInfo] = useState(null);
-  
-    useEffect(() => {
-      const fetchData = async () => {
-        const userInfo = await getOneUserInfo(userId);
-        setUserInfo(userInfo);
-      };
-      fetchData();
-    }, []);
-  
-  
-    if (!userInfo) {
-      return (
-        <pre>Loading...</pre>
-      )
+const UserUnit = ({userId}) => {
+  const [userInfo, setUserInfo] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const userInfo = await getOneUserInfo(userId);
+      setUserInfo(userInfo);
+    };
+    fetchData();
+  }, []);
+
+
+  if (!userInfo) {
+    return (
+      <pre>Loading...</pre>
+    )
+  }
+
+  const styles = {
+    container: {
+      display: 'flex',
+      alignItems: 'center'
+    },
+    avatar: {
+      width: '50px',
+      height: '50px',
+      marginRight: '10px',
+      cursor: 'pointer'
+    },
+    name: {
+      fontSize: '16px',
+      fontWeight: 'bold',
+      cursor: 'pointer'
+    },
+    email: {
+      fontSize: '14px',
+      cursor: 'pointer'
+    },
+    location: {
+      fontSize: '12px',
+      cursor: 'pointer'
     }
+  };
 
-    const styles = {
-        container: {
-          display: 'flex',
-          alignItems: 'center'
-        },
-        avatar: {
-          width: '50px',
-          height: '50px',
-          marginRight: '10px',
-          cursor: 'pointer'
-        },
-        name: {
-          fontSize: '16px',
-          fontWeight: 'bold',
-          cursor: 'pointer'
-        },
-        email: {
-          fontSize: '14px',
-          cursor: 'pointer'
-        },
-        location: {
-          fontSize: '12px',
-          cursor: 'pointer'
-        }
-      };
-
-    return(
-        <div style={styles.container}>
-      <Avatar alt="Profile picture" src={userInfo.avatarUrl} style={styles.avatar} />
+  return (
+    <div style={styles.container}>
+      <Avatar alt="Profile picture" src={userInfo.avatarUrl} style={styles.avatar}/>
       <div>
         <Typography variant="h6" color={"#ffffff"} style={styles.name}>
           {userInfo.username}
@@ -61,7 +61,7 @@ const UserUnit = ({ userId }) => {
         </Typography>
       </div>
     </div>
-    );
+  );
 }
 
 export default UserUnit;

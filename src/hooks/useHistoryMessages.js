@@ -3,7 +3,7 @@ import { getHistoryMessages } from '../services/message';
 import { MessageContext } from '../context/MessageContext';
 
 export const useHistoryMessages = (user) => {
-  const { state, dispatch } = useContext(MessageContext)
+  const { dispatch } = useContext(MessageContext)
 
   useEffect(() => {
     const id = user.id

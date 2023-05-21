@@ -2,18 +2,16 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Masonry from '@mui/lab/Masonry';
 import PostCardFooter from '../../components/PostCardFooter';
-import { usePostValue } from '../../context/PostContext';
-import { usePosts } from '../../Hooks/usePosts';
-// import { usePosts } from '../../components/Helper/usePosts';
+import {usePostValue} from '../../context/PostContext';
+import {usePosts} from '../../hooks/usePosts';
 
 export default function Homepage() {
   usePosts()
-  // const posts = usePostValue()
   const posts = usePostValue().posts;
 
   if (!posts) {
     return (
-      <div style={{ height: 829, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+      <div style={{height: 829, display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
         <p> Loading </p>
       </div>
     )
@@ -24,10 +22,10 @@ export default function Homepage() {
   };
 
   return (
-    <Box sx={{ width: 4 / 5, minHeight: 829, margin: '0 auto', paddingTop: '80px' }}>
+    <Box sx={{width: 4 / 5, minHeight: 829, margin: '0 auto', paddingTop: '80px'}}>
       <Masonry columns={5} spacing={2}>
         {posts.map((post, index) => (
-          <div key={index}>
+          <div key={post.title}>
             <div>
               <img
                 src={`${post.coverImage}?w=162&auto=format`}
@@ -44,7 +42,7 @@ export default function Homepage() {
                 onLoad={handleImage}
               />
             </div>
-            <PostCardFooter post={post} />
+            <PostCardFooter post={post}/>
           </div>
         ))}
       </Masonry>

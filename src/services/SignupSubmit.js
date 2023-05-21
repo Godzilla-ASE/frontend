@@ -29,11 +29,8 @@ const SignupSubmit = async (event, requestBody, signupFormError, setUsernameexis
           avatarUrl: userAvatarUrl
         }
 
-
         localStorage.setItem("loggedInUser", JSON.stringify(user));
         localStorage.setItem("user", JSON.stringify(user_body))
-
-
 
         localStorage.setItem("authToken", authToken);
         localStorage.setItem("id", userID);

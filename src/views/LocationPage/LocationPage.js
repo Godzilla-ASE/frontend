@@ -2,10 +2,10 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Masonry from '@mui/lab/Masonry';
 import PostCardFooter from '../../components/PostCardFooter';
-import { usePostsByLocation } from '../../Hooks/usePostsByLocation';
-import { useParams } from 'react-router-dom';
-import { Typography } from '@mui/material';
-import { IoLocationOutline } from "react-icons/io5";
+import {usePostsByLocation} from '../../hooks/usePostsByLocation';
+import {useParams} from 'react-router-dom';
+import {Typography} from '@mui/material';
+import {IoLocationOutline} from "react-icons/io5";
 
 export default function LocationPage() {
   const location = useParams().locationName
@@ -22,14 +22,14 @@ export default function LocationPage() {
   };
 
   return (
-    <div style={{ marginTop: '100px' }}>
+    <div style={{marginTop: '100px'}}>
       <Typography variant="h2" color="primary" align='center' textTransform="uppercase">
-        <IoLocationOutline style={{ marginRight: '5px' }} />{location}
+        <IoLocationOutline style={{marginRight: '5px'}}/>{location}
       </Typography>
-      <Box sx={{ width: 4 / 5, minHeight: 829, margin: '0 auto', paddingTop: '80px' }}>
+      <Box sx={{width: 4 / 5, minHeight: 829, margin: '0 auto', paddingTop: '80px'}}>
         <Masonry columns={5} spacing={2}>
           {posts.map((post, index) => (
-            <div key={index}>
+            <div key={post.title}>
               <div>
                 <img
                   src={`${post.coverImage}?w=162&auto=format`}
@@ -46,11 +46,11 @@ export default function LocationPage() {
                   onLoad={handleImage}
                 />
               </div>
-              <PostCardFooter post={post} />
+              <PostCardFooter post={post}/>
             </div>
           ))}
         </Masonry>
-      </Box >
+      </Box>
     </div>
   )
 }

@@ -89,11 +89,20 @@ function PasswordSet({
       />
       <Typography variant="body2" component="div">
         <ul>
-          <li style={{ color: length8To16.test(password) ? 'green' : 'white', fontWeight: 700 }}>Between 8-16 charaters.</li>
-          <li style={{ color: hasLowerCase.test(password) ? 'green' : 'white', fontWeight: 700 }}>Has at least one lowercase letter.</li>
-          <li style={{ color: hasUpperCase.test(password) ? 'green' : 'white', fontWeight: 700 }}>Has at least one uppercase letter.</li>
-          <li style={{ color: hasNumber.test(password) ? 'green' : 'white', fontWeight: 700 }}>Has at least one number.</li>
-          <li style={{ color: hasSymbol.test(password) ? 'green' : 'white', fontWeight: 700 }}>Has at least one special symbol.</li>
+          <li style={{color: length8To16.test(password) ? 'green' : 'white', fontWeight: 700}}>Between 8-16
+            characters.
+          </li>
+          <li style={{color: hasLowerCase.test(password) ? 'green' : 'white', fontWeight: 700}}>Has at least one
+            lowercase letter.
+          </li>
+          <li style={{color: hasUpperCase.test(password) ? 'green' : 'white', fontWeight: 700}}>Has at least one
+            uppercase letter.
+          </li>
+          <li style={{color: hasNumber.test(password) ? 'green' : 'white', fontWeight: 700}}>Has at least one number.
+          </li>
+          <li style={{color: hasSymbol.test(password) ? 'green' : 'white', fontWeight: 700}}>Has at least one special
+            symbol.
+          </li>
         </ul>
       </Typography>
       <StyledTextField
@@ -106,6 +115,6 @@ function PasswordSet({
       />
     </>
   );
-};
+}
 
-export default PasswordSet;
+export default PasswordSet
