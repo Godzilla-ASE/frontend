@@ -24,6 +24,3 @@ jobs:
       env:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
-      with:
-        projectKey: Godzilla-ASE_frontend
-        organization: godzilla-ase
