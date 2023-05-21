@@ -26,6 +26,7 @@ const FollowingCard = ({isFollowing, setfollowingCard, fansList, followingsList,
       <pre>Loading...</pre>
     )
   }
+  
 
   return (
     <Card style={{

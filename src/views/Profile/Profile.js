@@ -29,7 +29,7 @@ export default function Profile() {
   if (!logginedUserInfo) {
     return <pre>The profile is loading...</pre>;
   }
-
+  
   const followingsList = logginedUserInfo.followings.split(",");
   const fansList = logginedUserInfo.fans.split(",");
   const avatar = logginedUserInfo.avatarUrl;

@@ -23,7 +23,7 @@ const CommentFooter = ({ post, user, replyComment }) => {
       navigate("/login");
     }
     const Now = new Date();
-
+    // if no commentText typed, then nothing happened
     if (commentText !== "") {
       if (replyComment.length !== 0) {
         const commentID = replyComment.id;
@@ -50,6 +50,7 @@ const CommentFooter = ({ post, user, replyComment }) => {
 
   let placeholdertext = "Write your comments...";
   let buttontext = "Comment";
+  // change the context accroding to status
   if (replyComment.length !== 0) {
     placeholdertext = "Reply to " + replyComment.username;
     buttontext = "Reply";
