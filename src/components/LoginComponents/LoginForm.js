@@ -47,7 +47,7 @@ function LoginForm() {
           <Typography variant="body1" align="center" color="primary">
             Log in to see posts from your friends.
           </Typography>
-          <form onSubmit={(event) => {
+          <form onSubmit={async (event) => {
             requestbody={username, password}
             functionbody={setUsernamecorrectError, setPasswordcorrectError}
             try {
