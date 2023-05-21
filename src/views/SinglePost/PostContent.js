@@ -1,29 +1,14 @@
-import { Typography } from '@mui/material';
+import {Typography} from '@mui/material';
 import CommentsBox from './CommentsBox';
 
-const PostContent = ({ post, comments, loginedUserID, onreplyCommentChange }) => {
-  //console.log(post);
+const PostContent = ({post, comments, loginedUserID, onreplyCommentChange}) => {
   return (
-    // ｜-- PostContent（这篇post的内容）
-    //        |-- <div> (这里面的内容可以上下滑动)
-    //            |-- Typography 
-    //            |-- Typography
-    //            |-- Typography (几个并排的文字信息：时间标题帖子内容)
-    //            |-- CommentsBox (用来放这篇帖子的n条评论)
-    //                |-- Comments 1
-    //                    |-- Reply 1.1
-    //                    ...
-    //                |-- Comments 2
-    //                    |-- Reply 2.1
-    //                    ...
-    //                ...
-    //        |-- </div> (这里面的内容可以上下滑动)
     <div className="scrollable-container">
       <Typography variant="h2" color="primary">
         {post.title != null ? post.title : "NULL title"}
       </Typography>
       <br></br>
-      <Typography variant="body1" color="primary" style={{ textAlign: 'justify' }}>
+      <Typography variant="body1" color="primary" style={{textAlign: 'justify'}}>
         {post.content_text != null ? post.content_text : "NULL text"}
       </Typography>
       <br></br>

@@ -1,12 +1,12 @@
-import { useState } from "react"
-import { Autocomplete, TextField, InputAdornment, styled } from "@mui/material"
+import {useState} from "react"
+import {Autocomplete, TextField, InputAdornment, styled} from "@mui/material"
 import Fuse from 'fuse.js';
-import { useUsers } from '../../hooks/useUsers'
-import { BiSearch } from 'react-icons/bi';
+import {useUsers} from '../../hooks/useUsers'
+import {BiSearch} from 'react-icons/bi';
 import UserInfoWrapper from "../../components/Wrapper/UserInfoWrapper";
-import { useNavigate } from 'react-router-dom'
+import {useNavigate} from 'react-router-dom'
 
-const CustomOption = styled('div')(({ theme }) => ({
+const CustomOption = styled('div')(({theme}) => ({
   backgroundColor: theme.palette.postBackground.main,
   '&:hover': {
     backgroundColor: theme.palette.postBackground.main,
@@ -16,14 +16,6 @@ const CustomOption = styled('div')(({ theme }) => ({
 const SearchUser = () => {
 
   const navigate = useNavigate()
-
-  const test = [
-    { username: 'A', avatarUrl: 'https://images.unsplash.com/photo-1518756131217-31eb79b20e8f', id: 1 },
-    { username: 'B', avatarUrl: 'https://images.unsplash.com/photo-1518756131217-31eb79b20e8f', id: 1 },
-    { username: 'C', avatarUrl: 'https://images.unsplash.com/photo-1518756131217-31eb79b20e8f', id: 1 },
-    { username: 'D', avatarUrl: 'https://images.unsplash.com/photo-1518756131217-31eb79b20e8f', id: 1 },
-    { username: 'BE', avatarUrl: 'https://images.unsplash.com/photo-1518756131217-31eb79b20e8f', id: 1 },
-  ]
 
   const handleClick = (id) => {
     console.log('navigate!')
@@ -35,7 +27,7 @@ const SearchUser = () => {
 
   if (!allUsers) {
     return (
-      <div style={{ height: 829, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+      <div style={{height: 829, display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
         <p> Users are loading </p>
       </div>
     )
@@ -49,10 +41,9 @@ const SearchUser = () => {
   const fuse = new Fuse(allUsers, fuseOptions);
 
 
-
   const handleSearch = (value) => {
     if (value.trim() === '') {
-      setFilteredUsers(allUsers.slice(0, 5)); 
+      setFilteredUsers(allUsers.slice(0, 5));
     } else {
       const results = fuse.search(value);
       setFilteredUsers(results.map((result) => result.item));
@@ -85,7 +76,7 @@ const SearchUser = () => {
             startAdornment: (
               <InputAdornment position="start">
                 {/* <SearchIcon color="primary" fontSize="28" /> */}
-                <BiSearch size={30} color="white" />
+                <BiSearch size={30} color="white"/>
               </InputAdornment>
             ),
           }}

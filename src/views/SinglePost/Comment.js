@@ -1,10 +1,10 @@
 import React from "react";
-import { CardContent, Typography, Button } from "@mui/material";
+import {CardContent, Typography, Button} from "@mui/material";
 import Reply from "./Reply";
 import AuthorInfoWrapper from "../../components/Wrapper/AuthorInfoWrapper";
-import { deleteComment } from "../../services/comment";
+import {deleteComment} from "../../services/comment";
 
-function Comment({ comment, loginedUserID, onreplyCommentChange }) {
+function Comment({comment, loginedUserID, onreplyCommentChange}) {
   const content = comment.content;
   const replys = comment.reply;
 
@@ -21,12 +21,12 @@ function Comment({ comment, loginedUserID, onreplyCommentChange }) {
   if (replys.length !== 0) {
     return (
       <div>
-        <AuthorInfoWrapper post={comment} styleSetting="start" />
-        <CardContent style={{ marginLeft: "9%" }}>
+        <AuthorInfoWrapper post={comment} styleSetting="start"/>
+        <CardContent style={{marginLeft: "9%"}}>
           <Typography color="secondary" variant="body2">
             {content}
           </Typography>
-          <div style={{ display: "flex", justifyContent: "flex-end" }}>
+          <div style={{display: "flex", justifyContent: "flex-end"}}>
             {loginedUserID !== comment.userid ? (
               <div></div>
             ) : (
@@ -39,7 +39,7 @@ function Comment({ comment, loginedUserID, onreplyCommentChange }) {
           <br></br>
           <div>
             {replys.map((reply) => (
-              <Reply reply={reply} loginedUserID={loginedUserID} />
+              <Reply key={reply} reply={reply} loginedUserID={loginedUserID}/>
             ))}
           </div>
         </CardContent>
@@ -55,26 +55,26 @@ function Comment({ comment, loginedUserID, onreplyCommentChange }) {
             marginLeft: "15%",
           }}
         ></div>
-        <AuthorInfoWrapper post={comment} styleSetting="start" />
-        <CardContent style={{ marginLeft: "10%" }}>
+        <AuthorInfoWrapper post={comment} styleSetting="start"/>
+        <CardContent style={{marginLeft: "10%"}}>
           <Typography color="secondary" variant="body2">
             {content}
           </Typography>
           <Typography variant="body3" color="secondary">
             {creation_date ? creation_date : <div></div>}
           </Typography>
-          <div style={{ display: "flex", justifyContent: "flex-end" }}>
+          <div style={{display: "flex", justifyContent: "flex-end"}}>
             {loginedUserID !== comment.userid ? (
               <div></div>
             ) : (
               <Button
-                style={{ fontSize: "12px" }}
+                style={{fontSize: "12px"}}
                 onClick={() => handleDeleteComment(comment.id)}
               >
                 Delete
               </Button>
             )}
-            <Button style={{ fontSize: "12px" }} onClick={() => handleReply()}>
+            <Button style={{fontSize: "12px"}} onClick={() => handleReply()}>
               Reply
             </Button>
           </div>

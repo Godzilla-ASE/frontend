@@ -1,5 +1,5 @@
-import { Grid, Box, Button } from "@mui/material";
-import { styled } from "@mui/material/styles";
+import {Grid, Box, Button} from "@mui/material";
+import {styled} from "@mui/material/styles";
 import AddAPhotoIcon from "@mui/icons-material/AddAPhoto";
 import CloseIcon from "@mui/icons-material/Close";
 
@@ -10,16 +10,16 @@ const ImageGrid = styled(Box)(() => ({
   justifyContent: "space-between",
 }));
 
-const ImageBox = styled(Box)(({ theme }) => ({
+const ImageBox = styled(Box)(({theme}) => ({
   position: "relative",
   marginBottom: theme.spacing(1),
 }));
 
-const ImageUpload = ({ images, handleImageDelete, handleImageUpload }) => {
+const ImageUpload = ({images, handleImageDelete, handleImageUpload}) => {
   return (
-    <Grid container className={ImageGrid} sx={{ height: "100%" }}>
-      {Array.from({ length: 9 }).map((_, index) => (
-        <Grid item xs={4} key={index}>
+    <Grid container className={ImageGrid} sx={{height: "100%"}}>
+      {Array.from({length: 9}).map((_, index) => (
+        <Grid item xs={4} key={index + 'i'}>
           <Box
             className={ImageBox}
             sx={{
@@ -32,7 +32,7 @@ const ImageUpload = ({ images, handleImageDelete, handleImageUpload }) => {
             <label htmlFor={`image-upload-${index}`}>
               <input
                 accept="image/*"
-                style={{ display: "none" }}
+                style={{display: "none"}}
                 id={`image-upload-${index}`}
                 type="file"
                 onChange={(e) => handleImageUpload(e, index)}
@@ -81,7 +81,7 @@ const ImageUpload = ({ images, handleImageDelete, handleImageUpload }) => {
                         />
                       }
                       onClick={(event) => handleImageDelete(event, index)}
-                      style={{ padding: "6px 8px", minWidth: "auto" }}
+                      style={{padding: "6px 8px", minWidth: "auto"}}
                     />
                   </Box>
                 </Box>

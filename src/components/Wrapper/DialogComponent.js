@@ -1,22 +1,21 @@
-import { Dialog, styled, Box } from "@mui/material";
+import {Dialog, styled, Box} from "@mui/material";
 
-import { useTheme } from "@emotion/react";
+import {useTheme} from "@emotion/react";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
-const StyledDialog = styled(Dialog)(({ theme }) => ({
+const StyledDialog = styled(Dialog)(({theme}) => ({
   "& .MuiPaper-root": {
     backgroundColor: theme.palette.background.default,
   },
 }));
 
-const StyledDialogContent = styled(Box)(({ theme }) => ({
+const StyledDialogContent = styled(Box)(({theme}) => ({
   display: "flex",
   flexDirection: "row",
 }));
 
-const DialogComponent = ({ children, isOpen, onClose }) => {
-  const theme = useTheme();
-  const isSmallScreen = useMediaQuery(theme.breakpoints.down(1282));
+const DialogComponent = ({children, isOpen, onClose}) => {
+  const theme = useTheme()
 
   const windowHeight = window.innerHeight;
   const marginTopPercent = 0.16;

@@ -1,8 +1,7 @@
-
 const SignupSubmit = async (event, username, password, email, location, confirmPassword, isChecked,
-  usernameError, emailError, passwordError, confirmPasswordError, locationError, isCheckedError,
-  setUsernameError, setPasswordError, setConfirmPasswordError, setLocationError, setEmailError,
-  setUsernameexistError, setIsCheckedError, setSignUpSuccess, setSignUpError, avatarUrl, avatarChanged, SIGNUP_API, navigate) => {
+                            usernameError, emailError, passwordError, confirmPasswordError, locationError, isCheckedError,
+                            setUsernameError, setPasswordError, setConfirmPasswordError, setLocationError, setEmailError,
+                            setUsernameexistError, setIsCheckedError, setSignUpSuccess, setSignUpError, avatarUrl, avatarChanged, SIGNUP_API, navigate) => {
   event.preventDefault();
   // Get the history object from react-router-dom
   if (!/^[a-zA-Z0-9]{6,16}$/.test(username)) {
@@ -19,9 +18,7 @@ const SignupSubmit = async (event, username, password, email, location, confirmP
   if (!(password === confirmPassword)) {
     setConfirmPasswordError(true);
   }
-  // if (!(fullname.length > 0)) {
-  //   setFullNameError(true);
-  // }
+
   if (location === "") {
     setLocationError(true);
   }
@@ -32,8 +29,8 @@ const SignupSubmit = async (event, username, password, email, location, confirmP
     try {
       const response = await fetch(SIGNUP_API, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username, email, password, location, avatarUrl }),
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({username, email, password, location, avatarUrl}),
       });
       if (response.ok) {
         setSignUpSuccess('Log in successfully!');
@@ -44,8 +41,8 @@ const SignupSubmit = async (event, username, password, email, location, confirmP
         const userID = user_body.id;
         const userName = user_body.username;
         const userAvatarUrl = user_body.avatarUrl;
-        // save user to localStorage
-        // localStorage.setItem("loggedInUser", user);
+
+        // Saving user to the localStorage
         const user = {
           authToken: authToken,
           id: userID,
@@ -53,11 +50,8 @@ const SignupSubmit = async (event, username, password, email, location, confirmP
           avatarUrl: userAvatarUrl
         }
 
-
         localStorage.setItem("loggedInUser", JSON.stringify(user));
         localStorage.setItem("user", JSON.stringify(user_body))
-
-
 
         localStorage.setItem("authToken", authToken);
         localStorage.setItem("id", userID);
@@ -71,8 +65,7 @@ const SignupSubmit = async (event, username, password, email, location, confirmP
         // const error = await response.text();
         setUsernameexistError(true);
         setSignUpError("Username Exists. Please choose another one.");
-      }
-      else if (response.status === 404) {
+      } else if (response.status === 404) {
         setSignUpError("Failed to connect to backend. Please try again later.");
 
       }

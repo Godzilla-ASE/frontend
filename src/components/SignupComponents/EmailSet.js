@@ -1,22 +1,19 @@
 import React from "react";
-import { Typography } from "@mui/material";
+import {Typography} from "@mui/material";
 import StyledTextField from '../Inputs/StyledTextField'
 
-function EmailSet({ email,
-  setEmail,
-  setEmailError,
-  emailError,
-  setPageStatus,
-  setEmailChanged }) {
-
+function EmailSet({
+                    email,
+                    setEmail,
+                    setEmailError,
+                    emailError
+                  }) {
   const handleEmailChange = (event) => {
     if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(event.target.value)) {
       setEmailError(false)
     }
     setEmail(event.target.value);
     setEmailError(false);
-    setEmailChanged(true);
-
   };
 
   const handleEmailBlur = () => {
@@ -26,21 +23,6 @@ function EmailSet({ email,
   }
 
   return (
-    // <FormControl variant="outlined" className="signup-input">
-    //     <InputLabel htmlFor="email-input">Email</InputLabel>
-    //     <OutlinedInput
-    //           id="email-input"
-    //           type="email"
-    //           value={email}
-    //           onChange={handleEmailChange}
-    //           label="Email"
-    //           error={emailError}
-    //     />
-    //     {emailError &&
-    //     <FormHelperText sx={{ fontSize:'body2.fontSize', color: 'red' }}>
-    //       Please type in correct email 
-    //       </FormHelperText>}
-    // </FormControl>
     <>
       <StyledTextField
         value={email}

@@ -5,16 +5,15 @@ import {
 import StyledTextField from '../Inputs/StyledTextField'
 
 function PasswordSet({
-  password,
-  passwordError,
-  confirmPassword,
-  confirmPasswordError,
-  setPassword,
-  setConfirmPassword,
-  setPasswordError,
-  setConfirmPasswordError,
-  setPasswordChanged
-}) {
+                       password,
+                       passwordError,
+                       confirmPassword,
+                       confirmPasswordError,
+                       setPassword,
+                       setConfirmPassword,
+                       setPasswordError,
+                       setConfirmPasswordError,
+                     }) {
 
   const hasLowerCase = /.*[a-z]+.*/;
   const hasUpperCase = /.*[A-Z]+.*/;
@@ -29,7 +28,6 @@ function PasswordSet({
       setPasswordError(false)
     }
     setPassword(event.target.value);
-    setPasswordChanged(true);
 
     if (confirmPassword !== event.target.value) {
       setConfirmPasswordError(true)
@@ -60,11 +58,20 @@ function PasswordSet({
       />
       <Typography variant="body2" component="div">
         <ul>
-          <li style={{ color: length8To16.test(password) ? 'green' : 'white', fontWeight: 700 }}>Between 8-16 characters.</li>
-          <li style={{ color: hasLowerCase.test(password) ? 'green' : 'white', fontWeight: 700 }}>Has at least one lowercase letter.</li>
-          <li style={{ color: hasUpperCase.test(password) ? 'green' : 'white', fontWeight: 700 }}>Has at least one uppercase letter.</li>
-          <li style={{ color: hasNumber.test(password) ? 'green' : 'white', fontWeight: 700 }}>Has at least one number.</li>
-          <li style={{ color: hasSymbol.test(password) ? 'green' : 'white', fontWeight: 700 }}>Has at least one special symbol.</li>
+          <li style={{color: length8To16.test(password) ? 'green' : 'white', fontWeight: 700}}>Between 8-16
+            characters.
+          </li>
+          <li style={{color: hasLowerCase.test(password) ? 'green' : 'white', fontWeight: 700}}>Has at least one
+            lowercase letter.
+          </li>
+          <li style={{color: hasUpperCase.test(password) ? 'green' : 'white', fontWeight: 700}}>Has at least one
+            uppercase letter.
+          </li>
+          <li style={{color: hasNumber.test(password) ? 'green' : 'white', fontWeight: 700}}>Has at least one number.
+          </li>
+          <li style={{color: hasSymbol.test(password) ? 'green' : 'white', fontWeight: 700}}>Has at least one special
+            symbol.
+          </li>
         </ul>
       </Typography>
       <StyledTextField

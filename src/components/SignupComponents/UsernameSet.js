@@ -1,15 +1,15 @@
-import React, { useState } from "react";
-import { Typography } from "@mui/material";
+import React, {useState} from "react";
+import {Typography} from "@mui/material";
 import StyledTextField from '../Inputs/StyledTextField'
 
-function UsernameSet({ username,
-  usernameError,
-  usernameexistError,
-  setUsername,
-  setUsernameError,
-  setUsernameexistError,
-  setUsernameChanged
-}) {
+function UsernameSet({
+                       username,
+                       usernameError,
+                       usernameexistError,
+                       setUsername,
+                       setUsernameError,
+                       setUsernameexistError,
+                     }) {
   const [noNameError, setNoNameError] = useState(false)
 
   const hasSymbol = /[,.?!@#$%^&_=+-]+/
@@ -29,8 +29,6 @@ function UsernameSet({ username,
     }
     setUsername(event.target.value);
     setUsernameexistError(false);
-    setUsernameChanged(true);
-
   };
 
   const handleUserNameBlur = () => {
@@ -52,7 +50,11 @@ function UsernameSet({ username,
       />
       <Typography variant="body2" component="div">
         <ul>
-          <li style={{ color: (username.length >= 6 && username.length <= 16) ? 'green' : 'white', fontWeight: 700 }}>Between 6-16 characters.</li>
+          <li style={{
+            color: (username.length >= 6 && username.length <= 16) ? 'green' : 'white',
+            fontWeight: 700
+          }}>Between 6-16 characters.
+          </li>
         </ul>
       </Typography>
       {hasSymbol.test(username)
