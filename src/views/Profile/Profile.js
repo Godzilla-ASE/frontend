@@ -17,6 +17,7 @@ export default function Profile() {
   const logginedUser = useLoggedInUser();
   const targetID = logginedUser.id;
 
+  // get more info by loggined userid
   useEffect(() => {
     const fetchData = async () => {
       const userInfo = await getOneUserInfo(targetID);

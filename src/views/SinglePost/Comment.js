@@ -15,8 +15,9 @@ function Comment({ comment, loginedUserID, onreplyCommentChange }) {
   };
   const handleDeleteComment = (id) => {
     deleteComment(id);
-  };
+  }
 
+  // comment without replys
   if (replys.length !== 0) {
     return (
       <div>

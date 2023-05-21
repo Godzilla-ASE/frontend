@@ -18,7 +18,6 @@ function SinglePost() {
   const [post, setPostData] = useState(null);
   const [comments, setComments] = useState([]);
   const [replyComment, setreplyComment] = useState([]);
-  //console.log(loginedUser);
 
   const handlereplyCommentChange = (newValue) => {
     setreplyComment(newValue);
@@ -31,9 +30,9 @@ function SinglePost() {
       const comments = await getPostComments(postId);
       setPostData(postdata);
       setComments(comments);
-    };
-    fetchData();
-  }, []);
+    }
+    fetchData()
+  }, [])
 
   if (!post) {
     return (

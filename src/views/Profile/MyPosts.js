@@ -5,7 +5,9 @@ import PostCardFooter from "../../components/PostCardFooter";
 import { getPostsByUserID } from "../../services/post";
 
 export default function MyPosts({ userid }) {
+
   const [posts, setPostData] = useState(null);
+  // get posts by userID
   useEffect(() => {
     const fetchData = async () => {
       const data = await getPostsByUserID(userid);
