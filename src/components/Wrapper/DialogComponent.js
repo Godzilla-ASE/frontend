@@ -1,7 +1,5 @@
 import {Dialog, styled, Box} from "@mui/material";
 
-g
-
 const StyledDialog = styled(Dialog)(({theme}) => ({
   "& .MuiPaper-root": {
     backgroundColor: theme.palette.background.default,

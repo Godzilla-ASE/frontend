@@ -16,7 +16,7 @@ import LocationSet from "./SignupComponents/LocationSet";
 import SignupSubmit from "../services/SignupSubmit";
 import { LOGO_API } from "../services/APIs";
 import "./SignupComponents/SignUp.css";
-import useS3Upload from '../Hooks/useS3Upload'
+import useS3Upload from '../hooks/useS3Upload'
 import Notification from './Notification'
 
 const SignUp = () => {
