@@ -16,7 +16,7 @@ const UserList = ({titleText, setCardOpen, userList, logginedUser}) => {
     handleBack();
     navigate(`/profile/${userId}`)
   };
-  console.log(userList);
+
   return (
     <Card style={{
       width: '50%',
