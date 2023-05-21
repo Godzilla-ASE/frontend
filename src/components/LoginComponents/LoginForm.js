@@ -50,9 +50,13 @@ function LoginForm() {
           <form onSubmit={(event) => {
             requestbody={username, password}
             functionbody={setUsernamecorrectError, setPasswordcorrectError}
-            LoginSubmit(event, requestbody, previousUrl,navigate,functionbody, setLogInSuccess, setLogInError)
-   
-   }} className="login-form">
+            try {
+              await LoginSubmit(event, requestbody, previousUrl,navigate,functionbody, setLogInSuccess, setLogInError);
+            } catch (error) {
+              // Handle the error or provide appropriate feedback
+              console.log(error)
+            }
+            }} className="login-form">
             <UsernameInput
               username={username}
               setUsername={setUsername}
