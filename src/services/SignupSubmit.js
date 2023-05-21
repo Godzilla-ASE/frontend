@@ -62,7 +62,6 @@ const SignupSubmit = async (event, username, password, email, location, confirmP
           navigate("/"); // Replace "/login" with the actual URL of your login page
         }, 1000);
       } else if (response.status === 409) {
-        // const error = await response.text();
         setUsernameexistError(true);
         setSignUpError("Username Exists. Please choose another one.");
       } else if (response.status === 404) {

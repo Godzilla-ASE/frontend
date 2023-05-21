@@ -8,8 +8,7 @@ import {
   FormHelperText,
   Typography,
 } from "@mui/material";
-import {Link} from 'react-router-dom';
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate} from 'react-router-dom';
 import UsernameSet from "./SignupComponents/UsernameSet";
 import EmailSet from "./SignupComponents/EmailSet";
 import PasswordSet from "./SignupComponents/PasswordSet";
@@ -38,7 +37,7 @@ const SignUp = () => {
   const [signUpSuccess, setSignUpSuccess] = useState('');
   const [signUpError, setSignUpError] = useState('');
   const [avatarUrl, setAvatarUrl] = useState("https://robohash.org/31.10.156.227.png");
-  
+
   const [avatarChanged, setAvatarChanged] = useState(false);
 
   const {uploadImageToS3} = useS3Upload();

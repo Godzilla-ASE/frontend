@@ -1,10 +1,10 @@
-import { useState, useEffect } from "react";
-import { Typography, Box } from "@mui/material";
+import {useState, useEffect} from "react";
+import {Typography, Box} from "@mui/material";
 import Masonry from "@mui/lab/Masonry";
 import PostCardFooter from "../../components/PostCardFooter";
-import { getPostsByUserID } from "../../services/post";
+import {getPostsByUserID} from "../../services/post";
 
-export default function MyPosts({ userid }) {
+export default function MyPosts({userid}) {
 
   const [posts, setPostData] = useState(null);
   // get posts by userID
@@ -19,7 +19,7 @@ export default function MyPosts({ userid }) {
 
   if (!posts) {
     return (
-      <Typography variant="h2" color="primary" style={{ textAlign: "center" }}>
+      <Typography variant="h2" color="primary" style={{textAlign: "center"}}>
         You have No Post So Far.
       </Typography>
     );
@@ -31,11 +31,11 @@ export default function MyPosts({ userid }) {
 
   return (
     <Box
-      sx={{ width: 3 / 5, minHeight: 829, margin: "0 auto", paddingTop: "1%" }}
+      sx={{width: 3 / 5, minHeight: 829, margin: "0 auto", paddingTop: "1%"}}
     >
       <Masonry columns={3} spacing={3}>
         {posts.map((post, index) => (
-          <div key={index}>
+          <div key={post.title}>
             <div>
               <img
                 src={`${post.coverImage}?w=162&auto=format`}
@@ -52,7 +52,7 @@ export default function MyPosts({ userid }) {
                 onLoad={handleImage}
               />
             </div>
-            <PostCardFooter post={post} />
+            <PostCardFooter post={post}/>
           </div>
         ))}
       </Masonry>

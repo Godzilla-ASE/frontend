@@ -1,4 +1,4 @@
-import {Grid, Chip, Box} from "@mui/material"
+import {Grid, Chip} from "@mui/material"
 import SingleLineInput from '../../components/Inputs/SingleLineInput';
 
 const Tag = ({handleTagInputChange, handleTagsSubmit, tagsInput, tags, handleTagDelete}) => {

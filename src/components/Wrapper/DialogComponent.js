@@ -1,7 +1,6 @@
 import {Dialog, styled, Box} from "@mui/material";
 
-import {useTheme} from "@emotion/react";
-import useMediaQuery from "@mui/material/useMediaQuery";
+g
 
 const StyledDialog = styled(Dialog)(({theme}) => ({
   "& .MuiPaper-root": {
@@ -15,8 +14,6 @@ const StyledDialogContent = styled(Box)(({theme}) => ({
 }));
 
 const DialogComponent = ({children, isOpen, onClose}) => {
-  const theme = useTheme()
-
   const windowHeight = window.innerHeight;
   const marginTopPercent = 0.16;
   const dialogStyle = {
