@@ -1,4 +1,4 @@
-#  [frontend]Godzila Social Comunity Website 
+#  Godzila Social Comunity Website 
 ## Introduction
 This is the frontend part of Godzila Social Comunity Website in course ASE II. It is build with react framework as well as S3 server in AWS by 3 group members. It contains all the pages, components within the presentation. It also handle and reply to all the user interaction on website.
 
@@ -12,11 +12,11 @@ The project inlcludes but not limited to the following features:
 - You can see more features in detail in Usage part.
 
 ## Installation
-###Environment requirement
+### Environment requirement
 Node.js V16.0
 docker compose up
 
-###Install and test without back-end server
+### Install and test without back-end server
 step1. You can directly clone this repo from 'main' branch.
 step2. cd into project root directory in your terminal. (Like cd /Users/username/frontend)
 step3. Execute 'npm i', then execute 'npm run start' .
